@@ -17,6 +17,8 @@ gem "foreman"
 gem "slim-rails"
 gem "devise"
 gem "foundation-rails"
+gem 'shoulda'
+ 
 group :development, :test do
   gem "rspec-rails"
   gem "faker"
