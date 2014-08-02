@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :contribution do
-    amount 5000
+    amount { [*200..5000].sample }
   end
 end

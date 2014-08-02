@@ -11,7 +11,9 @@ FactoryGirl.define do
     end
     
     trait :with_contributions do
-      contributions { FactoryGirl.create_list(:contribution, 5) }
+      after :create do |instance|
+        create_list :contribution, 20, jar_id: Jar.all.map(&:id).sample, user_id: instance.id
+      end
     end
   end
 end

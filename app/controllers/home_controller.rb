@@ -3,5 +3,6 @@ class HomeController < ApplicationController
     @users_jars = current_user.jars
     @users_contributed_jars = current_user.contributed_jars
     @contributable_jars = Jar.all
+    @contributions = Contribution.all
   end
 end

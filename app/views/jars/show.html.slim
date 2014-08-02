@@ -2,10 +2,19 @@ p#notice = notice
 
 p
   strong Owner:
-  = @jar.owner_id
+  = @jar.owner.email
+p
+  strong Contributions:
+  = @jar.contributions.count
+
+p
+  strong Contributors:
+  = @jar.total_contributors
+
+p
+  strong Total Contribution:
+  = number_to_currency(@jar.total_contribution)
 
 = link_to 'Contribute', new_jar_contribution_path(@jar)
-'|
 = link_to 'Edit', edit_jar_path(@jar)
-'|
-= link_to 'Back', jars_path
+= link_to 'Back', root_path
