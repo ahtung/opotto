@@ -3,11 +3,16 @@ h1 Welcome #{current_user.email}
 h2 Jar's initiated by you
 ul
   - @users_jars.each do |jar|
-	  li= link_to jar.name, jar_path(jar)
+	  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
 
 h2 Jar's you've contributed to
 ul
   - @users_contributed_jars.each do |jar|
-	  li= link_to jar.name, jar_path(jar)
+	  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
+
+h2 Jar's you can contribute to
+ul
+  - @contributable_jars.each do |jar|
+	  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
 
 = link_to 'New jar', new_jar_path

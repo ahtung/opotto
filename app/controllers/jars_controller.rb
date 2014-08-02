@@ -28,11 +28,11 @@ class JarsController < ApplicationController
   # POST /jars
   # POST /jars.json
   def create
-    @jar = Jar.new(jar_params)
+    @jar = current_user.jars.build(jar_params)
 
     respond_to do |format|
       if @jar.save
-        format.html { redirect_to @jar, notice: 'Jar was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Jar was successfully created.' }
         format.json { render :show, status: :created, location: @jar }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class JarsController < ApplicationController
   def update
     respond_to do |format|
       if @jar.update(jar_params)
-        format.html { redirect_to @jar, notice: 'Jar was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Jar was successfully updated.' }
         format.json { render :show, status: :ok, location: @jar }
       else
         format.html { render :edit }
@@ -73,6 +73,6 @@ class JarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
-      params.require(:jar).permit(:owner_id, :name)
+      params.require(:jar).permit(:name)
     end
 end
