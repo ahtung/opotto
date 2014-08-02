@@ -17,7 +17,8 @@ gem "slim-rails"
 gem "devise"
 gem "foundation-rails"
 gem 'shoulda'
- 
+gem 'mangopay'
+
 group :development, :test do
   gem "rspec-rails"
   gem "faker"
