@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   has_many :jars, dependent: :destroy, foreign_key: :owner_id
   has_many :contributions, :dependent => :destroy
   has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
+  
+  def uncontributed_jars
+    jars - contributed_jars
+  end
 end
