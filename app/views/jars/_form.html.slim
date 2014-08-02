@@ -1,0 +1,12 @@
+= form_for @jar do |f|
+  - if @jar.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@jar.errors.count, "error")} prohibited this jar from being saved:"
+      ul
+        - @jar.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :owner_id
+    = f.number_field :owner_id
+  .actions = f.submit 'Save'

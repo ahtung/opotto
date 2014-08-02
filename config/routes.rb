@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :jars
+
   root to: 'home#index'
   get 'home/index'
 
