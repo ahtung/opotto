@@ -19,6 +19,7 @@ gem 'shoulda'
 gem 'mangopay'
 
 group :development, :test do
+  gem 'launchy'
   gem "rspec-rails"
   gem "faker"
   gem "factory_girl_rails"
