@@ -5,6 +5,7 @@ describe 'User' do
   
   before :each do
     login user
+    pending
   end
   
   it 'should be able to create a new pot' do
