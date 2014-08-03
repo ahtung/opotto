@@ -7,9 +7,18 @@
         li.toggle-topbar.menu-icon
           a href="#"
             span Menu
-      section class="top-bar-section"
-        ul class="right"
-          li class="divider"
-          li class="has-form"
+      section.top-bar-section
+        ul.right
+          li.divider
+          li.has-form
             = link_to 'New jar', new_jar_path, class: 'button'
-  = render 'notices', flash: flash
+          li.divider
+          li.has-dropdown
+            a href="#" User
+            ul.dropdown
+              li
+                - if user_signed_in?
+                  = link_to('Logout', destroy_user_session_path, :method => :delete)
+                - else
+                  = link_to('Login', new_user_session_path)
+= render 'notices', flash: flash
