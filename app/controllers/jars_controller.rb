@@ -60,7 +60,7 @@ class JarsController < ApplicationController
   def destroy
     @jar.destroy
     respond_to do |format|
-      format.html { redirect_to jars_url, notice: 'Jar was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Jar was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

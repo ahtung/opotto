@@ -1,5 +1,5 @@
 ul.pricing-table
-  li.title #{jar.name}
+  li.title= link_to jar.name, jar_path(jar)
   li.price #{number_to_currency(jar.total_contribution)}
   / li.description An awesome description
   li.bullet-item= "#{jar.total_contributors} Contributors"
