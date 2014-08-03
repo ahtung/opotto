@@ -1,27 +1,10 @@
-.row#top
-  .columns.small-12
-	  p Lorem
-.row#bottom
-  .columns.small-12
-	  p Ipsum
-
-h1 Welcome #{current_user.email}
-
 p Jar's initiated by you
-ul.small-block-grid-5
-  - @users_jars.each do |jar|
-	  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) ", jar_path(jar)
+ul.small-block-grid-2.medium-block-grid-5= render collection: @users_jars, partial: "jars/jar_li", as: :jar
 
 - unless @users_contributed_jars.empty?
 	p Jar's you've contributed to
-	ul.small-block-grid-5
-	  - @users_contributed_jars.each do |jar|
-		  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
+	ul.small-block-grid-2.medium-block-grid-5= render collection: @users_contributed_jars, partial: "jars/jar_li", as: :jar
 
 - unless @contributable_jars.empty?
 	p Jar's you can contribute to
-	ul.small-block-grid-5
-	  - @contributable_jars.each do |jar|
-		  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
-
-= link_to 'New jar', new_jar_path
+	ul.small-block-grid-2.medium-block-grid-5= render collection: @contributable_jars, partial: "jars/jar_li", as: :jar

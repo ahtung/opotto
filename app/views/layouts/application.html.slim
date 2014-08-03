@@ -11,7 +11,20 @@ html lang="en"
     = csrf_meta_tag
 
   body
-    = render 'notices', flash: flash
-    == yield
+    .row#top
+      .columns.small-2.small-centered
+        = render 'notices', flash: flash
+    .row
+      .columns.small-2.small-centered
+        h1 Jars
+    .row
+      .columns.small-4.small-centered
+        h2 Welcome #{current_user.email}
+    .row#bottom
+      .columns.small-4.small-centered
+        = link_to 'New jar', new_jar_path
+    .row
+      .columns.small-12.small-8
+        == yield
 
     = javascript_include_tag "application"
