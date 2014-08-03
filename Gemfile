@@ -18,6 +18,7 @@ gem "foundation-rails"
 gem 'shoulda'
 gem 'mangopay'
 gem 'newrelic_rpm'
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'launchy'
