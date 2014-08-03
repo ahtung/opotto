@@ -1,10 +1,10 @@
-p Jar's initiated by you
+h3 Jar's initiated by you
 ul.small-block-grid-2.medium-block-grid-5= render collection: @users_jars, partial: "jars/jar_li", as: :jar
 
 - unless @users_contributed_jars.empty?
-	p Jar's you've contributed to
+	h3 Jar's you've contributed to
 	ul.small-block-grid-2.medium-block-grid-5= render collection: @users_contributed_jars, partial: "jars/jar_li", as: :jar
 
 - unless @contributable_jars.empty?
-	p Jar's you can contribute to
+	h3 Jar's you can contribute to
 	ul.small-block-grid-2.medium-block-grid-5= render collection: @contributable_jars, partial: "jars/jar_li", as: :jar

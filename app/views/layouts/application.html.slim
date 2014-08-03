@@ -11,15 +11,13 @@ html lang="en"
     = csrf_meta_tag
 
   body
+    = render 'navigation'
     .row#top
       .columns.small-2.small-centered
         = render 'notices', flash: flash
     .row
-      .columns.small-2.small-centered
-        h1 Jars
-    .row
       .columns.small-4.small-centered
-        h2 Welcome #{current_user.email}
+        h2= "Welcome #{current_user.email}" if current_user
     .row#bottom
       .columns.small-4.small-centered
         = link_to 'New jar', new_jar_path, class: 'button'

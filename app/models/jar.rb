@@ -13,7 +13,7 @@ class Jar < ActiveRecord::Base
   end
   
   def total_contribution
-    contributions.sum("amount")
+    contributions.sum("amount") / 100
   end
   
   def total_contributors
