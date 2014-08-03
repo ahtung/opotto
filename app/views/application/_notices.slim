@@ -1,4 +1,4 @@
 - flash.each do |type, message|
-  div class="alert "
-    button class="close" ×
+ .alert-box data-alert=true class="#{type}"
     = message
+    a.close href="#" &times;
