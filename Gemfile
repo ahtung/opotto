@@ -17,6 +17,7 @@ gem "devise"
 gem "foundation-rails"
 gem 'shoulda'
 gem 'mangopay'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'launchy'
