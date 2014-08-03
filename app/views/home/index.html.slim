@@ -8,19 +8,19 @@
 h1 Welcome #{current_user.email}
 
 p Jar's initiated by you
-ul
+ul.small-block-grid-5
   - @users_jars.each do |jar|
 	  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) ", jar_path(jar)
 
 - unless @users_contributed_jars.empty?
 	p Jar's you've contributed to
-	ul
+	ul.small-block-grid-5
 	  - @users_contributed_jars.each do |jar|
 		  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
 
 - unless @contributable_jars.empty?
 	p Jar's you can contribute to
-	ul
+	ul.small-block-grid-5
 	  - @contributable_jars.each do |jar|
 		  li= link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) (#{jar.total_contributors} contributors)", jar_path(jar)
 
