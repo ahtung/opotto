@@ -1,7 +1,8 @@
 ul.pricing-table
   li.title= link_to jar.name, jar_path(jar)
+  li.image= image_tag 'jar.png'
   li.price #{number_to_currency(jar.total_contribution)}
-  / li.description An awesome description
+  li.description An awesome description
   li.bullet-item= "#{jar.total_contributors} Contributors"
   li.cta-button
 	  = link_to 'Contribute', new_jar_contribution_path(jar), class: 'button'
