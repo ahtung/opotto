@@ -18,4 +18,4 @@ p
 = link_to 'Contribute', new_jar_contribution_path(@jar)
 = link_to 'Edit', edit_jar_path(@jar)
 = link_to 'Back', root_path
-= link_to 'Delete', jar_path(@jar), method: :delete
+= link_to 'Delete', jar_path(@jar), method: :delete, data: { confirm: "Are you sure?" }
