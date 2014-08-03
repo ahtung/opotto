@@ -1,1 +1,7 @@
-=link_to "#{jar.name} (#{number_to_currency(jar.total_contribution)}) ", jar_path(jar)
+ul.pricing-table
+  li.title #{jar.name}
+  li.price #{number_to_currency(jar.total_contribution)}
+  / li.description An awesome description
+  li.bullet-item= "#{jar.total_contributors} Contributors"
+  li.cta-button
+	  = link_to 'Contribute', new_jar_contribution_path(jar), class: 'button'
