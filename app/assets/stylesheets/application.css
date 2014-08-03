@@ -15,3 +15,12 @@
  *= require foundation_and_overrides
 
  */
+
+
+#top {
+	background-color:red;
+}
+
+#bottom {
+	background-color:green;
+}
