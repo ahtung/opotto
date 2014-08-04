@@ -21,4 +21,6 @@
                   = link_to('Logout', destroy_user_session_path, :method => :delete)
                 - else
                   = link_to('Login', new_user_session_path)
-= render 'notices', flash: flash
+.row
+  .columns.small-12.small-8
+    = render 'notices', flash: flash
