@@ -1,26 +1,21 @@
-.row
-  .columns.small-12.small-centered.medium-8.contain-to-grid
-    nav.top-bar data-topbar=true
-      ul.title-area
-        li.name
-          h1= link_to 'Jars', root_path
-        li.toggle-topbar.menu-icon
-          a href="#"
-            span Menu
-      section.top-bar-section
-        ul.right
-          li.divider
-          li.has-form
-            = link_to 'New jar', new_jar_path, class: 'button'
-          li.divider
-          li.has-dropdown
-            a href="#" User
-            ul.dropdown
-              li
-                - if user_signed_in?
-                  = link_to('Logout', destroy_user_session_path, :method => :delete)
-                - else
-                  = link_to('Login', new_user_session_path)
-.row
-  .columns.small-12.small-8
-    = render 'notices', flash: flash
+nav.top-bar data-topbar=true
+  ul.title-area
+    li.name
+      h1= link_to 'Jars', root_path
+    li.toggle-topbar.menu-icon
+      a href="#"
+        span Menu
+  section.top-bar-section
+    ul.right
+      li.divider
+      li.has-form
+        = link_to 'New jar', new_jar_path, class: 'button'
+      li.divider
+      li.has-dropdown
+        a href="#" User
+        ul.dropdown
+          li
+            - if user_signed_in?
+              = link_to('Logout', destroy_user_session_path, :method => :delete)
+            - else
+              = link_to('Login', new_user_session_path)

@@ -4,11 +4,9 @@ Rails.application.routes.draw do
   resources :jars do
     resources :contributions
   end
-
-  get 'home/index'
-  get 'home/welcome'    
-  
-  root to: 'home#welcome'
-
+  authenticated :user do
+    root to: "home#index", as: :authenticated_root
+  end
+  root to: "home#welcome"
 end
 
