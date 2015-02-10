@@ -11,13 +11,17 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'spring',           group: :development
 gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
 gem 'shoulda'
 gem 'newrelic_rpm'
 gem 'rails_12factor'
+
+group :development do
+  gem 'spring-commands-rspec'
+  gem 'spring'
+end
 
 group :development, :test do
   gem 'launchy'
