@@ -16,7 +16,6 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
 gem 'shoulda'
-gem 'mangopay'
 gem 'newrelic_rpm'
 gem 'rails_12factor'
 

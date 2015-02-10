@@ -97,8 +97,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mangopay (3.0.14)
-      multi_json (>= 1.7.7)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -234,7 +232,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   launchy
-  mangopay
   newrelic_rpm
   pg
   poltergeist
