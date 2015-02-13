@@ -3,7 +3,7 @@ class Jar < ActiveRecord::Base
   has_many :contributions, dependent: :destroy
   has_many :contributors, -> { uniq }, through: :contributions, source: :user
 
-  # TODO validations
+  validates :name, presence: true, uniqueness: true
 
   def total_contribution
     (contributions.sum("amount") / 100).to_f

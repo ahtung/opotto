@@ -1,17 +1,11 @@
 class JarsController < ApplicationController
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
 
-  # GET /jars
-  # GET /jars.json
-  def index
-    @jars = Jar.all
-  end
-
   # GET /jars/1
   # GET /jars/1.json
   def show
   end
-  
+
   # POST /jars/1/contribute
   def contribute
   end
