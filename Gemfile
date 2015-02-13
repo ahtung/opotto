@@ -16,19 +16,31 @@ gem 'slim-rails'
 gem 'devise'
 gem 'shoulda'
 gem 'newrelic_rpm'
-gem 'rails_12factor'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development do
-  gem 'spring-commands-rspec'
-  gem 'spring'
+  gem 'rubocop', require: false
+  gem 'brakeman', require: false
+  gem 'rubycritic', require: false
 end
 
 group :development, :test do
-  gem 'launchy'
+  gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
   gem 'rspec-rails'
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov', require: false
 end
