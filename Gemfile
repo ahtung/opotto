@@ -22,7 +22,6 @@ group :production do
 end
 
 group :development do
-  gem 'rubocop', require: false
   gem 'brakeman', require: false
   gem 'rubycritic', require: false
 end
