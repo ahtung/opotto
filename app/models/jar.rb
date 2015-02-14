@@ -1,3 +1,4 @@
+# Jar
 class Jar < ActiveRecord::Base
   belongs_to :owner, class_name: User
   has_many :contributions, dependent: :destroy
@@ -5,10 +6,12 @@ class Jar < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+  # returns the total contribution
   def total_contribution
     (contributions.sum('amount') / 100).to_f
   end
 
+  # returns the contributor count
   def total_contributors
     contributors.count
   end
