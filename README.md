@@ -14,7 +14,3 @@
 
 Once a PullRequest is merged into the master branch, Github will trigger a build on Magnu-CI,
 whih then triggers Github command to deploy to heroku.
-
-or
-
-!&*&! Magic !&*&!
