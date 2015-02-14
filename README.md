@@ -15,3 +15,9 @@
 
 Once a PullRequest is merged into the master branch, Github will trigger a build on CircleCI,
 which then triggers Github to deploy to heroku.
+
+## Tasks
+
+Generate docs
+
+    yard
