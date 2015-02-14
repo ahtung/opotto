@@ -1,4 +1,6 @@
+# AuthenticationHelpers
 module AuthenticationHelpers
+  # log in using user's credentials
   def login(user)
     visit new_user_session_path
     fill_in 'user_email', with: user.email
