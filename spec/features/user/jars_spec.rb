@@ -60,7 +60,6 @@ describe 'User should be able to' do
 
   end
 
-
   # Update
   describe 'update a jar' do
 
