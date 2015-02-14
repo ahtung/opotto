@@ -2,9 +2,9 @@ h1 initiated by you
 ul.small-block-grid-2.medium-block-grid-3.large-block-grid-5= render collection: @users_jars, partial: "jars/jar_li", as: :jar
 
 - unless @users_contributed_jars.empty?
-	h1 you've contributed to
-	ul.small-block-grid-2.medium-block-grid-3.large-block-grid-5= render collection: @users_contributed_jars, partial: "jars/jar_li", as: :jar
+  h1 you've contributed to
+  ul.small-block-grid-2.medium-block-grid-3.large-block-grid-5= render collection: @users_contributed_jars, partial: "jars/jar_li", as: :jar
 
 - unless @contributable_jars.empty?
-	h1 you can contribute to
-	ul.small-block-grid-2.medium-block-grid-3.large-block-grid-5= render collection: @contributable_jars, partial: "jars/jar_li", as: :jar
+  h1 you can contribute to
+  ul.small-block-grid-2.medium-block-grid-3.large-block-grid-5= render collection: @contributable_jars, partial: "jars/jar_li", as: :jar
