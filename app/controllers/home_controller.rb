@@ -1,3 +1,4 @@
+# HomeController
 class HomeController < ApplicationController
   # GET /
   def index
