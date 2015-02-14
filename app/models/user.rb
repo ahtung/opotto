@@ -1,3 +1,4 @@
+# User
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :contributions, dependent: :destroy
   has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
 
+  # returns jars that the user have not yet contributed to
   def uncontributed_jars
     jars - contributed_jars
   end
