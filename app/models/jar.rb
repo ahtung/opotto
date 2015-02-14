@@ -6,7 +6,7 @@ class Jar < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def total_contribution
-    (contributions.sum("amount") / 100).to_f
+    (contributions.sum('amount') / 100).to_f
   end
 
   def total_contributors
