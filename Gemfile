@@ -16,6 +16,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'shoulda'
 gem 'newrelic_rpm'
+gem 'unicorn'
 
 group :production do
   gem 'rails_12factor'
