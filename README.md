@@ -1,6 +1,6 @@
 # pot
 
-![Build status](https://magnum-ci.com/status/95a0908957ae880d9142f2beaaa6b4fc.png)
+[![Circle CI](https://circleci.com/gh/dunyakirkali/pot.svg?style=svg)](https://circleci.com/gh/dunyakirkali/pot)
 
 ## Development
 
