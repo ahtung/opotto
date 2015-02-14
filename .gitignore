@@ -17,3 +17,8 @@
 
 *.env
 /coverage
+
+/doc
+/.yardoc
+
+report.html
