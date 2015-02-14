@@ -1,3 +1,4 @@
+# JarsController
 class JarsController < ApplicationController
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
 

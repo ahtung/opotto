@@ -1,10 +1,13 @@
+# ContributionsController
 class ContributionsController < ApplicationController
   before_action :set_jar, only: [:new, :show, :edit, :update, :destroy]
 
+  # GET /contributions/new
   def new
     @contribution = @jar.contributions.build
   end
 
+  # POST /contributions
   def create
     @contribution = current_user.contributions.build(contribution_params)
 
