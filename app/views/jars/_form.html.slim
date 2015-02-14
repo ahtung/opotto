@@ -1,9 +1,9 @@
-= form_for @jar do |f|
-  - if @jar.errors.any?
+= form_for jar do |f|
+  - if jar.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@jar.errors.count, "error")} prohibited this jar from being saved:"
+      h2 = "#{pluralize(jar.errors.count, "error")} prohibited this jar from being saved:"
       ul
-        - @jar.errors.full_messages.each do |message|
+        - jar.errors.full_messages.each do |message|
           li = message
 
   .field

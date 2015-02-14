@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
-  resources :jars do
-    resources :contributions
+  resources :jars, except: :index do
+    resources :contributions, only: [:new, :create]
   end
   authenticated :user do
     root to: "home#index", as: :authenticated_root
