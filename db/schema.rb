@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802132607) do
+ActiveRecord::Schema.define(version: 20150214232352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contributions", force: true do |t|
+  create_table "contributions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "jar_id"
     t.datetime "created_at"
@@ -24,14 +24,19 @@ ActiveRecord::Schema.define(version: 20140802132607) do
     t.integer  "amount"
   end
 
-  create_table "jars", force: true do |t|
+  add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
+  add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
+
+  create_table "jars", force: :cascade do |t|
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
 
-  create_table "users", force: true do |t|
+  add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
