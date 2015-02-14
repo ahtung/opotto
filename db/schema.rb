@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214232157) do
+ActiveRecord::Schema.define(version: 20150214232352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20150214232157) do
     t.datetime "updated_at"
     t.integer  "amount"
   end
+
+  add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
+  add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
   create_table "jars", force: :cascade do |t|
     t.integer  "owner_id"
