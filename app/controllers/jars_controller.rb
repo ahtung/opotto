@@ -2,7 +2,6 @@ class JarsController < ApplicationController
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
 
   # GET /jars/1
-  # GET /jars/1.json
   def show
   end
 
@@ -20,53 +19,40 @@ class JarsController < ApplicationController
   end
 
   # POST /jars
-  # POST /jars.json
   def create
     @jar = current_user.jars.build(jar_params)
 
-    respond_to do |format|
-      if @jar.save
-        format.html { redirect_to root_path, notice: 'Jar was successfully created.' }
-        format.json { render :show, status: :created, location: @jar }
-      else
-        format.html { render :new }
-        format.json { render json: @jar.errors, status: :unprocessable_entity }
-      end
+    if @jar.save
+      redirect_to root_path, notice: 'Jar was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /jars/1
-  # PATCH/PUT /jars/1.json
   def update
-    respond_to do |format|
-      if @jar.update(jar_params)
-        format.html { redirect_to root_path, notice: 'Jar was successfully updated.' }
-        format.json { render :show, status: :ok, location: @jar }
-      else
-        format.html { render :edit }
-        format.json { render json: @jar.errors, status: :unprocessable_entity }
-      end
+    if @jar.update(jar_params)
+      redirect_to root_path, notice: 'Jar was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /jars/1
-  # DELETE /jars/1.json
   def destroy
     @jar.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Jar was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: 'Jar was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_jar
-      @jar = Jar.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def jar_params
-      params.require(:jar).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_jar
+    @jar = Jar.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def jar_params
+    params.require(:jar).permit(:name)
+  end
 end
