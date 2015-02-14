@@ -24,7 +24,7 @@ end
 group :development do
   gem 'rubocop', require: false
   gem 'brakeman', require: false
-  gem 'rubycritic', require: false
+  gem 'yard', require: false
 end
 
 group :development, :test do
