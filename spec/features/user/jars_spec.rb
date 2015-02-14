@@ -117,7 +117,7 @@ describe 'User should be able to' do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
         click_on 'Save'
-        expect(page).to have_content("Contribution was successfully created.")
+        expect(page).to have_content('Contribution was successfully created.')
       end
     end
 
