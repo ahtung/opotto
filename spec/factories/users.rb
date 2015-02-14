@@ -5,11 +5,11 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
     password_confirmation { |this| this.password }
-    
+
     trait :with_jars do
-      jars { FactoryGirl.create_list(:jar, 5) }
+      jars { create_list(:jar, 5) }
     end
-    
+
     trait :with_contributions do
       after :create do |instance|
         create_list :contribution, 20, jar_id: Jar.all.map(&:id).sample, user_id: instance.id

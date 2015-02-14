@@ -1,8 +1,7 @@
 h1= @jar.name
 h3.subheader
-  | owned by 
-  = @jar.owner.email
-  
+  = "owned by #{@jar.owner.email}"
+
 p
   strong Contributions:
   = @jar.contributions.count
