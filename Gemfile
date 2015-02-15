@@ -21,6 +21,8 @@ gem 'unicorn'
 gem 'money-rails'
 gem 'google_contacts_api'
 gem 'rails-assets-select2'
+gem "omniauth-google-oauth2"
+gem 'rack-google-analytics'
 
 group :production do
   gem 'rails_12factor'
