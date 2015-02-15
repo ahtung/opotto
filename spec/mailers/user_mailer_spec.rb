@@ -2,11 +2,9 @@ require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
   before(:each) do
-    ActionMailer::Base.delivery_method = :test
-    ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-
     users = create_list(:user, 3)
+    @user = users.first
     users.each do |user|
       UserMailer.invitation_email(user).deliver_now
     end
@@ -17,7 +15,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   it 'renders the receiver email' do
-    ActionMailer::Base.deliveries.first.to.should == users.map(&:email)
+    ActionMailer::Base.deliveries.first.to.should == @user.email
   end
 
   it 'should set the subject to the correct subject' do
