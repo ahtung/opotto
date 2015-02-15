@@ -7,7 +7,8 @@ module AuthenticationHelpers
       uid: '1337',
       info: {
         email: email,
-        password: password
+        password: password,
+        refresh_token: 'TOKEN_STRING'
       }
     })
   end
