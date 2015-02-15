@@ -1,2 +1,2 @@
 web: bundle exec unicorn -p 3000 -c ./config/unicorn.rb
-mail: mailcatcher -f
+mailcather: mailcatcher -f
