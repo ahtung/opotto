@@ -23,7 +23,6 @@ gem 'google_contacts_api'
 gem 'rails-assets-select2'
 gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'
-gem 'mailcatcher'
 
 group :production do
   gem 'rails_12factor'
@@ -33,6 +32,7 @@ group :development do
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
+  gem 'mailcatcher'
 end
 
 group :development, :test do
