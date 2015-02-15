@@ -24,6 +24,7 @@ gem 'rails-assets-select2'
 gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'
 gem 'sidekiq'
+gem 'sinatra'
 
 group :production do
   gem 'rails_12factor'
