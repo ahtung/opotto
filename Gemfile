@@ -46,6 +46,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'pullreview-coverage', require: false
 end

@@ -9,6 +9,7 @@
     = f.text_field :name
 
   .field
+    = f.label :guest_ids
     = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
   .actions = f.submit 'Save', class: 'button'

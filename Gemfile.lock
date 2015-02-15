@@ -63,6 +63,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-select2 (0.0.8)
+      capybara
+      rspec
     cliver (0.3.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -195,6 +198,10 @@ GEM
       json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
     rspec-core (3.2.0)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -296,6 +303,7 @@ DEPENDENCIES
   brakeman
   byebug
   capybara
+  capybara-select2
   coffee-rails
   database_cleaner
   devise

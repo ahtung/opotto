@@ -4,6 +4,7 @@ describe 'User should be able to' do
 
   let!(:user) { create(:user, :with_jars) }
   let!(:jar) { user.jars.first }
+  let!(:jar_mock) { build(:jar) }
 
   before :each do
     login user
@@ -18,7 +19,8 @@ describe 'User should be able to' do
     context 'sucessfully' do
 
       before :each do
-        fill_in 'jar_name', with: 'Joelle getting married'
+        fill_in 'jar_name', with: jar_mock.name
+        # select2 user.email, from: 'Guest ids'
         click_on 'Save'
       end
 
@@ -27,14 +29,17 @@ describe 'User should be able to' do
       end
 
       it 'and see the name' do
-        expect(page).to have_content('Joelle getting married')
+        expect(page).to have_content jar_mock.name
+      end
+
+      xit 'and invite guests' do
+        expect(user.jars.last.guests.count).to eq(1)
       end
     end
 
     context 'unsucessfully' do
       it 'and see an error' do
         click_on 'Save'
-
         expect(page).to have_content("Name can't be blank")
       end
     end
