@@ -10,7 +10,7 @@ describe Jar do
 
   it '#total_contribution' do
     jar = create(:jar, :with_contributions)
-    expect(jar.total_contribution).to eq (jar.contributions.sum('amount') / 100).to_f
+    expect(jar.total_contribution).to eq jar.contributions.map(&:amount).inject { |sum, x| sum + x }
   end
 
   it '#total_contributors' do

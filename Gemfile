@@ -17,13 +17,13 @@ gem 'devise'
 gem 'shoulda'
 gem 'newrelic_rpm'
 gem 'unicorn'
+gem 'money-rails'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
-  gem 'rubocop', require: false
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
