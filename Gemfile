@@ -23,6 +23,7 @@ gem 'google_contacts_api'
 gem 'rails-assets-select2'
 gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'
+gem 'sidekiq'
 
 group :production do
   gem 'rails_12factor'
