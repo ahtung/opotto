@@ -8,8 +8,10 @@ module AuthenticationHelpers
       info: {
         email: email,
         password: password,
-        refresh_token: 'TOKEN_STRING'
-      }
+        credentials: {
+          refresh_token: 'TOKEN_STRING'
+        }
+      },
     })
   end
 end

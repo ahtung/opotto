@@ -27,29 +27,11 @@ class User < ActiveRecord::Base
   # User is being created if it does not exist
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(email: data['email']).first
-
-    unless user
-      user = User.create(name: data['name'],
-       email: data['email'],
-       password: Devise.friendly_token[0, 20],
-       refresh_token: access_token.credentials.refresh_token
-      )
-    end
-    user
-  end
-
-  private
-
-  # Imports user's contact list after it is created
-  def import_contacts
-    return unless access_token
-    google_contacts_user = GoogleContactsApi::User.new(access_token)
-    google_contacts_user.contacts.each do |contact|
-      ActiveRecord::Base.transaction do
-        contacts.where(email: contact.primary_email).first_or_create(name: contact.fullName, password: Devise.friendly_token[0, 20])
-      end
-    end
+    User.where(email: data['email']).first_or_create(
+      name: data['name'],
+      password: Devise.friendly_token[0, 20],
+      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil
+    )
   end
 
   # Gets the access_token using users's refresh token
@@ -62,4 +44,15 @@ class User < ActiveRecord::Base
      }
      OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
+
+  private
+
+  # Imports user's contact list after it is created
+  def import_contacts
+    puts 'import_contacts'
+    return unless access_token
+    puts 'FriendSyncWorker'
+    FriendSyncWorker.perform_async(id)
+  end
+
 end
