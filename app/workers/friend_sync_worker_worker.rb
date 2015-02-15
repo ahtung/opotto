@@ -1,6 +1,8 @@
+# FriendSyncWorkerWorker
 class FriendSyncWorkerWorker
   include Sidekiq::Worker
 
+  # perform worker
   def perform(user_id)
     user = User.find(user_id)
     google_contacts_user = GoogleContactsApi::User.new(access_token)
