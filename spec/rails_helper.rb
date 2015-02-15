@@ -1,11 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-# Simplecov
-if ENV['CIRCLE_ARTIFACTS']
-  require 'simplecov'
-  dir = File.join('..', '..', '..', ENV['CIRCLE_ARTIFACTS'], 'coverage')
-  SimpleCov.coverage_dir(dir)
-end
+# Coverage
+require 'pullreview/coverage_reporter'
+PullReview::CoverageReporter.start
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
