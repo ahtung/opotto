@@ -8,6 +8,6 @@ class Invitation < ActiveRecord::Base
   private
 
   def invite_user
-    UserMailer.invitation_email(user)
+    UserMailer.invitation_email(user, jar).deliver_now
   end
 end

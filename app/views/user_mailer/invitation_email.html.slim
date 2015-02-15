@@ -1,1 +1,5 @@
-h1 Hello
+h1= "Hello #{@user.email}"
+
+p
+  = "You have been asked to contribute to "
+  = link_to 'ontribute', new_jar_contribution(@jar)
