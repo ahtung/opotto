@@ -1,12 +1,13 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
   before(:each) do
     ActionMailer::Base.deliveries = []
     users = create_list(:user, 3)
+    jar = create(:jar)
     @user = users.first
     users.each do |user|
-      UserMailer.invitation_email(user).deliver_now
+      UserMailer.invitation_email(user, jar).deliver_now
     end
   end
 
