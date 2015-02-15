@@ -1,5 +1,6 @@
 # ContributionsController
 class ContributionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_jar, only: [:new, :create]
 
   # GET /contributions/new

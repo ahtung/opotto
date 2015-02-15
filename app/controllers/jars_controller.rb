@@ -1,5 +1,6 @@
 # JarsController
 class JarsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
 
   # GET /jars/1
