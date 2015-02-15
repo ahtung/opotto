@@ -121,9 +121,11 @@ describe 'User should be able to' do
       end
     end
 
-    context 'unsucessfully' do
-      xit 'and see a alert' do
-        expect(page).to have_content('Something went wrong :S')
+    context 'unsucessfully when amount is 0' do
+      it 'and see a alert' do
+        fill_in :contribution_amount, with: 0
+        click_on 'Save'
+        expect(page).to have_content('Amount must be greater than or equal to 1')
       end
     end
 

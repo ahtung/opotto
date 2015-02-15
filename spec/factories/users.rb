@@ -11,7 +11,9 @@ FactoryGirl.define do
     end
 
     trait :with_contributions do
-      contributions { create_list(:contribution, 10) }
+      after :create do |instance|
+        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price, jar_id: Jar.select(:id).sample)
+      end
     end
   end
 end
