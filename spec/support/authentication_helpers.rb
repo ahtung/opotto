@@ -1,15 +1,8 @@
 # AuthenticationHelpers
 module AuthenticationHelpers
-  # log in using user's credentials
-  def login(user)
-    visit new_user_session_path
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_on 'Log in'
-  end
-
+  # mock omniauth hash
   def omniauth_hash(email, password)
-    google_response = OmniAuth::AuthHash.new({
+    OmniAuth::AuthHash.new({
       provider: 'google',
       uid: '1337',
       info: {

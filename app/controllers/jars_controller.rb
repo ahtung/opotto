@@ -23,7 +23,6 @@ class JarsController < ApplicationController
   # POST /jars
   def create
     @jar = current_user.jars.build(jar_params)
-
     if @jar.save
       redirect_to root_path, notice: 'Jar was successfully created.'
     else
@@ -55,6 +54,6 @@ class JarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def jar_params
-    params.require(:jar).permit(:name)
+    params.require(:jar).permit(:name, guest_ids: [])
   end
 end

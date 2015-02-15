@@ -7,6 +7,12 @@ p
   = @jar.contributions.count
 
 p
+  strong Guests:
+  ul
+    - @jar.guests.each do |guest|
+      li= guest.email
+
+p
   strong Contributors:
   = @jar.total_contributors
 
