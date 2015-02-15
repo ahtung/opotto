@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/goodwill/capybara-select2.git
+  revision: c0826f33707b85fd39a838c6909ee12d0bff64a1
+  specs:
+    capybara-select2 (1.0.1)
+      capybara
+      rspec
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -63,9 +71,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-select2 (0.0.8)
-      capybara
-      rspec
     cliver (0.3.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -328,7 +333,7 @@ DEPENDENCIES
   brakeman
   byebug
   capybara
-  capybara-select2
+  capybara-select2!
   coffee-rails
   database_cleaner
   devise
