@@ -1,8 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Simplecov
-require 'simplecov'
-SimpleCov.start 'rails'
+if ENV['CIRCLE_ARTIFACTS']
+  require 'simplecov'
+  dir = File.join('..', '..', '..', ENV['CIRCLE_ARTIFACTS'], 'coverage')
+  SimpleCov.coverage_dir(dir)
+end
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
