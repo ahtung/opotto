@@ -1,12 +1,14 @@
 require 'rails_helper'
 
-describe 'User should be able to' do
+describe 'User should be able to', js: true do
 
   let!(:user) { create(:user, :with_jars) }
   let!(:jar) { user.jars.first }
+  let!(:jar_mock) { build(:jar) }
 
   before :each do
-    login user
+    login_as user
+    visit authenticated_root_path
   end
 
   # Create
@@ -18,7 +20,8 @@ describe 'User should be able to' do
     context 'sucessfully' do
 
       before :each do
-        fill_in 'jar_name', with: 'Joelle getting married'
+        first('#jar_name').set jar_mock.name
+        select2 user.email, from: 'Guest ids'
         click_on 'Save'
       end
 
@@ -27,14 +30,18 @@ describe 'User should be able to' do
       end
 
       it 'and see the name' do
-        expect(page).to have_content('Joelle getting married')
+        expect(page).to have_content jar_mock.name
+      end
+
+      it 'and invite guests' do
+        user.reload
+        expect(user.jars.last.guests.count).to eq(1)
       end
     end
 
     context 'unsucessfully' do
       it 'and see an error' do
         click_on 'Save'
-
         expect(page).to have_content("Name can't be blank")
       end
     end

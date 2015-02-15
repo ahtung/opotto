@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -18,6 +19,8 @@ gem 'shoulda'
 gem 'newrelic_rpm'
 gem 'unicorn'
 gem 'money-rails'
+gem 'google_contacts_api'
+gem 'rails-assets-select2'
 gem "omniauth-google-oauth2"
 gem 'rack-google-analytics'
 gem 'mailcatcher'
@@ -46,6 +49,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'pullreview-coverage', require: false
 end
