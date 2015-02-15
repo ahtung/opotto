@@ -11,5 +11,9 @@ FactoryGirl.define do
     trait :with_owner do
       owner { create(:user) }
     end
+
+    trait :with_guests do
+      guests { create_list(:user, 3) }
+    end
   end
 end
