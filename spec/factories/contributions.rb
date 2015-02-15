@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :contribution do
-    amount { [*200..5000].sample }
+    amount { Faker::Commerce.price }
   end
 end

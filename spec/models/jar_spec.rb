@@ -14,7 +14,7 @@ describe Jar do
   end
 
   it '#total_contributors' do
-    jar = create(:jar, :with_contributors)
+    jar = create(:jar, :with_contributions)
     expect(jar.total_contributors).to eq jar.contributors.count
   end
 end
