@@ -1,5 +1,5 @@
 # config/unicorn.rb
-if ENV["RAILS_ENV"] == "development"
+if ENV['RAILS_ENV'] == 'development'
   worker_processes 1
 else
   Integer(ENV['WEB_CONCURRENCY'] || 3)
