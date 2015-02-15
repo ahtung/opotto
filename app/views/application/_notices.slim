@@ -1,4 +1,6 @@
 - flash.each do |type, message|
- .alert-box data-alert=true class="#{type}"
+  - real_type = 'info' if type == 'notice'
+  .alert-box data-alert=true class="#{real_type}"
     = message
     a.close href="#" &times;
+

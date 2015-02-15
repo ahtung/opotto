@@ -1,4 +1,4 @@
-ul.pricing-table
+ul.pricing-table class=[('users' if jar.owner == current_user), ('contributed-to' if jar.contributors.include?(current_user))]
   li.title= link_to jar.name, jar_path(jar)
   li.image= image_tag 'jar.png'
   li.price #{number_to_currency(jar.total_contribution)}

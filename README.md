@@ -6,7 +6,7 @@
 
 ## Development
 
-``` foreman start -f Procfile.dev ```
+``` foreman start -f Procfile.dev -e Procfile.dev.env ```
 
 ## Test
 
