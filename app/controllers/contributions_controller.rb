@@ -1,6 +1,6 @@
 # ContributionsController
 class ContributionsController < ApplicationController
-  before_action :set_jar, only: :new
+  before_action :set_jar, only: [:new, :create]
 
   # GET /contributions/new
   def new
