@@ -1,2 +1,2 @@
 h1 Welcome
-= link_to 'Sign up', new_user_registration_path, class: 'button'
+= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: 'button'
