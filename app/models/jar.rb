@@ -8,13 +8,6 @@ class Jar < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  # after_save :invite_guests
-
-  # Invite users
-  def invite_users(users = [])
-    guests << users.uniq
-  end
-
   # returns the total contribution
   def total_contribution
     contributions.map(&:amount).inject { |sum, x| sum + x } || 0

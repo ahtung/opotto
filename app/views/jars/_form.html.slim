@@ -9,8 +9,6 @@
     = f.text_field :name
 
   .field
-    select.jar-guests multiple='multiple'
-      option value="AL" Alabama
-      option value="WY" Wyoming
+    = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
   .actions = f.submit 'Save', class: 'button'
