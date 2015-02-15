@@ -9,4 +9,8 @@ describe User do
     user = create(:user, :with_jars)
     expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
   end
+
+  xit '#contats' do
+
+  end
 end
