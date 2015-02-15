@@ -9,3 +9,8 @@
 
   = f.hidden_field :jar_id, value: jar.id
   .actions = f.submit 'Save', class: 'button'
+
+h2 Previous contributions
+ul
+  - current_user.contributions.where(jar: jar).each do |contribution|
+    li= humanized_money_with_symbol(contribution.amount)
