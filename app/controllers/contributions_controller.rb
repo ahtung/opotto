@@ -14,8 +14,7 @@ class ContributionsController < ApplicationController
     if @contribution.save
       redirect_to root_path, notice: 'Contribution was successfully created.'
     else
-      format.html { render :new }
-      format.json { render json: @contribution.errors, status: :unprocessable_entity }
+      render :new
     end
   end
 
