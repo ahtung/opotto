@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     User.where(email: data['email']).first_or_create(
       name: data['name'],
       password: Devise.friendly_token[0, 20],
-      refresh_token: access_token.credentials.refresh_token
+      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil
     )
   end
 
