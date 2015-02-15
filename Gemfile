@@ -18,6 +18,7 @@ gem 'shoulda'
 gem 'newrelic_rpm'
 gem 'unicorn'
 gem 'money-rails'
+gem 'google_contacts_api'
 
 group :production do
   gem 'rails_12factor'
