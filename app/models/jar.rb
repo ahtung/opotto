@@ -1,8 +1,10 @@
 # Jar
 class Jar < ActiveRecord::Base
-  belongs_to :owner, class_name: User
+  belongs_to :owner, class_name: 'User'
   has_many :contributions, dependent: :destroy
   has_many :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many :invitations, dependent: :destroy
+  has_many :guests, -> { uniq }, through: :invitations, source: :user
 
   validates :name, presence: true, uniqueness: true
 

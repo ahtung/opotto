@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :contributions, dependent: :destroy
   has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
 
+  has_many :invitations, dependent: :destroy
+  has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
+
   # returns google contacts
   def contact
     oauth_access_token_for_user = ''
