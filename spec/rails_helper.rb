@@ -1,8 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-# Simplecov
-require 'simplecov'
-SimpleCov.start 'rails'
+# Coverage
+require 'pullreview/coverage_reporter'
+PullReview::CoverageReporter.start
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
