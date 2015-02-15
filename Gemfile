@@ -18,6 +18,7 @@ gem 'shoulda'
 gem 'newrelic_rpm'
 gem 'unicorn'
 gem 'money-rails'
+gem "omniauth-google-oauth2"
 
 group :production do
   gem 'rails_12factor'
