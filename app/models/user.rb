@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :contacts, through: :friendships, class_name: 'User'
 
-  # # returns google contacts
-  # def contact
-  #   oauth_access_token_for_user = ''
-  #   GoogleContactsApi::User.new(oauth_access_token_for_user).contacts
-  # end
+  # invites users
+  def contacts
+    # oauth_access_token_for_user = ''
+    # GoogleContactsApi::User.new(oauth_access_token_for_user).contacts
+  end
 
   # returns jars that the user have not yet contributed to
   def uncontributed_jars

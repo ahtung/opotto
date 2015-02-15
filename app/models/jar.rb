@@ -10,6 +10,11 @@ class Jar < ActiveRecord::Base
 
   # after_save :invite_guests
 
+  # Invite users
+  def invite_users(users = [])
+    guests << users.uniq
+  end
+
   # returns the total contribution
   def total_contribution
     contributions.map(&:amount).inject { |sum, x| sum + x } || 0
@@ -18,6 +23,11 @@ class Jar < ActiveRecord::Base
   # returns the contributor count
   def total_contributors
     contributors.count
+  end
+
+  # returns the guest count
+  def total_guests
+    guests.count
   end
 
 end

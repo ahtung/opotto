@@ -20,4 +20,9 @@ describe Jar do
     jar = create(:jar, :with_contributions)
     expect(jar.total_contributors).to eq jar.contributors.count
   end
+
+  it '#total_guests' do
+    jar = create(:jar, :with_guests)
+    expect(jar.total_guests).to eq jar.guests.count
+  end
 end
