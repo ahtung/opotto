@@ -46,7 +46,9 @@ class User < ActiveRecord::Base
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     google_contacts_user.contacts.each do |contact|
-      contacts.where(email: contact.primary_email).first_or_create(name: contact.fullName, password: Devise.friendly_token[0, 20])
+      ActiveRecord::Base.transaction do
+        contacts.where(email: contact.primary_email).first_or_create(name: contact.fullName, password: Devise.friendly_token[0, 20])
+      end
     end
   end
 
