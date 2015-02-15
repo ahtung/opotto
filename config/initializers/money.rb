@@ -67,4 +67,5 @@ MoneyRails.configure do |config|
   #   :symbol => nil,
   #   :sign_before_symbol => nil
   # }
+  config.no_cents_if_whole = false
 end
