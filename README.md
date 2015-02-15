@@ -28,4 +28,7 @@ Test with ``` brakeman -o report.html ```
 Open docs with ``` open report.html ```
 
 
-###
+## Mails
+
+visit ``` localhost:1080 ```
+

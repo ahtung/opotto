@@ -23,6 +23,7 @@ gem 'google_contacts_api'
 gem 'rails-assets-select2'
 gem "omniauth-google-oauth2"
 gem 'rack-google-analytics'
+gem 'mailcatcher'
 
 group :production do
   gem 'rails_12factor'
@@ -48,7 +49,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-select2'
+  gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'pullreview-coverage', require: false
 end
