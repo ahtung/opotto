@@ -401,6 +401,7 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq
+  sinatra
   slim-rails
   spring
   uglifier
