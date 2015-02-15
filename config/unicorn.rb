@@ -4,7 +4,7 @@ if ENV['RAILS_ENV'] == 'development'
 else
   Integer(ENV['WEB_CONCURRENCY'] || 3)
 end
-timeout 30
+timeout 15
 preload_app true
 
 before_fork do |server, worker|
