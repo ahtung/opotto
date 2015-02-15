@@ -8,8 +8,6 @@ class Jar < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  after_save :invite_users
-
   # returns the total contribution
   def total_contribution
     contributions.map(&:amount).inject { |sum, x| sum + x } || 0
@@ -18,11 +16,6 @@ class Jar < ActiveRecord::Base
   # returns the contributor count
   def total_contributors
     contributors.count
-  end
-
-  # sends an invitation letter to all users
-  def invite_users
-    UserMailer.invitation_email(guests)
   end
 
   # returns the guest count

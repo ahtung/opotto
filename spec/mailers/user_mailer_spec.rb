@@ -7,7 +7,9 @@ RSpec.describe UserMailer, type: :mailer do
     ActionMailer::Base.deliveries = []
 
     users = create_list(:user, 3)
-    UserMailer.invitation_email(users).deliver_now
+    users.each do |user|
+      UserMailer.invitation_email(user).deliver_now
+    end
   end
 
   it 'should send an email' do
