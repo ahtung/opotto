@@ -44,12 +44,7 @@ class User < ActiveRecord::Base
   # Imports user's contact list after it is created
   def import_contacts
     return unless access_token
-    google_contacts_user = GoogleContactsApi::User.new(access_token)
-    google_contacts_user.contacts.each do |contact|
-      ActiveRecord::Base.transaction do
-        contacts.where(email: contact.primary_email).first_or_create(name: contact.fullName, password: Devise.friendly_token[0, 20])
-      end
-    end
+    FriendSyncWorker.perform_async(id)
   end
 
   # Gets the access_token using users's refresh token
