@@ -9,6 +9,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
+require 'money-rails/test_helpers'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
@@ -32,6 +33,7 @@ RSpec.configure do |config|
 
   config.include AuthenticationHelpers
   config.include FactoryGirl::Syntax::Methods
+  config.include MoneyRails::TestHelpers
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
