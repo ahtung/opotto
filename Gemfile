@@ -20,6 +20,7 @@ gem 'unicorn'
 gem 'money-rails'
 gem "omniauth-google-oauth2"
 gem 'rack-google-analytics'
+gem 'mailcatcher'
 
 group :production do
   gem 'rails_12factor'
