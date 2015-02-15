@@ -1,6 +1,8 @@
+# UserMailer
 class UserMailer < ApplicationMailer
   default from: 'invitations@potto.com'
 
+  # sends an invitation email to given user about the jar
   def invitation_email(user, jar)
     @user = user
     @jar = jar
