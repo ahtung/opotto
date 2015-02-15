@@ -8,7 +8,7 @@ class Jar < ActiveRecord::Base
 
   # returns the total contribution
   def total_contribution
-    contributions.map(&:amount).inject{ |sum,x| sum + x }
+    contributions.map(&:amount).inject { |sum, x| sum + x }
   end
 
   # returns the contributor count
