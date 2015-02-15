@@ -15,7 +15,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   it 'renders the receiver email' do
-    ActionMailer::Base.deliveries.first.to.should == @user.email
+    ActionMailer::Base.deliveries.first.to match_array @user.email
   end
 
   it 'should set the subject to the correct subject' do
