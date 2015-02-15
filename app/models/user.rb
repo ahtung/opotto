@@ -26,17 +26,17 @@ class User < ActiveRecord::Base
   # A method nedeed by omniauth-google-oauth2 gem
   # User is being created if it does not exist
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-      data = access_token.info
-      user = User.where(email: data['email']).first
+    data = access_token.info
+    user = User.where(email: data['email']).first
 
-      unless user
-          user = User.create(name: data['name'],
-             email: data['email'],
-             password: Devise.friendly_token[0, 20],
-             refresh_token: access_token.credentials.refresh_token
-          )
-      end
-      user
+    unless user
+      user = User.create(name: data['name'],
+       email: data['email'],
+       password: Devise.friendly_token[0, 20],
+       refresh_token: access_token.credentials.refresh_token
+      )
+    end
+    user
   end
 
   private
