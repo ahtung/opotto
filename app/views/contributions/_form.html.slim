@@ -1,7 +1,7 @@
 = form_for([jar, contribution]) do |f|
   - if contribution.errors.any?
     .alert-box data-alert=true class="alert"
-      = contribution.errors.full_messages
+      = contribution.errors.full_messages.join(',')
       a.close href="#" &times;
   .field
     = f.label :amount
