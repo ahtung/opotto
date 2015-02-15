@@ -7,4 +7,15 @@ module AuthenticationHelpers
     fill_in 'user_password', with: user.password
     click_on 'Log in'
   end
+
+  def omniauth_hash(email, password)
+    google_response = OmniAuth::AuthHash.new({
+      provider: 'google',
+      uid: '1337',
+      info: {
+        email: email,
+        password: password
+      }
+    })
+  end
 end
