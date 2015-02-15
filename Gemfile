@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem 'unicorn'
 gem 'money-rails'
 gem 'google_contacts_api'
+gem 'rails-assets-select2'
 
 group :production do
   gem 'rails_12factor'
