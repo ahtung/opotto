@@ -171,6 +171,9 @@ GEM
     pullreview-coverage (0.0.2)
       simplecov (>= 0.7.1, < 1.0.0)
     rack (1.6.0)
+    rack-google-analytics (1.2.0)
+      actionpack
+      activesupport
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -325,6 +328,7 @@ DEPENDENCIES
   pg
   poltergeist
   pullreview-coverage
+  rack-google-analytics
   rails (= 4.2.0)
   rails_12factor
   rspec-rails
