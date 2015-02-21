@@ -49,10 +49,7 @@ class User < ActiveRecord::Base
 
   # Imports user's contact list after it is created
   def import_contacts
-    puts 'import_contacts'
     return unless access_token
-    puts 'FriendSyncWorker'
     FriendSyncWorker.perform_async(id)
   end
-
 end
