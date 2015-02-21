@@ -28,13 +28,4 @@ class Jar < ActiveRecord::Base
   def total_guests
     guests.count
   end
-
-  private
-
-  def end_at_in_future
-    puts end_at.in_time_zone
-    puts DateTime.now
-    return true if end_at.in_time_zone > DateTime.now
-    false
-  end
 end
