@@ -57,4 +57,5 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'pullreview-coverage', require: false
   gem 'test_after_commit', require: false
+  gem 'rspec-sidekiq', require: false
 end
