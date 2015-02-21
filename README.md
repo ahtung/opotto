@@ -10,7 +10,7 @@
 
 ## Test
 
-``` rspec  ```
+``` foreman run rspec -e Procfile.dev.env  ```
 
 ## Deploy
 

@@ -58,4 +58,5 @@ group :test do
   gem 'pullreview-coverage', require: false
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq', require: false
+  gem 'coveralls', require: false
 end

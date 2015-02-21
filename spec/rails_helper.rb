@@ -5,8 +5,8 @@ if ENV['CIRCLE_CI'] == 'true'
   require 'pullreview/coverage_reporter'
   PullReview::CoverageReporter.start
 else
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  require 'coveralls'
+  Coveralls.wear!
 end
 
 require 'spec_helper'
