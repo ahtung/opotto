@@ -1,13 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-if ENV['CIRCLE_CI'] == 'true'
-  require 'pullreview/coverage_reporter'
-  PullReview::CoverageReporter.start
-else
-  require 'coveralls'
-  Coveralls.wear!
-end
+require 'coveralls'
+Coveralls.wear!
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)

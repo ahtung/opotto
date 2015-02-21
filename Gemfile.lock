@@ -205,8 +205,6 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    pullreview-coverage (0.0.2)
-      simplecov (>= 0.7.1, < 1.0.0)
     rack (1.6.0)
     rack-google-analytics (1.2.0)
       actionpack
@@ -415,7 +413,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   poltergeist
-  pullreview-coverage
   rack-google-analytics
   rails (= 4.2.0)
   rails-assets-select2
