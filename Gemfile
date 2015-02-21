@@ -25,6 +25,7 @@ gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'
 gem 'sidekiq'
 gem 'sinatra'
+gem 'date_time_attribute'
 
 group :production do
   gem 'rails_12factor'
