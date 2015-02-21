@@ -30,9 +30,7 @@ describe User do
     let(:user) { create(:user) }
 
     it 'should schedule import contacts on update' do
-      expect {
-        FriendSyncWorker.perform_async(user.id)
-      }.to change(FriendSyncWorker.jobs, :size).by(1)
+      expect { FriendSyncWorker.perform_async(user.id) }.to change(FriendSyncWorker.jobs, :size).by(1)
     end
 
     it 'should not schedule import contacts on create' do
