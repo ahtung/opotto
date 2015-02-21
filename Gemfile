@@ -26,6 +26,7 @@ gem 'rack-google-analytics'
 gem 'sidekiq'
 gem 'sinatra'
 gem 'date_time_attribute'
+gem 'validates_timeliness', '~> 3.0'
 
 group :production do
   gem 'rails_12factor'

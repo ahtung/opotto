@@ -11,6 +11,11 @@ describe Jar do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
 
+  fit 'should validate that the end_at is in the future' do
+    jar = build(:jar, end_at: 10.days.ago)
+    expect(jar.valid?).to eq false
+  end
+
   describe '#total_contribution' do
     it 'should return 0 if no contributions' do
       jar = create(:jar)

@@ -8,8 +8,9 @@ class Jar < ActiveRecord::Base
   has_many :invitations, dependent: :destroy
   has_many :guests, -> { uniq }, through: :invitations, source: :user
 
-  validates :name, presence: true, uniqueness: true
-  validates :end_at, presence: true
+  validates           :name, presence: true, uniqueness: true
+  validates           :end_at, presence: true
+  validates_datetime  :end_at, on: :create, on_or_after: :today
 
   date_time_attribute :end_at
 
@@ -28,4 +29,12 @@ class Jar < ActiveRecord::Base
     guests.count
   end
 
+  private
+
+  def end_at_in_future
+    puts end_at.in_time_zone
+    puts DateTime.now
+    return true if end_at.in_time_zone > DateTime.now
+    false
+  end
 end
