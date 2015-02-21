@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :contacts, through: :friendships, source: :user
 
-  after_commit :schedule_import_contacts, on: :update
+  after_commit :schedule_import_contacts
 
   # returns jars that the user have not yet contributed to
   def uncontributed_jars
@@ -45,9 +45,8 @@ class User < ActiveRecord::Base
 
   private
 
-  # Scehdule an import of the user's contact list after it is updated
+  # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
-    return unless access_token
     FriendSyncWorker.perform_async(id)
   end
 end
