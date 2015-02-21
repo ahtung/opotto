@@ -8,6 +8,7 @@ class Jar < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :end_date, presence: true
+
   # returns the total contribution
   def total_contribution
     contributions.map(&:amount).inject { |sum, x| sum + x } || 0
