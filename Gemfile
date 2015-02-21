@@ -25,6 +25,8 @@ gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'
 gem 'sidekiq'
 gem 'sinatra'
+gem 'date_time_attribute'
+gem 'validates_timeliness', '~> 3.0'
 
 group :production do
   gem 'rails_12factor'
@@ -53,5 +55,7 @@ end
 group :test do
   gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
-  gem 'pullreview-coverage', require: false
+  gem 'test_after_commit', require: false
+  gem 'rspec-sidekiq', require: false
+  gem 'coveralls', require: false
 end

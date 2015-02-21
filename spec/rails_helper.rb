@@ -1,8 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-require 'pullreview/coverage_reporter'
-PullReview::CoverageReporter.start
+require 'coveralls'
+Coveralls.wear!
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -10,6 +10,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
 require 'money-rails/test_helpers'
+require 'sidekiq/testing'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
@@ -32,7 +33,6 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   config.include AuthenticationHelpers
   config.include FactoryGirl::Syntax::Methods
   config.include MoneyRails::TestHelpers
@@ -42,12 +42,12 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
   config.infer_spec_type_from_file_location!
-
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
-
+  config.before(:each) do |example|
+    Sidekiq::Worker.clear_all
+  end
 end

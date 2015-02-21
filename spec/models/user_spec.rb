@@ -20,9 +20,29 @@ describe User do
       expect { User.find_for_google_oauth2(omniauth_hash(user.email, user.password), nil) }.to change { User.count }.by(1)
     end
 
-    it "should return user if exists" do
+    it 'should return user if exists' do
       user = create(:user)
       expect(User.find_for_google_oauth2(omniauth_hash(user.email, user.password), nil)).to eq(user)
+    end
+  end
+
+  describe '#schedule_import_contacts' do
+    let(:user) { create(:user) }
+
+    it 'should schedule import contacts on update' do
+      expect { FriendSyncWorker.perform_async(user.id) }.to change(FriendSyncWorker.jobs, :size).by(1)
+    end
+
+    it 'should not schedule import contacts on create' do
+      expect(FriendSyncWorker.jobs.size).to eq 0
+    end
+  end
+
+  describe '#access_token' do
+    let(:user) { create(:user) }
+
+    it 'should return nil if no refresh_token' do
+      expect(user.access_token).to be_nil
     end
   end
 end

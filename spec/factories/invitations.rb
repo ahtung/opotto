@@ -3,5 +3,4 @@ FactoryGirl.define do
     user
     jar
   end
-
 end

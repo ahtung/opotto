@@ -5,5 +5,6 @@ ul.pricing-table class=[('users' if jar.owner == current_user), ('contributed-to
   li.description= "#{jar.total_guests} Guests"
   li.bullet-item= "#{jar.total_contributors} Contributors"
   li.bullet-item= "#{jar.contributions.count} Contributions"
+  li.bullet-item= jar.end_at
   li.cta-button
     = link_to 'Contribute', new_jar_contribution_path(jar), class: 'button'
