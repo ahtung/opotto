@@ -20,6 +20,10 @@ p
   strong Total Contribution:
   = number_to_currency(@jar.total_contribution)
 
+p
+  strong Ends at:
+  = @jar.end_at.strftime('%d %b %y')
+
 ul.button-group.round
   li= link_to 'Contribute', new_jar_contribution_path(@jar), class: 'button'
   li= link_to 'Edit', edit_jar_path(@jar), class: 'button'

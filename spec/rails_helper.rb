@@ -1,8 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-require 'pullreview/coverage_reporter'
-PullReview::CoverageReporter.start
+if ENV['CIRCLE_CI'] == 'true'
+  require 'pullreview/coverage_reporter'
+  PullReview::CoverageReporter.start
+else
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -10,6 +15,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
 require 'money-rails/test_helpers'
+require 'sidekiq/testing'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
@@ -49,5 +55,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
-
+  config.before(:each) do |example|
+    Sidekiq::Worker.clear_all
+  end
 end
