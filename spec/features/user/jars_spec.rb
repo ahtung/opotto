@@ -21,7 +21,8 @@ describe 'User should be able to', js: true do
 
       before :each do
         first('#jar_name').set jar_mock.name
-        # first('#jar_name').set jar_mock.name
+        first('#jar_end_at_date').set jar_mock.end_at
+        first('#jar_end_at_time').set jar_mock.end_at
         select2 user.email, from: 'Guest ids'
         click_on 'Save'
       end
@@ -34,8 +35,8 @@ describe 'User should be able to', js: true do
         expect(page).to have_content jar_mock.name
       end
 
-      it 'and see the end_date' do
-        expect(page).to have_content jar_mock.end_date
+      it 'and see the end_at' do
+        expect(page).to have_content jar_mock.end_at
       end
 
       it 'and invite guests' do

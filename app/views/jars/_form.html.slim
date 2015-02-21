@@ -13,11 +13,11 @@
     = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
   .field
-    = f.label :end_date
-    = f.date_field :end_date
+    = f.label :end_at_date
+    = f.date_field :end_at_date
 
   .field
-    = f.label :end_date
-    = f.time_field :end_date, ignore_date: true
+    = f.label :end_at_time
+    = f.time_field :end_at_time
 
   .actions = f.submit 'Save', class: 'button'

@@ -22,7 +22,7 @@ p
 
 p
   strong Ends at:
-  = @jar.end_date.strftime('%d %b %y')
+  = @jar.end_at.strftime('%d %b %y')
 
 ul.button-group.round
   li= link_to 'Contribute', new_jar_contribution_path(@jar), class: 'button'

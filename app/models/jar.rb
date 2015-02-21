@@ -9,7 +9,7 @@ class Jar < ActiveRecord::Base
   has_many :guests, -> { uniq }, through: :invitations, source: :user
 
   validates :name, presence: true, uniqueness: true
-  validates :end_date, presence: true
+  validates :end_at, presence: true
 
   date_time_attribute :end_at
 
