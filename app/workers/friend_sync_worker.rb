@@ -5,6 +5,7 @@ class FriendSyncWorker
   # perform worker
   def perform(user_id)
     user = User.find(user_id)
+    return unless user.access_token
     google_contacts_user = GoogleContactsApi::User.new(user.access_token)
     google_contacts_user.contacts.each do |contact|
       ActiveRecord::Base.transaction do
