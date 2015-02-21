@@ -1,5 +1,7 @@
 # Jar
 class Jar < ActiveRecord::Base
+  include DateTimeAttribute
+
   belongs_to :owner, class_name: 'User'
   has_many :contributions, dependent: :destroy
   has_many :contributors, -> { uniq }, through: :contributions, source: :user
@@ -8,6 +10,8 @@ class Jar < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :end_date, presence: true
+
+  date_time_attribute :end_at
 
   # returns the total contribution
   def total_contribution
