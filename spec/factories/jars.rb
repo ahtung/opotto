@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :jar do
-    name { Faker::Name.name }
+    name     { Faker::Name.name }
+    end_date { 10.days.from_now }
 
     trait :with_contributions do
       after :create do |instance|
