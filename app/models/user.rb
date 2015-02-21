@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
      OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
 
+  # import user's contacts from google
   def import_contacts
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
