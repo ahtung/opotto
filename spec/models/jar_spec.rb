@@ -8,6 +8,7 @@ describe Jar do
   it { should have_many(:invitations) }
   it { should have_many(:guests).through(:invitations).class_name('User') }
 
+  it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
 
