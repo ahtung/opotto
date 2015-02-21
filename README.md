@@ -1,5 +1,6 @@
 # pot
 
+[![Coverage Status](https://coveralls.io/repos/dunyakirkali/pot/badge.svg?branch=feature%2Fend_date)](https://coveralls.io/r/dunyakirkali/pot?branch=feature%2Fend_date)
 [![Circle CI](https://circleci.com/gh/dunyakirkali/pot.png?circle-token=f174742eaf65e547a254e8a3df6d511704ac8ab4)](https://circleci.com/gh/dunyakirkali/pot)
 [![PullReview stats](https://www.pullreview.com/github/dunyakirkali/pot/badges/master.svg?token=7e7aa54dc544690452872d70b20e4465)](https://www.pullreview.com/github/dunyakirkali/pot/reviews/master)
 
