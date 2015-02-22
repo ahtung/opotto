@@ -50,7 +50,6 @@ tr:
         end_at: End at
       contribution:
         amount: Amount
-        Miktar: Miktar
     errors:
       models:
         contribution:

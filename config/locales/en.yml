@@ -226,8 +226,7 @@ en:
         end_at_time: 
         end_at: 
       contribution:
-        amount: 
-        Miktar: 
+        amount: Amount
     errors:
       models:
         contribution:
