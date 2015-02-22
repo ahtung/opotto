@@ -2,17 +2,17 @@
 class ContributionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jar, only: [:new, :create]
-  # after_action :verify_authorized
+  after_action :verify_authorized
 
   # GET /contributions/new
   def new
-    # authorize @jar, :contribute?
+    authorize @jar, :contribute?
     @contribution = @jar.contributions.build
   end
 
   # POST /contributions
   def create
-    # authorize @jar, :contribute?
+    authorize @jar, :contribute?
     @contribution = current_user.contributions.build(contribution_params)
 
     if @contribution.save
