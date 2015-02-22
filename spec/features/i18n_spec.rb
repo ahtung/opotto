@@ -12,7 +12,7 @@ RSpec.describe 'I18n', type: :feature do
 
     it 'displays a translated welcome message to the user' do
       visit(root_path)
-      expect(page).to have_content t('motto')
+      expect(page).to have_content t('site.title')
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe 'I18n', type: :feature do
 
     it 'displays a translated welcome message to the user' do
       visit(root_path)
-      expect(page).to have_content t('motto')
+      expect(page).to have_content t('site.title')
     end
   end
 end
