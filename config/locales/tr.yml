@@ -1,13 +1,24 @@
 tr:
   site:
     title: o-Potto
+    back: Geri
+    edit: Düzenle
   jar:
     new: Yeni kumbara
-    save: Kaydet
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
+    guest: Davetli
+    guests: Davetliler
+    contributors: Katılımcı
+    contributions: Katkı
+    contribute: Katkı Yap
+    total: Toplam katkı
+    owned_by: "%{email} tarafından"
   contribution:
+    new: Yeni katkı
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
+    amount: Miktar
+    previous: "Önceki katkılar"
   number:
     human:
       decimal_units:
@@ -24,16 +35,16 @@ tr:
   activerecord:
     attributes:
       user:
-        email: E-posta
-        password: "Şifre"
-        remember_me: Beni hatirla
-        password_confirmation: "Şifre tekrarla"
-        current_password: "Şu anki sifre"
+        email: Email
+        password: Password
+        remember_me: Remember me
+        password_confirmation: Password confirmation
+        current_password: Current password
       jar:
-        end_at_date: Bitis gunu
-        guest_ids: Davetliler
-        end_at_time: Bitis saati
-        name: Isim
+        end_at_date: End at date
+        guest_ids: Guest ids
+        end_at_time: End at time
+        name: Name
         end_at: End at
       contribution:
         amount: Amount
@@ -43,39 +54,40 @@ tr:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: 
+              greater_than_or_equal_to:
         jar:
           attributes:
             end_at:
-              blank: 
-              invalid_datetime: 
+              blank:
+              invalid_datetime:
     models:
       contribution: Contribution
       jar: Jar
   devise:
     failure:
       user:
-        unauthenticated: 
+        unauthenticated:
     omniauth_callbacks:
-      success: 
+      success:
     sessions:
       user:
-        signed_out: 
+        signed_out:
   helpers:
     label:
       user:
-        email: 
-        password: 
-        remember_me: 
-        current_password: 
-        password_confirmation: 
+        email:
+        password:
+        remember_me:
+        current_password:
+        password_confirmation:
       jar:
-        end_at_date: 
-        end_at_time: 
-        guest_ids: 
-        name: 
+        ends_at: Bitiş tarihi
+        end_at_date:
+        end_at_time:
+        guest_ids:
+        name:
       contribution:
-        amount: 
-        Miktar: 
+        amount:
+        Miktar:
   errors:
     format: "%{attribute} %{message}"
