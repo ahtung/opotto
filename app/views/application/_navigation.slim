@@ -12,10 +12,10 @@ nav.top-bar data-topbar=true
         = link_to t('jar.new'), new_jar_path, class: 'button'
       li.divider
       li.has-dropdown
-        a href="#" User
+        a href="#"= t('activerecord.model.user')
         ul.dropdown
           li
             - if user_signed_in?
-              = link_to('Logout', destroy_user_session_path, method: :delete)
+              = link_to(t('user.logout'), destroy_user_session_path, method: :delete)
             - else
-              = link_to('Login', new_user_session_path)
+              = link_to(t('user.login'), new_user_session_path)
