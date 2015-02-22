@@ -152,6 +152,7 @@ en:
         guest_ids: 
       contribution:
         amount: 
+        Miktar: 
   number:
     currency:
       format:
@@ -226,6 +227,7 @@ en:
         end_at: 
       contribution:
         amount: 
+        Miktar: 
     errors:
       models:
         contribution:
