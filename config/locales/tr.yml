@@ -3,11 +3,11 @@ tr:
     title: o-Potto
   jar:
     new: Yeni kumbara
-    created:
-    updated:
-    destroyed:
+    created: Kumbara başarıyla kaydedildi.
+    updated: Kumbara bilgileri başarıyla güncellendi.
   contribution:
     created:
+    amount:
   number:
     human:
       decimal_units:
@@ -27,6 +27,8 @@ tr:
         email: Email
         password: Password
         remember_me: Remember me
+        password_confirmation: Password confirmation
+        current_password: Current password
       jar:
         end_at_date: End at date
         guest_ids: Guest ids
@@ -64,6 +66,8 @@ tr:
         email:
         password:
         remember_me:
+        current_password:
+        password_confirmation:
       jar:
         end_at_date:
         end_at_time:
