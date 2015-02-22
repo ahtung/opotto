@@ -49,7 +49,7 @@ class Jar < ActiveRecord::Base
     end
 
     # scope for all ended jars
-    def self.ended
+    def ended
       where('end_at <= ?', 7.days.ago)
     end
   end
