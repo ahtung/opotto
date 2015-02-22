@@ -63,8 +63,8 @@ tr:
               blank: 
               invalid_datetime: 
     models:
-      contribution: Contribution
-      jar: Jar
+      contribution: Katki
+      jar: Kumbara
   devise:
     failure:
       user:
