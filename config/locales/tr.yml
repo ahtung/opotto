@@ -1,3 +1,8 @@
 tr:
   site:
     title: o-Potto
+  number:
+    human:
+      decimal_units:
+        units:
+          unit: ''
