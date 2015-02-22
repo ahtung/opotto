@@ -3,10 +3,10 @@ class Jar < ActiveRecord::Base
   include DateTimeAttribute
 
   belongs_to :owner, class_name: 'User'
-  has_many :contributions, dependent: :destroy
-  has_many :contributors, -> { uniq }, through: :contributions, source: :user
-  has_many :invitations, dependent: :destroy
-  has_many :guests, -> { uniq }, through: :invitations, source: :user
+  has_many   :contributions, dependent: :destroy
+  has_many   :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many   :invitations, dependent: :destroy
+  has_many   :guests, -> { uniq }, through: :invitations, source: :user
 
   validates           :name, presence: true, uniqueness: true
   validates           :end_at, presence: true
@@ -27,5 +27,10 @@ class Jar < ActiveRecord::Base
   # returns the guest count
   def total_guests
     guests.count
+  end
+
+  # scope for all open jars
+  def self.open
+    where('end_at >= ?', Date.today)
   end
 end
