@@ -58,4 +58,6 @@ group :test do
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq', require: false
   gem 'coveralls', require: false
+  gem 'timecop'
+  gem 'rspec-its'
 end

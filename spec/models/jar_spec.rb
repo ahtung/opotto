@@ -51,4 +51,12 @@ describe Jar do
       expect(jar.total_guests).to eq jar.guests.count
     end
   end
+
+  describe '.open' do
+    it 'should return only open pots' do
+      open_jars = create_list(:jar, 2, :open)
+      closed_jars = create_list(:jar, 2, :closed)
+      expect(Jar.open).not_to include closed_jars
+    end
+  end
 end
