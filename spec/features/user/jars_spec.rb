@@ -107,7 +107,7 @@ describe 'User should be able to', js: true do
       it 'and see a notice' do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
-        click_on 'Save'
+        click_on t('jar.save')
         expect(page).to have_content(t('contribution.created', name: jar.name, amount: number_to_currency(cont.amount)))
       end
     end
@@ -115,7 +115,7 @@ describe 'User should be able to', js: true do
     context 'unsucessfully when amount is 0' do
       it 'and see a alert' do
         fill_in :contribution_amount, with: 0
-        click_on 'Save'
+        click_on t('jar.save')
         expect(page).to have_content t('activerecord.errors.models.contribution.attributes.amount.greater_than_or_equal_to')
       end
     end
