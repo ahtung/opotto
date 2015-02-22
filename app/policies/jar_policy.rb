@@ -37,9 +37,4 @@ class JarPolicy
   def update?
     jar.owner == user
   end
-
-  # destroy?
-  def destroy?
-    true
-  end
 end

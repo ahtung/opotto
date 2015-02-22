@@ -41,13 +41,6 @@ class JarsController < ApplicationController
     end
   end
 
-  # DELETE /jars/1
-  def destroy
-    authorize @jar
-    @jar.destroy
-    redirect_to root_path, notice: 'Jar was successfully destroyed.'
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
