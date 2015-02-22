@@ -1,7 +1,7 @@
 en:
   jar:
-    created: 
-    updated: 
+    created: Pot successfully created!
+    updated: Pot successfully updated!
   site:
     title: o-Potto
   date:
@@ -147,12 +147,13 @@ en:
         email: Email
         password: Password
         remember_me: Remeber me
-        current_password: 
+        current_password: Current password
         password_confirmation: Password confirmation
       jar:
         end_at_date: End day
         end_at_time: End time
         guest_ids: Guests
+        name: Name
       contribution:
         amount: Amount
         Miktar: Miktar
