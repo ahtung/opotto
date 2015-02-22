@@ -8,13 +8,38 @@ class JarPolicy
     @jar = jar
   end
 
-  # update?
-  def update?
-    jar.owner == user
+  # show?
+  def show?
+    true
   end
 
   # contribute?
   def contribute?
     jar.guests.include?(user) && jar.open?
+  end
+
+  # new?
+  def new?
+    true
+  end
+
+  # edit?
+  def edit?
+    true
+  end
+
+  # create?
+  def create?
+    true
+  end
+
+  # update?
+  def update?
+    jar.owner == user
+  end
+
+  # destroy?
+  def destroy?
+    true
   end
 end
