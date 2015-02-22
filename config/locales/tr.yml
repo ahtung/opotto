@@ -91,5 +91,6 @@ tr:
         name: 
       contribution:
         amount: Miktar
+        Miktar: 
   errors:
     format: "%{attribute} %{message}"
