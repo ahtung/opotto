@@ -1,11 +1,11 @@
 tr:
   site:
     title: o-Potto
-    edit: Düzenle
     navigation:
       back: Geri
   jar:
     save: Kaydet
+    edit: Düzenle
     new: Yeni kumbara
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
