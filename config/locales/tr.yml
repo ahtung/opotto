@@ -46,7 +46,7 @@ tr:
         end_at_date: Bitis gunu
         guest_ids: Misafirler
         end_at_time: Bitis tarihi
-        name: Name
+        name: Isim
         end_at: Bitis zamani
       contribution:
         amount: Amount
@@ -91,6 +91,5 @@ tr:
         name: 
       contribution:
         amount: Miktar
-        Miktar: 
   errors:
     format: "%{attribute} %{message}"

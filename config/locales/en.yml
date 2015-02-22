@@ -151,8 +151,7 @@ en:
         end_at_time: 
         guest_ids: 
       contribution:
-        amount: 
-        Miktar: 
+        amount: Amount
   number:
     currency:
       format:
@@ -215,16 +214,17 @@ en:
   activerecord:
     attributes:
       user:
-        email: 
-        password: 
-        remember_me: 
-        password_confirmation: 
-        current_password: 
+        email: Emai
+        password: Password
+        remember_me: Remember me
+        password_confirmation: Password confirmation
+        current_password: Current password
       jar:
         end_at_date: End day
         guest_ids: Guests
         end_at_time: End time
         end_at: End date
+        name: Name
       contribution:
         amount: Amount
     errors:
@@ -232,27 +232,29 @@ en:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: 
+              greater_than_or_equal_to: That'snot possible
         jar:
           attributes:
             end_at:
-              blank: 
-              invalid_datetime: 
+              blank: Can't be blank
+              invalid_datetime: Unlogical time
+            name:
+              blank: Can't be blank
     models:
-      contribution: 
-      jar: 
+      contribution: Contribution
+      jar: Pot
   devise:
     failure:
       user:
-        unauthenticated: 
+        unauthenticated: No no no!
     omniauth_callbacks:
-      success: 
+      success: Logged out!
     sessions:
       user:
-        signed_out: 
+        signed_out: Logged in!
   contribution:
-    created: 
-    amount: 
+    created: Successfully contributed %{amount} to "%{name}".
+    amount: Amoun
   jar:
     created: 
     updated: 
