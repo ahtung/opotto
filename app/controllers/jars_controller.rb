@@ -2,13 +2,10 @@
 class JarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_jar, only: [:show, :new, :edit, :create, :update, :destroy]
 
   # GET /jars/1
   def show
-  end
-
-  # POST /jars/1/contribute
-  def contribute
   end
 
   # GET /jars/new
@@ -55,5 +52,9 @@ class JarsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def jar_params
     params.require(:jar).permit(:name, :end_at_date, :end_at_time, guest_ids: [])
+  end
+
+  def authorize_jar
+    authorize @jar
   end
 end

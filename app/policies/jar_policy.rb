@@ -1,6 +1,6 @@
 # JarPolicy
 class JarPolicy
-  attr_reader :user, :post
+  attr_reader :user, :jar
 
   # init policy
   def initialize(user, jar)
