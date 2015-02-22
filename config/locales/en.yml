@@ -219,6 +219,7 @@ en:
         end_at_date: 
         guest_ids: 
         end_at_time: 
+        end_at: 
       contribution:
         amount: 
     errors:
@@ -227,8 +228,14 @@ en:
           attributes:
             amount:
               greater_than_or_equal_to: 
+        jar:
+          attributes:
+            end_at:
+              blank: 
+              invalid_datetime: 
     models:
       contribution: 
+      jar: 
   devise:
     failure:
       user:

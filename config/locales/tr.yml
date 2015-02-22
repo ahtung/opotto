@@ -25,6 +25,7 @@ tr:
         guest_ids: Guest ids
         end_at_time: End at time
         name: Name
+        end_at: End at
       contribution:
         amount: Amount
     errors:
@@ -33,8 +34,14 @@ tr:
           attributes:
             amount:
               greater_than_or_equal_to: 
+        jar:
+          attributes:
+            end_at:
+              blank: 
+              invalid_datetime: 
     models:
       contribution: Contribution
+      jar: Jar
   devise:
     failure:
       user:
