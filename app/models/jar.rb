@@ -29,8 +29,26 @@ class Jar < ActiveRecord::Base
     guests.count
   end
 
+  # payout and notify guests
+  def payout
+    # TODO
+    notify_payout
+  end
+
   # scope for all open jars
   def self.open
     where('end_at >= ?', Date.today)
+  end
+
+  # scope for all closed jars
+  def self.closed
+    where('end_at < ?', Date.today)
+  end
+
+  private
+
+  # email guests about payout
+  def notify_payout
+    # TODO
   end
 end

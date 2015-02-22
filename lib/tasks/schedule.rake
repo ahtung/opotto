@@ -1,12 +1,11 @@
 namespace :schedule do
   desc 'Auto closes pots'
-  task pots: :environment do
-    Jar.open.map(&:close)
+  task close_pots: :environment do
+    Jar.closed.map(&:payout)
   end
 
   desc 'Ended pots will be destroyed.'
-  task destroy_pot: :environment do
+  task destroy_pots: :environment do
     Jar.ended.map(&:destroy)
   end
-
 end
