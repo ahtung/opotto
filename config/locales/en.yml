@@ -1,7 +1,7 @@
 en:
   jar:
-    contribute: Contribute
-    new: New Pot
+    created: 
+    updated: 
   site:
     title: o-Potto
   date:
@@ -14,7 +14,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    -
+    - 
     - Jan
     - Feb
     - Mar
@@ -40,7 +40,7 @@ en:
       long: "%B %d, %Y"
       short: "%b %d"
     month_names:
-    -
+    - 
     - January
     - February
     - March
@@ -144,18 +144,18 @@ en:
       update: Update %{model}
     label:
       user:
-        email:
-        password:
-        remember_me:
-        current_password:
-        password_confirmation:
+        email: 
+        password: 
+        remember_me: 
+        current_password: 
+        password_confirmation: 
       jar:
-        end_at_date:
-        end_at_time:
-        guest_ids:
+        end_at_date: 
+        end_at_time: 
+        guest_ids: 
       contribution:
         amount: Amount
-        Miktar:
+        Miktar: 
   number:
     currency:
       format:
@@ -259,6 +259,3 @@ en:
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
-  jar:
-    created:
-    updated:
