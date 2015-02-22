@@ -47,7 +47,7 @@ describe 'User should be able to', js: true do
 
     context 'unsucessfully' do
       it 'and see an error' do
-        click_on 'Save'
+        click_on t('jar.save')
         expect(page).to have_content t('activerecord.errors.models.jar.attributes.name.blank')
       end
     end
@@ -78,13 +78,13 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      click_on 'Edit'
+      click_on t('jar.edit')
     end
 
     context 'sucessfully' do
       it 'and see a notice' do
         fill_in 'jar_name', with: 'Joelle getting married'
-        click_on 'Save'
+        click_on t('jar.save')
 
         expect(page).to have_content(t('jar.updated'))
       end
@@ -100,7 +100,7 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      click_on 'Contribute'
+      click_on t('jar.contribute')
     end
 
     context 'sucessfully' do
