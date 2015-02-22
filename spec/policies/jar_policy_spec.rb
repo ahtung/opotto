@@ -74,8 +74,8 @@ describe JarPolicy do
       expect(subject).to permit(guest, jar)
     end
 
-    it 'denies access to members' do
-      expect(subject).not_to permit(create(:user), jar)
+    it 'allow access to members' do
+      expect(subject).to permit(create(:user), jar)
     end
 
     it 'denies access to non members' do
