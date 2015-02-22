@@ -15,7 +15,7 @@ class JarPolicy
 
   # contribute?
   def contribute?
-    (jar.guests.include?(user) || jar.owner == user) && jar.open?
+    user && jar.open?
   end
 
   # new?
