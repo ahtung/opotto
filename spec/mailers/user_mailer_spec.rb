@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
+
   before(:each) do
     ActionMailer::Base.deliveries = []
     users = create_list(:user, 3)
@@ -20,11 +21,11 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   it 'should set the subject to the correct subject' do
-    ActionMailer::Base.deliveries.first.subject.should == "You're invited to contribute'!"
+    ActionMailer::Base.deliveries.first.subject.should == "You're invited to contribute!"
   end
 
   it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == ['invitations@potto.com']
+    ActionMailer::Base.deliveries.first.from.should == ['no-reply@opotto.com']
   end
 
   after(:each) do

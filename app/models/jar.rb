@@ -3,10 +3,10 @@ class Jar < ActiveRecord::Base
   include DateTimeAttribute
 
   belongs_to :owner, class_name: 'User'
-  has_many :contributions, dependent: :destroy
-  has_many :contributors, -> { uniq }, through: :contributions, source: :user
-  has_many :invitations, dependent: :destroy
-  has_many :guests, -> { uniq }, through: :invitations, source: :user
+  has_many   :contributions, dependent: :destroy
+  has_many   :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many   :invitations, dependent: :destroy
+  has_many   :guests, -> { uniq }, through: :invitations, source: :user
 
   validates           :name, presence: true, uniqueness: true
   validates           :end_at, presence: true
@@ -27,5 +27,37 @@ class Jar < ActiveRecord::Base
   # returns the guest count
   def total_guests
     guests.count
+  end
+
+  # payout and notify guests
+  def payout
+    # TODO
+    update_attribute(:paid_at, Date.today)
+    notify_payout
+  end
+
+  # Class methods
+  class << self
+    # scope for all open jars
+    def open
+      where('end_at >= ?', Date.today)
+    end
+
+    # scope for all closed jars
+    def closed
+      where('end_at < ?', Date.today)
+    end
+
+    # scope for all ended jars
+    def ended
+      where('end_at <= ?', 7.days.ago)
+    end
+  end
+
+  private
+
+  # email guests about payout
+  def notify_payout
+    UserMailer.payout_email(owner, self).deliver_later
   end
 end
