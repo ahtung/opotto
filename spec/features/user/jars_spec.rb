@@ -14,7 +14,7 @@ describe 'User should be able to', js: true do
   # Create
   describe 'create a jar' do
     before :each do
-      click_on 'New jar'
+      click_on t('jar.new')
     end
 
     context 'sucessfully' do
@@ -138,7 +138,7 @@ describe 'User should be able to', js: true do
       it 'and see a alert' do
         fill_in :contribution_amount, with: 0
         click_on 'Save'
-        expect(page).to have_content('Amount must be greater than or equal to 1')
+        expect(page).to have_content t('activerecord.errors.models.contribution.attributes.amount.greater_than_or_equal_to')
       end
     end
 
