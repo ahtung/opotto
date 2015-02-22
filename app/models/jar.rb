@@ -36,6 +36,10 @@ class Jar < ActiveRecord::Base
     notify_payout
   end
 
+  def open?
+    end_at >= Date.today
+  end
+
   # Class methods
   class << self
     # scope for all open jars
@@ -51,6 +55,10 @@ class Jar < ActiveRecord::Base
     # scope for all ended jars
     def ended
       where('end_at <= ?', 7.days.ago)
+    end
+
+    def policy_class
+      JarPolicy
     end
   end
 

@@ -27,6 +27,7 @@ gem 'sidekiq'
 gem 'sinatra'
 gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
+gem 'pundit'
 
 group :production do
   gem 'rails_12factor'

@@ -95,28 +95,6 @@ describe 'User should be able to', js: true do
 
   end
 
-  # Destroy
-  describe 'destroy a jar' do
-
-    before :each do
-      first(:link, jar.name).click
-      click_on 'Delete'
-    end
-
-    context 'sucessfully' do
-      it 'and see a notice' do
-        expect(page).to have_content('Jar was successfully destroyed.')
-      end
-    end
-
-    context 'unsucessfully' do
-      xit 'and see a alert' do
-        expect(page).to have_content('Jar cannot be deleted.')
-      end
-    end
-
-  end
-
   # Contribute
   describe 'contribute to a jar' do
 
