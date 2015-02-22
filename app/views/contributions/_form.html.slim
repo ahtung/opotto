@@ -4,13 +4,13 @@
       = contribution.errors.full_messages.join(',')
       a.close href="#" &times;
   .field
-    = f.label :amount
+    = f.label t('contribution.amount')
     = f.number_field :amount
 
   = f.hidden_field :jar_id, value: jar.id
-  .actions = f.submit 'Save', class: 'button'
+  .actions = f.submit t('jar.save'), class: 'button'
 
-h2 Previous contributions
+h2 = t('contribution.previous')
 ul
   - current_user.contributions.where(jar: jar).each do |contribution|
     li= humanized_money_with_symbol(contribution.amount)

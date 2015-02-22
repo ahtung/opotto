@@ -1,30 +1,30 @@
 h1= @jar.name
 h3.subheader
-  = "owned by #{@jar.owner.email}"
+  = t('jar.owned_by', email: @jar.owner.email)
 
 p
-  strong Contributions:
+  strong = "#{t('jar.contributions')}:"
   = @jar.contributions.count
 
 p
-  strong Guests:
+  strong = "#{t('jar.guests')}:"
   ul
     - @jar.guests.each do |guest|
       li= guest.email
 
 p
-  strong Contributors:
+  strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
 
 p
-  strong Total Contribution:
+  strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
 
 p
-  strong Ends at:
+  strong = "#{t('helpers.label.jar.ends_at')}:"
   = @jar.end_at.strftime('%d %b %y')
 
 ul.button-group.round
-  li= link_to 'Contribute', new_jar_contribution_path(@jar), class: 'button'
-  li= link_to 'Edit', edit_jar_path(@jar), class: 'button'
-  li= link_to 'Back', root_path, class: 'button'
+  li= link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'button'
+  li= link_to t('site.navigation.back'), root_path, class: 'button'
+  li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'button'

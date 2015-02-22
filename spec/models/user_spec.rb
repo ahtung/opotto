@@ -45,4 +45,12 @@ describe User do
       expect(user.access_token).to be_nil
     end
   end
+
+  describe '#import_contacts' do
+    let(:user) { create(:user) }
+
+    it 'should return nil if no access_token' do
+      expect(user.import_contacts).to be_nil
+    end
+  end
 end
