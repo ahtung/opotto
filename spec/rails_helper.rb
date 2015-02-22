@@ -11,6 +11,7 @@ require 'shoulda/matchers'
 require 'capybara/poltergeist'
 require 'money-rails/test_helpers'
 require 'sidekiq/testing'
+require 'pundit/rspec'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
