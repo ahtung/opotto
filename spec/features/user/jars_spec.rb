@@ -63,7 +63,7 @@ describe 'User should be able to', js: true do
 
     context 'sucessfully' do
       it 'and the owner' do
-        expect(page).to have_content("owned by #{jar.owner.email}")
+        expect(page).to have_content t('jar.owned_by', email: jar.owner.email)
       end
     end
 
