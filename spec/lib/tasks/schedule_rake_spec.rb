@@ -20,8 +20,8 @@ describe 'schedule:close_pots' do
     expect(jar.paid_at).not_to be_nil
   end
 
-  it 'it pays out closed' do
-    jar = create(:jar, :closed)
+  it 'it sends an email on payout' do
+    create(:jar, :closed)
     expect { subject.invoke }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 end

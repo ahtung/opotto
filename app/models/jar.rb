@@ -53,6 +53,6 @@ class Jar < ActiveRecord::Base
 
   # email guests about payout
   def notify_payout
-    UserMailer.payout_email(user, jar).deliver
+    UserMailer.payout_email(owner, self).deliver
   end
 end
