@@ -56,12 +56,12 @@ tr:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: 
+              greater_than_or_equal_to: oyle olmaz o
         jar:
           attributes:
             end_at:
-              blank: 
-              invalid_datetime: 
+              blank: bos olamaz o
+              invalid_datetime: uygunsuz zaman
     models:
       contribution: Katki
       jar: Kumbara
@@ -85,11 +85,11 @@ tr:
       jar:
         ends_at: Bitiş tarihi
         end_at_date: 
-        end_at_time: Bitis traihi
+        end_at_time: 
         guest_ids: 
         name: 
       contribution:
-        amount: Miktar
+        amount: 
         Miktar: 
   errors:
     format: "%{attribute} %{message}"
