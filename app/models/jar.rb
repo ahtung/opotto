@@ -52,6 +52,10 @@ class Jar < ActiveRecord::Base
     def ended
       where('end_at <= ?', 7.days.ago)
     end
+
+    def policy_class
+      JarPolicy
+    end
   end
 
   private
