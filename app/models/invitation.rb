@@ -7,6 +7,6 @@ class Invitation < ActiveRecord::Base
 
   # Invites the user via email
   def invite_user
-    UserMailer.invitation_email(user, jar).deliver_later
+    UserMailer.invitation_email(user, jar).deliver_now
   end
 end
