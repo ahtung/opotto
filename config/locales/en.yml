@@ -148,6 +148,8 @@ en:
         end_at_date: 
         end_at_time: 
         guest_ids: 
+      contribution:
+        amount: 
   number:
     currency:
       format:
@@ -217,9 +219,22 @@ en:
         end_at_date: 
         guest_ids: 
         end_at_time: 
+      contribution:
+        amount: 
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              greater_than_or_equal_to: 
+    models:
+      contribution: 
   devise:
     failure:
       user:
         unauthenticated: 
     omniauth_callbacks:
       success: 
+    sessions:
+      user:
+        signed_out: 

@@ -6,6 +6,14 @@ tr:
       decimal_units:
         units:
           unit: ''
+    format:
+      delimiter: ","
+      separator: "."
+    currency:
+      format:
+        delimiter: ","
+        separator: "."
+        unit: "$"
   activerecord:
     attributes:
       user:
@@ -17,12 +25,25 @@ tr:
         guest_ids: Guest ids
         end_at_time: End at time
         name: Name
+      contribution:
+        amount: Amount
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              greater_than_or_equal_to: 
+    models:
+      contribution: Contribution
   devise:
     failure:
       user:
         unauthenticated: 
     omniauth_callbacks:
       success: 
+    sessions:
+      user:
+        signed_out: 
   helpers:
     label:
       user:
@@ -34,3 +55,7 @@ tr:
         end_at_time: 
         guest_ids: 
         name: 
+      contribution:
+        amount: 
+  errors:
+    format: "%{attribute} %{message}"
