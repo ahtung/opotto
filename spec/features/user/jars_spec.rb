@@ -48,7 +48,7 @@ describe 'User should be able to', js: true do
     context 'unsucessfully' do
       it 'and see an error' do
         click_on 'Save'
-        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content t('activerecord.errors.models.jar.attributes.name.blank')
       end
     end
 
