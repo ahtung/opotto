@@ -1,5 +1,8 @@
 en:
   jar:
+    new: New
+    contribute: Contribute
+    edit: Contribute
     created: Pot successfully created!
     updated: Pot successfully updated!
   site:
