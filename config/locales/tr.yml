@@ -6,3 +6,31 @@ tr:
       decimal_units:
         units:
           unit: ''
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Password
+        remember_me: Remember me
+      jar:
+        end_at_date: End at date
+        guest_ids: Guest ids
+        end_at_time: End at time
+        name: Name
+  devise:
+    failure:
+      user:
+        unauthenticated: 
+    omniauth_callbacks:
+      success: 
+  helpers:
+    label:
+      user:
+        email: 
+        password: 
+        remember_me: 
+      jar:
+        end_at_date: 
+        end_at_time: 
+        guest_ids: 
+        name: 

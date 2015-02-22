@@ -139,6 +139,15 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+    label:
+      user:
+        email: 
+        password: 
+        remember_me: 
+      jar:
+        end_at_date: 
+        end_at_time: 
+        guest_ids: 
   number:
     currency:
       format:
@@ -198,3 +207,19 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  activerecord:
+    attributes:
+      user:
+        email: 
+        password: 
+        remember_me: 
+      jar:
+        end_at_date: 
+        guest_ids: 
+        end_at_time: 
+  devise:
+    failure:
+      user:
+        unauthenticated: 
+    omniauth_callbacks:
+      success: 
