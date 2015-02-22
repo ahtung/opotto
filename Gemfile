@@ -59,4 +59,5 @@ group :test do
   gem 'rspec-sidekiq', require: false
   gem 'coveralls', require: false
   gem 'timecop'
+  gem 'rspec-its'
 end
