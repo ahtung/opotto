@@ -29,13 +29,13 @@ gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
 gem 'pundit'
 gem 'http_accept_language'
-gem 'localeapp'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
+  gem 'localeapp'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
