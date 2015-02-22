@@ -36,20 +36,23 @@ class Jar < ActiveRecord::Base
     notify_payout
   end
 
-  # scope for all open jars
-  def self.open
-    where('end_at >= ?', Date.today)
-  end
+  # Class methods
+  class << self
+    # scope for all open jars
+    def open
+      where('end_at >= ?', Date.today)
+    end
 
-  # scope for all closed jars
-  def self.closed
-    where('end_at < ?', Date.today)
+    # scope for all closed jars
+    def closed
+      where('end_at < ?', Date.today)
+    end
   end
 
   private
 
   # email guests about payout
   def notify_payout
-    # TODO
+    UserMailer.payout_email(user, jar).deliver
   end
 end
