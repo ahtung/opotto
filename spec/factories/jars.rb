@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :jar do
     name     { Faker::Name.name }
     end_at   { 10.days.from_now }
+    owner    { create(:user) }
 
     trait :with_contributions do
       after :create do |instance|

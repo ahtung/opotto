@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
+
   before(:each) do
     ActionMailer::Base.deliveries = []
     users = create_list(:user, 3)
