@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :jars, except: :index do
+  resources :jars, except: [:index, :destroy] do
     resources :contributions, only: [:new, :create]
   end
   authenticated :user do
