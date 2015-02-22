@@ -5,9 +5,12 @@ tr:
     new: Yeni kumbara
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
+    contribute:
+    contributors:
+    contributions:
+    guests:
   contribution:
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
-    amount: 
   number:
     human:
       decimal_units:
@@ -42,38 +45,38 @@ tr:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: 
+              greater_than_or_equal_to:
         jar:
           attributes:
             end_at:
-              blank: 
-              invalid_datetime: 
+              blank:
+              invalid_datetime:
     models:
       contribution: Contribution
       jar: Jar
   devise:
     failure:
       user:
-        unauthenticated: 
+        unauthenticated:
     omniauth_callbacks:
-      success: 
+      success:
     sessions:
       user:
-        signed_out: 
+        signed_out:
   helpers:
     label:
       user:
-        email: 
-        password: 
-        remember_me: 
-        current_password: 
-        password_confirmation: 
+        email:
+        password:
+        remember_me:
+        current_password:
+        password_confirmation:
       jar:
-        end_at_date: 
-        end_at_time: 
-        guest_ids: 
-        name: 
+        end_at_date:
+        end_at_time:
+        guest_ids:
+        name:
       contribution:
-        amount: 
+        amount:
   errors:
     format: "%{attribute} %{message}"

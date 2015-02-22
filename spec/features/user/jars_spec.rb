@@ -28,7 +28,7 @@ describe 'User should be able to', js: true do
       end
 
       it 'and see a notice' do
-        expect(page).to have_content('Jar was successfully created.')
+        expect(page).to have_content(t('jar.new'))
       end
 
       it 'and see the name' do
@@ -86,33 +86,11 @@ describe 'User should be able to', js: true do
         fill_in 'jar_name', with: 'Joelle getting married'
         click_on 'Save'
 
-        expect(page).to have_content('Jar was successfully updated.')
+        expect(page).to have_content(t('jar.updated'))
       end
     end
 
     context 'unsucessfully' do
-    end
-
-  end
-
-  # Destroy
-  describe 'destroy a jar' do
-
-    before :each do
-      first(:link, jar.name).click
-      click_on 'Delete'
-    end
-
-    context 'sucessfully' do
-      it 'and see a notice' do
-        expect(page).to have_content('Jar was successfully destroyed.')
-      end
-    end
-
-    context 'unsucessfully' do
-      xit 'and see a alert' do
-        expect(page).to have_content('Jar cannot be deleted.')
-      end
     end
 
   end
@@ -130,7 +108,7 @@ describe 'User should be able to', js: true do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
         click_on 'Save'
-        expect(page).to have_content('Contribution was successfully created.')
+        expect(page).to have_content(t('contribution.created', name: jar.name, amount: number_to_currency(cont.amount)))
       end
     end
 
