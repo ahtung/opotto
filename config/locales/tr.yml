@@ -1,9 +1,11 @@
 tr:
   site:
     title: o-Potto
-    back: Geri
     edit: Düzenle
+    navigation:
+      back: Geri
   jar:
+    save: Kaydet
     new: Yeni kumbara
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
@@ -41,9 +43,9 @@ tr:
         password_confirmation: Password confirmation
         current_password: Current password
       jar:
-        end_at_date: End at date
-        guest_ids: Guest ids
-        end_at_time: End at time
+        end_at_date: Bitis tarihi
+        guest_ids: Davetliler
+        end_at_time: Bitis saati
         name: Name
         end_at: End at
       contribution:
@@ -54,40 +56,40 @@ tr:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to:
+              greater_than_or_equal_to: 
         jar:
           attributes:
             end_at:
-              blank:
-              invalid_datetime:
+              blank: 
+              invalid_datetime: 
     models:
       contribution: Contribution
       jar: Jar
   devise:
     failure:
       user:
-        unauthenticated:
+        unauthenticated: 
     omniauth_callbacks:
-      success:
+      success: 
     sessions:
       user:
-        signed_out:
+        signed_out: 
   helpers:
     label:
       user:
-        email:
-        password:
-        remember_me:
-        current_password:
-        password_confirmation:
+        email: 
+        password: 
+        remember_me: 
+        current_password: 
+        password_confirmation: 
       jar:
         ends_at: Bitiş tarihi
-        end_at_date:
-        end_at_time:
-        guest_ids:
-        name:
+        end_at_date: 
+        end_at_time: 
+        guest_ids: 
+        name: 
       contribution:
-        amount:
-        Miktar:
+        amount: 
+        Miktar: 
   errors:
     format: "%{attribute} %{message}"
