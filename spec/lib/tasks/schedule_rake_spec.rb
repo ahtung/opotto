@@ -25,3 +25,19 @@ describe 'schedule:close_pots' do
     expect { subject.invoke }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 end
+
+describe 'schedule:destroy_pot' do
+  include_context 'rake'
+
+  its(:prerequisites) { should include('environment') }
+
+  it 'does nothing to open jars' do
+    create_list(:jar, 2, :open)
+    expect { subject.invoke }.to change { Jar.count }.by(0)
+  end
+
+  it 'it destroys a week old closeds' do
+    create_list(:jar, 2, :ended)
+    expect { subject.invoke }.to change { Jar.count }.by(-2)
+  end
+end
