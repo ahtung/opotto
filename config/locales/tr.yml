@@ -62,6 +62,8 @@ tr:
             end_at:
               blank: bos olamaz o
               invalid_datetime: uygunsuz zaman
+            name:
+              blank: Bos olmaz o
     models:
       contribution: Katki
       jar: Kumbara
@@ -77,19 +79,19 @@ tr:
   helpers:
     label:
       user:
-        email: 
-        password: 
-        remember_me: 
-        current_password: 
-        password_confirmation: 
+        email: e-posta
+        password: sifre
+        remember_me: beni hatirla
+        current_password: su anki sifre
+        password_confirmation: sifre digrulama
       jar:
         ends_at: Bitiş tarihi
-        end_at_date: 
-        end_at_time: 
-        guest_ids: 
-        name: 
+        end_at_date: Bitis tarihi
+        end_at_time: Bitis saati
+        guest_ids: Davetliler
+        name: Isim
       contribution:
-        amount: 
-        Miktar: 
+        amount: Miktar
+        Miktar: Miktar
   errors:
     format: "%{attribute} %{message}"
