@@ -8,7 +8,7 @@
     = f.number_field :amount
 
   = f.hidden_field :jar_id, value: jar.id
-  .actions = f.submit 'Save', class: 'button'
+  .actions = f.submit t('jar.save'), class: 'button'
 
 h2 Previous contributions
 ul

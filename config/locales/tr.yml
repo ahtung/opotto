@@ -3,6 +3,7 @@ tr:
     title: o-Potto
   jar:
     new: Yeni kumbara
+    save: Kaydet
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
   contribution:
@@ -23,19 +24,20 @@ tr:
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
-        remember_me: Remember me
-        password_confirmation: Password confirmation
-        current_password: Current password
+        email: E-posta
+        password: "Şifre"
+        remember_me: Beni hatirla
+        password_confirmation: "Şifre tekrarla"
+        current_password: "Şu anki sifre"
       jar:
-        end_at_date: End at date
-        guest_ids: Guest ids
-        end_at_time: End at time
-        name: Name
+        end_at_date: Bitis gunu
+        guest_ids: Davetliler
+        end_at_time: Bitis saati
+        name: Isim
         end_at: End at
       contribution:
         amount: Amount
+        Miktar: Miktar
     errors:
       models:
         contribution:
@@ -74,5 +76,6 @@ tr:
         name: 
       contribution:
         amount: 
+        Miktar: 
   errors:
     format: "%{attribute} %{message}"
