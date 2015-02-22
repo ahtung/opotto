@@ -14,7 +14,7 @@ describe 'User should be able to', js: true do
   # Create
   describe 'create a jar' do
     before :each do
-      click_on 'New jar'
+      click_on t('jar.new')
     end
 
     context 'sucessfully' do
@@ -23,12 +23,12 @@ describe 'User should be able to', js: true do
         first('#jar_name').set jar_mock.name
         first('#jar_end_at_date').set jar_mock.end_at
         first('#jar_end_at_time').set jar_mock.end_at
-        select2 user.email, from: 'Guest ids'
-        click_on 'Save'
+        select2 user.email, from: t('activerecord.attributes.jar.guest_ids')
+        click_on t('jar.save')
       end
 
       it 'and see a notice' do
-        expect(page).to have_content('Jar was successfully created.')
+        expect(page).to have_content(t('jar.new'))
       end
 
       it 'and see the name' do
@@ -47,8 +47,8 @@ describe 'User should be able to', js: true do
 
     context 'unsucessfully' do
       it 'and see an error' do
-        click_on 'Save'
-        expect(page).to have_content("Name can't be blank")
+        click_on t('jar.save')
+        expect(page).to have_content t('activerecord.errors.models.jar.attributes.name.blank')
       end
     end
 
@@ -63,7 +63,7 @@ describe 'User should be able to', js: true do
 
     context 'sucessfully' do
       it 'and the owner' do
-        expect(page).to have_content("owned by #{jar.owner.email}")
+        expect(page).to have_content t('jar.owned_by', email: jar.owner.email)
       end
     end
 
@@ -78,15 +78,15 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      click_on 'Edit'
+      click_on t('jar.edit')
     end
 
     context 'sucessfully' do
       it 'and see a notice' do
         fill_in 'jar_name', with: 'Joelle getting married'
-        click_on 'Save'
+        click_on t('jar.save')
 
-        expect(page).to have_content('Jar was successfully updated.')
+        expect(page).to have_content(t('jar.updated'))
       end
     end
 
@@ -100,23 +100,23 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      click_on 'Contribute'
+      click_on t('jar.contribute')
     end
 
     context 'sucessfully' do
       it 'and see a notice' do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
-        click_on 'Save'
-        expect(page).to have_content('Contribution was successfully created.')
+        click_on t('jar.save')
+        expect(page).to have_content(t('contribution.created', name: jar.name, amount: number_to_currency(cont.amount)))
       end
     end
 
     context 'unsucessfully when amount is 0' do
       it 'and see a alert' do
         fill_in :contribution_amount, with: 0
-        click_on 'Save'
-        expect(page).to have_content('Amount must be greater than or equal to 1')
+        click_on t('jar.save')
+        expect(page).to have_content t('activerecord.errors.models.contribution.attributes.amount.greater_than_or_equal_to')
       end
     end
 

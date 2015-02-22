@@ -1,0 +1,95 @@
+tr:
+  site:
+    title: o-Potto
+    navigation:
+      back: Geri
+  jar:
+    save: Kaydet
+    edit: Düzenle
+    new: Yeni kumbara
+    created: Kumbara başarıyla kaydedildi.
+    updated: Kumbara bilgileri başarıyla güncellendi.
+    guest: Davetli
+    guests: Davetliler
+    contributors: Katılımcı
+    contributions: Katkı
+    contribute: Katkı Yap
+    total: Toplam katkı
+    owned_by: "%{email} tarafından"
+  contribution:
+    new: Yeni katkı
+    created: '"%{name}" için %{amount} başarıyla aktarıldı.'
+    amount: Miktar
+    previous: "Önceki katkılar"
+  number:
+    human:
+      decimal_units:
+        units:
+          unit: ''
+    format:
+      delimiter: ","
+      separator: "."
+    currency:
+      format:
+        delimiter: ","
+        separator: "."
+        unit: "$"
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Password
+        remember_me: Remember me
+        password_confirmation: Password confirmation
+        current_password: Current password
+      jar:
+        end_at_date: Bitis gunu
+        guest_ids: Misafirler
+        end_at_time: Bitis tarihi
+        name: Isim
+        end_at: Bitis zamani
+      contribution:
+        amount: Amount
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              greater_than_or_equal_to: oyle olmaz o
+        jar:
+          attributes:
+            end_at:
+              blank: bos olamaz o
+              invalid_datetime: uygunsuz zaman
+            name:
+              blank: Bos olmaz o
+    models:
+      contribution: Katki
+      jar: Kumbara
+  devise:
+    failure:
+      user:
+        unauthenticated: Cik cik cik! Izinsiz giris ha!
+    omniauth_callbacks:
+      success: Basariyla giris
+    sessions:
+      user:
+        signed_out: Basariyla cikis
+  helpers:
+    label:
+      user:
+        email: e-posta
+        password: sifre
+        remember_me: beni hatirla
+        current_password: su anki sifre
+        password_confirmation: sifre digrulama
+      jar:
+        ends_at: Bitiş tarihi
+        end_at_date:
+        end_at_time:
+        guest_ids:
+        name:
+      contribution:
+        amount: Miktar
+  errors:
+    format: "%{attribute} %{message}"

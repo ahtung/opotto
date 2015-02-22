@@ -2,9 +2,9 @@ ul.pricing-table class=[('users' if jar.owner == current_user), ('contributed-to
   li.title= link_to jar.name, jar_path(jar)
   li.image= image_tag 'jar.png'
   li.price #{ humanized_money_with_symbol(jar.total_contribution) }
-  li.description= "#{jar.total_guests} Guests"
-  li.bullet-item= "#{jar.total_contributors} Contributors"
-  li.bullet-item= "#{jar.contributions.count} Contributions"
+  li.description= "#{jar.total_guests} #{t('jar.guest')}"
+  li.bullet-item= "#{jar.total_contributors} #{t('jar.contributors')}"
+  li.bullet-item= "#{jar.contributions.count} #{t('jar.contributions')}"
   li.bullet-item= jar.end_at
   li.cta-button
-    = link_to 'Contribute', new_jar_contribution_path(jar), class: 'button'
+    = link_to t('jar.contribute'), new_jar_contribution_path(jar), class: 'button'

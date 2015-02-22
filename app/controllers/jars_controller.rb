@@ -25,7 +25,7 @@ class JarsController < ApplicationController
     @jar = current_user.jars.build(jar_params)
     authorize @jar
     if @jar.save
-      redirect_to root_path, notice: 'Jar was successfully created.'
+      redirect_to root_path, notice: t('jar.created')
     else
       render :new
     end
@@ -35,7 +35,7 @@ class JarsController < ApplicationController
   def update
     authorize @jar
     if @jar.update(jar_params)
-      redirect_to root_path, notice: 'Jar was successfully updated.'
+      redirect_to root_path, notice: t('jar.updated')
     else
       render :edit
     end
