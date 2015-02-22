@@ -28,6 +28,7 @@ gem 'sinatra'
 gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
 gem 'http_accept_language'
+gem 'localeapp'
 
 group :production do
   gem 'rails_12factor'
