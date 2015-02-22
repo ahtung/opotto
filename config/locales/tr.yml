@@ -1,6 +1,8 @@
 tr:
   site:
     title: o-Potto
+  jar:
+    new: Yeni kumbara
   number:
     human:
       decimal_units:
