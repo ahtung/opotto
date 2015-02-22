@@ -221,10 +221,10 @@ en:
         password_confirmation: 
         current_password: 
       jar:
-        end_at_date: 
-        guest_ids: 
-        end_at_time: 
-        end_at: 
+        end_at_date: End day
+        guest_ids: Guests
+        end_at_time: End time
+        end_at: End date
       contribution:
         amount: Amount
     errors:

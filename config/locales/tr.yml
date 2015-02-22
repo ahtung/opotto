@@ -43,11 +43,11 @@ tr:
         password_confirmation: Password confirmation
         current_password: Current password
       jar:
-        end_at_date: Bitis tarihi
-        guest_ids: Davetliler
-        end_at_time: Bitis saati
+        end_at_date: Bitis gunu
+        guest_ids: Misafirler
+        end_at_time: Bitis tarihi
         name: Name
-        end_at: End at
+        end_at: Bitis zamani
       contribution:
         amount: Amount
     errors:
