@@ -3,6 +3,11 @@ tr:
     title: o-Potto
   jar:
     new: Yeni kumbara
+    created:
+    updated:
+    destroyed:
+  contribution:
+    created:
   number:
     human:
       decimal_units:
@@ -35,36 +40,36 @@ tr:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: 
+              greater_than_or_equal_to:
         jar:
           attributes:
             end_at:
-              blank: 
-              invalid_datetime: 
+              blank:
+              invalid_datetime:
     models:
       contribution: Contribution
       jar: Jar
   devise:
     failure:
       user:
-        unauthenticated: 
+        unauthenticated:
     omniauth_callbacks:
-      success: 
+      success:
     sessions:
       user:
-        signed_out: 
+        signed_out:
   helpers:
     label:
       user:
-        email: 
-        password: 
-        remember_me: 
+        email:
+        password:
+        remember_me:
       jar:
-        end_at_date: 
-        end_at_time: 
-        guest_ids: 
-        name: 
+        end_at_date:
+        end_at_time:
+        guest_ids:
+        name:
       contribution:
-        amount: 
+        amount:
   errors:
     format: "%{attribute} %{message}"

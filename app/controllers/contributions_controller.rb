@@ -13,7 +13,7 @@ class ContributionsController < ApplicationController
     @contribution = current_user.contributions.build(contribution_params)
 
     if @contribution.save
-      redirect_to root_path, notice: 'Contribution was successfully created.'
+      redirect_to root_path, notice: t('contribution.created')
     else
       render :new
     end
