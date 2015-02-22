@@ -1,5 +1,6 @@
 # ContributionsController
 class ContributionsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   before_action :authenticate_user!
   before_action :set_jar, only: [:new, :create]
 
@@ -13,7 +14,7 @@ class ContributionsController < ApplicationController
     @contribution = current_user.contributions.build(contribution_params)
 
     if @contribution.save
-      redirect_to root_path, notice: t('contribution.created', amount: t('contribution.amount'))
+      redirect_to root_path, notice: t('contribution.created', name: @contribution.jar.name, amount: number_to_currency(@contribution.amount))
     else
       render :new
     end
