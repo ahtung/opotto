@@ -68,12 +68,12 @@ tr:
   devise:
     failure:
       user:
-        unauthenticated: 
+        unauthenticated: Cik cik cik! Izinsiz giris ha!
     omniauth_callbacks:
-      success: 
+      success: Basariyla giris
     sessions:
       user:
-        signed_out: 
+        signed_out: Basariyla cikis
   helpers:
     label:
       user:
@@ -85,11 +85,11 @@ tr:
       jar:
         ends_at: Bitiş tarihi
         end_at_date: 
-        end_at_time: 
+        end_at_time: Bitis traihi
         guest_ids: 
         name: 
       contribution:
-        amount: 
+        amount: Miktar
         Miktar: 
   errors:
     format: "%{attribute} %{message}"
