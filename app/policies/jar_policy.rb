@@ -15,22 +15,22 @@ class JarPolicy
 
   # contribute?
   def contribute?
-    jar.guests.include?(user) && jar.open?
+    (jar.guests.include?(user) || jar.owner == user) && jar.open?
   end
 
   # new?
   def new?
-    true
+    user
   end
 
   # edit?
   def edit?
-    true
+    jar.owner == user
   end
 
   # create?
   def create?
-    true
+    user
   end
 
   # update?

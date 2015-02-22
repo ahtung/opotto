@@ -36,6 +36,10 @@ class Jar < ActiveRecord::Base
     notify_payout
   end
 
+  def open?
+    end_at >= Date.today
+  end
+
   # Class methods
   class << self
     # scope for all open jars
