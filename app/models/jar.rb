@@ -32,6 +32,7 @@ class Jar < ActiveRecord::Base
   # payout and notify guests
   def payout
     # TODO
+    update_attribute(:paid_at, Date.today)
     notify_payout
   end
 
