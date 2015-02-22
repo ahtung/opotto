@@ -86,12 +86,12 @@ tr:
         password_confirmation: sifre digrulama
       jar:
         ends_at: Bitiş tarihi
-        end_at_date: Bitis tarihi
-        end_at_time: Bitis saati
-        guest_ids: Davetliler
-        name: Isim
+        end_at_date: 
+        end_at_time: 
+        guest_ids: 
+        name: 
       contribution:
         amount: Miktar
-        Miktar: Miktar
+        Miktar: 
   errors:
     format: "%{attribute} %{message}"
