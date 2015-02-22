@@ -144,18 +144,18 @@ en:
       update: Update %{model}
     label:
       user:
-        email: 
-        password: 
-        remember_me: 
+        email: Email
+        password: Password
+        remember_me: Remeber me
         current_password: 
-        password_confirmation: 
+        password_confirmation: Password confirmation
       jar:
-        end_at_date: 
-        end_at_time: 
-        guest_ids: 
+        end_at_date: End day
+        end_at_time: End time
+        guest_ids: Guests
       contribution:
         amount: Amount
-        Miktar: 
+        Miktar: Miktar
   number:
     currency:
       format:
