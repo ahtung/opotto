@@ -16,7 +16,7 @@ class Jar < ActiveRecord::Base
 
   # retuns the fullness value
   def fullness
-    total_contribution / 100
+    total_contribution.to_f / 1000
   end
 
   # returns the total contribution
