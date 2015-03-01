@@ -14,6 +14,11 @@ class Jar < ActiveRecord::Base
 
   date_time_attribute :end_at
 
+  # retuns the fullness value
+  def fullness
+    total_contribution / 1000
+  end
+
   # returns the total contribution
   def total_contribution
     contributions.map(&:amount).inject { |sum, x| sum + x } || 0

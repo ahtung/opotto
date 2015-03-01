@@ -16,7 +16,7 @@ var svgContainer = d3.select("#d3")
 
 var height = 200;
 var width = 200;
-var fullness = 1;
+var fullness = 0.85;
 
 svgContainer
 .append('defs')
@@ -31,6 +31,14 @@ svgContainer
     .attr("stroke", "blue")
     .attr("stroke-width", 2)
     .attr("fill", "lime");
+
+svgContainer
+.append("rect")
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('width', width)
+  .attr('height', height)
+  .attr('fill', 'blue');
 
 svgContainer
 .append("rect")
