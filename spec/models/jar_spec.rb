@@ -79,4 +79,25 @@ describe Jar do
       expect(Jar.closed).not_to include open_jars
     end
   end
+
+  describe '#pot_points' do
+
+    before :each do
+      @jar = create(:jar, :with_contributions)
+    end
+
+    it 'should return a array of length 12' do
+      expect(@jar.pot_points.count).to eq(12)
+    end
+
+    describe 'should return a array of where item is a hash' do
+      let(:points) { @jar.pot_points }
+      it 'with key x' do
+        expect(points.first.has_key?(:x)).to be(true)
+      end
+      it 'with key y' do
+        expect(points.first.has_key?(:y)).to be(true)
+      end
+    end
+  end
 end
