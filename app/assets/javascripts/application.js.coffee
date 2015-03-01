@@ -13,8 +13,10 @@
 #= require jquery
 #= require jquery_ujs
 #= require select2
+#= require d3
 #= require foundation
 #= require jquery.transit.min
+#= require jar
 
 $ ->
   $(document).foundation()
