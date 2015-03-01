@@ -12,13 +12,6 @@ $(".d3").each(function(){
                      .attr("width", 200)
                      .attr("height", 200);
 
-  //The line SV.pushath we draw
-  var lineGraph = svgContainer.append("path")
-                     .attr("d", lineFunction(lineData))
-                     .attr("stroke", "blue")
-                     .attr("stroke-width", 2)
-                     .attr("fill", "lime");
-
   var height = 200;
   var width = 200;
   var fullness = parseFloat($(this).data('fullness'));
@@ -33,17 +26,15 @@ $(".d3").each(function(){
       .attr('height', height)
     .append("path")
       .attr("d", lineFunction(lineData))
-      .attr("stroke", "red")
-      .attr("stroke-width", 2)
-      .attr("fill", "lime");
-
-  svgContainer
-  .append("rect")
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('width', width)
-    .attr('height', height)
-    .attr('fill', 'blue');
+      .attr("fill", "#B7E8D8");
+  //
+  // svgContainer
+  // .append("rect")
+  //   .attr('x', 0)
+  //   .attr('y', 0)
+  //   .attr('width', width)
+  //   .attr('height', height)
+  //   .attr('fill', 'blue');
 
   svgContainer
   .append("rect")
@@ -51,6 +42,6 @@ $(".d3").each(function(){
     .attr('y', height - (fullness * height))
     .attr('width', width)
     .attr('height', (fullness * height))
-    .attr('fill', 'red')
+    .attr('fill', '#B7E8D8')
     .attr('mask', 'url(#mask)');
 });
