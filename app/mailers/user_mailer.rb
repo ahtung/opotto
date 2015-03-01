@@ -13,6 +13,6 @@ class UserMailer < ApplicationMailer
   def payout_email(user, jar)
     @user = user
     @jar = jar
-    mail(subject: "You have contributed!", to: user.email)
+    mail(subject: 'You have contributed!', to: user.email)
   end
 end

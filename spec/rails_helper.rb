@@ -1,8 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-require 'coveralls'
-Coveralls.wear!
+if ENV['CIRLE_CI'] == 'true'
+  require 'coveralls'
+  Coveralls.wear!
+else
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -51,5 +56,6 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     Sidekiq::Worker.clear_all
+    I18n.locale = :tr
   end
 end
