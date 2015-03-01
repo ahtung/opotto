@@ -25,7 +25,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == ['no-reply@opotto.com']
+    ActionMailer::Base.deliveries.first.from.should == ['info@opotto.com']
   end
 
   after(:each) do
