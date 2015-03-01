@@ -1,4 +1,6 @@
 tr:
+  pundit:
+    user_not_authorized: Yassak gardesim, hadi..
   site:
     title: o-Potto
     navigation:

@@ -2,11 +2,11 @@
 class JarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jar, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_jar, only: [:update, :show, :edit]
   after_action :verify_authorized
 
   # GET /jars/1
   def show
-    authorize @jar
   end
 
   # GET /jars/new
@@ -17,7 +17,6 @@ class JarsController < ApplicationController
 
   # GET /jars/1/edit
   def edit
-    authorize @jar
   end
 
   # POST /jars
@@ -33,7 +32,6 @@ class JarsController < ApplicationController
 
   # PATCH/PUT /jars/1
   def update
-    authorize @jar
     if @jar.update(jar_params)
       redirect_to root_path, notice: t('jar.updated')
     else
@@ -42,6 +40,11 @@ class JarsController < ApplicationController
   end
 
   private
+
+  # authorize_jar
+  def authorize_jar
+    authorize @jar
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_jar

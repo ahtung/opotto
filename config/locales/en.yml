@@ -1,4 +1,6 @@
 en:
+  pundit:
+    user_not_authorized: You are not authorized to perform this action.
   jar:
     new: New
     contribute: Contribute
