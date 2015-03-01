@@ -1,5 +1,6 @@
 # UserMailer
 class UserMailer < ApplicationMailer
+  layout 'mailer'
   default from: 'no-reply@opotto.com'
 
   # sends an invitation email to given user about the jar
