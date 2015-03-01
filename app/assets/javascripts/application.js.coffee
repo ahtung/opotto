@@ -17,5 +17,5 @@
 #= require jquery.transit.min
 
 $ ->
-	$(document).foundation()
+  $(document).foundation()
   $(".jar-guests").select2()
