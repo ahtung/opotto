@@ -53,4 +53,22 @@ describe User do
       expect(user.import_contacts).to be_nil
     end
   end
+
+  describe '#pot_points' do
+    let(:user) { create(:user) }
+
+    it 'should return a array of length 12' do
+      expect(user.pot_points.count).to eq(12)
+    end
+
+    describe 'should return a array of where item is a hash' do
+      let(:points) { user.pot_points }
+      it 'with key x' do
+        expect(points.first.has_key?('x')).to be(true)
+      end
+      it 'with key y' do
+        expect(points.first.has_key?('y')).to be(true)
+      end
+    end
+  end
 end
