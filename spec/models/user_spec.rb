@@ -64,10 +64,10 @@ describe User do
     describe 'should return a array of where item is a hash' do
       let(:points) { user.pot_points }
       it 'with key x' do
-        expect(points.first.has_key?('x')).to be(true)
+        expect(points.first.has_key?(:x)).to be(true)
       end
       it 'with key y' do
-        expect(points.first.has_key?('y')).to be(true)
+        expect(points.first.has_key?(:y)).to be(true)
       end
     end
   end
