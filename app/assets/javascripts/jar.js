@@ -10,13 +10,13 @@ var lineFunction = d3.svg.line()
                          .interpolate("basis-closed");
 
 //The SVG Container
-var svgContainer = d3.select("#d3")
+var svgContainer = d3.select(".d3")
                      .attr("width", 200)
                      .attr("height", 200);
 
 var height = 200;
 var width = 200;
-var fullness = 0.85;
+var fullness = svgContainer.data('fullness');
 
 svgContainer
 .append('defs')
