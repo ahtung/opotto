@@ -58,7 +58,7 @@ group :test do
   gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
-  gem 'rspec-sidekiq', require: false
+  gem 'rspec-sidekiq'
   gem 'coveralls', require: false
   gem 'timecop'
   gem 'rspec-its'

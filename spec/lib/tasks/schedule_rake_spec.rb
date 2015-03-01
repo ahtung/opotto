@@ -1,6 +1,6 @@
 # spec/lib/tasks/schedule_rake_spec.rb
 
-describe 'schedule:close_pots' do
+RSpec.describe 'schedule:close_pots' do
   include_context 'rake'
 
   its(:prerequisites) { should include('environment') }
@@ -27,7 +27,7 @@ describe 'schedule:close_pots' do
   end
 end
 
-describe 'schedule:destroy_pots' do
+RSpec.describe 'schedule:destroy_pots' do
   include_context 'rake'
 
   its(:prerequisites) { should include('environment') }
