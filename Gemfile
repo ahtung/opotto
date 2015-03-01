@@ -35,7 +35,6 @@ group :production do
 end
 
 group :development do
-  gem 'localeapp'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
