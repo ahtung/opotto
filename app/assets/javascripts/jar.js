@@ -7,7 +7,7 @@ var lineData = [ { "x": 1,   "y": 5},  { "x": 20,  "y": 20},
 var lineFunction = d3.svg.line()
                          .x(function(d) { return d.x; })
                          .y(function(d) { return d.y; })
-                         .interpolate("linear");
+                         .interpolate("basis-closed");
 
 //The SVG Container
 var svgContainer = d3.select("#d3")
@@ -19,4 +19,4 @@ var lineGraph = svgContainer.append("path")
                             .attr("d", lineFunction(lineData))
                             .attr("stroke", "blue")
                             .attr("stroke-width", 2)
-                            .attr("fill", "none");
+                            .attr("fill", "lime");
