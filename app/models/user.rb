@@ -56,36 +56,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Gives an array of 12 points coordinates
-  def pot_points
-    key = Digest::SHA1.hexdigest email
-    coordinates = convert_to_ascii(key)
-    reversed_coordinates = coordinates.reverse.map do |point|
-      { x: 200 - point[:x] , y: point[:y] }
-    end
-    coordinates + reversed_coordinates
-  end
-
   private
 
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_async(id)
-  end
-
-  # Converts key's each character to ascii, creates an array with 6 points
-  def convert_to_ascii(key)
-    coords = []
-    byteCounter = 0
-    key.first(6).each_byte do |c, index|
-      coords << { x: scaled_coordinate(c.to_i), y: byteCounter * 40 }
-      byteCounter = byteCounter + 1
-    end
-    coords
-  end
-
-  # Scales the ascii number to 100
-  def scaled_coordinate (coordinate)
-    coordinate * 100 / 255
   end
 end
