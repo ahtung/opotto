@@ -16,7 +16,7 @@ RSpec.describe 'I18n', type: :feature do
     end
   end
 
-  context 'when the user has set their locale to :zh' do
+  context 'when the user has set their locale to :tr' do
     let(:locale) { :tr }
 
     it 'displays a translated welcome message to the user' do
