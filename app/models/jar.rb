@@ -14,6 +14,8 @@ class Jar < ActiveRecord::Base
 
   date_time_attribute :end_at
 
+  attr_accessor :message
+
   # retuns the fullness value
   def fullness
     total_contribution.to_f / 1000
