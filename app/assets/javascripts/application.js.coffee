@@ -15,7 +15,6 @@
 #= require select2
 #= require foundation
 #= require jquery.transit.min
-#= require_tree .
 
 $ ->
 	$(document).foundation()
