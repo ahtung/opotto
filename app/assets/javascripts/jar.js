@@ -1,5 +1,5 @@
 //The data for our line
-var lineData = $("#d3").data('points')
+var lineData = $(".d3").data('points')
 
 //This is the accessor function we talked about above
 var lineFunction = d3.svg.line()
@@ -14,7 +14,10 @@ var svgContainer = d3.select(".d3")
 
 var height = 200;
 var width = 200;
-var fullness = svgContainer.data('fullness');
+var fullness = $(".d3").data('fullness');
+
+console.log(fullness);
+console.log(lineData);
 
 svgContainer
 .append('defs')
