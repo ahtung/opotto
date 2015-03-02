@@ -72,7 +72,7 @@ class Jar < ActiveRecord::Base
     key = Digest::SHA1.hexdigest name
     coordinates = convert_to_ascii(key)
     reversed_coordinates = coordinates.reverse.map do |point|
-      { x: 200 - point[:x] , y: point[:y] }
+      { x: 1.0 - point[:x] , y: point[:y] }
     end
     coordinates + reversed_coordinates
   end
@@ -89,14 +89,14 @@ class Jar < ActiveRecord::Base
     coords = []
     byteCounter = 0
     key.first(6).each_byte do |c, index|
-      coords << { x: scaled_coordinate(c.to_i), y: byteCounter * 40 }
+      coords << { x: scaled_coordinate(c.to_i), y: byteCounter.to_f / 6.0 }
       byteCounter = byteCounter + 1
     end
     coords
   end
 
-  # Scales the ascii number to 100
+  # Scales the ascii number to 0.0-1.0
   def scaled_coordinate (coordinate)
-    coordinate * 100 / 255
+    coordinate.to_f / 255 / 2.0
   end
 end
