@@ -7,6 +7,7 @@ formatters = []
 # your other formatters (html ?)
 formatters << PullReview::Coverage::Formatter
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[*formatters]
+SimpleCov.start 'rails'
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
