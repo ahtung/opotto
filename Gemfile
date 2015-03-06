@@ -60,7 +60,8 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq'
-  gem 'coveralls', require: false
+  gem 'simplecov', require: false
   gem 'timecop'
+  gem 'pullreview-coverage', require: false
   gem 'rspec-its'
 end

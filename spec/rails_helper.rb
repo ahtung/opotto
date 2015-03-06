@@ -1,13 +1,12 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-if ENV['CIRLE_CI'] == 'true'
-  require 'coveralls'
-  Coveralls.wear!
-else
-  require 'simplecov'
-  SimpleCov.start 'rails'
-end
+require 'simplecov'
+require 'pullreview/coverage'
+formatters = []
+# your other formatters (html ?)
+formatters << PullReview::Coverage::Formatter
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[*formatters]
 
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
