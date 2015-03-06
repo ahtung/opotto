@@ -3,9 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 # Coverage
 require 'simplecov'
 require 'pullreview/coverage'
-formatters = []
-# your other formatters (html ?)
-formatters << PullReview::Coverage::Formatter
+formatters = [SimpleCov::Formatter::HTMLFormatter, PullReview::Coverage::Formatter]
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[*formatters]
 SimpleCov.start 'rails'
 
