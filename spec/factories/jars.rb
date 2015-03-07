@@ -18,6 +18,10 @@ FactoryGirl.define do
       guests { create_list(:user, 3) }
     end
 
+    trait :with_message do
+      message {Faker::Lorem.paragraph}
+    end
+
     trait :open do
     end
 
