@@ -14,6 +14,7 @@ require 'capybara/poltergeist'
 require 'money-rails/test_helpers'
 require 'sidekiq/testing'
 require 'pundit/rspec'
+require 'database_cleaner'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
@@ -54,5 +55,25 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     Sidekiq::Worker.clear_all
     I18n.locale = :tr
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 end

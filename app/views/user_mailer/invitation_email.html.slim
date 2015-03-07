@@ -1,5 +1,18 @@
-h1= "Hello #{@user.email}"
+center
+  table style="font-size: 12px;line-height: 1.5em;"width="600"
+    tr style="font-size: 12px;line-height: 1.5em;"
+      td style="font-size: 12px;line-height: 1.5em;"
+        #header style="font-size: 12px;line-height: 1.5em;width: 600px;margin: 0 auto;"
+        h1 Opotto
+  table style="font-size: 12px;line-height: 1.5em;" width="450"
+    tr style="font-size: 12px;line-height: 1.5em;"
+      td style="font-size: 12px;line-height: 1.5em;"
+        #wrapper style="font-size: 15px;line-height: 1.5em;width: 450px;margin: 0 auto;"
+          p = "Hello #{@user.email}"
+          h2
+            = "You have been asked to contribute to "
+            = link_to @jar.name, new_jar_contribution_url(@jar)
+          br
+          p style="color:#999;font-style:italic;" Message:
+          p style="color:#999;font-style:italic;" = @jar.message
 
-p
-  = "You have been asked to contribute to "
-  = link_to @jar.name, new_jar_contribution_url(@jar)
