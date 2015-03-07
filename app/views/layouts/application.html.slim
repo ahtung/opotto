@@ -4,16 +4,17 @@ html lang="en"
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
 
-    title == content_for?(:title) ? yield(:title) : "Untitled"
+    title == content_for?(:title) ? yield(:title) : 'opotto'
 
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tag
 
   body
+    = render 'navigation'
+    = render 'banner'
     .row
       columns.small-12.small-centered.medium-8
-        = render 'navigation'
         = render 'notices', flash: flash
     .row
       .columns.small-12.small-8.small-centered

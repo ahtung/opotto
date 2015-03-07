@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  get '/discover' => 'home#index', as: :discover
+
   resources :jars, except: [:index, :destroy] do
     resources :contributions, only: [:new, :create]
   end
