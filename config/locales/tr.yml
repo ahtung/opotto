@@ -38,8 +38,10 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: © 2015‐2015 DKDH, Inc. All rights reserved.
+    copyright: © 2015‐2015 DKDH, Ltd. Sti. Tum haklari saklidir.
+    sign_in_with_google: Google'la giris
     me: Ben
+    hello: Merhaba
     discover: Kesfet
     about: Hakkimizda
     contact: Kahveye gelin
@@ -49,7 +51,7 @@ tr:
   jar:
     save: Kaydet
     edit: Düzenle
-    new: Yeni kumbara
+    new: Basla
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
     guest: Davetli
