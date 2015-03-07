@@ -2,6 +2,6 @@
   .small-4.columns.small-centered
     p
       ul style="list-style-type: none; text-align: center"
-        li= link_to 'About', page_path('about'), style: "display: inline-block"
-        li= link_to 'Contact', page_path('contact'), style: "display: inline-block"
-  p.copyright © 2015‐2015 DKDH, Inc. All rights reserved.
+        li= link_to t('site.about'), page_path('about'), style: "display: inline-block"
+        li= link_to t('site.contact'), page_path('contact'), style: "display: inline-block"
+  p.copyright= t('site.copyright')
