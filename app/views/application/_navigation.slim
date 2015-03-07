@@ -12,9 +12,9 @@ nav.top-bar data-topbar=true
         ul.dropdown
           li
             - if user_signed_in?
-              = link_to(t('user.logout'), destroy_user_session_path, method: :delete)
+              = link_to(t('user.logout'), '#', method: :delete)
             - else
-              = link_to(t('user.login'), new_user_session_path)
+              = link_to(t('user.login'), '#')
     ul.left
       li= link_to t('site.discover'), discover_path
       li= link_to t('jar.new'), new_jar_path

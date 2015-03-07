@@ -2,6 +2,10 @@ en:
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   jar:
+    save: Save
+    guest: Guests
+    contributors: Contributos
+    contributions: Contributions
     new: New
     contribute: Contribute
     edit: Contribute
