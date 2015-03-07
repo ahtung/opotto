@@ -19,7 +19,7 @@ FactoryGirl.define do
     end
 
     trait :with_message do
-      message {Faker::Lorem.paragraph}
+      message { Faker::Lorem.paragraph }
     end
 
     trait :open do
