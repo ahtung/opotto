@@ -29,7 +29,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == ['info@opotto.com']
+    expect(ActionMailer::Base.deliveries.first.from).to match_array ['info@opotto.com']
   end
 
   after(:each) do
