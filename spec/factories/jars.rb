@@ -3,6 +3,7 @@ FactoryGirl.define do
     name     { Faker::Name.name }
     end_at   { 10.days.from_now }
     owner    { create(:user) }
+    visible  { true }
 
     trait :with_contributions do
       after :create do |instance|
