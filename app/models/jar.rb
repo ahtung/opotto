@@ -49,6 +49,11 @@ class Jar < ActiveRecord::Base
 
   # Class methods
   class << self
+    # scope for all visible jars
+    def visible
+      where(visible: true)
+    end
+
     # scope for all open jars
     def open
       where('end_at >= ?', Date.today)
