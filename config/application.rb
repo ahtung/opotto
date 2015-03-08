@@ -17,6 +17,6 @@ module Pot
   class Application < Rails::Application
     config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-59771384-2'
     config.i18n.available_locales = [:tr, :en]
-    config.i18n.default_locale = :tr
+    # config.i18n.default_locale = :tr
   end
 end

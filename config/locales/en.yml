@@ -2,13 +2,35 @@ en:
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   jar:
+    save: Save
+    guest: Guests
+    contributors: Contributos
+    contributions: Contributions
     new: New
     contribute: Contribute
-    edit: Contribute
+    edit: Edit
     created: Pot successfully created!
     updated: Pot successfully updated!
+    guests: Guests
+    owned_by: By %{email}
+    total: Total contribution
+  user:
+    login: Login
+    logout: Logout
   site:
+    discover: Discover
+    hello: hello
     title: o-Potto
+    about: About
+    contact: Contact
+    copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
+    discover: Discover
+    hello: Hello
+    me: Me
+    sign_in_with_google: Sign in with Google
+    pots: Pots
+    navigation:
+      back: Back
   date:
     abbr_day_names:
     - Sun
@@ -155,13 +177,15 @@ en:
         current_password: Current password
         password_confirmation: Password confirmation
       jar:
+        ends_at: Ends at
         end_at_date: End day
         end_at_time: End time
         guest_ids: Guests
         name: Name
+        message: Message
+        optional: Optional
       contribution:
         amount: Amount
-        Miktar: Miktar
   number:
     currency:
       format:
@@ -187,9 +211,9 @@ en:
           quadrillion: Quadrillion
           thousand: Thousand
           trillion: Trillion
-          unit: ''
+          unit: '.'
       format:
-        delimiter: ''
+        delimiter: ','
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -205,10 +229,10 @@ en:
           tb: TB
     percentage:
       format:
-        delimiter: ''
+        delimiter: '.'
     precision:
       format:
-        delimiter: ''
+        delimiter: ','
   support:
     array:
       last_word_connector: ", and "
@@ -250,6 +274,7 @@ en:
               invalid_datetime: Unlogical time
             name:
               blank: Can't be blank
+              taken: Name already taken
     models:
       contribution: Contribution
       jar: Pot
@@ -258,10 +283,12 @@ en:
       user:
         unauthenticated: No no no!
     omniauth_callbacks:
-      success: Logged out!
+      success: Logged in!
     sessions:
       user:
-        signed_out: Logged in!
+        signed_out: Logged out!
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
+    new: New contribution
+    previous: Previous contributions

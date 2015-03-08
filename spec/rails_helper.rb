@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include AbstractController::Translation
   config.include ActionView::Helpers::NumberHelper
+  config.include ActionView::Helpers::DateHelper
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -54,7 +55,6 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     Sidekiq::Worker.clear_all
-    I18n.locale = :tr
   end
 
   config.before(:suite) do
