@@ -1,10 +1,10 @@
 test: &default
   mode: sandbox
-  app_id: ENV["PAYPAL_APP_ID"]
-  username: ENV['PAYPAL_USERNAME']
-  password: ENV['PAYPAL_PASSWORD']
-  signature: ENV['PAYPAL_SIGNATURE']
-  sandbox_email_address: ENV['PAYPAL_SANDBOX_EMAIL']
+  app_id: <%= ENV['PAYPAL_APP_ID'] %>
+  username: <%= ENV['PAYPAL_USERNAME'] %>
+  password: <%= ENV['PAYPAL_PASSWORD'] %>
+  signature: <%= ENV['PAYPAL_SIGNATURE'] %>
+  sandbox_email_address: <%= ENV['PAYPAL_SANDBOX_EMAIL'] %>
 development:
   <<: *default
 production:
