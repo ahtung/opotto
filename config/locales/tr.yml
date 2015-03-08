@@ -137,6 +137,7 @@ tr:
         guest_ids: Misafirler
         name: Adı
         message: Mesajınız
+        optional: İsteğe bağlı
       contribution:
         amount: Miktar
   errors:

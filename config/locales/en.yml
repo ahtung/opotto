@@ -180,6 +180,7 @@ en:
         guest_ids: Guests
         name: Name
         message: Message
+        optional: Optional
       contribution:
         amount: Amount
   number:
