@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe JarPolicy, focus: true do
+describe JarPolicy do
   subject { described_class }
 
   let(:user) { create(:user) }
