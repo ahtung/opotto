@@ -103,7 +103,7 @@ class Jar < ActiveRecord::Base
   end
 
   # Scales the ascii number to 100
-  def scaled_coordinate (coordinate)
+  def scaled_coordinate(coordinate)
     coordinate * 100 / 255
   end
 end
