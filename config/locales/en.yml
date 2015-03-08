@@ -12,6 +12,7 @@ en:
     created: Pot successfully created!
     updated: Pot successfully updated!
   site:
+    discover: Discover
     hello: hello
     title: o-Potto
   date:
