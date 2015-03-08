@@ -38,7 +38,7 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: © 2015‐2015 DKDH, Ltd. Sti. Tum haklari saklidir.
+    copyright: © 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir.
     sign_in_with_google: Google'la giris
     me: Ben
     hello: Merhaba
@@ -70,7 +70,7 @@ tr:
     human:
       decimal_units:
         units:
-          unit: ''
+          unit: '.'
     format:
       delimiter: ","
       separator: "."
@@ -132,8 +132,8 @@ tr:
         ends_at: Bitiş tarihi
         end_at_date: Bitiş tarihi
         end_at_time: Bitiş saati
-        guest_ids:
-        name:
+        guest_ids: Misafirler
+        name: Adı
         message: Mesajınız
       contribution:
         amount: Miktar
