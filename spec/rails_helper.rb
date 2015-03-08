@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include AbstractController::Translation
   config.include ActionView::Helpers::NumberHelper
+  config.include ActionView::Helpers::DateHelper
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
