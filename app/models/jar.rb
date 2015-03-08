@@ -14,11 +14,6 @@ class Jar < ActiveRecord::Base
 
   date_time_attribute :end_at
 
-  monetize :upper_bound, numericality: {
-    greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 10_000
-  }
-
   attr_accessor :message
 
   # retuns the fullness value
