@@ -7,8 +7,4 @@ class Contribution < ActiveRecord::Base
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 10_000
   }
-
-  def self.nonanonymous
-    where(anonymous: false)
-  end
 end
