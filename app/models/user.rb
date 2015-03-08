@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
-      password: Devise.friendly_token[0, 20],
       refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil
     )
   end
@@ -48,8 +47,7 @@ class User < ActiveRecord::Base
     google_contacts_user.contacts.each do |contact|
       ActiveRecord::Base.transaction do
         contacts.where(email: contact.primary_email).first_or_create(
-          name: contact.fullName,
-          password: Devise.friendly_token[0, 20]
+          name: contact.fullName
         )
       end
     end
