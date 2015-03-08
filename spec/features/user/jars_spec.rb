@@ -22,6 +22,7 @@ describe 'User should be able to', js: true do
         first('#jar_name').set jar_mock.name
         first('#jar_end_at_date').set jar_mock.end_at
         first('#jar_end_at_time').set jar_mock.end_at
+        first('#jar_visible').set jar_mock.visible
         select2 user.email, from: t('activerecord.attributes.jar.guest_ids')
         click_on t('jar.save')
       end
