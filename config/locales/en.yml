@@ -259,6 +259,7 @@ en:
         end_at_time: End time
         end_at: End date
         name: Name
+        upper_bound: Upper bound
       contribution:
         amount: Amount
         anonymous: Anonymous
@@ -267,7 +268,8 @@ en:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: That'snot possible
+              greater_than_or_equal_to: That's not possible
+              amount_out_of_bounds: out of bounds
         jar:
           attributes:
             end_at:
