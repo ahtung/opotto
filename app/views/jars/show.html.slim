@@ -15,7 +15,9 @@ p
 p
   strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
-
+  ul
+    - @jar.contributions.each do |contribution|
+      li= "#{(contribution.anonymous) ? 'N/A' : contribution.user.name} contributed #{contribution.amount}"
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
