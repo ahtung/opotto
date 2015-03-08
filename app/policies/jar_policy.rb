@@ -10,7 +10,7 @@ class JarPolicy
 
   # show?
   def show?
-    true
+    user
   end
 
   # contribute?
