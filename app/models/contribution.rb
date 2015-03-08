@@ -3,10 +3,9 @@ class Contribution < ActiveRecord::Base
   belongs_to :user
   belongs_to :jar
 
-  monetize :amount_cents, numericality: {
-    greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 10_000
-  }
+  validate :amount_inside_the_pot_bounds
+
+  monetize :amount_cents
 
   # Returns the proper user name
   def owner_name
@@ -18,4 +17,13 @@ class Contribution < ActiveRecord::Base
       user.name
     end
   end
+
+  private
+
+  def amount_inside_the_pot_bounds
+    return true unless jar.upper_bound
+    return true if jar.total_contribution + amount <= jar.upper_bound
+    raise "Unable to..."
+  end
+
 end
