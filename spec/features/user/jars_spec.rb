@@ -119,11 +119,20 @@ describe 'User should be able to', js: true do
       end
     end
 
-    it 'should save an amout with a decimal value' do
-      total_contribution = user.invited_jars.first.total_contribution
-      fill_in :contribution_amount, with: total_contribution + 5.50
-      click_on t('jar.save')
-      expect(page).to have_content("$#{total_contribution + 5.50}")
+    describe 'should save an amount with a decimal value' do
+      it 'only single digit' do
+        total_contribution = user.invited_jars.first.total_contribution
+        fill_in :contribution_amount, with: total_contribution + 5.5
+        click_on t('jar.save')
+        expect(page).to have_content("$#{total_contribution + 5.5}")
+      end
+
+      it 'with two digits' do
+        total_contribution = user.invited_jars.first.total_contribution
+        fill_in :contribution_amount, with: total_contribution + 5.99
+        click_on t('jar.save')
+        expect(page).to have_content("$#{total_contribution + 5.99}")
+      end
     end
 
     context 'sucessfully' do
