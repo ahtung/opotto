@@ -94,7 +94,7 @@ describe 'User should be able to', js: true do
   end
 
   # Contribute
-  describe 'contribute to a jar' do
+  describe 'contribute to a jar', focus: true do
 
     before :each do
       first(:link, user.invited_jars.first.name).click
@@ -117,6 +117,13 @@ describe 'User should be able to', js: true do
       it 'and have his contribution listed as N/A' do
         expect(page).to have_content('N/A')
       end
+    end
+
+    it 'should save an amout with a decimal value' do
+      total_contribution = user.invited_jars.first.total_contribution
+      fill_in :contribution_amount, with: total_contribution + 5.50
+      click_on t('jar.save')
+      expect(page).to have_content("$#{total_contribution + 5.50}")
     end
 
     context 'sucessfully' do
