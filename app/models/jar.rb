@@ -49,6 +49,11 @@ class Jar < ActiveRecord::Base
 
   # Class methods
   class << self
+    # scope for all visible jars
+    def visible
+      where(visible: true)
+    end
+
     # scope for all open jars
     def open
       where('end_at >= ?', Date.today)
@@ -98,7 +103,7 @@ class Jar < ActiveRecord::Base
   end
 
   # Scales the ascii number to 100
-  def scaled_coordinate (coordinate)
+  def scaled_coordinate(coordinate)
     coordinate * 100 / 255
   end
 end

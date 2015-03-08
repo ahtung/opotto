@@ -22,6 +22,7 @@ describe 'User should be able to', js: true do
         first('#jar_name').set jar_mock.name
         first('#jar_end_at_date').set jar_mock.end_at
         first('#jar_end_at_time').set jar_mock.end_at
+        first('#jar_visible').set jar_mock.visible
         select2 user.email, from: t('activerecord.attributes.jar.guest_ids')
         click_on t('jar.save')
       end
@@ -116,6 +117,22 @@ describe 'User should be able to', js: true do
 
       it 'and have his contribution listed as N/A' do
         expect(page).to have_content('N/A')
+      end
+    end
+
+    describe 'should save an amount with a decimal value' do
+      it 'only single digit' do
+        total_contribution = user.invited_jars.first.total_contribution
+        fill_in :contribution_amount, with: total_contribution + 5.5
+        click_on t('jar.save')
+        expect(page).to have_content("$#{total_contribution + 5.5}")
+      end
+
+      it 'with two digits' do
+        total_contribution = user.invited_jars.first.total_contribution
+        fill_in :contribution_amount, with: total_contribution + 5.99
+        click_on t('jar.save')
+        expect(page).to have_content("$#{total_contribution + 5.99}")
       end
     end
 

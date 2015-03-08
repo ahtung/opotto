@@ -10,7 +10,7 @@ class JarPolicy
 
   # show?
   def show?
-    true
+    user && (jar.visible? || jar.guests.include?(user) || jar.owner == user)
   end
 
   # contribute?

@@ -1,11 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 # Coverage
-require 'simplecov'
-require 'pullreview/coverage'
-formatters = [SimpleCov::Formatter::HTMLFormatter, PullReview::Coverage::Formatter]
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[*formatters]
-SimpleCov.start 'rails'
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'

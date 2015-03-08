@@ -63,6 +63,6 @@ group :test do
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'timecop'
-  gem 'pullreview-coverage', require: false
+  gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
 end
