@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
 
   after_commit :schedule_import_contacts
 
+  # returns jars that the user have not created
+  def discoverable_jars
+    Jar.all - jars - contributed_jars + contributed_jars
+  end
+
   # returns jars that the user have not yet contributed to
   def uncontributed_jars
     jars - contributed_jars

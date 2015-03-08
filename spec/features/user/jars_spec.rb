@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'User should be able to', js: true do
 
-  let!(:user) { create(:user, :with_jars) }
-  let!(:jar) { user.jars.first }
+  let!(:user) { create(:user, :with_jars, :with_contributions) }
+  let!(:jar) { user.jars.last }
   let!(:jar_mock) { build(:jar) }
 
   before :each do

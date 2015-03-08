@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :contribution do
     amount { Faker::Commerce.price }
+    jar
   end
 end
