@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-describe 'User should be able to', js: true do
+describe 'User should be able to', js: true, focus: true do
 
-  let!(:user) { create(:user, :with_jars, :with_contributions) }
-  let!(:jar) { user.jars.last }
+  let!(:user) { create(:user, :with_jars, :with_contributions, :with_invitations) }
   let!(:jar_mock) { build(:jar) }
 
   before :each do
@@ -58,12 +57,12 @@ describe 'User should be able to', js: true do
   describe 'read a jar' do
 
     before :each do
-      first(:link, jar.name).click
+      first(:link, user.invited_jars.first.name).click
     end
 
     context 'sucessfully' do
       it 'and the owner' do
-        expect(page).to have_content t('jar.owned_by', email: jar.owner.email)
+        expect(page).to have_content t('jar.owned_by', email: user.invited_jars.first.owner.email)
       end
     end
 
@@ -77,7 +76,7 @@ describe 'User should be able to', js: true do
   describe 'update a jar' do
 
     before :each do
-      first(:link, jar.name).click
+      first(:link, user.jars.first.name).click
       click_on t('jar.edit')
     end
 
@@ -99,7 +98,7 @@ describe 'User should be able to', js: true do
   describe 'contribute to a jar' do
 
     before :each do
-      first(:link, jar.name).click
+      first(:link, user.invited_jars.first.name).click
       click_on t('jar.contribute')
     end
 
@@ -108,7 +107,7 @@ describe 'User should be able to', js: true do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
         click_on t('jar.save')
-        expect(page).to have_content(t('contribution.created', name: jar.name, amount: number_to_currency(cont.amount)))
+        expect(page).to have_content(t('contribution.created', name: user.invited_jars.first.name, amount: number_to_currency(cont.amount)))
       end
     end
 
