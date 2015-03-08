@@ -10,12 +10,14 @@ p
   strong = "#{t('jar.guests')}:"
   ul
     - @jar.guests.each do |guest|
-      li= guest.email
+      li = guest.name ? guest.name : guest.email
 
 p
   strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
-
+  ul
+    - @jar.contributions.each do |contribution|
+      li = contribution.owner_name
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
@@ -27,4 +29,5 @@ p
 ul.button-group.round
   li= link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'button'
   li= link_to t('site.navigation.back'), root_path, class: 'button'
-  li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'button'
+  - if policy(@jar).update?
+    li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'button'

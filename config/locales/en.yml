@@ -261,6 +261,7 @@ en:
         name: Name
       contribution:
         amount: Amount
+        anonymous: Anonymous
     errors:
       models:
         contribution:

@@ -1,4 +1,4 @@
-h1= "Hello #{@user.email}"
+h1= "Hello #{@user.name ? @user.name : @user.email}"
 
 p
   = "You have contributed to "

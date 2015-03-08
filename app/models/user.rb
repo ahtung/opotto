@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
 
   after_commit :schedule_import_contacts
 
+  # returns jars that the user have not created
+  def discoverable_jars
+    Jar.all - jars - contributed_jars + contributed_jars
+  end
+
   # returns jars that the user have not yet contributed to
   def uncontributed_jars
     jars - contributed_jars
@@ -46,8 +51,8 @@ class User < ActiveRecord::Base
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     google_contacts_user.contacts.each do |contact|
       ActiveRecord::Base.transaction do
-        contacts.where(email: contact.primary_email).first_or_create(
-          name: contact.fullName
+        contacts.where(email: contact.primary_email).first_or_create.update(
+          name: contact.full_name
         )
       end
     end

@@ -1,0 +1,14 @@
+- unless @user.invited_jars.empty?
+  h3 Invited
+  ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3.invitations
+    = render collection: @user.invited_jars, partial: 'jars/jar_li', as: :jar
+
+- unless @user.jars.empty?
+  h3 Created
+  ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3.creations
+    = render collection: @user.jars, partial: 'jars/jar_li', as: :jar
+
+- unless @user.contributed_jars.empty?
+  h3 Contributed To
+  ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3.contributions
+    = render collection: @user.contributed_jars, partial: 'jars/jar_li', as: :jar
