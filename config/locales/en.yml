@@ -12,6 +12,7 @@ en:
     created: Pot successfully created!
     updated: Pot successfully updated!
   site:
+    hello: hello
     title: o-Potto
   date:
     abbr_day_names:

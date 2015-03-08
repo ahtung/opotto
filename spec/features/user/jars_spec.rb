@@ -78,7 +78,7 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      last(:link, t('jar.contribute')).click
+      click_on t('jar.edit')
     end
 
     context 'sucessfully' do
@@ -100,7 +100,7 @@ describe 'User should be able to', js: true do
 
     before :each do
       first(:link, jar.name).click
-      first(:link, t('jar.contribute')).click
+      click_on t('jar.contribute')
     end
 
     context 'sucessfully' do

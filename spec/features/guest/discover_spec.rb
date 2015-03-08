@@ -1,8 +1,16 @@
-# require 'rails_helper'
-#
-# describe 'As a User', js: true do
-#   let!(:user) { create(:user, :with_jars) }
-#   let!(:jar) { user.jars.first }
+require 'rails_helper'
+
+describe 'As a Guest', focus: true do
+  before :each do
+    visit root_path
+  end
+
+  it 'I should be able to see the Welcome page' do
+    expect(page).to have_content t('site.hello')
+  end
+end
+  # let!(:user) { create(:user, :with_jars) }
+  # let!(:jar) { user.jars.first }
 #   let!(:jar_mock) { build(:jar) }
 #
 #   before :each do
