@@ -62,6 +62,9 @@ tr:
     contribute: Katkı Yap
     total: Toplam katkı
     owned_by: "%{email} tarafından"
+  user:
+    login: Giriş yap
+    logout: Çıkış yap
   contribution:
     new: Yeni katkı
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
