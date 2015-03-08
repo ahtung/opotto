@@ -5,7 +5,7 @@
       a.close href="#" &times;
   .field
     = f.label :amount
-    = f.number_field :amount
+    = f.number_field :amount, step: 'any'
   .field
     = f.label :anonymous
     = f.check_box :anonymous
