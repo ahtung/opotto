@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308161459) do
+ActiveRecord::Schema.define(version: 20150308173000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150308161459) do
     t.string   "name"
     t.datetime "end_at"
     t.datetime "paid_at"
+    t.boolean  "visible"
   end
 
   add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
