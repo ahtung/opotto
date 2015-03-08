@@ -5,6 +5,7 @@ describe JarPolicy, focus: true do
 
   let(:user) { create(:user) }
   let(:guest) { create(:user) }
+  let(:stranger) { create(:user) }
   let(:jar) { create(:jar, owner: user, guests: [guest]) }
 
   permissions :show? do
@@ -21,7 +22,7 @@ describe JarPolicy, focus: true do
       end
 
       it 'allows access to users' do
-        expect(subject).to permit(user, jar)
+        expect(subject).to permit(stranger, jar)
       end
 
       it 'denies access to guests' do
@@ -41,7 +42,7 @@ describe JarPolicy, focus: true do
       end
 
       it 'denies access to users' do
-        expect(subject).not_to permit(user, jar)
+        expect(subject).not_to permit(stranger, jar)
       end
 
       it 'denies access to guests' do
