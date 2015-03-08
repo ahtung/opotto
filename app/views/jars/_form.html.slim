@@ -30,6 +30,6 @@
 
   .field
     = f.label :upper_bound
-    = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional')
+    = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound.to_f
 
   .actions = f.submit t('jar.save'), class: 'button'
