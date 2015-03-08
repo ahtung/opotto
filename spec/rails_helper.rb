@@ -54,7 +54,7 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     Sidekiq::Worker.clear_all
-    I18n.locale = :tr
+    I18n.locale = :en
   end
 
   config.before(:suite) do
