@@ -15,6 +15,7 @@ nav.top-bar data-topbar=true
             li= link_to(t('site.stats'), user_path(current_user))
           - else
             li= link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2)
-    ul.left
-      li= link_to t('site.discover'), discover_path
-      li= link_to t('jar.new'), new_jar_path
+    - if user_signed_in?
+      ul.left
+        li= link_to t('site.discover'), discover_path
+        li= link_to t('jar.new'), new_jar_path
