@@ -1,7 +1,7 @@
 # pot
 
 [![Circle CI](https://circleci.com/gh/dunyakirkali/pot.png?circle-token=f174742eaf65e547a254e8a3df6d511704ac8ab4)](https://circleci.com/gh/dunyakirkali/pot)
-[![PullReview stats](https://www.pullreview.com/github/dunyakirkali/pot/badges/master.svg?token=7e7aa54dc544690452872d70b20e4465)](https://www.pullreview.com/github/dunyakirkali/pot/reviews/master)
+[![Code Climate](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/badges/c03a260249793e92c75c/gpa.svg)](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/feed)
 
 
 ## Development
