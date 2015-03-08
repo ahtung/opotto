@@ -5,7 +5,10 @@ class Contribution < ActiveRecord::Base
 
   validate :amount_inside_the_pot_bounds
 
-  monetize :amount_cents
+  monetize :amount_cents, numericality: {
+    greater_than_or_equal_to: 1,
+    less_than_or_equal_to: 10_00
+  }
 
   # Returns the proper user name
   def owner_name
@@ -22,8 +25,8 @@ class Contribution < ActiveRecord::Base
 
   def amount_inside_the_pot_bounds
     return true unless jar.upper_bound
-    return true if jar.total_contribution + amount <= jar.upper_bound
-    raise "Unable to..."
+    return true if amount <= jar.upper_bound
+    errors.add(:amount,:amount_out_of_bounds)
   end
 
 end
