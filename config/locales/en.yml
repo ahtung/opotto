@@ -25,6 +25,7 @@ en:
     hello: Hello
     me: Me
     sign_in_with_google: Sign in with Google
+    pots: Pots
     navigation:
       back: Back
   date:
@@ -179,6 +180,7 @@ en:
         guest_ids: Guests
         name: Name
         message: Message
+        optional: Optional
       contribution:
         amount: Amount
   number:
@@ -269,6 +271,7 @@ en:
               invalid_datetime: Unlogical time
             name:
               blank: Can't be blank
+              taken: Name already taken
     models:
       contribution: Contribution
       jar: Pot
