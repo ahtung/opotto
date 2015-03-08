@@ -76,7 +76,7 @@ describe 'User should be able to', js: true do
   describe 'update a jar' do
 
     before :each do
-      first(:link, user.jars.first.name).click
+      visit edit_jar_path(user.jars.first)
       click_on t('jar.edit')
     end
 
