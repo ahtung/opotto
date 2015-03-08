@@ -1,40 +1,40 @@
 tr:
   datetime:
     distance_in_words:
-      half_a_minute: "half a minute"
-      less_than_x_seconds:
-        one:   "less than 1 second"
-        other: "less than %{count} seconds"
-      x_seconds:
-        one:   "1 second"
-        other: "%{count} seconds"
-      less_than_x_minutes:
-        one:   "less than a minute"
-        other: "less than %{count} minutes"
-      x_minutes:
-        one:   "1 minute"
-        other: "%{count} minutes"
       about_x_hours:
-        one:   "about 1 hour"
-        other: "about %{count} hours"
-      x_days:
-        one:   "1 day"
-        other: "%{count} days"
+        one: yaklaşık 1 saat
+        other: yaklaşık %{count} saat
       about_x_months:
-        one:   "about 1 month"
-        other: "about %{count} months"
-      x_months:
-        one:   "1 month"
-        other: "%{count} months"
+        one: yaklaşık 1 ay
+        other: yaklaşık %{count} ay
       about_x_years:
-        one:   "about 1 year"
-        other: "about %{count} years"
-      over_x_years:
-        one:   "over 1 year"
-        other: "over %{count} years"
+        one: yaklaşık 1 yıl
+        other: yaklaşık %{count} yıl
       almost_x_years:
-        one:   "almost 1 year"
-        other: "almost %{count} years"
+        one: neredeyse 1 yıl
+        other: neredeyse %{count} yıl
+      half_a_minute: yarım dakika
+      less_than_x_minutes:
+        one: 1 dakikadan az
+        other: "%{count} dakikadan az"
+      less_than_x_seconds:
+        one: 1 saniyeden az
+        other: "%{count} saniyeden az"
+      over_x_years:
+        one: 1 yıldan fazla
+        other: "%{count} yıldan fazla"
+      x_days:
+        one: 1 gün
+        other: "%{count} gün"
+      x_minutes:
+        one: 1 dakika
+        other: "%{count} dakika"
+      x_months:
+        one: 1 ay
+        other: "%{count} ay"
+      x_seconds:
+        one: 1 saniye
+        other: "%{count} saniye"
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
@@ -130,10 +130,11 @@ tr:
         password_confirmation: sifre digrulama
       jar:
         ends_at: Bitiş tarihi
-        end_at_date:
-        end_at_time:
+        end_at_date: Bitiş tarihi
+        end_at_time: Bitiş saati
         guest_ids:
         name:
+        message: Mesajınız
       contribution:
         amount: Miktar
   errors:
