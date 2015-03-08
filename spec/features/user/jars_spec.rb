@@ -108,7 +108,7 @@ describe 'User should be able to', js: true do
         fill_in :contribution_amount, with: cont.amount
         check('Anonymous')
         click_on t('jar.save')
-        click_on user.invited_jars.first.name
+        first(:link, user.invited_jars.first.name).click
       end
 
       it 'and have his email visible once as guest' do
