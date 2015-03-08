@@ -23,6 +23,14 @@ FactoryGirl.define do
       message { Faker::Lorem.paragraph }
     end
 
+    trait :with_upper_bound do
+      upper_bound { Faker::Number.number(2) }
+    end
+
+    trait :public do
+      visible { true }
+    end
+
     trait :open do
     end
 
