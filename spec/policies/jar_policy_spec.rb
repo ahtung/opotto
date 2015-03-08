@@ -10,7 +10,7 @@ describe JarPolicy, focus: true do
   permissions :show? do
     describe 'for visible jar' do
       before :each do
-        jar.update_attribute(:visible, false)
+        jar.update_attribute(:visible, true)
       end
       it 'allows access to owner' do
         expect(subject).to permit(user, jar)
