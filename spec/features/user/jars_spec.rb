@@ -32,7 +32,7 @@ describe 'User should be able to', js: true do
       end
 
       it 'and not to see the name' do
-        expect(page).not_to have_content jar_mock.name
+        expect(page).to have_content jar_mock.name
       end
 
       it 'and see the end_at' do
