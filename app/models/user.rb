@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   # returns jars that the user have not created
   def discoverable_jars
-    Jar.visible - jars - contributed_jars + contributed_jars.visible
+    Jar.visible - jars - contributed_jars - invited_jars + contributed_jars.visible
   end
 
   # returns jars that the user have not yet contributed to

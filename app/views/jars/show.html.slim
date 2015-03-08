@@ -17,7 +17,7 @@ p
   = @jar.total_contributors
   ul
     - @jar.contributions.each do |contribution|
-      li = contribution.owner_name
+      li = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)

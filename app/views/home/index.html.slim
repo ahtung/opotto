@@ -1,3 +1,9 @@
-h3 = t('site.pots')
-ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3
-  = render collection: @jars, partial: 'jars/jar_li', as: :jar
+- unless current_user.invited_jars.empty?
+  h3 Invited
+  ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3.invitations
+    = render collection: current_user.invited_jars, partial: 'jars/jar_li', as: :jar
+
+- unless current_user.discoverable_jars.empty?
+  h3 = t('site.pots')
+  ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3
+    = render collection: current_user.discoverable_jars, partial: 'jars/jar_li', as: :jar

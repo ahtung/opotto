@@ -32,7 +32,7 @@ describe 'User should be able to', js: true do
       end
 
       it 'and not to see the name' do
-        expect(page).not_to have_content jar_mock.name
+        expect(page).to have_content jar_mock.name
       end
 
       it 'and see the end_at' do
@@ -108,7 +108,7 @@ describe 'User should be able to', js: true do
         fill_in :contribution_amount, with: cont.amount
         check('Anonymous')
         click_on t('jar.save')
-        click_on user.invited_jars.first.name
+        first(:link, user.invited_jars.first.name).click
       end
 
       it 'and have his email visible once as guest' do
