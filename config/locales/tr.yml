@@ -99,13 +99,14 @@ tr:
         end_at: Bitis zamani
         upper_bound: Üst limit
       contribution:
-        amount: Amount
+        amount: Miktar
     errors:
       models:
         contribution:
           attributes:
             amount:
               greater_than_or_equal_to: oyle olmaz o
+              amount_out_of_bounds: belirlenen üst limiti aşıyor.
         jar:
           attributes:
             end_at:
