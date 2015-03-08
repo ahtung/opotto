@@ -259,6 +259,7 @@ en:
         end_at_time: End time
         end_at: End date
         name: Name
+        upper_bound: Upper bound
       contribution:
         amount: Amount
         anonymous: Anonymous
