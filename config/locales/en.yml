@@ -15,6 +15,8 @@ en:
     owned_by: By %{email}
     total: Total contribution
   site:
+    discover: Discover
+    hello: hello
     title: o-Potto
     about: About
     contact: Contact
