@@ -19,5 +19,9 @@ FactoryGirl.define do
         instance.invitations = create_list(:invitation, 10)
       end
     end
+
+    trait :with_name do
+      name { Faker::Name.name }
+    end
   end
 end
