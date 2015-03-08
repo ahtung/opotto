@@ -5,8 +5,10 @@ test: &default
   password: <%= ENV['PAYPAL_PASSWORD'] %>
   signature: <%= ENV['PAYPAL_SIGNATURE'] %>
   sandbox_email_address: <%= ENV['PAYPAL_SANDBOX_EMAIL'] %>
+
 development:
   <<: *default
+
 production:
   <<: *default
   mode: live
