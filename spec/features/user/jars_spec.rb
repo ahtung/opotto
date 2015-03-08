@@ -77,7 +77,6 @@ describe 'User should be able to', js: true do
 
     before :each do
       visit edit_jar_path(user.jars.first)
-      click_on t('jar.edit')
     end
 
     context 'sucessfully' do
