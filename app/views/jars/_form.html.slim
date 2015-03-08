@@ -13,6 +13,10 @@
     = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
   .field
+    = f.label :message
+    = f.text_area :message, rows: 6, cols:24, placeholder: t('helpers.label.jar.optional')
+
+  .field
     = f.label :end_at_date
     = f.date_field :end_at_date
 

@@ -36,7 +36,7 @@ describe 'User should be able to', js: true do
       end
 
       it 'and see the end_at' do
-        expect(page).to have_content jar_mock.end_at
+        expect(page).to have_content distance_of_time_in_words(Time.now, jar_mock.end_at)
       end
 
       it 'and invite guests' do

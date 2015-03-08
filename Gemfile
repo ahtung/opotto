@@ -30,6 +30,7 @@ gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
 gem 'pundit'
 gem 'http_accept_language'
+gem 'high_voltage', '~> 2.2.1'
 
 group :production do
   gem 'rails_12factor'
