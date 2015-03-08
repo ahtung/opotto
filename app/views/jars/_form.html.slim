@@ -28,4 +28,8 @@
     = f.label :visible
     = f.check_box :visible
 
+  .field
+    = f.label :upper_bound
+    = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional')
+
   .actions = f.submit t('jar.save'), class: 'button'
