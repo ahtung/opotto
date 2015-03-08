@@ -156,7 +156,7 @@ describe 'User should be able to', js: true do
   end
 
   # Contribute to a jar with upper_bound
-  describe 'contribute to a jar witha an upper bound', focus: true do
+  describe 'contribute to a jar witha an upper bound' do
     before :each do
       @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
       visit jar_path(@jar)
