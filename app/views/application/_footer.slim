@@ -4,4 +4,4 @@
       = link_to t('site.about'), page_path('about'), style: "display: inline-block"
       br
       = link_to t('site.contact'), page_path('contact'), style: "display: inline-block"
-  p.copyright= t('site.copyright')
+  p.copyright= t('site.copyright', year: Time.zone.now.year)

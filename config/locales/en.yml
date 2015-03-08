@@ -11,8 +11,20 @@ en:
     edit: Contribute
     created: Pot successfully created!
     updated: Pot successfully updated!
+    guests: Guests
+    owned_by: By
+    total: Total contribution
   site:
     title: o-Potto
+    about: About
+    contact: Contact
+    copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
+    discover: Discover
+    hello: Hello
+    me: Me
+    sign_in_with_google: Sign in with Google
+    navigation:
+      back: Back
   date:
     abbr_day_names:
     - Sun
@@ -159,13 +171,14 @@ en:
         current_password: Current password
         password_confirmation: Password confirmation
       jar:
+        ends_at: Ends at
         end_at_date: End day
         end_at_time: End time
         guest_ids: Guests
         name: Name
+        message: Message
       contribution:
         amount: Amount
-        Miktar: Miktar
   number:
     currency:
       format:
@@ -191,9 +204,9 @@ en:
           quadrillion: Quadrillion
           thousand: Thousand
           trillion: Trillion
-          unit: ''
+          unit: '.'
       format:
-        delimiter: ''
+        delimiter: ','
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -209,10 +222,10 @@ en:
           tb: TB
     percentage:
       format:
-        delimiter: ''
+        delimiter: '.'
     precision:
       format:
-        delimiter: ''
+        delimiter: ','
   support:
     array:
       last_word_connector: ", and "
@@ -269,3 +282,5 @@ en:
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
+    new: New contribution
+    previous: Previous contributions
