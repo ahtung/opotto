@@ -102,13 +102,20 @@ describe 'User should be able to', js: true do
     end
 
     context 'anonymously' do
-      it 'and not have his email visible' do
+      before :each do
         cont = build(:contribution)
         fill_in :contribution_amount, with: cont.amount
         check('Anonymous')
         click_on t('jar.save')
         click_on user.invited_jars.first.name
-        expet(page).not_to have_content(user.email)
+      end
+
+      it 'and have his email visible once as guest' do
+        expect(page).to have_content(user.email, count: 1)
+      end
+
+      it 'and have his contribution listed as N/A' do
+        expect(page).to have_content('N/A')
       end
     end
 

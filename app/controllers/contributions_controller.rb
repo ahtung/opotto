@@ -38,6 +38,6 @@ class ContributionsController < ApplicationController
 
   # Strong params
   def contribution_params
-    params.require(:contribution).permit(:jar_id, :amount)
+    params.require(:contribution).permit(:jar_id, :amount, :anonymous)
   end
 end

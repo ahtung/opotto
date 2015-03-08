@@ -4,8 +4,11 @@
       = contribution.errors.full_messages.join(',')
       a.close href="#" &times;
   .field
-    = f.label t('contribution.amount')
+    = f.label :amount
     = f.number_field :amount
+  .field
+    = f.label :anonymous
+    = f.check_box :anonymous
 
   = f.hidden_field :jar_id, value: jar.id
   .actions = f.submit t('jar.save'), class: 'button'
