@@ -10,14 +10,14 @@ p
   strong = "#{t('jar.guests')}:"
   ul
     - @jar.guests.each do |guest|
-      li= guest.email
+      li = guest.name ? guest.name : guest.email
 
 p
   strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
   ul
     - @jar.contributions.each do |contribution|
-      li= "#{(contribution.anonymous) ? 'N/A' : contribution.user.name} contributed #{contribution.amount}"
+      li = contribution.owner_name
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
