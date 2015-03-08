@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include Pundit
 
+  include HttpAcceptLanguage::AutoLocale
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
