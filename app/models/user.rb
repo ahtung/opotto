@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     google_contacts_user.contacts.each do |contact|
       ActiveRecord::Base.transaction do
-        contacts.where(email: contact.primary_email).first_or_create(
-          name: contact.fullName
+        contacts.where(email: contact.primary_email).first_or_create.update(
+          name: contact.full_name
         )
       end
     end
