@@ -12,7 +12,7 @@ en:
     created: Pot successfully created!
     updated: Pot successfully updated!
     guests: Guests
-    owned_by: By
+    owned_by: By %{email}
     total: Total contribution
   site:
     title: o-Potto
