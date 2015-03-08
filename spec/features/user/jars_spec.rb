@@ -94,7 +94,7 @@ describe 'User should be able to', js: true do
   end
 
   # Contribute
-  describe 'contribute to a jar', focus: true do
+  describe 'contribute to a jar' do
 
     before :each do
       first(:link, user.invited_jars.first.name).click
