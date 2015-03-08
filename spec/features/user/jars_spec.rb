@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User should be able to', js: true, focus: true do
+describe 'User should be able to', js: true do
 
   let!(:user) { create(:user, :with_jars, :with_contributions, :with_invitations) }
   let!(:jar_mock) { build(:jar) }
@@ -30,8 +30,8 @@ describe 'User should be able to', js: true, focus: true do
         expect(page).to have_content(t('jar.new'))
       end
 
-      it 'and see the name' do
-        expect(page).to have_content jar_mock.name
+      it 'and not to see the name' do
+        expect(page).not_to have_content jar_mock.name
       end
 
       it 'and see the end_at' do
