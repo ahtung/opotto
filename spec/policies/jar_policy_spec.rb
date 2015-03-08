@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe JarPolicy do
+describe JarPolicy, focus: true do
   subject { described_class }
 
   let(:user) { create(:user) }
@@ -8,12 +8,45 @@ describe JarPolicy do
   let(:jar) { create(:jar, owner: user, guests: [guest]) }
 
   permissions :show? do
-    it 'allows access to members' do
-      expect(subject).to permit(user, jar)
-    end
+    describe 'for visible jar' do
+      before :each do
+        jar.update_attribute(:visible, false)
+      end
+      it 'allows access to owner' do
+        expect(subject).to permit(user, jar)
+      end
 
-    it 'allows access to non members' do
-      expect(subject).to permit(nil, jar)
+      it "allows access to jar's guest" do
+        expect(subject).to permit(guest, jar)
+      end
+
+      it 'allows access to users' do
+        expect(subject).to permit(user, jar)
+      end
+
+      it 'denies access to guests' do
+        expect(subject).not_to permit(nil, jar)
+      end
+    end
+    describe 'for invisible jar' do
+      before :each do
+        jar.update_attribute(:visible, false)
+      end
+      it 'allows access to owner' do
+        expect(subject).to permit(user, jar)
+      end
+
+      it "allows access to jar's guest" do
+        expect(subject).to permit(guest, jar)
+      end
+
+      it 'denies access to users' do
+        expect(subject).not_to permit(user, jar)
+      end
+
+      it 'denies access to guests' do
+        expect(subject).not_to permit(nil, jar)
+      end
     end
   end
 
