@@ -101,6 +101,17 @@ describe 'User should be able to', js: true do
       click_on t('jar.contribute')
     end
 
+    context 'anonymously' do
+      it 'and not have his email visible' do
+        cont = build(:contribution)
+        fill_in :contribution_amount, with: cont.amount
+        check('Anonymous')
+        click_on t('jar.save')
+        click_on user.invited_jars.first.name
+        expet(page).not_to have_content(user.email)
+      end
+    end
+
     context 'sucessfully' do
       it 'and see a notice' do
         cont = build(:contribution)
