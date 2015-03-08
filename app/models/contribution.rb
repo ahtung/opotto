@@ -8,6 +8,7 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_000
   }
 
+  # Returns the proper user name
   def owner_name
     if anonymous?
       'N/A'
