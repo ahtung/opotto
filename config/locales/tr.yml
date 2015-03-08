@@ -130,10 +130,11 @@ tr:
         password_confirmation: sifre digrulama
       jar:
         ends_at: Bitiş tarihi
-        end_at_date:
-        end_at_time:
+        end_at_date: Bitiş tarihi
+        end_at_time: Bitiş saati
         guest_ids:
         name:
+        message: Mesajınız
       contribution:
         amount: Miktar
   errors:
