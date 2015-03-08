@@ -262,10 +262,10 @@ en:
       user:
         unauthenticated: No no no!
     omniauth_callbacks:
-      success: Logged out!
+      success: Logged in!
     sessions:
       user:
-        signed_out: Logged in!
+        signed_out: Logged out!
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
