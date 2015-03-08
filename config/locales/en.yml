@@ -25,6 +25,7 @@ en:
     hello: Hello
     me: Me
     sign_in_with_google: Sign in with Google
+    pots: Pots
     navigation:
       back: Back
   date:
@@ -269,6 +270,7 @@ en:
               invalid_datetime: Unlogical time
             name:
               blank: Can't be blank
+              taken: Name already taken
     models:
       contribution: Contribution
       jar: Pot
