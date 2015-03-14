@@ -3,6 +3,7 @@ source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
+
 gem 'rails', '4.2.0'
 gem 'foundation-rails', '~> 5.5.0'
 gem 'sass-rails', '~> 5.0.1'
