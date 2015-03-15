@@ -17,7 +17,15 @@
 #= require foundation
 #= require jquery.transit.min
 #= require jar
+#= require jquery.cookie
+#= require jstz
+#= require browser_timezone_rails/set_time_zone
+
+window.BrowserTZone ||= {}
+BrowserTZone.setCookie = ->
+  $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
   $(document).foundation()
   $(".jar-guests").select2()
+  BrowserTZone.setCookie()
