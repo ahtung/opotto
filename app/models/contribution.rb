@@ -43,7 +43,7 @@ class Contribution < ActiveRecord::Base
   # Initiates a chained payment
   def initiate_preapproval
     api = PayPal::SDK::AdaptivePayments::API.new
-    preapproval = api.build_preapproval(payment_options)
+    preapproval = api.build_preapproval(preapproval_options)
     response = api.preapproval(preapproval)
     result = response.responseEnvelope.ack == "Success"
     if result
@@ -59,7 +59,7 @@ class Contribution < ActiveRecord::Base
   end
 
   # Returns payment options hash
-  def payment_options
+  def preapproval_options
     {
       returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
       cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
