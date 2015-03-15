@@ -46,6 +46,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'cane'                              # TODO
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
