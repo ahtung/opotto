@@ -37,6 +37,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+  config.action_mailer.default_url_options = { host: 'localhost' }
 
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG')
@@ -49,3 +50,4 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 end
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'
