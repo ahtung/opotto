@@ -185,7 +185,7 @@ en:
         message: Message
         optional: Optional
       contribution:
-        amount: Amount
+        amount: Amount (US$)
   number:
     currency:
       format:
@@ -261,7 +261,7 @@ en:
         name: Name
         upper_bound: Upper bound
       contribution:
-        amount: Amount
+        amount: Amount (US$)
         anonymous: Anonymous
     errors:
       models:

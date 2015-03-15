@@ -68,7 +68,7 @@ tr:
   contribution:
     new: Yeni katkı
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
-    amount: Miktar
+    amount: Miktar ($)
     previous: "Önceki katkılar"
   number:
     human:
@@ -99,7 +99,7 @@ tr:
         end_at: Bitis zamani
         upper_bound: Üst limit
       contribution:
-        amount: Miktar
+        amount: Miktar ($)
     errors:
       models:
         contribution:
@@ -144,6 +144,6 @@ tr:
         message: Mesajınız
         optional: İsteğe bağlı
       contribution:
-        amount: Miktar
+        amount: Miktar ($)
   errors:
     format: "%{attribute} %{message}"
