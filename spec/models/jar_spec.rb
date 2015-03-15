@@ -140,6 +140,7 @@ describe Jar, focus: true do
     end
   end
 
+  # Class methods
   describe '.' do
     it 'policy_class' do
       expect(Jar.policy_class).to be(JarPolicy)
@@ -157,6 +158,22 @@ describe Jar, focus: true do
         open_jars = create_list(:jar, 2, :open)
         create_list(:jar, 2, :closed)
         expect(Jar.closed).not_to include open_jars
+      end
+    end
+
+    describe 'visible' do
+      it 'should return only visible pots' do
+        visible_jars = create_list(:jar, 2, :visible)
+        create_list(:jar, 2)
+        expect(Jar.visible).to match_array(visible_jars)
+      end
+    end
+
+    describe 'ended' do
+      it 'should return only ended pots' do
+        ended_jar = create_list(:jar, 2, :ended)
+        create_list(:jar, 2)
+        expect(Jar.ended).to match_array(ended_jar)
       end
     end
   end
