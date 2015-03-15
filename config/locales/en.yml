@@ -15,6 +15,7 @@ en:
     guests: Guests
     owned_by: By %{email}
     total: Total contribution
+    receiver: Receiver
   user:
     login: Login
     logout: Logout
@@ -187,6 +188,7 @@ en:
         name: Name
         message: Message
         optional: Optional
+        receiver: Receiver
       contribution:
         amount: Amount (US$)
   number:
