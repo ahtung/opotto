@@ -33,6 +33,7 @@ gem 'pundit'
 gem 'http_accept_language'
 gem 'high_voltage', '~> 2.2.1'
 gem 'paypal-sdk-adaptivepayments'
+gem 'browser-timezone-rails'
 
 group :production do
   gem 'rails_12factor'
