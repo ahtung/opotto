@@ -48,10 +48,11 @@ class Contribution < ActiveRecord::Base
     if result
       response.payKey
       self.payment_url = api.payment_url(response)
-      puts payment_url
+      Rails.logger.info payment_url
     else
-      puts response.error[0].message
-      errors.add(:base, response.error[0].message)
+      error_message = response.error[0].message
+      errors.add(:base, error_message)
+      Rails.logger.error error_message
     end
     result
   end
@@ -59,20 +60,25 @@ class Contribution < ActiveRecord::Base
   # Returns ayment options hash
   def payment_options
     {
-      actionType:         'PAY',
-      cancelUrl:          'http://localhost:3000/samples/adaptive_payments/pay',
-      currencyCode:       'USD',
-      feesPayer:          'SENDER',
-      ipnNotificationUrl: 'http://localhost:3000/samples/adaptive_payments/ipn_notify',
+      actionType:       'PAY_PRIMARY',
+      cancelUrl:        Rails.application.routes.url_helpers.payments_failure_url,
+      currencyCode:     amount.currency,
+      feesPayer:        ENV['PAYPAL_FEESPAYER'],
       receiverList: {
         receiver: [
           {
-            amount:       1.0,
-            email:        'platfo_1255612361_per@gmail.com'
+            amount:     amount / 100 * ENV['WIN'].to_f,
+            email:      ENV['PAYPAL_SANDBOX_EMAIL'],
+            primary:    false
+          },
+          {
+            amount:     amount / 100 * (1.0 - ENV['WIN'].to_f),
+            email:      user.email,
+            primary:    true
           }
         ]
       },
-      returnUrl:          'http://localhost:3000/samples/adaptive_payments/pay'
+      returnUrl:        Rails.application.routes.url_helpers.payments_success_url
     }
   end
 end
