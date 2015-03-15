@@ -4,7 +4,7 @@ h3.subheader
 
 p
   strong = "#{t('jar.receiver')}:"
-  = @jar.receiver.name
+  = @jar.receiver.name ? @jar.receiver.name : @jar.receiver.email
 
 p
   strong = "#{t('jar.description')}:"
@@ -18,7 +18,7 @@ p
   strong = "#{t('jar.guests')}:"
   ul
     - @jar.guests.each do |guest|
-      li = guest.name ? guest.name : guest.email
+      li= guest.name ? guest.name : guest.email
 
 p
   strong = "#{t('jar.contributors')}:"
