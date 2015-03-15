@@ -74,6 +74,13 @@ tr:
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
     amount: Miktar ($)
     previous: "Önceki katkılar"
+  payments:
+    success:
+      header: Ödeme başarılı.
+      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan alıcıya aktarılacaktır.
+    failure:
+      header: Ödeme başarısız.
+      message: Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.
   number:
     human:
       decimal_units:
