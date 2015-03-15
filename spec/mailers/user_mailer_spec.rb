@@ -37,6 +37,10 @@ RSpec.describe UserMailer, type: :mailer, focus: true do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
     end
 
+    it 'should have an introduction message for opotto if not registered' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('div#introduction_to_opotto')
+    end
+
     after(:each) do
       ActionMailer::Base.deliveries.clear
     end
@@ -62,5 +66,23 @@ RSpec.describe UserMailer, type: :mailer, focus: true do
     end
   end
 
+  describe 'a registered user' do
+    before(:each) do
+      ActionMailer::Base.deliveries = []
+      users = create_list(:user, 3, :registered)
+      @jar = create(:jar, :with_message)
+      @user = users.first
+      users.each do |user|
+        UserMailer.invitation_email(user, @jar).deliver_now
+      end
+    end
 
+    it 'should not have an introductin message for opotto in the body' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).not_to have_css('div#introduction_to_opotto')
+    end
+
+    after(:each) do
+      ActionMailer::Base.deliveries.clear
+    end
+  end
 end
