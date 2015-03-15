@@ -17,5 +17,11 @@ FactoryGirl.define do
     trait :with_name do
       name { Faker::Name.name }
     end
+
+    trait :with_contributions do
+      after :create do |instance|
+        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price)
+      end
+    end
   end
 end
