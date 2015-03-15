@@ -9,6 +9,10 @@
     = f.text_field :name
 
   .field
+    = f.label :receiver_id
+    = f.select :receiver_id, User.all.collect { |x| [x.email, x.id] }, { }, class: 'jar-guests'
+
+  .field
     = f.label :guest_ids
     = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
