@@ -141,6 +141,9 @@ describe Jar, focus: true do
   end
 
   describe '.' do
+    it 'policy_class' do
+      expect(Jar.policy_class).to be(JarPolicy)
+    end
     describe 'open' do
       it 'should return only open pots' do
         create_list(:jar, 2, :open)
