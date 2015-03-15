@@ -97,7 +97,7 @@ tr:
         end_at_time: Bitis tarihi
         name: Isim
         end_at: Bitis zamani
-        upper_bound: Üst limit
+        upper_bound: Üst limit ($)
       contribution:
         amount: Miktar ($)
     errors:
