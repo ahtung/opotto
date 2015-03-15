@@ -17,33 +17,62 @@ describe Jar, focus: true do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:receiver) }
     it { should validate_uniqueness_of(:name) }
-  end
 
-  describe 'should validate that the receiver' do
-    let(:jar) { create(:jar) }
+    describe 'should validate that the receiver' do
+      let(:jar) { create(:jar) }
 
-    it 'can not be a guest' do
-      jar.guests << jar.receiver
-      expect(jar.valid?).to eq false
+      it 'can not be a guest' do
+        jar.guests << jar.receiver
+        expect(jar.valid?).to eq false
+      end
+
+      it 'is not a guest' do
+        expect(jar.valid?).to eq true
+      end
     end
 
-    it 'is not a guest' do
-      expect(jar.valid?).to eq true
+    describe 'should validate that end_at' do
+      it 'is in the future' do
+        jar = build(:jar, end_at: 10.days.ago)
+        expect(jar.valid?).to eq false
+      end
+
+      it 'is in the future' do
+        jar = build(:jar, end_at: 10.days.from_now)
+        expect(jar.valid?).to eq true
+      end
     end
-  end
-
-  it 'should validate that the end_at is in the future' do
-    jar = build(:jar, end_at: 10.days.ago)
-    expect(jar.valid?).to eq false
-  end
-
-  it 'should validate that the end_at is in the future' do
-    jar = build(:jar, end_at: 10.days.ago)
-    expect(jar.valid?).to eq false
   end
 
   # Instenace methods
   describe '#' do
+
+    describe 'payout' do
+      let(:jar) { build(:jar) }
+
+      it 'should set the paid_at value to today' do
+        jar.payout
+        jar.reload
+        expect(jar.paid_at).not_to be(nil)
+      end
+
+      it 'should send an email' do
+        expect { jar.payout }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+    end
+
+    describe 'open?' do
+      it 'returns true if end_at in future' do
+        jar = build(:jar, end_at: 10.days.from_now)
+        expect(jar.open?).to eq true
+      end
+
+      it 'returns false if end_at in past' do
+        jar = build(:jar, end_at: 10.days.ago)
+        expect(jar.open?).to eq false
+      end
+    end
+
     describe 'fullness' do
       it 'should return 0 if no contributions' do
         jar = create(:jar)
@@ -113,6 +142,9 @@ describe Jar, focus: true do
 
   # Class methods
   describe '.' do
+    it 'policy_class' do
+      expect(Jar.policy_class).to be(JarPolicy)
+    end
     describe 'open' do
       it 'should return only open pots' do
         create_list(:jar, 2, :open)
