@@ -63,6 +63,7 @@ tr:
     contribute: Katkı Yap
     total: Toplam katkı
     owned_by: "%{email} tarafından"
+    receiver: Alıcı
   user:
     login: Giriş yap
     logout: Çıkış yap
@@ -144,6 +145,7 @@ tr:
         name: Adı
         message: Mesajınız
         optional: İsteğe bağlı
+        receiver: Alıcı
       contribution:
         amount: Miktar ($)
   errors:

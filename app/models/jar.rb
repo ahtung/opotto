@@ -3,6 +3,7 @@ class Jar < ActiveRecord::Base
   include DateTimeAttribute
 
   belongs_to :owner, class_name: 'User'
+  belongs_to :receiver, class_name: 'User'
   has_many   :contributions, dependent: :destroy
   has_many   :contributors, -> { uniq }, through: :contributions, source: :user
   has_many   :invitations, dependent: :destroy
