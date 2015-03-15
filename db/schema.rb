@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150315124422) do
     t.integer  "amount_cents",    default: 0,     null: false
     t.string   "amount_currency", default: "USD", null: false
     t.boolean  "anonymous"
+    t.string   "payment_key"
   end
 
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
