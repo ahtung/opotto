@@ -120,6 +120,8 @@ GEM
     foundation-rails (5.5.1.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
+    gaffe (1.0.2)
+      rails (>= 3.2.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     google_contacts_api (0.5.0)
@@ -401,6 +403,7 @@ DEPENDENCIES
   faker
   foreman
   foundation-rails (~> 5.5.0)
+  gaffe
   google_contacts_api
   high_voltage (~> 2.2.1)
   http_accept_language
