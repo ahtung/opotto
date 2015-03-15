@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Jar, focus: true do
+  # Relations
   it { should belong_to(:owner).class_name('User') }
   it { should have_many(:contributions).dependent(:destroy) }
   it { should have_many(:contributors).through(:contributions).class_name('User') }
@@ -8,16 +9,36 @@ describe Jar, focus: true do
   it { should belong_to(:receiver) }
   it { should have_many(:guests).through(:invitations).class_name('User') }
 
+  # Validations
   it { should validate_presence_of(:end_at) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:receiver) }
   it { should validate_uniqueness_of(:name) }
+
+  describe 'should validate that the receiver' do
+    let(:jar) { create(:jar) }
+
+    it 'can not be a guest' do
+      jar.guests << jar.receiver
+      expect(jar.valid?).to eq false
+    end
+
+    it 'is not a guest' do
+      expect(jar.valid?).to eq true
+    end
+  end
 
   it 'should validate that the end_at is in the future' do
     jar = build(:jar, end_at: 10.days.ago)
     expect(jar.valid?).to eq false
   end
 
+  it 'should validate that the end_at is in the future' do
+    jar = build(:jar, end_at: 10.days.ago)
+    expect(jar.valid?).to eq false
+  end
+
+  # Instenace methods
   describe '#fullness' do
     it 'should return 0 if no contributions' do
       jar = create(:jar)

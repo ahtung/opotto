@@ -2,6 +2,7 @@
 class Jar < ActiveRecord::Base
   include DateTimeAttribute
 
+  # Relations
   belongs_to :owner, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
   has_many   :contributions, dependent: :destroy
@@ -9,10 +10,12 @@ class Jar < ActiveRecord::Base
   has_many   :invitations, dependent: :destroy
   has_many   :guests, -> { uniq }, through: :invitations, source: :user
 
+  # Validations
   validates           :receiver, presence: true
   validates           :name, presence: true, uniqueness: true
   validates           :end_at, presence: true
   validates_datetime  :end_at, on: :create, on_or_after: :today
+  validate            :receiver_not_a_guest
 
   date_time_attribute :end_at
 
@@ -105,5 +108,11 @@ class Jar < ActiveRecord::Base
   # Scales the ascii number to 100
   def scaled_coordinate(coordinate)
     coordinate * 100 / 255
+  end
+
+  # Validates that the receiver is not in guest list
+  def receiver_not_a_guest
+    errors.add(:guests, "Receiver can't be a guest") if guests.include?(receiver)
+    true
   end
 end
