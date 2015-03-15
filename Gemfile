@@ -42,6 +42,7 @@ group :development do
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
+  gem 'bullet'
 end
 
 group :development, :test do
