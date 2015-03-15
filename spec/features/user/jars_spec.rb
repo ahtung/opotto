@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User should be able to', js: true, skip: true do
 
-  let!(:user) { create(:user, :with_jars, :with_contributions, :with_invitations) }
+  let(:user) { nil }
   let!(:jar_mock) { build(:jar) }
 
   before :each do
@@ -12,6 +12,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Create
   describe 'create a jar' do
+    let(:user) { create(:user) }
     before :each do
       click_on t('jar.new')
     end
@@ -56,7 +57,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Read
   describe 'read a jar' do
-
+    let(:user) { create(:user, :with_jars) }
     before :each do
       first(:link, user.invited_jars.first.name).click
     end
@@ -80,7 +81,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Update
   describe 'update a jar' do
-
+    let(:user) { create(:user, :with_jars) }
     before :each do
       visit edit_jar_path(user.jars.first)
     end
@@ -101,7 +102,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Contribute
   describe 'contribute to a jar' do
-
+    let(:user) { create(:user, :with_invitations) }
     before :each do
       first(:link, user.invited_jars.first.name).click
       click_on t('jar.contribute')
@@ -162,6 +163,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Contribute to a jar with upper_bound
   describe 'contribute to a jar witha an upper bound' do
+    let(:user) { create(:user, :with_invitations) }
     before :each do
       @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
       visit jar_path(@jar)
