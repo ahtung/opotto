@@ -17,29 +17,31 @@ describe Jar, focus: true do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:receiver) }
     it { should validate_uniqueness_of(:name) }
-  end
 
-  describe 'should validate that the receiver' do
-    let(:jar) { create(:jar) }
+    describe 'should validate that the receiver' do
+      let(:jar) { create(:jar) }
 
-    it 'can not be a guest' do
-      jar.guests << jar.receiver
-      expect(jar.valid?).to eq false
+      it 'can not be a guest' do
+        jar.guests << jar.receiver
+        expect(jar.valid?).to eq false
+      end
+
+      it 'is not a guest' do
+        expect(jar.valid?).to eq true
+      end
     end
 
-    it 'is not a guest' do
-      expect(jar.valid?).to eq true
+    describe 'should validate that end_at' do
+      it 'is in the future' do
+        jar = build(:jar, end_at: 10.days.ago)
+        expect(jar.valid?).to eq false
+      end
+
+      it 'is in the future' do
+        jar = build(:jar, end_at: 10.days.from_now)
+        expect(jar.valid?).to eq true
+      end
     end
-  end
-
-  it 'should validate that the end_at is in the future' do
-    jar = build(:jar, end_at: 10.days.ago)
-    expect(jar.valid?).to eq false
-  end
-
-  it 'should validate that the end_at is in the future' do
-    jar = build(:jar, end_at: 10.days.ago)
-    expect(jar.valid?).to eq false
   end
 
   # Instenace methods
