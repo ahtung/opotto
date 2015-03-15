@@ -14,7 +14,7 @@ class Jar < ActiveRecord::Base
   validates           :receiver, presence: true
   validates           :name, presence: true, uniqueness: true
   validates           :end_at, presence: true
-  validates_datetime  :end_at, on: :create, on_or_after: :today
+  validates_datetime  :end_at, on: :create, between: [Time.zone.now, Time.zone.now+90.days]
   validate            :receiver_not_a_guest
 
   date_time_attribute :end_at
