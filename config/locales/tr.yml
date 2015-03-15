@@ -116,6 +116,8 @@ tr:
             end_at:
               blank: bos olamaz o
               invalid_datetime: uygunsuz zaman
+              on_or_before: Bitiş tarihi 90 gün içinde seçilmelidir.
+              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir.
             name:
               blank: Bos olmaz o
               taken: Bu isimde kumbara zaten var

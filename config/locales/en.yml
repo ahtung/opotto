@@ -280,6 +280,8 @@ en:
             end_at:
               blank: Can't be blank
               invalid_datetime: Unlogical time
+              on_or_before: End date must be between 90 days
+              on_or_after: End date cannot be the past.
             name:
               blank: Can't be blank
               taken: Name already taken
