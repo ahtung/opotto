@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
       begin
         conact_details = google_contacts_user.contacts.map do |contact|
           { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
-        end.select do |contact|
-          !contact.primary_email.nil?
+        end.reject do |contact|
+          contact[:email].nil?
         end
         conact_details.each do |conact_detail|
           contacts << User.where(email: conact_detail[:email]).first_or_create.update(conact_detail)
