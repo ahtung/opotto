@@ -10,7 +10,7 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_00
   }
 
-  validate :payment_succeeded
+  validate :payment_initiated
 
   attr_accessor :payment_url
 
@@ -34,19 +34,20 @@ class Contribution < ActiveRecord::Base
     errors.add(:amount,:amount_out_of_bounds)
   end
 
-  # Validates successfull payment
-  def payment_succeeded
-    return true if payment_url
+  # Validates successfull payment initiation
+  def payment_initiated
+    return true if payment_key
     initiate_payment
   end
 
+  # Initiates a chained payment
   def initiate_payment
     api = PayPal::SDK::AdaptivePayments.new
     pay = api.build_pay(payment_options)
     response = api.pay(pay)
     result = response.success? && response.payment_exec_status != 'ERROR'
     if result
-      response.payKey
+      self.payment_key = response.payKey
       self.payment_url = api.payment_url(response)
       Rails.logger.info payment_url
     else
@@ -57,28 +58,28 @@ class Contribution < ActiveRecord::Base
     result
   end
 
-  # Returns ayment options hash
+  # Returns payment options hash
   def payment_options
     {
-      actionType:       'PAY_PRIMARY',
-      cancelUrl:        Rails.application.routes.url_helpers.payments_failure_url,
-      currencyCode:     amount.currency,
-      feesPayer:        ENV['PAYPAL_FEESPAYER'],
+      actionType:      'PAY_PRIMARY',
+      cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
+      currencyCode:    amount.currency,
+      feesPayer:       ENV['PAYPAL_FEESPAYER'],
       receiverList: {
         receiver: [
           {
-            amount:     amount / 100 * ENV['WIN'].to_f,
-            email:      ENV['PAYPAL_SANDBOX_EMAIL'],
-            primary:    false
+            amount:    amount / 100 * ENV['WIN'].to_f,
+            email:     ENV['PAYPAL_SANDBOX_EMAIL'],
+            primary:   false
           },
           {
-            amount:     amount / 100 * (1.0 - ENV['WIN'].to_f),
-            email:      user.email,
-            primary:    true
+            amount:    amount / 100 * (1.0 - ENV['WIN'].to_f),
+            email:     user.email,
+            primary:   true
           }
         ]
       },
-      returnUrl:        Rails.application.routes.url_helpers.payments_success_url
+      returnUrl:       Rails.application.routes.url_helpers.payments_success_url
     }
   end
 end
