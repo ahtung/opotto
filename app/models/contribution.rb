@@ -26,7 +26,6 @@ class Contribution < ActiveRecord::Base
 
   # Completes the preapproved payment
   def complete_preapproval
-    api = PayPal::SDK::AdaptivePayments.new
     pay = api.build_pay(payment_options)
     response = api.pay(pay)
     result = response.success? && response.payment_exec_status != 'ERROR'
@@ -57,7 +56,6 @@ class Contribution < ActiveRecord::Base
 
   # Initiates a chained payment
   def initiate_preapproval
-    api = PayPal::SDK::AdaptivePayments::API.new
     preapproval = api.build_preapproval(preapproval_options)
     response = api.preapproval(preapproval)
     result = response.responseEnvelope.ack == "Success"
@@ -112,5 +110,9 @@ class Contribution < ActiveRecord::Base
         ]
       }
     }
+  end
+
+  def api
+    @api ||= PayPal::SDK::AdaptivePayments::API.new
   end
 end
