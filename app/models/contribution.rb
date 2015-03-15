@@ -24,6 +24,22 @@ class Contribution < ActiveRecord::Base
     end
   end
 
+  # Completes the preapproved payment
+  def complete_preapproval
+    api = PayPal::SDK::AdaptivePayments.new
+    pay = api.build_pay(payment_options)
+    response = api.pay(pay)
+    result = response.success? && response.payment_exec_status != 'ERROR'
+    if result
+      self.payment_key = response.payKey
+      self.payment_url = api.payment_url(response)
+      Rails.logger.info payment_url
+    else
+      error_message = response.error[0].message
+      errors.add(:base, error_message)
+    end
+  end
+
   private
 
   # Validates payment is inside bounds
