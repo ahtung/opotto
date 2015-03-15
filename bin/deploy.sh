@@ -2,8 +2,8 @@
 set -x
 set -e
 
-rake quality
 rake spec
+rake quality
 git push staging master
 rake smoke:staging
 git push production master
