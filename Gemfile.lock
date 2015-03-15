@@ -214,9 +214,11 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     parallel (1.4.1)
-    paypal-sdk-adaptivepayments (1.117.0)
-      paypal-sdk-core (~> 0.3.0)
-    paypal-sdk-core (0.3.1)
+    paypal-sdk-adaptiveaccounts (1.102.0)
+      paypal-sdk-core (~> 0.2.3)
+    paypal-sdk-adaptivepayments (1.110.0)
+      paypal-sdk-core (~> 0.2.3)
+    paypal-sdk-core (0.2.10)
       multi_json (~> 1.0)
       xml-simple
     pg (0.18.1)
@@ -439,6 +441,7 @@ DEPENDENCIES
   money-rails
   newrelic_rpm
   omniauth-google-oauth2
+  paypal-sdk-adaptiveaccounts
   paypal-sdk-adaptivepayments
   pg
   poltergeist
