@@ -21,23 +21,4 @@ describe Contribution do
       expect(contribution.owner_name).to eq(contribution.user.name)
     end
   end
-
-  describe '#owner_name' do
-
-    it 'should return N/A if contributor is anonymous' do
-      contribution = create(:contribution, anonymous: true)
-      expect(contribution.owner_name).to be('N/A')
-    end
-
-    it "should return contributor's email if contributor has no name" do
-      user.update_attribute(:name, nil)
-      contribution = create(:contribution, user: user)
-      expect(contribution.owner_name).to be(contribution.email)
-    end
-
-    it "should return contributor's name" do
-      contribution = create(:contribution)
-      expect(contribution.owner_name).to be(contribution.name)
-    end
-  end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Jar, focus: true do
+describe Jar do
   # Relations
   describe 'relations' do
     it { should belong_to(:owner).class_name('User') }
