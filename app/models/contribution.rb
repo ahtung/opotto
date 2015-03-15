@@ -74,7 +74,7 @@ class Contribution < ActiveRecord::Base
           },
           {
             amount:    amount / 100 * (1.0 - ENV['WIN'].to_f),
-            email:     user.email,
+            email:     jar.receiver.email,
             primary:   true
           }
         ]
