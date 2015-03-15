@@ -55,7 +55,7 @@ tr:
     description: Tanim
     save: Kaydet
     edit: Düzenle
-    new: Basla
+    new: Başla
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
     guest: Davetli

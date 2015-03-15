@@ -32,6 +32,10 @@ describe 'User should be able to', js: true, skip: true do
         expect(page).to have_content(t('jar.new'))
       end
 
+      it 'and see receiver name' do
+        expect(page).to have_content jar_mock.receiver.name
+      end
+
       it 'and not to see the name' do
         expect(page).to have_content jar_mock.name
       end
@@ -162,7 +166,7 @@ describe 'User should be able to', js: true, skip: true do
   end
 
   # Contribute to a jar with upper_bound
-  describe 'contribute to a jar witha an upper bound' do
+  describe 'contribute to a jar with an upper bound' do
     let(:user) { create(:user, :with_invitations) }
     before :each do
       @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
