@@ -32,11 +32,10 @@ class Contribution < ActiveRecord::Base
     result = response.success? && response.payment_exec_status != 'ERROR'
     if result
       self.payment_key = response.payKey
-      self.payment_url = api.payment_url(response)
-      Rails.logger.info payment_url
+      Rails.logger.info payment_key
     else
       error_message = response.error[0].message
-      errors.add(:base, error_message)
+      Rails.logger.error error_message
     end
   end
 
@@ -65,6 +64,7 @@ class Contribution < ActiveRecord::Base
     if result
       self.preapproval_key = response.preapprovalKey
       self.authorization_url = "#{ENV['PAYPAL_AUTHORIZATION_URL']}#{self.preapproval_key}"
+      PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
       Rails.logger.info preapproval_key
     else
       error_message = response.error[0].message
