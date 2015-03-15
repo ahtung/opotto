@@ -186,7 +186,7 @@ en:
         message: Message
         optional: Optional
       contribution:
-        amount: Amount
+        amount: Amount (US$)
   number:
     currency:
       format:
@@ -260,9 +260,9 @@ en:
         end_at_time: End time
         end_at: End date
         name: Name
-        upper_bound: Upper bound
+        upper_bound: Upper bound (US$)
       contribution:
-        amount: Amount
+        amount: Amount (US$)
         anonymous: Anonymous
     errors:
       models:
