@@ -68,7 +68,12 @@ describe 'User should be able to', js: true do
     end
 
     context 'unsucessfully' do
-      it 'and see a ?404 page'
+      it 'and see a ?404 page' do
+        jar = user.invited_jars.first
+        jar.destroy
+        visit jar_path(jar)
+        expect(page).to have_content '404'
+      end
     end
 
   end
