@@ -100,7 +100,7 @@ describe 'User should be able to', js: true do
   end
 
   # Contribute
-  describe 'contribute to a jar' do
+  describe 'contribute to a jar', skip: true do
     let(:user) { create(:user, :with_invitations) }
     before :each do
       first(:link, user.invited_jars.first.name).click
@@ -158,30 +158,30 @@ describe 'User should be able to', js: true do
       end
     end
 
-  end
+    # Contribute to a jar with upper_bound
+    describe 'contribute to a jar with an upper bound' do
+      let(:user) { create(:user, :with_invitations) }
+      before :each do
+        @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
+        visit jar_path(@jar)
+        click_on t('jar.contribute')
+      end
 
-  # Contribute to a jar with upper_bound
-  describe 'contribute to a jar with an upper bound' do
-    let(:user) { create(:user, :with_invitations) }
-    before :each do
-      @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
-      visit jar_path(@jar)
-      click_on t('jar.contribute')
+      it 'should save successfully if the amount is inside the bounds' do
+        amount = Faker::Number.number(1)
+        fill_in :contribution_amount, with: amount
+        click_on t('jar.save')
+        expect(page).to have_content(t('contribution.created', name: @jar.name, amount: number_to_currency(amount)))
+      end
+
+      it 'should railse an error if the amount is out of bounds' do
+        amount = Faker::Number.number(3)
+        fill_in :contribution_amount, with: amount
+        click_on t('jar.save')
+        expect(page).to have_content(t('activerecord.errors.models.contribution.attributes.amount.amount_out_of_bounds'))
+      end
     end
 
-    it 'should save successfully if the amount is inside the bounds' do
-      amount = Faker::Number.number(1)
-      fill_in :contribution_amount, with: amount
-      click_on t('jar.save')
-      expect(page).to have_content(t('contribution.created', name: @jar.name, amount: number_to_currency(amount)))
-    end
-
-    it 'should railse an error if the amount is out of bounds' do
-      amount = Faker::Number.number(3)
-      fill_in :contribution_amount, with: amount
-      click_on t('jar.save')
-      expect(page).to have_content(t('activerecord.errors.models.contribution.attributes.amount.amount_out_of_bounds'))
-    end
   end
 
 end
