@@ -37,7 +37,7 @@ describe 'User should be able to', js: true, skip: true do
       end
 
       it 'and see the end_at' do
-        expect(page).to have_content distance_of_time_in_words(Time.now, jar_mock.end_at)
+        expect(page).to have_content jar_mock.end_at.strftime('%d %b %y')
       end
 
       it 'and invite guests' do
@@ -57,7 +57,7 @@ describe 'User should be able to', js: true, skip: true do
 
   # Read
   describe 'read a jar' do
-    let(:user) { create(:user, :with_jars) }
+    let(:user) { create(:user, :with_invitations) }
     before :each do
       first(:link, user.invited_jars.first.name).click
     end
