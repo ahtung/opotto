@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315155839) do
+ActiveRecord::Schema.define(version: 20150315213448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 20150315155839) do
 
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
+
+  create_table "features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -105,6 +112,8 @@ ActiveRecord::Schema.define(version: 20150315155839) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "refresh_token"
+    t.boolean  "paypal_member"
+    t.datetime "last_contact_sync_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
