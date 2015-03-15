@@ -1,5 +1,16 @@
 deployment:
+  test:
+    pre:
+      - bundle exec rake quality
+    override:
+      - bundle exec rake spec
+    post:
+      - git push git@heroku.com:opotto-staging.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app opotto-staging
+      - bundle exec rake smoke:staging
   production:
     branch: master
-    heroku:
-      appname: potto
+    commands:
+      - git push git@heroku.com:opotto.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app opotto
+      - bundle exec rake smoke:production
