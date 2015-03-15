@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'User should be able to' do
-  let!(:user) { create(:user, :with_jars, :with_contributions, :with_invitations) }
+describe 'User' do
+  let(:user) { create(:user) }
 
   before :each do
     login_as user
@@ -13,33 +13,46 @@ describe 'User should be able to' do
     expect(page).to have_content 'Stats'
   end
 
-  it "see 'contributed to' section" do
-    expect(page).to have_content 'Contributed To'
-  end
+  describe 'with contributions' do
+    let(:user) { create(:user, :with_contributions) }
 
-  it 'see jars that he/she has contributed to' do
-    within '.contributions' do
-      expect(page).to have_selector '.jar', count: user.contributed_jars.count
+    it "see 'contributed to' section" do
+      expect(page).to have_content 'Contributed To'
+    end
+
+    it 'see jars that he/she has contributed to' do
+      within '.contributions' do
+        expect(page).to have_selector '.jar', count: user.contributed_jars.count
+      end
     end
   end
 
-  it "see 'created' section" do
-    expect(page).to have_content 'Created'
-  end
 
-  it 'see jars that he/she has created' do
-    within '.creations' do
-      expect(page).to have_selector '.jar', count: user.jars.count
+  describe 'with jars' do
+    let(:user) { create(:user, :with_jars) }
+
+    it "should be able to see 'created' section" do
+      expect(page).to have_content 'Created'
+    end
+
+    it 'should be able to see jars that he/she has created' do
+      within '.creations' do
+        expect(page).to have_selector '.jar', count: user.jars.count
+      end
     end
   end
 
-  it "see 'invited' section" do
-    expect(page).to have_content 'Invited'
-  end
+  describe 'invited to jars' do
+    let(:user) { create(:user, :with_invitations) }
 
-  it 'see jars that he/she has been invited to' do
-    within '.invitations' do
-      expect(page).to have_selector '.jar', count: user.invited_jars.count
+    it "should be able to see 'invited' section" do
+      expect(page).to have_content 'Invited'
+    end
+
+    it 'should be able to see jars that he/she has been invited to' do
+      within '.invitations' do
+        expect(page).to have_selector '.jar', count: user.invited_jars.count
+      end
     end
   end
 end
