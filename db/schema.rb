@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308191353) do
+ActiveRecord::Schema.define(version: 20150315102448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 20150308191353) do
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
+  create_table "features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -81,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150308191353) do
     t.datetime "paid_at"
     t.boolean  "visible"
     t.money    "upper_bound", scale: 2
+    t.text     "description"
   end
 
   add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
