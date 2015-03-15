@@ -16,3 +16,10 @@ center
           p style="color:#999;font-style:italic;" Message:
           p style="color:#999;font-style:italic;" = @jar.description
 
+  - unless @user.last_sign_in_at
+    table style="font-size: 12px;line-height: 1.5em;" width="450"
+      tr style="font-size: 12px;line-height: 1.5em;"
+        td style="font-size: 12px;line-height: 1.5em;"
+          #introduction_to_opotto
+            p = t('site.introduction')
+

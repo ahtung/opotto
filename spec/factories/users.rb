@@ -23,5 +23,9 @@ FactoryGirl.define do
     trait :with_name do
       name { Faker::Name.name }
     end
+
+    trait :registered do
+      last_sign_in_at { Faker::Date.between(2.days.ago, Date.today) }
+    end
   end
 end
