@@ -2,18 +2,22 @@ require 'rails_helper'
 
 describe Jar, focus: true do
   # Relations
-  it { should belong_to(:owner).class_name('User') }
-  it { should have_many(:contributions).dependent(:destroy) }
-  it { should have_many(:contributors).through(:contributions).class_name('User') }
-  it { should have_many(:invitations) }
-  it { should belong_to(:receiver) }
-  it { should have_many(:guests).through(:invitations).class_name('User') }
+  describe 'relations' do
+    it { should belong_to(:owner).class_name('User') }
+    it { should have_many(:contributions).dependent(:destroy) }
+    it { should have_many(:contributors).through(:contributions).class_name('User') }
+    it { should have_many(:invitations) }
+    it { should belong_to(:receiver) }
+    it { should have_many(:guests).through(:invitations).class_name('User') }
+  end
 
   # Validations
-  it { should validate_presence_of(:end_at) }
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:receiver) }
-  it { should validate_uniqueness_of(:name) }
+  descibe 'validations' do
+    it { should validate_presence_of(:end_at) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:receiver) }
+    it { should validate_uniqueness_of(:name) }
+  end
 
   describe 'should validate that the receiver' do
     let(:jar) { create(:jar) }
