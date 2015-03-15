@@ -30,7 +30,8 @@ class Contribution < ActiveRecord::Base
   def amount_inside_the_pot_bounds
     return true unless jar.upper_bound
     return true if amount <= jar.upper_bound
-    errors.add(:amount,:amount_out_of_bounds)
+    errors.add(:amount, :amount_out_of_bounds)
+    false
   end
 
   # Validates successfull preaaproval initiation
