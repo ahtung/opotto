@@ -52,13 +52,6 @@ ActiveRecord::Schema.define(version: 20150315102448) do
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
-  create_table "features", force: :cascade do |t|
-    t.string   "key",                        null: false
-    t.boolean  "enabled",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
