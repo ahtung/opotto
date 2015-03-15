@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'I18n', type: :feature do
+RSpec.describe 'I18n', type: :feature, skip: true do
 
   before do
     page.driver.header 'Accept-Language', locale

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User should be able to' do
+describe 'User should be able to', skip: true do
   let!(:user) { create(:user, :with_jars, :with_contributions, :with_invitations) }
 
   before :each do
