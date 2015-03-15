@@ -69,4 +69,29 @@ class Contribution < ActiveRecord::Base
 
     }
   end
+
+  def payment_options
+    {
+      actionType:      'PAY_PRIMARY',
+      returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
+      cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
+      currencyCode:    amount.currency,
+      feesPayer:       ENV['PAYPAL_FEESPAYER'],
+      preapprovalKey:  preapproval_key,
+      receiverList: {
+        receiver: [
+          {
+            amount:    amount * ENV['WIN'].to_f,
+            email:     ENV['PAYPAL_EMAIL'],
+            primary:   false
+          },
+          {
+            amount:    amount * (1.0 - ENV['WIN'].to_f),
+            email:     'dunyakirkali-buyer@yahoo.fr',
+            primary:   true
+          }
+        ]
+      }
+    }
+  end
 end
