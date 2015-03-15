@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Jar do
+describe Jar, focus: true do
   it { should belong_to(:owner).class_name('User') }
   it { should have_many(:contributions).dependent(:destroy) }
   it { should have_many(:contributors).through(:contributions).class_name('User') }
@@ -10,6 +10,7 @@ describe Jar do
 
   it { should validate_presence_of(:end_at) }
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:receiver) }
   it { should validate_uniqueness_of(:name) }
 
   it 'should validate that the end_at is in the future' do
