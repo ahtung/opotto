@@ -4,7 +4,7 @@ test: &default
   username: <%= ENV['PAYPAL_USERNAME'] %>
   password: <%= ENV['PAYPAL_PASSWORD'] %>
   signature: <%= ENV['PAYPAL_SIGNATURE'] %>
-  sandbox_email_address: <%= ENV['PAYPAL_SANDBOX_EMAIL'] %>
+  sandbox_email_address: <%= ENV['PAYPAL_EMAIL'] %>
 
 development:
   <<: *default

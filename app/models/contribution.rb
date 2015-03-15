@@ -68,7 +68,7 @@ class Contribution < ActiveRecord::Base
         receiver: [
           {
             amount:    amount / 100 * ENV['WIN'].to_f,
-            email:     ENV['PAYPAL_SANDBOX_EMAIL'],
+            email:     ENV['PAYPAL_EMAIL'],
             primary:   false
           },
           {
