@@ -50,6 +50,7 @@ tr:
     navigation:
       back: Geri
   jar:
+    description: Tanim
     save: Kaydet
     edit: Düzenle
     new: Basla
