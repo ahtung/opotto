@@ -4,7 +4,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :jar
 
   validate :amount_inside_the_pot_bounds
-  validate :payment_initiated, unless: 'Rails.env.test?'
+  validate :preapproval_initiated, unless: 'Rails.env.test?'
 
   monetize :amount_cents, numericality: {
     greater_than_or_equal_to: 1,
@@ -33,14 +33,14 @@ class Contribution < ActiveRecord::Base
     errors.add(:amount,:amount_out_of_bounds)
   end
 
-  # Validates successfull payment initiation
-  def payment_initiated
+  # Validates successfull preaaproval initiation
+  def preapproval_initiated
     return true if payment_key
-    initiate_payment
+    initiate_preapproval
   end
 
   # Initiates a chained payment
-  def initiate_payment
+  def initiate_preapproval
     api = PayPal::SDK::AdaptivePayments::API.new
     preapproval = api.build_preapproval(payment_options)
     response = api.preapproval(preapproval)
@@ -65,6 +65,7 @@ class Contribution < ActiveRecord::Base
       startingDate:    Time.now.utc,
       endingDate:      jar.end_at.utc,
       currencyCode:    amount.currency
+
     }
   end
 end
