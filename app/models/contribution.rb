@@ -11,7 +11,7 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_00
   }
 
-  attr_accessor :payment_url
+  attr_accessor :authorization_url
 
   # Returns the proper user name
   def owner_name
@@ -42,14 +42,14 @@ class Contribution < ActiveRecord::Base
 
   # Initiates a chained payment
   def initiate_payment
-    api = PayPal::SDK::AdaptivePayments.new
-    pay = api.build_pay(payment_options)
-    response = api.pay(pay)
-    result = response.success? && response.payment_exec_status != 'ERROR'
+    api = PayPal::SDK::AdaptivePayments::API.new
+    preapproval = api.build_preapproval(payment_options)
+    response = api.preapproval(preapproval)
+    result = response.responseEnvelope.ack == "Success"
     if result
-      self.payment_key = response.payKey
-      self.payment_url = api.payment_url(response)
-      Rails.logger.info payment_url
+      self.preapproval_key = response.preapprovalKey
+      self.authorization_url = "#{ENV['PAYPAL_AUTHORIZATION_URL']}#{self.preapproval_key}"
+      Rails.logger.info preapproval_key
     else
       error_message = response.error[0].message
       errors.add(:base, error_message)
@@ -61,25 +61,11 @@ class Contribution < ActiveRecord::Base
   # Returns payment options hash
   def payment_options
     {
-      actionType:      'PAY_PRIMARY',
+      returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
       cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
-      currencyCode:    amount.currency,
-      feesPayer:       ENV['PAYPAL_FEESPAYER'],
-      receiverList: {
-        receiver: [
-          {
-            amount:    amount * ENV['WIN'].to_f,
-            email:     ENV['PAYPAL_EMAIL'],
-            primary:   false
-          },
-          {
-            amount:    amount * (1.0 - ENV['WIN'].to_f),
-            email:     'dunyakirkali-buyer@yahoo.fr',
-            primary:   true
-          }
-        ]
-      },
-      returnUrl:       Rails.application.routes.url_helpers.payments_success_url
+      startingDate:    Time.now.utc,
+      endingDate:      jar.end_at.utc,
+      currencyCode:    amount.currency
     }
   end
 end
