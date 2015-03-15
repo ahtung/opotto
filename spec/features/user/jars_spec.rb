@@ -32,12 +32,16 @@ describe 'User should be able to', js: true do
         expect(page).to have_content(t('jar.new'))
       end
 
+      it 'and see receiver name' do
+        expect(page).to have_content jar_mock.receiver.name
+      end
+
       it 'and not to see the name' do
         expect(page).to have_content jar_mock.name
       end
 
       it 'and see the end_at' do
-        expect(page).to have_content distance_of_time_in_words(Time.now, jar_mock.end_at)
+        expect(page).to have_content jar_mock.end_at.strftime('%d %b %y')
       end
 
       it 'and invite guests' do
@@ -57,7 +61,7 @@ describe 'User should be able to', js: true do
 
   # Read
   describe 'read a jar' do
-    let(:user) { create(:user, :with_jars) }
+    let(:user) { create(:user, :with_invitations) }
     before :each do
       first(:link, user.invited_jars.first.name).click
     end
@@ -157,7 +161,7 @@ describe 'User should be able to', js: true do
   end
 
   # Contribute to a jar with upper_bound
-  describe 'contribute to a jar witha an upper bound' do
+  describe 'contribute to a jar with an upper bound' do
     let(:user) { create(:user, :with_invitations) }
     before :each do
       @jar = FactoryGirl.create(:jar, :with_upper_bound, :public)
