@@ -12,7 +12,7 @@ describe Jar, focus: true do
   end
 
   # Validations
-  descibe 'validations' do
+  describe 'validations' do
     it { should validate_presence_of(:end_at) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:receiver) }
