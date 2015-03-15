@@ -21,5 +21,11 @@ FactoryGirl.define do
     trait :registered do
       last_sign_in_at { Faker::Date.between(2.days.ago, Date.today) }
     end
+
+    trait :with_contributions do
+      after :create do |instance|
+        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price)
+      end
+    end
   end
 end
