@@ -81,8 +81,11 @@ class Contribution < ActiveRecord::Base
       cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
       startingDate:    Time.now.utc,
       endingDate:      jar.end_at.utc,
-      currencyCode:    amount.currency
-
+      currencyCode:    amount.currency,
+      # maxTotalAmountOfAllPayments: amount,
+      maxNumberOfPayments: 1,
+      maxAmountPerPayment: amount,
+      displayMaxTotalAmount: true
     }
   end
 
