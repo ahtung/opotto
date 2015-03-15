@@ -19,8 +19,8 @@ FactoryGirl.define do
       guests { create_list(:user, 3) }
     end
 
-    trait :with_message do
-      message { Faker::Lorem.paragraph }
+    trait :with_description do
+      description { Faker::Lorem.paragraph }
     end
 
     trait :with_upper_bound do
