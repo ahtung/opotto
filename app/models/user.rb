@@ -51,31 +51,32 @@ class User < ActiveRecord::Base
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     google_contacts_user.contacts.each do |contact|
       ActiveRecord::Base.transaction do
-        if User.has_paypal_account?(contact.primary_email)
-          contacts.where(
+        contacts.
+          where(
             email: contact.primary_email
-          ).first_or_create.update(
-            name: contact.full_name
+          ).
+          first_or_create.update(
+            name: contact.full_name,
+            paypal_member: User.has_paypal_account?(contact.primary_email)
           )
-        end
       end
     end
   end
 
   def self.has_paypal_account?(email)
-    api = PayPal::SDK::AdaptiveAccounts::API.new
+    api = PayPal::SDK::AdaptiveAccounts::API.new()
     get_verified_status = api.build_get_verified_status({
       emailAddress: email,
       matchCriteria: 'NONE' })
-    get_verified_status_response = api.get_verified_status(get_verified_status).success?
-    if get_verified_status_response
+    get_verified_status_response = api.get_verified_status(get_verified_status)
+    if get_verified_status_response.success?
       Rails.logger.info get_verified_status_response.accountStatus
       Rails.logger.info get_verified_status_response.countryCode
       Rails.logger.info get_verified_status_response.userInfo
     else
       Rails.logger.error get_verified_status_response.error
     end
-    get_verified_status_response
+    get_verified_status_response.success?
   end
 
   private
