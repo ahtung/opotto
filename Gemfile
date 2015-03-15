@@ -34,6 +34,7 @@ gem 'http_accept_language'
 gem 'high_voltage', '~> 2.2.1'
 gem 'paypal-sdk-adaptivepayments'
 gem 'paypal-sdk-adaptiveaccounts'
+gem 'browser-timezone-rails'
 
 group :production do
   gem 'rails_12factor'
