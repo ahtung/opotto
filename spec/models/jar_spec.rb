@@ -37,7 +37,12 @@ describe Jar do
         expect(jar.valid?).to eq false
       end
 
-      it 'is in the future' do
+      it 'is in the future not more then 90 days' do
+        jar = build(:jar, end_at: 91.days.from_now)
+        expect(jar.valid?).to eq false
+      end
+
+      it 'is in the future not more then 90 days' do
         jar = build(:jar, end_at: 10.days.from_now)
         expect(jar.valid?).to eq true
       end
