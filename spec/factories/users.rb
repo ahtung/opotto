@@ -8,12 +8,6 @@ FactoryGirl.define do
       jars { create_list(:jar, 5) }
     end
 
-    trait :with_contributions do
-      after :create do |instance|
-        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price)
-      end
-    end
-
     trait :with_invitations do
       after :create do |instance|
         instance.invitations = create_list(:invitation, 10)
