@@ -61,6 +61,9 @@ GEM
       sass (~> 3.0)
       terminal-table (~> 1.4)
     builder (3.2.2)
+    bullet (4.14.4)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -120,6 +123,8 @@ GEM
     foundation-rails (5.5.1.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
+    gaffe (1.0.2)
+      rails (>= 3.2.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     google_contacts_api (0.5.0)
@@ -366,6 +371,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.7.0)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     warden (1.2.3)
@@ -389,6 +395,7 @@ PLATFORMS
 
 DEPENDENCIES
   brakeman
+  bullet
   byebug
   capybara
   capybara-select2!
@@ -401,6 +408,7 @@ DEPENDENCIES
   faker
   foreman
   foundation-rails (~> 5.5.0)
+  gaffe
   google_contacts_api
   high_voltage (~> 2.2.1)
   http_accept_language

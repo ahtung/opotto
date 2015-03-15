@@ -2,6 +2,7 @@ en:
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   jar:
+    description: Description
     save: Save
     guest: Guests
     contributors: Contributors
@@ -29,6 +30,7 @@ en:
     me: Me
     sign_in_with_google: Sign in with Google
     pots: Pots
+    introduction: opotto is a beatiful way of giving a present to your friends
     navigation:
       back: Back
   date:
@@ -185,7 +187,7 @@ en:
         message: Message
         optional: Optional
       contribution:
-        amount: Amount
+        amount: Amount (US$)
   number:
     currency:
       format:
@@ -259,9 +261,9 @@ en:
         end_at_time: End time
         end_at: End date
         name: Name
-        upper_bound: Upper bound
+        upper_bound: Upper bound (US$)
       contribution:
-        amount: Amount
+        amount: Amount (US$)
         anonymous: Anonymous
     errors:
       models:

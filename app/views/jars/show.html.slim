@@ -3,6 +3,10 @@ h3.subheader
   = t('jar.owned_by', email: @jar.owner.email)
 
 p
+  strong = "#{t('jar.description')}:"
+  = @jar.description
+
+p
   strong = "#{t('jar.contributions')}:"
   = @jar.contributions.count
 

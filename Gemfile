@@ -3,6 +3,7 @@ source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
+
 gem 'rails', '4.2.0'
 gem 'foundation-rails', '~> 5.5.0'
 gem 'sass-rails', '~> 5.0.1'
@@ -15,22 +16,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
-gem 'shoulda'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm'                      # NewRelic
 gem 'unicorn'
 gem 'money-rails'
 gem 'google_contacts_api'
-gem 'rails-assets-select2'
-gem 'rails-assets-d3'
+gem 'rails-assets-select2'              # Select2.js
+gem 'rails-assets-d3'                   # D3.js
 gem 'omniauth-google-oauth2'
-gem 'rack-google-analytics'
-gem 'sidekiq'
+gem 'rack-google-analytics'             # Google Analytics
+gem 'sidekiq'                           # Background Jobs
 gem 'sinatra'
 gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
-gem 'pundit'
+gem 'pundit'                            # Authorization
 gem 'http_accept_language'
-gem 'high_voltage', '~> 2.2.1'
+gem 'high_voltage', '~> 2.2.1'          # Static Pages
+gem 'gaffe'                             # Errors
 
 group :production do
   gem 'rails_12factor'
@@ -41,6 +42,7 @@ group :development do
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
+  gem 'bullet'
 end
 
 group :development, :test do
@@ -49,6 +51,7 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails'
   gem 'faker'
+  gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
