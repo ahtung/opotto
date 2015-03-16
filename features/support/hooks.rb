@@ -1,5 +1,9 @@
 require 'capybara/poltergeist'
-Capybara.app_host = 'http://opotto-staging.herokuapp.com'
+if ENV['RACK_ENV'] == 'production'
+  Capybara.app_host = 'http://www.opotto.com'
+else
+  Capybara.app_host = 'http://opotto-staging.herokuapp.com'
+end
 Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(
       app,

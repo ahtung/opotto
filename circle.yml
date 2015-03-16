@@ -3,13 +3,16 @@ test:
     - bundle exec rake spec
   post:
     - bundle exec rake quality
-    - git push git@heroku.com:opotto-staging.git $CIRCLE_SHA1:master
-    - heroku run rake db:migrate --app opotto-staging
-    - bundle exec rake smoke:staging
 deployment:
   staging:
-    branch: master
+    branch: /release\/.*/
     commands:
-      - git push git@heroku.com:opotto-staging.git master
+      - git push git@heroku.com:opotto-staging.git $CIRCLE_SHA1:master
       - heroku run rake db:migrate --app opotto-staging
       - bundle exec rake smoke:staging
+  production:
+    branch: production
+    commands:
+      - git push git@heroku.com:opotto.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app opotto
+      - bundle exec rake smoke:production
