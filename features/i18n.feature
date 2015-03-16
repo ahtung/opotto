@@ -1,3 +1,4 @@
+@javascript
 Feature: i18n
   In order to use the site
   A visitor

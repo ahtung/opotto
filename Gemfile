@@ -54,15 +54,14 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
 end
 
 group :test do
-  gem 'cucumber-rails'
   gem 'capybara'
+  gem 'cucumber-rails', require: false
   gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false

@@ -1,5 +1,5 @@
 Given(/^I have accept language (.*)$/) do |locale|
-  page.driver.header 'Accept-Language', locale
+  page.driver.add_headers(:'Accept-Language' => locale)
   I18n.locale = locale
 end
 
