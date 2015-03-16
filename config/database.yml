@@ -7,10 +7,13 @@ development:
   <<: *default
   database: jars_development
 
-test:
+test: &test
   <<: *default
   database: jars_test
 
 production:
   <<: *default
   database: jars_production
+
+cucumber:
+  <<: *test

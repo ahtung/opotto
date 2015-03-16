@@ -46,6 +46,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'cane'                              # TODO
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
@@ -53,13 +54,14 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
 end
 
 group :test do
+  gem 'capybara'
+  gem 'cucumber-rails', require: false
   gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
