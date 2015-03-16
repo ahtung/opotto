@@ -5,7 +5,7 @@ test:
     - bundle exec rake quality
 deployment:
   staging:
-    branch: /release\/.*/
+    branch: develop
     commands:
       - git push git@heroku.com:opotto-staging.git $CIRCLE_SHA1:master
       - heroku run rake db:migrate --app opotto-staging
