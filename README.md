@@ -8,7 +8,7 @@
 
 ## Test
 
-``` foreman run rspec -e Procfile.dev.env  ```
+``` foreman run -e Procfile.dev.env rake spec ```
 
 ## Deploy
 
