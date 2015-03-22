@@ -70,12 +70,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def google_contacts
-    return unless access_token
-    google_contacts_user = GoogleContactsApi::User.new(access_token)
-    google_contacts_user.contacts
-  end
-
   def self.has_paypal_account?(email)
     api = PayPal::SDK::AdaptiveAccounts::API.new()
     get_verified_status = api.build_get_verified_status({
