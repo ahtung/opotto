@@ -7,8 +7,8 @@ deployment:
   staging:
     branch: develop
     commands:
-      - ./script/deploy/staging.sh
+      - ./script/deploy/staging
   production:
     branch: production
     commands:
-      - ./script/deploy/staging.sh
+      - ./script/deploy/staging
