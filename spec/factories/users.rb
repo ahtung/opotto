@@ -23,5 +23,9 @@ FactoryGirl.define do
         instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price)
       end
     end
+
+    trait :with_paypal do
+      email 'onurkucukkece-buyer@gmail.com'
+    end
   end
 end

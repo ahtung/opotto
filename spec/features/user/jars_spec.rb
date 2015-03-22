@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User should be able to', js: true do
+describe 'User should be able to', js: true, skip: true do
 
   let(:user) { nil }
   let!(:jar_mock) { build(:jar) }
