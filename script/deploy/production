@@ -4,4 +4,4 @@ set -e
 
 git push git@heroku.com:opotto.git master
 heroku run rake db:migrate --app opotto
-rake smoke:production
+# rake smoke:production
