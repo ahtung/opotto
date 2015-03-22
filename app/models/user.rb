@@ -47,15 +47,20 @@ class User < ActiveRecord::Base
 
   # import user's contacts from google
   def import_contacts
-    return unless access_token
-    google_contacts_user = GoogleContactsApi::User.new(access_token)
-    google_contacts_user.contacts.each do |contact|
+    return if google_contacts.nil?
+    google_contacts.each do |contact|
       ActiveRecord::Base.transaction do
         contacts.where(email: contact.primary_email).first_or_create.update(
           name: contact.full_name
         )
       end
     end
+  end
+
+  def google_contacts
+    return unless access_token
+    google_contacts_user = GoogleContactsApi::User.new(access_token)
+    google_contacts_user.contacts
   end
 
   private

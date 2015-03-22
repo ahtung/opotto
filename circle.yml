@@ -1,5 +1,14 @@
+test:
+  override:
+    - bundle exec rake spec
+    - bundle exec rake quality
+    - bundle exec rake security
 deployment:
+  staging:
+    branch: develop
+    commands:
+      - ./script/deploy/staging
   production:
-    branch: master
-    heroku:
-      appname: potto
+    branch: production
+    commands:
+      - ./script/deploy/staging
