@@ -1,7 +1,6 @@
 test:
   override:
-    - bundle exec rake test
-  post:
+    - bundle exec rake spec
     - bundle exec rake quality
     - bundle exec rake security
 deployment:
