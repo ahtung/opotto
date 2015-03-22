@@ -1,8 +1,6 @@
 # pot
 
 [![Circle CI](https://circleci.com/gh/dunyakirkali/pot.png?circle-token=f174742eaf65e547a254e8a3df6d511704ac8ab4)](https://circleci.com/gh/dunyakirkali/pot)
-[![Code Climate](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/badges/c03a260249793e92c75c/gpa.svg)](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/feed)
-[![Test Coverage](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/badges/c03a260249793e92c75c/coverage.svg)](https://codeclimate.com/repos/54fc9f43e30ba014cc00061f/feed)
 
 ## Development
 
@@ -14,8 +12,8 @@
 
 ## Deploy
 
-Once a PullRequest is merged into the master branch, Github will trigger a build on CircleCI,
-which then triggers Github to deploy to heroku.
+Once a PullRequest is merged into the master branch, Github will trigger a build on CircleCI.
+CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
 
 ## Documentation
 
