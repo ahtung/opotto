@@ -3,6 +3,7 @@ test:
     - bundle exec rake test
   post:
     - bundle exec rake quality
+    - bundle exec rake security
 deployment:
   staging:
     branch: develop
