@@ -7,12 +7,8 @@ deployment:
   staging:
     branch: develop
     commands:
-      - git push git@heroku.com:opotto-staging.git develop:master
-      - heroku run rake db:migrate --app opotto-staging
-      - bundle exec rake smoke:staging
+      - ./script/deploy/staging.sh
   production:
     branch: production
     commands:
-      - git push git@heroku.com:opotto.git master
-      - heroku run rake db:migrate --app opotto
-      - bundle exec rake smoke:production
+      - ./script/deploy/staging.sh
