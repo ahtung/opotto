@@ -59,7 +59,6 @@ describe User do
     let(:user) { create(:user, :with_paypal) }
 
     it 'should return true if email has paypal account' do
-      binding.pry
       expect(User.has_paypal_account?(user.email)).to be true
     end
   end
