@@ -737,7 +737,7 @@ $magellan-padding: 0 !important;
 // $off-canvas-link-border-bottom: 1px solid scale-color($off-canvas-bg, $lightness: -25%);
 
 // Off Canvas Menu Icon Variables
- $tabbar-menu-icon-color: #000;
+// $tabbar-menu-icon-color: #fff;
 // $tabbar-menu-icon-hover: scale-color($tabbar-menu-icon-color, $lightness: -30%);
 
 // $tabbar-menu-icon-text-indent: rem-calc(35);
@@ -1228,6 +1228,7 @@ $topbar-height: rem-calc(60);
 
 // Style the top bar dropdown elements
 //$topbar-dropdown-bg: $primary-color;
+$topbar-dropdown-bg: #fff;
 $topbar-dropdown-link-color: $black;
 $topbar-dropdown-link-bg: $white;
 // $topbar-dropdown-link-weight: $font-weight-normal;
@@ -1266,7 +1267,7 @@ $topbar-dropdown-label-bg:  $primary-color;;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: $font-weight-bold;
 // $topbar-menu-link-color: #fff;
-// $topbar-menu-icon-color: #fff;
+$topbar-menu-icon-color: #888;
 // $topbar-menu-link-color-toggled: #888;
 // $topbar-menu-icon-color-toggled: #888;
 
