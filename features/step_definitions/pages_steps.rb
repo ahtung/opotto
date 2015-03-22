@@ -5,3 +5,7 @@ end
 Then(/^page should have translated "(.*?)" content$/) do |arg1|
   expect(page).to have_content I18n.t(arg1)
 end
+
+When(/^I visit Contact Page$/) do
+  visit '/pages/contact'
+end
