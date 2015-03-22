@@ -55,19 +55,21 @@ describe User do
     end
   end
 
-  describe 'has_paypal_account?' do
-    let(:user) { create(:user, :with_paypal) }
+  describe '.has_paypal_account?' do
+    describe 'for a user with paypal account' do
+      let(:user) { create(:user, :with_paypal) }
 
-    it 'should return true if email has paypal account' do
-      expect(User.has_paypal_account?(user.email)).to be true
+      it 'should return true if email has paypal account' do
+        expect(User.has_paypal_account?(user.email)).to be true
+      end
     end
-  end
 
-  describe 'has_paypal_account?' do
-    let(:user) { create(:user) }
+    describe 'for a user with no paypal account' do
+      let(:user) { create(:user) }
 
-    it 'should return false if email has no paypal account' do
-      expect(User.has_paypal_account?(user.email)).to be false
+      it 'should return false if email has no paypal account' do
+        expect(User.has_paypal_account?(user.email)).to be false
+      end
     end
   end
 end
