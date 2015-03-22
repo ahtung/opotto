@@ -55,3 +55,19 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+Before('@omniauth') do
+  OmniAuth.config.test_mode = true
+  # Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    uid:  '12345',
+    info: {
+      name: 'twitteruser',
+    }
+  })
+end
+
+After('@omniauth') do
+  OmniAuth.config.test_mode = false
+end
