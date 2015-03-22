@@ -1,12 +1,12 @@
-@javascript, @omniauth_test
+@javascript @omniauth_test @ignore
 Feature: Me Page
   In order to have insight on usage
   A User
   Should be able to view stats
 
   Scenario: Me
-    Given I am a new, authenticated user
-    When I visit Me Page
+    When I sign in as a user with Google
+     And I visit Me Page
     Then page should have "Stats"
      And page should have "Contributed To"
      And page should have "Created"
