@@ -1,3 +1,8 @@
+test:
+  override:
+    - bundle exec rake spec
+  post:
+    - bundle exec rake quality
 deployment:
   production:
     branch: master
