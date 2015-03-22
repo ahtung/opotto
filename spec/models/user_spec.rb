@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe User do
   it { should have_many(:jars).dependent(:destroy) }
@@ -51,6 +52,23 @@ describe User do
 
     it 'should return nil if no access_token' do
       expect(user.import_contacts).to be_nil
+    end
+  end
+
+  describe 'has_paypal_account?' do
+    let(:user) { create(:user, :with_paypal) }
+
+    it 'should return true if email has paypal account' do
+      binding.pry
+      expect(User.has_paypal_account?(user.email)).to be true
+    end
+  end
+
+  describe 'has_paypal_account?' do
+    let(:user) { create(:user) }
+
+    it 'should return false if email has no paypal account' do
+      expect(User.has_paypal_account?(user.email)).to be false
     end
   end
 end
