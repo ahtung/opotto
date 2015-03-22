@@ -11,4 +11,4 @@ deployment:
   production:
     branch: production
     commands:
-      - ./script/deploy/staging
+      - ./script/deploy/production
