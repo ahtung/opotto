@@ -4,9 +4,9 @@ test:
     - bundle exec rake quality
     - bundle exec rake security
     - bundle exec rake smoke:staging
-      environment:
-        RAILS_ENV=test
-        RACK_ENV=test
+        environment:
+          RAILS_ENV=test
+          RACK_ENV=test
 deployment:
   staging:
     branch: develop
