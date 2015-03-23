@@ -3,6 +3,7 @@ test:
     - bundle exec rake spec
     - bundle exec rake quality
     - bundle exec rake security
+    - bundle exec rake smoke:staging
 deployment:
   staging:
     branch: develop
