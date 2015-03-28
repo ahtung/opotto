@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
   has_many :invitations, dependent: :destroy
   has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
-
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -56,13 +55,9 @@ class User < ActiveRecord::Base
   def import_contacts
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
+    conact_details = get_contact_details(google_contacts_user)
     ActiveRecord::Base.transaction do
       begin
-        conact_details = google_contacts_user.friends.map do |contact|
-          { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
-        end.reject do |contact|
-          contact[:email].nil?
-        end
         conact_details.each do |conact_detail|
           contacts << User.where(email: conact_detail[:email]).first_or_create.update(conact_detail)
         end
@@ -70,6 +65,14 @@ class User < ActiveRecord::Base
       rescue
         next
       end
+    end
+  end
+
+  def get_contact_details(google_contacts_user)
+    google_contacts_user.friends.map do |contact|
+      { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
+    end.reject do |contact|
+      contact[:email].nil?
     end
   end
 

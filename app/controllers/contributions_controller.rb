@@ -15,7 +15,7 @@ class ContributionsController < ApplicationController
 
   # POST /contributions
   def create
-    @contribution = current_user.contributions.build(contribution_params)
+    @contribution = Contribution.build(contribution_params)
     if @contribution.save
       redirect_to @contribution.authorization_url, notice: t('contribution.created', name: @contribution.jar.name, amount: number_to_currency(@contribution.amount))
     else

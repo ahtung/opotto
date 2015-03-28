@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe User do
   it { should have_many(:jars).dependent(:destroy) }
@@ -8,7 +7,9 @@ describe User do
   it { should have_many(:invitations).dependent(:destroy) }
   it { should have_many(:invited_jars).through(:invitations).class_name('Jar') }
   it { should have_many(:friendships) }
-  it { should have_many(:contacts).through(:friendships).class_name('User') }
+  it { should have_many(:friends).through(:friendships) }
+  it { should have_many(:inverse_friendships).class_name('Friendship') }
+  it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   it '#uncontributed_jars' do
     user = create(:user, :with_jars)

@@ -1,0 +1,8 @@
+AllCops:
+  Excludes:
+    - db/schema.rb
+    - bin/*
+  RunRailsCops: true
+
+Style/LineLength:
+  Max: 250

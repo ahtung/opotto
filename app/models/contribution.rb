@@ -39,11 +39,28 @@ class Contribution < ActiveRecord::Base
   # Initiates a payment
   def initiate_payment
     payment = api.execute :Pay, payment_options
+    update_payment_details(payment)
+    get_payment_info
+    PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+  end
+
+  def update_payment_details(payment)
     self.authorization_url = api.payment_url(payment)
     update_column(:payment_key, payment.pay_key)
     payment_time = (jar.end_at - Time.zone.now) / 60
     Rails.logger.info("Payment log | Payment initiated with the payment key: #{payment.pay_key} in #{payment_time} minutes")
     PaymentsWorker.perform_in(payment_time, id)
+    self.payment_key = payment.pay_key
+  end
+
+  def get_payment_info
+    api.execute(:PaymentDetails, pay_key: payment_key) do |response|
+      if response.success?
+        self.user = User.where(email: response.sender.email).first
+      else
+        Rails.logger.error "#{response.ack_code}: #{response.error_message}"
+      end
+    end
   end
 
   # Validates payment is inside bounds
@@ -61,11 +78,15 @@ class Contribution < ActiveRecord::Base
       fees_payer:      ENV['PAYPAL_FEESPAYER'],
       return_url:      Rails.application.routes.url_helpers.payments_success_url,
       cancel_url:      Rails.application.routes.url_helpers.payments_failure_url,
-      receivers:      [
-        { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
-        { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
-      ]
+      receivers:       payment_receivers
     }
+  end
+
+  def payment_receivers
+    [
+      { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
+      { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
+    ]
   end
 
   def api

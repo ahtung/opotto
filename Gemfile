@@ -42,6 +42,7 @@ end
 
 group :development do
   gem 'brakeman', require: false
+  gem 'rubocop', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
