@@ -4,7 +4,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :jar
 
   validate :amount_inside_the_pot_bounds
-  validate :preapproval_initiated, unless: 'Rails.env.test?'
+  # validate :preapproval_initiated, unless: 'Rails.env.test?'
 
   monetize :amount_cents, numericality: {
     greater_than_or_equal_to: 1,
@@ -12,6 +12,8 @@ class Contribution < ActiveRecord::Base
   }
 
   attr_accessor :authorization_url
+
+  after_create :get_authorization_url
 
   # Returns the proper user name
   def owner_name
@@ -21,20 +23,6 @@ class Contribution < ActiveRecord::Base
       user.email
     else
       user.name
-    end
-  end
-
-  # Completes the preapproved payment
-  def complete_preapproval
-    pay = api.build_pay(payment_options)
-    response = api.pay(pay)
-    result = response.success? && response.payment_exec_status != 'ERROR'
-    if result
-      self.payment_key = response.payKey
-      Rails.logger.info payment_key
-    else
-      error_message = response.error[0].message
-      Rails.logger.error error_message
     end
   end
 
@@ -48,68 +36,42 @@ class Contribution < ActiveRecord::Base
     false
   end
 
-  # Validates successfull preaaproval initiation
-  def preapproval_initiated
-    return true if payment_key
-    initiate_preapproval
-  end
-
-  # Initiates a chained payment
-  def initiate_preapproval
-    preapproval = api.build_preapproval(preapproval_options)
-    response = api.preapproval(preapproval)
-    result = response.responseEnvelope.ack == "Success"
-    if result
-      self.preapproval_key = response.preapprovalKey
-      self.authorization_url = "#{ENV['PAYPAL_AUTHORIZATION_URL']}#{self.preapproval_key}"
-      PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
-      Rails.logger.info preapproval_key
-    else
-      error_message = response.error[0].message
-      errors.add(:base, error_message)
-      Rails.logger.error error_message
-    end
-    result
-  end
-
-  # Returns payment options hash
-  def preapproval_options
-    {
-      returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
-      cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
-      startingDate:    Time.now.utc,
-      endingDate:      jar.end_at.utc,
-      currencyCode:    amount.currency,
-      # maxTotalAmountOfAllPayments: amount,
-      maxNumberOfPayments: 1,
-      maxAmountPerPayment: amount,
-      displayMaxTotalAmount: true
-    }
-  end
-
   def payment_options
     {
-      actionType:      'PAY_PRIMARY',
+      action_type:     "PAY_PRIMARY",
+      currency_code:   "USD",
       returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
       cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
-      currencyCode:    amount.currency,
-      feesPayer:       ENV['PAYPAL_FEESPAYER'],
-      preapprovalKey:  preapproval_key,
       receiverList: {
-        receiver: [
+        receiver:       [
           {
-            amount:    amount * ENV['WIN'].to_f,
-            email:     ENV['PAYPAL_EMAIL'],
-            primary:   false
-          },
+            email: 'dunyakirkali-buyer@yahoo.fr',
+            amount: amount * (1.0 - ENV['WIN'].to_f),
+            primary: false },
           {
-            amount:    amount * (1.0 - ENV['WIN'].to_f),
-            email:     'dunyakirkali-buyer@yahoo.fr',
-            primary:   true
+            email: ENV['PAYPAL_EMAIL'],
+            amount: amount * ENV['WIN'].to_f,
+            primary: true
           }
         ]
       }
     }
+  end
+
+  def get_authorization_url
+    pay = api.build_pay(payment_options)
+    response = api.pay(pay)
+    result = response.responseEnvelope.ack == "Success"
+    if result
+      update_attribute(:authorization_url, api.payment_url(response))
+      PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+      Rails.logger.info authorization_url
+    else
+      error_message = response.error[0].message
+      # errors.add(:base, error_message)
+      Rails.logger.error response
+      Rails.logger.error error_message
+    end
   end
 
   def api
