@@ -19,7 +19,7 @@ class Contribution < ActiveRecord::Base
 
   # Returns the proper user name
   def owner_name
-    if anonymous? || user.blank?
+    if anonymous? || !user
       'N/A'
     else
       user.handle
