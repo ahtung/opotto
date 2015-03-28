@@ -6,7 +6,7 @@ class Contribution < ActiveRecord::Base
   validate :amount_inside_the_pot_bounds
   # validate :preapproval_initiated, unless: 'Rails.env.test?'
 
-  after_create :initiate_payment
+  after_commit :initiate_payment, on: :create
   attr_accessor :authorization_url
 
   monetize :amount_cents, numericality: {
