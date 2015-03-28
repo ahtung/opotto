@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :contribution do
     amount { Faker::Commerce.price }
-    jar
+    jar { create(:jar, :with_approved_paypal_user) }
 
     trait :anonymous do
       anonymous { true }

@@ -49,5 +49,9 @@ FactoryGirl.define do
     trait :visible do
       visible  { true }
     end
+
+    trait :with_approved_paypal_user do
+      receiver { create(:user, :with_paypal) }
+    end
   end
 end
