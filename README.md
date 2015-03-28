@@ -11,8 +11,14 @@
     foreman run -e Procfile.dev.env rake spec
     foreman run -e Procfile.dev.env rake quality
     foreman run -e Procfile.dev.env rake style
-    foreman run -e Procfile.dev.env rake security
-    foreman run -e Procfile.dev.env rake doc
+
+### Security
+
+Run ``` foreman run -e Procfile.dev.env rake security ``` and use ``` brakeman ```
+
+### Documentation
+
+Run ``` foreman run -e Procfile.dev.env rake doc ``` and open docs with ``` open doc/index.html ```
 
 ## Deploy
 
@@ -26,10 +32,6 @@ CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
     ./script/staging/deploy
     ./script/production/deploy
 
-## Documentation
-
-Generate docs with ``` yard ```
-Open docs with ``` open doc/index.html ```
 
 ## Mails
 
