@@ -30,10 +30,12 @@ FactoryGirl.define do
 
     trait :with_paypal do
       email 'us-personal@gmail.com'
+      paypal_member true
     end
 
     trait :dunya do
       email 'dunyakirkali@gmail.com'
+      paypal_member true
       after :create do |instance|
         onur = User.where(email: 'onurkucukkece@gmail.com').first || create(:user, :onur)
         us = User.where(email: 'us-personal@gmail.com').first || create(:user, :with_paypal)
@@ -44,6 +46,7 @@ FactoryGirl.define do
 
     trait :onur do
       email 'onurkucukkece@gmail.com'
+      paypal_member true
       after :create do |instance|
         dunya = User.where(email: 'dunyakirkali@gmail.com').first || create(:user, :dunya)
         us = User.where(email: 'us-personal@gmail.com').first || create(:user, :with_paypal)
