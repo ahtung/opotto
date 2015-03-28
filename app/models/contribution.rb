@@ -6,6 +6,9 @@ class Contribution < ActiveRecord::Base
   validate :amount_inside_the_pot_bounds
   # validate :preapproval_initiated, unless: 'Rails.env.test?'
 
+  after_create :initiate_payment
+  attr_accessor :authorization_url
+
   monetize :amount_cents, numericality: {
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 10_00
@@ -23,6 +26,12 @@ class Contribution < ActiveRecord::Base
   end
 
   private
+
+  # Initiates a payment
+  def initiate_payment
+    payment = api.execute :Pay, payment_options
+    self.authorization_url = api.payment_url(payment)
+  end
 
   # Validates payment is inside bounds
   def amount_inside_the_pot_bounds
