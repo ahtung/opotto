@@ -17,7 +17,7 @@ class Contribution < ActiveRecord::Base
   def owner_name
     if anonymous?
       'N/A'
-    elsif !user.name
+    elsif user.name.empty?
       user.email
     else
       user.name
