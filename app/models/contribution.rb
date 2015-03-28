@@ -30,7 +30,7 @@ class Contribution < ActiveRecord::Base
     Rails.logger.info("Payment log |  Payment Executed for #{secondary_payment_options}")
   end
 
-  def refubd_payment
+  def refund_payment
 
   end
 
