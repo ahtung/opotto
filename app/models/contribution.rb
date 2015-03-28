@@ -53,23 +53,14 @@ class Contribution < ActiveRecord::Base
   def payment_options
     {
       action_type:     "PAY_PRIMARY",
-      currency_code:   "USD",
-      returnUrl:       Rails.application.routes.url_helpers.payments_success_url,
-      cancelUrl:       Rails.application.routes.url_helpers.payments_failure_url,
-      receiverList: {
-        receiver:       [
-          {
-            email: jar.receiver.email,
-            amount: amount - ( amount * ENV['WIN'].to_f ),
-            primary: false
-          },
-          {
-            email: ENV['PAYPAL_EMAIL'],
-            amount: amount,
-            primary: true
-          }
-        ]
-      }
+      currency_code:   amount.currency.iso_code,
+      fees_payer:      ENV['PAYPAL_FEESPAYER'],
+      return_url:      Rails.application.routes.url_helpers.payments_success_url,
+      cancel_url:      Rails.application.routes.url_helpers.payments_failure_url,
+      receivers:      [
+        { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
+        { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
+      ]
     }
   end
 
@@ -77,7 +68,7 @@ class Contribution < ActiveRecord::Base
     @api ||= AdaptivePayments::Client.new(
       sandbox: true,
       app_id: ENV['PAYPAL_APP_ID'],
-      user_id: ENV['PAYPAL_EMAIL'],
+      user_id: ENV['PAYPAL_USER'],
       password: ENV['PAYPAL_PASSWORD'],
       signature: ENV['PAYPAL_SIGNATURE']
     )
