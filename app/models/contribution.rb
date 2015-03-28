@@ -50,9 +50,10 @@ class Contribution < ActiveRecord::Base
       receiverList: {
         receiver:       [
           {
-            email: 'dunyakirkali-buyer@yahoo.fr',
+            email: jar.receiver.email,
             amount: amount - ( amount * ENV['WIN'].to_f ),
-            primary: false },
+            primary: false
+          },
           {
             email: ENV['PAYPAL_EMAIL'],
             amount: amount,
