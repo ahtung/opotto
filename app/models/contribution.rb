@@ -25,12 +25,21 @@ class Contribution < ActiveRecord::Base
     end
   end
 
+  def complete_payment
+    api.execute :ExecutePayment, secondary_payment_options
+  end
+
+  def refubd_payment
+
+  end
+
   private
 
   # Initiates a payment
   def initiate_payment
     payment = api.execute :Pay, payment_options
     self.authorization_url = api.payment_url(payment)
+    self.payment_key = payment.pay_key
   end
 
   # Validates payment is inside bounds
@@ -64,22 +73,6 @@ class Contribution < ActiveRecord::Base
     }
   end
 
-  def get_authorization_url
-    # pay = api.build_pay(payment_options)
-    # response = api.pay(pay)
-    # result = response.responseEnvelope.ack == "Success"
-    # if result
-    #   update_attribute(:authorization_url, api.payment_url(response))
-    #   PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
-    #   Rails.logger.info authorization_url
-    # else
-    #   error_message = response.error[0].message
-    #   # errors.add(:base, error_message)
-    #   Rails.logger.error response
-    #   Rails.logger.error error_message
-    # end
-  end
-
   def api
     @api ||= AdaptivePayments::Client.new(
       sandbox: true,
@@ -88,5 +81,12 @@ class Contribution < ActiveRecord::Base
       password: ENV['PAYPAL_PASSWORD'],
       signature: ENV['PAYPAL_SIGNATURE']
     )
+  end
+
+  def secondary_payment_options
+    {
+      action_type: 'PAY',
+      pay_key: payment_key
+    }
   end
 end

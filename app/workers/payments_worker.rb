@@ -7,6 +7,6 @@ class PaymentsWorker
   # perform worker
   def perform(contribution_id)
     contribution = Contribution.find(contribution_id)
-    contribution.complete_preapproval
+    contribution.complete_payment
   end
 end
