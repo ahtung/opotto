@@ -27,6 +27,7 @@ class Contribution < ActiveRecord::Base
 
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options
+    Rails.logger.info("Payment log |  Payment Executed for #{secondary_payment_options}")
   end
 
   def refubd_payment
@@ -38,6 +39,7 @@ class Contribution < ActiveRecord::Base
   # Initiates a payment
   def initiate_payment
     payment = api.execute :Pay, payment_options
+    Rails.logger.notice("Payment initiated with the payment key: #{payment.pay_key}")
     self.authorization_url = api.payment_url(payment)
     self.payment_key = payment.pay_key
     PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
