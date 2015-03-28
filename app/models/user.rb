@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def get_contact_details(google_contacts_user)
-    google_contacts_user.friends.map do |contact|
+    google_contacts_user.contacts.map do |contact|
       { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
     end.reject do |contact|
       contact[:email].nil?
