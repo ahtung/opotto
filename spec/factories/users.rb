@@ -29,7 +29,7 @@ FactoryGirl.define do
     end
 
     trait :with_paypal do
-      email 'onurkucukkece-buyer@gmail.com'
+      email 'nl-personal@gmail.com'
     end
   end
 end
