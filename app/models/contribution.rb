@@ -15,12 +15,10 @@ class Contribution < ActiveRecord::Base
 
   # Returns the proper user name
   def owner_name
-    if anonymous?
+    if anonymous? || user.blank?
       'N/A'
-    elsif user.name.empty?
-      user.email
     else
-      user.name
+      user.handle
     end
   end
 

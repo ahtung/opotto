@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
 
   after_commit :schedule_import_contacts
 
+  def handle
+    email if email
+    name if name
+    'N/A'
+  end
+
   # returns jars that the user have not created
   def discoverable_jars
     Jar.visible - jars - contributed_jars - invited_jars + contributed_jars.visible
