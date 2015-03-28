@@ -32,7 +32,7 @@ gem 'pundit'                            # Authorization
 gem 'http_accept_language'
 gem 'high_voltage', '~> 2.2.1'          # Static Pages
 gem 'gaffe'                             # Errors
-gem 'paypal-sdk-adaptivepayments'
+gem 'pp-adaptive'
 gem 'paypal-sdk-adaptiveaccounts'
 gem 'browser-timezone-rails'
 

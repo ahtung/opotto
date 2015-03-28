@@ -47,6 +47,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.7)
     arel (6.0.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -83,6 +87,8 @@ GEM
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -109,6 +115,8 @@ GEM
     date_time_attribute (0.1.2)
       activesupport (>= 3.0.0)
     debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -118,6 +126,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    domain_name (0.5.23)
+      unf (>= 0.0.5, < 1.0.0)
+    equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.5)
     execjs (2.4.0)
@@ -154,8 +165,11 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     hitimes (1.2.2)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     http_accept_language (2.0.5)
     i18n (0.7.0)
+    ice_nine (0.11.1)
     jbuilder (2.2.12)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -197,6 +211,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    netrc (0.10.3)
     newrelic_rpm (3.11.0.283)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -221,8 +236,6 @@ GEM
     parallel (1.4.1)
     paypal-sdk-adaptiveaccounts (1.102.0)
       paypal-sdk-core (~> 0.2.3)
-    paypal-sdk-adaptivepayments (1.110.0)
-      paypal-sdk-core (~> 0.2.3)
     paypal-sdk-core (0.2.10)
       multi_json (~> 1.0)
       xml-simple
@@ -232,6 +245,10 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    pp-adaptive (1.0.0)
+      json
+      rest-client
+      virtus (~> 1.0.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -288,6 +305,10 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -396,6 +417,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -403,6 +427,11 @@ GEM
     uniform_notifier (1.8.0)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -453,9 +482,9 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-google-oauth2
   paypal-sdk-adaptiveaccounts
-  paypal-sdk-adaptivepayments
   pg
   poltergeist
+  pp-adaptive
   pry
   pundit
   rack-google-analytics
