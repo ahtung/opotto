@@ -39,7 +39,7 @@ class Contribution < ActiveRecord::Base
   def initiate_payment
     payment = api.execute :Pay, payment_options
     self.authorization_url = api.payment_url(payment)
-    self.paykey = payment.pay_key
+    self.payment_key = payment.pay_key
   end
 
   # Validates payment is inside bounds
@@ -86,7 +86,7 @@ class Contribution < ActiveRecord::Base
   def secondary_payment_options
     {
       action_type: 'PAY',
-      pay_key: pay_key
+      pay_key: payment_key
     }
   end
 end
