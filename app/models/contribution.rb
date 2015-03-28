@@ -52,7 +52,6 @@ class Contribution < ActiveRecord::Base
       if response.success?
         update_payment_details(response)
         get_payment_info
-        PaymentsWorker.perform_in(payment_time, id)
         Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
       else
         Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
