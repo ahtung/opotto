@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
   has_many :invitations, dependent: :destroy
   has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
 
-  has_many :friendships, foreign_key: 'user_id'
-  has_many :contacts, through: :friendships, source: :user
-  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
-  has_many :inverse_contacts, through: :inverse_friendships, source: :user
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   after_commit :schedule_import_contacts
 
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     ActiveRecord::Base.transaction do
       begin
-        conact_details = google_contacts_user.contacts.map do |contact|
+        conact_details = google_contacts_user.friends.map do |contact|
           { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
         end.reject do |contact|
           contact[:email].nil?
