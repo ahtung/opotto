@@ -11,10 +11,6 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_00
   }
 
-  attr_accessor :authorization_url
-
-  after_create :get_authorization_url
-
   # Returns the proper user name
   def owner_name
     if anonymous?
@@ -60,22 +56,28 @@ class Contribution < ActiveRecord::Base
   end
 
   def get_authorization_url
-    pay = api.build_pay(payment_options)
-    response = api.pay(pay)
-    result = response.responseEnvelope.ack == "Success"
-    if result
-      update_attribute(:authorization_url, api.payment_url(response))
-      PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
-      Rails.logger.info authorization_url
-    else
-      error_message = response.error[0].message
-      # errors.add(:base, error_message)
-      Rails.logger.error response
-      Rails.logger.error error_message
-    end
+    # pay = api.build_pay(payment_options)
+    # response = api.pay(pay)
+    # result = response.responseEnvelope.ack == "Success"
+    # if result
+    #   update_attribute(:authorization_url, api.payment_url(response))
+    #   PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+    #   Rails.logger.info authorization_url
+    # else
+    #   error_message = response.error[0].message
+    #   # errors.add(:base, error_message)
+    #   Rails.logger.error response
+    #   Rails.logger.error error_message
+    # end
   end
 
   def api
-    @api ||= PayPal::SDK::AdaptivePayments::API.new
+    @api ||= AdaptivePayments::Client.new(
+      sandbox: true,
+      app_id: ENV['PAYPAL_APP_ID'],
+      user_id: ENV['PAYPAL_EMAIL'],
+      password: ENV['PAYPAL_PASSWORD'],
+      signature: ENV['PAYPAL_SIGNATURE']
+    )
   end
 end
