@@ -73,11 +73,15 @@ class Contribution < ActiveRecord::Base
       fees_payer:      ENV['PAYPAL_FEESPAYER'],
       return_url:      Rails.application.routes.url_helpers.payments_success_url,
       cancel_url:      Rails.application.routes.url_helpers.payments_failure_url,
-      receivers:      [
-        { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
-        { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
-      ]
+      receivers:       payment_receivers
     }
+  end
+
+  def payment_receivers
+    [
+      { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
+      { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
+    ]
   end
 
   def api
