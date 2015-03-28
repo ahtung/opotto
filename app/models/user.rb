@@ -9,8 +9,11 @@ class User < ActiveRecord::Base
   has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
   has_many :invitations, dependent: :destroy
   has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
-  has_many :friendships, dependent: :destroy
+
+  has_many :friendships, foreign_key: 'user_id'
   has_many :contacts, through: :friendships, source: :user
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :inverse_contacts, through: :inverse_friendships, source: :user
 
   after_commit :schedule_import_contacts
 
