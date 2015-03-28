@@ -32,6 +32,12 @@ gem 'pundit'                            # Authorization
 gem 'http_accept_language'
 gem 'high_voltage', '~> 2.2.1'          # Static Pages
 gem 'gaffe'                             # Errors
+gem 'pp-adaptive'
+gem 'paypal-sdk-adaptiveaccounts'
+gem 'browser-timezone-rails'
+gem 'rubocop'
+gem 'cane'
+gem 'factory_girl_rails'
 
 group :production do
   gem 'rails_12factor'
@@ -46,17 +52,16 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cane'                              # TODO
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
   gem 'faker'
   gem 'shoulda'
-  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'pry'
 end
 
 group :test do

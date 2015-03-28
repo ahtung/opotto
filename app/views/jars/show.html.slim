@@ -3,6 +3,10 @@ h3.subheader
   = t('jar.owned_by', email: @jar.owner.email)
 
 p
+  strong = "#{t('jar.receiver')}:"
+  = @jar.receiver.name ? @jar.receiver.name : @jar.receiver.email
+
+p
   strong = "#{t('jar.description')}:"
   = @jar.description
 
@@ -14,13 +18,13 @@ p
   strong = "#{t('jar.guests')}:"
   ul
     - @jar.guests.each do |guest|
-      li = guest.name ? guest.name : guest.email
+      li= guest.name ? guest.name : guest.email
 
 p
   strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
   ul
-    - @jar.contributions.each do |contribution|
+    - @jar.contributions.completed.each do |contribution|
       li = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"

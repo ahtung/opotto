@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :contribution do
     amount { Faker::Commerce.price }
     jar
+    status 'completed'
 
     trait :anonymous do
       anonymous { true }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315102448) do
+ActiveRecord::Schema.define(version: 20150328181915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20150315102448) do
     t.integer  "amount_cents",    default: 0,     null: false
     t.string   "amount_currency", default: "USD", null: false
     t.boolean  "anonymous"
+    t.string   "payment_key"
+    t.string   "status"
   end
 
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
@@ -82,9 +84,11 @@ ActiveRecord::Schema.define(version: 20150315102448) do
     t.boolean  "visible"
     t.money    "upper_bound", scale: 2
     t.text     "description"
+    t.integer  "receiver_id"
   end
 
   add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
+  add_index "jars", ["receiver_id"], name: "index_jars_on_receiver_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -101,6 +105,8 @@ ActiveRecord::Schema.define(version: 20150315102448) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "refresh_token"
+    t.boolean  "paypal_member"
+    t.datetime "last_contact_sync_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

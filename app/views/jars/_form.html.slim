@@ -9,8 +9,12 @@
     = f.text_field :name
 
   .field
+    = f.label :receiver_id
+    = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, class: 'jar-guests'
+
+  .field
     = f.label :guest_ids
-    = f.select :guest_ids, User.all.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
+    = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
 
   .field
     = f.label :description
