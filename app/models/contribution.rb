@@ -5,7 +5,7 @@ class Contribution < ActiveRecord::Base
 
   validate :amount_inside_the_pot_bounds
 
-  after_commit :initiate_payment, on: :create
+  after_commit :pay, on: :create
   attr_accessor :authorization_url
 
   monetize :amount_cents, numericality: {
@@ -19,6 +19,15 @@ class Contribution < ActiveRecord::Base
       'N/A'
     else
       user.handle
+    end
+  end
+
+  # start the paypal payment
+  def pay
+    if response = initiate_payment
+      update_payment_details(response)
+      get_payment_info
+      PaymentsWorker.perform_in(payment_time, id)
     end
   end
 
@@ -59,7 +68,6 @@ class Contribution < ActiveRecord::Base
       else
         Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
       end
-      return response.success?
     end
   end
 
@@ -67,9 +75,6 @@ class Contribution < ActiveRecord::Base
   def initiate_payment
     api.execute :Pay, payment_options do |response|
       if response.success?
-        update_payment_details(response)
-        get_payment_info
-        PaymentsWorker.perform_in(payment_time, id)
         Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
       else
         Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"

@@ -35,16 +35,29 @@ RSpec.describe Contribution, type: :model do
     describe 'complete' do
       let(:contribution) { create(:contribution) }
 
-      before :each do
-        contribution.complete
-      end
-
       it 'updates status column to completed if payment completes' do
+        contribution.payment_key = 'PK-ASD123ADASDAS'
+        contribution.complete
         expect(contribution.status).to eq('completed')
       end
 
-      it 'updates status column to failed if payment fails' do
+      xit 'updates status column to failed if payment fails' do
+        contribution.complete
         expect(contribution.status).to eq('failed')
+      end
+    end
+
+    describe 'pay' do
+      let(:contribution) { create(:contribution) }
+
+      xit 'updates payment_key column' do
+        contribution.pay
+        expect(contribution.payment_key).not_to eq(nil)
+      end
+
+      it 'updates authorization_url attr_accessor' do
+        contribution.pay
+        expect(contribution.authorization_url).not_to eq(nil)
       end
     end
   end
