@@ -38,9 +38,24 @@ class Contribution < ActiveRecord::Base
   # Initiates a payment
   def initiate_payment
     payment = api.execute :Pay, payment_options
+    update_payment_details(payment)
+    get_payment_info
+    PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+  end
+
+  def update_payment_details(payment)
     self.authorization_url = api.payment_url(payment)
     self.payment_key = payment.pay_key
-    PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+  end
+
+  def get_payment_info
+    api.execute(:PaymentDetails, pay_key: payment_key) do |response|
+      if response.success?
+        self.user = User.where(email: response.sender.email).first
+      else
+        Rails.logger.error "#{response.ack_code}: #{response.error_message}"
+      end
+    end
   end
 
   # Validates payment is inside bounds
