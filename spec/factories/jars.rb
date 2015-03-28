@@ -51,7 +51,7 @@ FactoryGirl.define do
     end
 
     trait :with_approved_paypal_user do
-      receiver { create(:user, :with_paypal) }
+      receiver { create(:user, :dunya) }
     end
   end
 end

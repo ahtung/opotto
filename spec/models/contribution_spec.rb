@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Contribution do
+RSpec.describe Contribution, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
   it { should monetize(:amount_cents) }
