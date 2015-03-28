@@ -31,6 +31,22 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
     end
+
+    describe 'complete' do
+      let(:contribution) { create(:contribution) }
+
+      before :each do
+        contribution.complete
+      end
+
+      it 'updates status column to completed if payment completes' do
+        expect(contribution.status).to eq('completed')
+      end
+
+      it 'updates status column to failed if payment fails' do
+        expect(contribution.status).to eq('failed')
+      end
+    end
   end
 
   # Validations
