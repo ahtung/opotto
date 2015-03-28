@@ -35,6 +35,7 @@ gem 'gaffe'                             # Errors
 gem 'pp-adaptive'
 gem 'paypal-sdk-adaptiveaccounts'
 gem 'browser-timezone-rails'
+gem 'rubocop'
 
 group :production do
   gem 'rails_12factor'
@@ -42,7 +43,6 @@ end
 
 group :development do
   gem 'brakeman', require: false
-  gem 'rubocop', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
