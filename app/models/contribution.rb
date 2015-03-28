@@ -19,7 +19,7 @@ class Contribution < ActiveRecord::Base
 
   # Returns the proper user name
   def owner_name
-    if anonymous? || !user
+    if anonymous? || user.nil?
       'N/A'
     else
       user.handle
@@ -43,12 +43,12 @@ class Contribution < ActiveRecord::Base
   def refund_payment
   end
 
-  private
-
-  # Sets the payment time for sidekiq
+  # returns the payment time
   def payment_time
     jar.end_at - Time.zone.now
   end
+
+  private
 
   # Initiates a payment
   def initiate_payment

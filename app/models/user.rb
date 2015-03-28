@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   after_commit :schedule_import_contacts
 
   def handle
-    email if email
-    name if name
+    return name if name
+    return email if email
     'N/A'
   end
 
