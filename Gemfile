@@ -36,6 +36,7 @@ gem 'pp-adaptive'
 gem 'paypal-sdk-adaptiveaccounts'
 gem 'browser-timezone-rails'
 gem 'rubocop'
+gem 'cane'
 
 group :production do
   gem 'rails_12factor'
@@ -50,7 +51,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cane'                              # TODO
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
