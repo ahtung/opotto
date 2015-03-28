@@ -31,5 +31,13 @@ FactoryGirl.define do
     trait :with_paypal do
       email 'nl-personal@gmail.com'
     end
+
+    trait :dunya do
+      email 'nl-personal@gmail.com'
+    end
+
+    trait :onur do
+      email 'tr-personal@gmail.com'
+    end
   end
 end
