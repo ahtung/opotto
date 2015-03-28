@@ -5,5 +5,4 @@ Cane::RakeTask.new(:quality) do |cane|
   cane.abc_max = 14
   cane.add_threshold 'coverage/.last_run.json', :>=, 82
   cane.no_style = true
-  cane.abc_exclude = %w(Foo::Bar#some_method)
 end
