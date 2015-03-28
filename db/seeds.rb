@@ -1,2 +1,2 @@
-FactoryGirl.craete(:user, :dunya)
-FactoryGirl.craete(:user, :onur)
+FactoryGirl.create(:user, :dunya)
+FactoryGirl.create(:user, :onur)
