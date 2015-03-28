@@ -16,10 +16,10 @@ class User < ActiveRecord::Base
 
   after_commit :schedule_import_contacts
 
+  # returns user's handle
   def handle
     return name if name
-    return email if email
-    'N/A'
+    email
   end
 
   # returns jars that the user have not created

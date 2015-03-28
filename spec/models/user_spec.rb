@@ -11,9 +11,38 @@ describe User do
   it { should have_many(:inverse_friendships).class_name('Friendship') }
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
-  it '#uncontributed_jars' do
-    user = create(:user, :with_jars)
-    expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
+  describe '#' do
+    describe '#handle' do
+      it 'returns name if user has name' do
+        user = create(:user, name: 'DUN')
+        expect(user.handle).to eq(user.name)
+      end
+
+      it 'returns email if user has no name' do
+        user = create(:user)
+        expect(user.handle).to eq(user.email)
+      end
+    end
+
+    it 'uncontributed_jars' do
+      user = create(:user, :with_jars)
+      expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
+    end
+  end
+
+  describe '.' do
+    describe 'with_paypal_account' do
+      let(:users_with) { create_list(:user, 2, paypal_member: true) }
+      let(:users_without) { create_list(:user, 2, paypal_member: false) }
+
+      it "returns user's w/ a paypal account" do
+        expect(User.with_paypal_account).to match_array(users_with)
+      end
+
+      it "does not return user's w/o a paypal account" do
+        expect(User.with_paypal_account).not_to match_array(users_without)
+      end
+    end
   end
 
   describe '.find_for_google_oauth2' do
