@@ -13,6 +13,10 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_00
   }
 
+  def self.completed
+    where(status: 'completed')
+  end
+
   # Returns the proper user name
   def owner_name
     if anonymous? || user.blank?
