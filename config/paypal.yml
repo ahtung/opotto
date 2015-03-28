@@ -9,6 +9,10 @@ test: &default
 development:
   <<: *default
 
+staging:
+  <<: *default
+  mode: sandbox
+
 production:
   <<: *default
-  mode: live
+  mode: sandbox
