@@ -29,15 +29,27 @@ FactoryGirl.define do
     end
 
     trait :with_paypal do
-      email 'nl-personal@gmail.com'
+      email 'us-personal@gmail.com'
     end
 
     trait :dunya do
-      email 'nl-personal@gmail.com'
+      email 'dunyakirkali@gmail.com'
+      after :create do |instance|
+        onur = User.where(email: 'onurkucukkece@gmail.com').first || create(:user, :onur)
+        us = User.where(email: 'us-personal@gmail.com').first || create(:user, :with_paypal)
+        instance.contacts << onur
+        instance.contacts << us
+      end
     end
 
     trait :onur do
-      email 'tr-personal@gmail.com'
+      email 'onurkucukkece@gmail.com'
+      after :create do |instance|
+        dunya = User.where(email: 'dunyakirkali@gmail.com').first || create(:user, :dunya)
+        us = User.where(email: 'us-personal@gmail.com').first || create(:user, :with_paypal)
+        instance.contacts << dunya
+        instance.contacts << us
+      end
     end
   end
 end
