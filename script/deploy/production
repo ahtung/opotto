@@ -2,8 +2,8 @@
 set -x
 set -e
 
-export RAILS_ENV=test
-export RACK_ENV=test
+export RAILS_ENV="test"
+export RACK_ENV="test"
 
 git push git@heroku.com:opotto.git master
 heroku run rake db:migrate --app opotto
