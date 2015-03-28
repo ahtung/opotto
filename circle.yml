@@ -14,7 +14,15 @@ deployment:
     branch: develop
     commands:
       - ./script/deploy/staging
+      - bundle exec rake smoke:staging:
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
   production:
     branch: production
     commands:
       - ./script/deploy/staging
+      - bundle exec rake smoke:production:
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
