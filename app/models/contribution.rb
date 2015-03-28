@@ -40,6 +40,7 @@ class Contribution < ActiveRecord::Base
     payment = api.execute :Pay, payment_options
     self.authorization_url = api.payment_url(payment)
     self.payment_key = payment.pay_key
+    PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
   end
 
   # Validates payment is inside bounds
