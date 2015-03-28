@@ -43,6 +43,11 @@ class Contribution < ActiveRecord::Base
   def refund_payment
   end
 
+  # Sets the payment time for sidekiq
+  def payment_time
+    jar.end_at - Time.zone.now
+  end
+
   private
 
   # Initiates a payment
@@ -51,7 +56,6 @@ class Contribution < ActiveRecord::Base
       if response.success?
         update_payment_details(response)
         get_payment_info
-        PaymentsWorker.perform_in(payment_time, id)
         Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
       else
         Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
@@ -62,11 +66,7 @@ class Contribution < ActiveRecord::Base
   def update_payment_details(payment)
     self.authorization_url = api.payment_url(payment)
     update_column(:payment_key, payment.pay_key)
-    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time} minutes")
-  end
-
-  def payment_time
-    (jar.end_at - Time.zone.now) / 60
+    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time/60} minutes")
   end
 
   def get_payment_info
