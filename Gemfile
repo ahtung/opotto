@@ -37,6 +37,7 @@ gem 'paypal-sdk-adaptiveaccounts'
 gem 'browser-timezone-rails'
 gem 'rubocop'
 gem 'cane'
+gem 'factory_girl_rails'
 
 group :production do
   gem 'rails_12factor'
@@ -57,7 +58,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'shoulda'
-  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
