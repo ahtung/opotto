@@ -5,7 +5,7 @@ class Contribution < ActiveRecord::Base
 
   validate :amount_inside_the_pot_bounds
 
-  after_commit :initiate_payment, on: :create
+  after_commit :pay, on: :create
   attr_accessor :authorization_url
 
   monetize :amount_cents, numericality: {
@@ -13,29 +13,30 @@ class Contribution < ActiveRecord::Base
     less_than_or_equal_to: 10_00
   }
 
-  def self.completed
-    where(status: 'completed')
-  end
-
   # Returns the proper user name
   def owner_name
-    if anonymous? || !user
+    if anonymous? || user.nil?
       'N/A'
     else
       user.handle
     end
   end
 
-  # Completes payment (pay secondary receiver)
-  def complete_payment
-    api.execute :ExecutePayment, secondary_payment_options do |response|
-      if response.success?
-        update_column(:status, 'completed')
-        Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
-      else
-        update_column(:status, 'failed')
-        Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
-      end
+  # start the paypal payment
+  def pay
+    if response = initiate_payment
+      update_payment_details(response)
+      get_payment_info
+      PaymentsWorker.perform_in(payment_time, id)
+    end
+  end
+
+  # completes the paypal payment
+  def complete
+    if complete_payment
+      update_column(:status, 'completed')
+    else
+      update_column(:status, 'failed')
     end
   end
 
@@ -43,20 +44,37 @@ class Contribution < ActiveRecord::Base
   def refund_payment
   end
 
-  private
-
-  # Sets the payment time for sidekiq
+  # returns the payment time
   def payment_time
     jar.end_at - Time.zone.now
+  end
+
+  # class methods
+  class << self
+    # scope for completed contibutions
+    def completed
+      where(status: 'completed')
+    end
+  end
+
+  private
+
+  # TODO (dunyakirkali) efactor payment code to class
+  # Completes payment (pay secondary receiver)
+  def complete_payment
+    api.execute :ExecutePayment, secondary_payment_options do |response|
+      if response.success?
+        Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
+      else
+        Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
+      end
+    end
   end
 
   # Initiates a payment
   def initiate_payment
     api.execute :Pay, payment_options do |response|
       if response.success?
-        update_payment_details(response)
-        get_payment_info
-        PaymentsWorker.perform_in(payment_time, id)
         Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
       else
         Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
@@ -64,12 +82,14 @@ class Contribution < ActiveRecord::Base
     end
   end
 
+  # describe
   def update_payment_details(payment)
     self.authorization_url = api.payment_url(payment)
     update_column(:payment_key, payment.pay_key)
     Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time/60} minutes")
   end
 
+  # describe
   def get_payment_info
     api.execute(:PaymentDetails, pay_key: payment_key) do |response|
       if response.success?
@@ -89,6 +109,7 @@ class Contribution < ActiveRecord::Base
     false
   end
 
+  # payment options for initial paypal payment
   def payment_options
     {
       action_type:     "PAY_PRIMARY",
@@ -100,6 +121,7 @@ class Contribution < ActiveRecord::Base
     }
   end
 
+  # list of receivers for initial paypal payment
   def payment_receivers
     [
       { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
@@ -107,6 +129,7 @@ class Contribution < ActiveRecord::Base
     ]
   end
 
+  # paypal api
   def api
     @api ||= AdaptivePayments::Client.new(
       sandbox: true,
@@ -117,6 +140,7 @@ class Contribution < ActiveRecord::Base
     )
   end
 
+  # payment options for secondary paypal payment
   def secondary_payment_options
     {
       action_type: 'PAY',

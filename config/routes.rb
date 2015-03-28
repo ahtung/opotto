@@ -3,7 +3,6 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   get 'payments/success'
-
   get 'payments/failure'
 
   # User
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
   resources  :users, only: :show
 
   # Discover
-  # TODO (dunyakirkali) move tohigh voltage?
+  # TODO (dunyakirkali) move to high voltage?
   get '/discover' => 'home#index', as: :discover
 
   # Jars

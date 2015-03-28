@@ -5,20 +5,60 @@ RSpec.describe Contribution, type: :model do
   it { should belong_to(:jar) }
   it { should monetize(:amount_cents) }
 
-  describe '#owner_name' do
-    it 'should return N/A if contribution is anonymous' do
-      contribution = FactoryGirl.create(:contribution, :anonymous)
-      expect(contribution.owner_name).to eq('N/A')
+  describe '#' do
+    describe 'payment_time' do
+      it 'should return time dif to jar ent_at' do
+        contribution = FactoryGirl.create(:contribution, :anonymous)
+        Timecop.freeze(Time.zone.now) do
+          expect(contribution.payment_time).to eq(contribution.jar.end_at - Time.zone.now)
+        end
+      end
     end
 
-    xit 'should return user email if it didn\'t set' do
-      contribution = FactoryGirl.create(:contribution, :with_user_noname)
-      expect(contribution.owner_name).to eq(contribution.user.email)
+    describe 'owner_name' do
+      it 'should return N/A if contribution is anonymous' do
+        contribution = FactoryGirl.create(:contribution, :anonymous)
+        expect(contribution.owner_name).to eq('N/A')
+      end
+
+      it 'should return user email if it didn\'t set' do
+        contribution = FactoryGirl.create(:contribution, :with_user_noname)
+        expect(contribution.owner_name).to eq(contribution.user.email)
+      end
+
+      it 'should return user full_name if set' do
+        contribution = FactoryGirl.create(:contribution, :with_user_with_name)
+        expect(contribution.owner_name).to eq(contribution.user.name)
+      end
     end
 
-    xit 'should return user full_name if set' do
-      contribution = FactoryGirl.create(:contribution, :with_user_with_name)
-      expect(contribution.owner_name).to eq(contribution.user.name)
+    describe 'complete' do
+      let(:contribution) { create(:contribution) }
+
+      it 'updates status column to completed if payment completes' do
+        contribution.payment_key = 'PK-ASD123ADASDAS'
+        contribution.complete
+        expect(contribution.status).to eq('completed')
+      end
+
+      xit 'updates status column to failed if payment fails' do
+        contribution.complete
+        expect(contribution.status).to eq('failed')
+      end
+    end
+
+    describe 'pay' do
+      let(:contribution) { create(:contribution) }
+
+      xit 'updates payment_key column' do
+        contribution.pay
+        expect(contribution.payment_key).not_to eq(nil)
+      end
+
+      it 'updates authorization_url attr_accessor' do
+        contribution.pay
+        expect(contribution.authorization_url).not_to eq(nil)
+      end
     end
   end
 

@@ -5,6 +5,7 @@ FactoryGirl.define do
     amount { Faker::Commerce.price }
     jar
     status 'completed'
+    anonymous false
 
     trait :anonymous do
       anonymous { true }

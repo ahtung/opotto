@@ -6,24 +6,31 @@
 
 ``` foreman start -f Procfile.dev -e Procfile.dev.env ```
 
-## Test
+## Tasks
 
-``` foreman run -e Procfile.dev.env rake spec ```
+    foreman run -e Procfile.dev.env rake spec
+    foreman run -e Procfile.dev.env rake quality
+    foreman run -e Procfile.dev.env rake style
+
+### Security
+
+Run ``` foreman run -e Procfile.dev.env rake security ``` and use ``` brakeman ```
+
+### Documentation
+
+Run ``` foreman run -e Procfile.dev.env rake doc ``` and open docs with ``` open doc/index.html ```
 
 ## Deploy
+
+### Auto
 
 Once a PullRequest is merged into the master branch, Github will trigger a build on CircleCI.
 CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
 
-## Documentation
+### Manual
 
-Generate docs with ``` yard ```
-Open docs with ``` open doc/index.html ```
-
-## Security
-
-Test with ``` brakeman -o report.html ```
-Open docs with ``` open report.html ```
+    ./script/staging/deploy
+    ./script/production/deploy
 
 
 ## Mails
