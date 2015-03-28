@@ -8,6 +8,7 @@ test:
           PAYPAL_PASSWORD: VS82UZ3WLBV59C9V
           PAYPAL_SIGNATURE: AFcWxV21C7fd0v3bYYYRCpSSRl31A8vj0JPaXe-THdyClnjPWb1yptXs
     - bundle exec rake quality
+    - bundle exec rake style
     - bundle exec rake security
 deployment:
   staging:
