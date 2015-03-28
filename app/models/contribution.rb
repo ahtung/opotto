@@ -39,10 +39,11 @@ class Contribution < ActiveRecord::Base
   # Initiates a payment
   def initiate_payment
     payment = api.execute :Pay, payment_options
-    Rails.logger.notice("Payment initiated with the payment key: #{payment.pay_key}")
     self.authorization_url = api.payment_url(payment)
-    self.payment_key = payment.pay_key
-    PaymentsWorker.perform_in((jar.end_at - Time.zone.now), id)
+    update_column(:payment_key, payment.pay_key)
+    payment_time = (jar.end_at - Time.zone.now) / 60
+    Rails.logger.info("Payment log | Payment initiated with the payment key: #{payment.pay_key} in #{payment_time} minutes")
+    PaymentsWorker.perform_in(payment_time, id)
   end
 
   # Validates payment is inside bounds
@@ -80,7 +81,7 @@ class Contribution < ActiveRecord::Base
   def secondary_payment_options
     {
       action_type: 'PAY',
-      pay_key: payment_key
+      pay_key: self.payment_key
     }
   end
 end
