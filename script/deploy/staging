@@ -4,4 +4,4 @@ set -e
 
 git push git@heroku.com:opotto-staging.git develop:master
 heroku run rake db:migrate --app opotto-staging
-# bundle exec rake smoke:staging
+bundle exec rake smoke:staging
