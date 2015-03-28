@@ -42,11 +42,11 @@ class Contribution < ActiveRecord::Base
         receiver:       [
           {
             email: 'dunyakirkali-buyer@yahoo.fr',
-            amount: amount * (1.0 - ENV['WIN'].to_f),
+            amount: amount - ( amount * ENV['WIN'].to_f ),
             primary: false },
           {
             email: ENV['PAYPAL_EMAIL'],
-            amount: amount * ENV['WIN'].to_f,
+            amount: amount,
             primary: true
           }
         ]
