@@ -14,13 +14,13 @@ deployment:
     branch: develop
     commands:
       - ./script/deploy/staging
-          environment:
-            RAILS_ENV: test
-            RACK_ENV: test
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
   production:
     branch: production
     commands:
       - ./script/deploy/staging
-          environment:
-            RAILS_ENV: test
-            RACK_ENV: test
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
