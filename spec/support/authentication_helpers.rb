@@ -11,7 +11,7 @@ module AuthenticationHelpers
         credentials: {
           refresh_token: 'TOKEN_STRING'
         }
-      },
+      }
     })
   end
 end

@@ -3,7 +3,7 @@ FactoryGirl.define do
     name     { Faker::Name.name }
     end_at   { 10.days.from_now }
     owner    { create(:user) }
-    visible  { true }
+    receiver { create(:user) }
 
     trait :with_contributions do
       after :create do |instance|
@@ -44,6 +44,14 @@ FactoryGirl.define do
       after :create do |model|
         model.update_column(:end_at, 8.days.ago)
       end
+    end
+
+    trait :visible do
+      visible  { true }
+    end
+
+    trait :with_approved_paypal_user do
+      receiver { create(:user, :dunya) }
     end
   end
 end

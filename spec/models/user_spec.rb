@@ -7,7 +7,9 @@ describe User do
   it { should have_many(:invitations).dependent(:destroy) }
   it { should have_many(:invited_jars).through(:invitations).class_name('Jar') }
   it { should have_many(:friendships) }
-  it { should have_many(:contacts).through(:friendships).class_name('User') }
+  it { should have_many(:friends).through(:friendships) }
+  it { should have_many(:inverse_friendships).class_name('Friendship') }
+  it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   it '#uncontributed_jars' do
     user = create(:user, :with_jars)
@@ -51,6 +53,24 @@ describe User do
 
     it 'should return nil if no access_token' do
       expect(user.import_contacts).to be_nil
+    end
+  end
+
+  describe '.has_paypal_account?' do
+    describe 'for a user with paypal account' do
+      let(:user) { create(:user, :with_paypal) }
+
+      it 'should return true if email has paypal account' do
+        expect(User.has_paypal_account?(user.email)).to be true
+      end
+    end
+
+    describe 'for a user with no paypal account' do
+      let(:user) { create(:user) }
+
+      it 'should return false if email has no paypal account' do
+        expect(User.has_paypal_account?(user.email)).to be false
+      end
     end
   end
 end

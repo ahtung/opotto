@@ -32,6 +32,9 @@ gem 'pundit'                            # Authorization
 gem 'http_accept_language'
 gem 'high_voltage', '~> 2.2.1'          # Static Pages
 gem 'gaffe'                             # Errors
+gem 'pp-adaptive'
+gem 'paypal-sdk-adaptiveaccounts'
+gem 'browser-timezone-rails'
 
 group :production do
   gem 'rails_12factor'
@@ -39,6 +42,7 @@ end
 
 group :development do
   gem 'brakeman', require: false
+  gem 'rubocop', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
@@ -57,6 +61,7 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'pry'
 end
 
 group :test do

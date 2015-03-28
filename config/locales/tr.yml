@@ -55,7 +55,7 @@ tr:
     description: Tanim
     save: Kaydet
     edit: Düzenle
-    new: Basla
+    new: Başla
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
     guest: Davetli
@@ -65,6 +65,7 @@ tr:
     contribute: Katkı Yap
     total: Toplam katkı
     owned_by: "%{email} tarafından"
+    receiver: Alıcı
   user:
     login: Giriş yap
     logout: Çıkış yap
@@ -73,6 +74,13 @@ tr:
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
     amount: Miktar ($)
     previous: "Önceki katkılar"
+  payments:
+    success:
+      header: Ödeme başarılı.
+      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan alıcıya aktarılacaktır.
+    failure:
+      header: Ödeme başarısız.
+      message: Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.
   number:
     human:
       decimal_units:
@@ -115,6 +123,8 @@ tr:
             end_at:
               blank: bos olamaz o
               invalid_datetime: uygunsuz zaman
+              on_or_before: Bitiş tarihi 90 gün içinde seçilmelidir.
+              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir.
             name:
               blank: Bos olmaz o
               taken: Bu isimde kumbara zaten var
@@ -146,6 +156,7 @@ tr:
         name: Adı
         message: Mesajınız
         optional: İsteğe bağlı
+        receiver: Alıcı
       contribution:
         amount: Miktar ($)
   errors:

@@ -1,2 +1,6 @@
-FactoryGirl.create(:user, :with_jars, :with_contributions, email: 'dunyakirkali@gmail.com')
-FactoryGirl.create_list(:user, 3, :with_jars, :with_contributions)
+onur = FactoryGirl.create(:user, :onur)
+dunya = FactoryGirl.create(:user, :dunya)
+us = FactoryGirl.create(:user, :with_paypal)
+
+onur.friends << [dunya, us]
+dunya.friends << [onur, us]

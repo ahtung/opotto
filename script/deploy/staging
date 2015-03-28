@@ -2,6 +2,11 @@
 set -x
 set -e
 
+export RAILS_ENV="test"
+export RACK_ENV="test"
+
 git push git@heroku.com:opotto-staging.git develop:master
 heroku run rake db:migrate --app opotto-staging
-# bundle exec rake smoke:staging
+heroku run rake db:seed --app opotto-staging
+bundle exec rake smoke:staging
+

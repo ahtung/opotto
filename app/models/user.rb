@@ -10,9 +10,17 @@ class User < ActiveRecord::Base
   has_many :invitations, dependent: :destroy
   has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
   has_many :friendships
-  has_many :contacts, through: :friendships, source: :user
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   after_commit :schedule_import_contacts
+
+  def handle
+    email if email
+    name if name
+    'N/A'
+  end
 
   # returns jars that the user have not created
   def discoverable_jars
@@ -34,6 +42,10 @@ class User < ActiveRecord::Base
     )
   end
 
+  def self.with_paypal_account
+    where(paypal_member: true)
+  end
+
   # Gets the access_token using users's refresh token
   def access_token
     return unless refresh_token
@@ -47,26 +59,49 @@ class User < ActiveRecord::Base
 
   # import user's contacts from google
   def import_contacts
-    return if google_contacts.nil?
-    google_contacts.each do |contact|
-      ActiveRecord::Base.transaction do
-        contacts.where(email: contact.primary_email).first_or_create.update(
-          name: contact.full_name
-        )
+    return unless access_token
+    google_contacts_user = GoogleContactsApi::User.new(access_token)
+    conact_details = get_contact_details(google_contacts_user)
+    ActiveRecord::Base.transaction do
+      begin
+        conact_details.each do |conact_detail|
+          contacts << User.where(email: conact_detail[:email]).first_or_create.update(conact_detail)
+        end
+        update_attribute(:last_contact_sync_at, DateTime.now)
+      rescue
+        next
       end
     end
   end
 
-  def google_contacts
-    return unless access_token
-    google_contacts_user = GoogleContactsApi::User.new(access_token)
-    google_contacts_user.contacts
+  def get_contact_details(google_contacts_user)
+    google_contacts_user.friends.map do |contact|
+      { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
+    end.reject do |contact|
+      contact[:email].nil?
+    end
+  end
+
+  def self.has_paypal_account?(email)
+    api = PayPal::SDK::AdaptiveAccounts::API.new()
+    get_verified_status = api.build_get_verified_status({
+      emailAddress: email,
+      matchCriteria: 'NONE' })
+    get_verified_status_response = api.get_verified_status(get_verified_status)
+    if get_verified_status_response.success?
+      Rails.logger.info get_verified_status_response.accountStatus
+      Rails.logger.info get_verified_status_response.countryCode
+      Rails.logger.info get_verified_status_response.userInfo
+    else
+      Rails.logger.error get_verified_status_response.error
+    end
+    get_verified_status_response.success?
   end
 
   private
 
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
-    FriendSyncWorker.perform_async(id)
+    FriendSyncWorker.perform_in(id, 10.seconds) if last_contact_sync_at.nil?
   end
 end

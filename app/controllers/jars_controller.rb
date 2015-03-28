@@ -24,7 +24,8 @@ class JarsController < ApplicationController
     @jar = current_user.jars.build(jar_params)
     authorize @jar
     if @jar.save
-      redirect_to root_path, notice: t('jar.created')
+      Rails.logger.info("Payment log | Pot is created, will end at #{@jar.end_at}")
+      redirect_to @jar, notice: t('jar.created')
     else
       render :new
     end
@@ -33,7 +34,7 @@ class JarsController < ApplicationController
   # PATCH/PUT /jars/1
   def update
     if @jar.update(jar_params)
-      redirect_to root_path, notice: t('jar.updated')
+      redirect_to @jar, notice: t('jar.updated')
     else
       render :edit
     end
@@ -53,6 +54,6 @@ class JarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def jar_params
-    params.require(:jar).permit(:name, :end_at_date, :end_at_time, :description, :visible, :upper_bound, guest_ids: [])
+    params.require(:jar).permit(:name, :end_at_date, :end_at_time, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
   end
 end
