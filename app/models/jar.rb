@@ -5,17 +5,17 @@ class Jar < ActiveRecord::Base
   # Relations
   belongs_to :owner, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
-  has_many   :contributions, dependent: :destroy
-  has_many   :contributors, -> { uniq }, through: :contributions, source: :user
-  has_many   :invitations, dependent: :destroy
-  has_many   :guests, -> { uniq }, through: :invitations, source: :user
+  has_many :contributions, dependent: :destroy
+  has_many :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many :invitations, dependent: :destroy
+  has_many :guests, -> { uniq }, through: :invitations, source: :user
 
   # Validations
-  validates           :receiver, presence: true
-  validates           :name, presence: true, uniqueness: true
-  validates           :end_at, presence: true
-  validates_datetime  :end_at, on: :create, between: [Time.zone.now, Time.zone.now+90.days]
-  validate            :receiver_not_a_guest
+  validates :receiver, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :end_at, presence: true
+  validates_datetime :end_at, on: :create, between: [Time.zone.now, Time.zone.now + 90.days]
+  validate :receiver_not_a_guest
 
   date_time_attribute :end_at
 
@@ -75,7 +75,7 @@ class Jar < ActiveRecord::Base
     key = Digest::SHA1.hexdigest name
     coordinates = convert_to_ascii(key)
     reversed_coordinates = coordinates.reverse.map do |point|
-      { x: 200 - point[:x] , y: point[:y] }
+      { x: 200 - point[:x], y: point[:y] }
     end
     coordinates + reversed_coordinates
   end
