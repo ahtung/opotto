@@ -1,6 +1,6 @@
 # ApplicationController
 class ApplicationController < ActionController::Base
-  around_filter :set_time_zone
+  around_action :set_time_zone
   protect_from_forgery
   include Pundit
 
@@ -27,6 +27,6 @@ class ApplicationController < ActionController::Base
 
   # Gets the time zone from browser cookie
   def browser_timezone
-    cookies["browser.timezone"]
+    cookies['browser.timezone']
   end
 end

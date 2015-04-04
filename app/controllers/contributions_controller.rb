@@ -1,6 +1,5 @@
 # ContributionsController
 class ContributionsController < ApplicationController
-
   include ActionView::Helpers::NumberHelper
 
   before_action :authenticate_user!
