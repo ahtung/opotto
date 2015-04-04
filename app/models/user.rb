@@ -77,11 +77,10 @@ class User < ActiveRecord::Base
   end
 
   def get_contact_details(google_contacts_user)
-    google_contacts_user.contacts.map do |contact|
+    contact_info = google_contacts_user.contacts.map do |contact|
       { email: contact.primary_email, name: contact.full_name, paypal_member: User.paypal_account?(contact.primary_email) }
-    end.reject do |contact|
-      contact[:email].nil?
     end
+    contact_info.reject { |contact| contact[:email].nil? }
   end
 
   def self.paypal_account?(email)
