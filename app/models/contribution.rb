@@ -91,13 +91,16 @@ class Contribution < ActiveRecord::Base
 
   # describe
   def payment_info
-    api.execute(:PaymentDetails, pay_key: payment_key) do |response|
-      if response.success?
-        self.user = User.where(email: response.sender.email).first
-        Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
-      else
-        Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"
-      end
+    response = api.execute(:PaymentDetails, pay_key: payment_key)
+    parse_payment_info(response)
+  end
+
+  def parse_payment_info(response)
+    if response.success?
+      self.user = User.where(email: response.sender.email).first
+      Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
+    else
+      Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"
     end
   end
 
