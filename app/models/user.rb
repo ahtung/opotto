@@ -90,8 +90,6 @@ class User < ActiveRecord::Base
     get_verified_status_response = api.get_verified_status(get_verified_status)
     if get_verified_status_response.success?
       Rails.logger.info get_verified_status_response.accountStatus
-      Rails.logger.info get_verified_status_response.countryCode
-      Rails.logger.info get_verified_status_response.userInfo
     else
       Rails.logger.error get_verified_status_response.error
     end
