@@ -83,9 +83,10 @@ class User < ActiveRecord::Base
 
   def self.has_paypal_account?(email)
     api = PayPal::SDK::AdaptiveAccounts::API.new()
-    get_verified_status = api.build_get_verified_status({
+    get_verified_status = api.build_get_verified_status(
       emailAddress: email,
-      matchCriteria: 'NONE' })
+      matchCriteria: 'NONE'
+    )
     get_verified_status_response = api.get_verified_status(get_verified_status)
     if get_verified_status_response.success?
       Rails.logger.info get_verified_status_response.accountStatus
