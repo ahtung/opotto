@@ -90,7 +90,7 @@ class Jar < ActiveRecord::Base
   def convert_to_ascii(key)
     coords = []
     byteCounter = 0
-    key.first(6).each_byte do |c, index|
+    key.first(6).each_byte do |c, _|
       coords << { x: scaled_coordinate(c.to_i), y: byteCounter * 40 }
       byteCounter = byteCounter + 1
     end

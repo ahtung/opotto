@@ -86,7 +86,7 @@ class Contribution < ActiveRecord::Base
   def update_payment_details(payment)
     self.authorization_url = api.payment_url(payment)
     update_column(:payment_key, payment.pay_key)
-    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time/60} minutes")
+    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time / 60} minutes")
   end
 
   # describe
@@ -144,7 +144,7 @@ class Contribution < ActiveRecord::Base
   def secondary_payment_options
     {
       action_type: 'PAY',
-      pay_key: self.payment_key
+      pay_key: payment_key
     }
   end
 end
