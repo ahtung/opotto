@@ -51,7 +51,6 @@ describe Jar do
 
   # Instenace methods
   describe '#' do
-
     describe 'payout' do
       let(:jar) { build(:jar) }
 
@@ -136,10 +135,10 @@ describe Jar do
       describe 'should return a array of where item is a hash' do
         let(:points) { jar.pot_points }
         it 'with key x' do
-          expect(points.first.has_key?(:x)).to be(true)
+          expect(points.first.key?(:x)).to be(true)
         end
         it 'with key y' do
-          expect(points.first.has_key?(:y)).to be(true)
+          expect(points.first.key?(:y)).to be(true)
         end
       end
     end

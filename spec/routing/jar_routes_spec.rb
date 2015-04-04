@@ -9,7 +9,7 @@ RSpec.describe 'routing to jars', type: :routing do
     )
   end
 
-  it "does route jars/new tp payments#new" do
+  it 'does route jars/new tp payments#new' do
     expect(get: '/jars/new').to route_to(
       controller: 'jars',
       action: 'new'
