@@ -63,7 +63,7 @@ Before('@omniauth') do
   # Capybara.default_host = 'http://example.com'
 
   OmniAuth.config.add_mock(:google_oauth2,
-    uid:  '12345',
+    uid: '12345',
     info: {
       name: 'twitteruser'
     }

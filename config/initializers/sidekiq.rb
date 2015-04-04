@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 
-Sidekiq.configure_server do |config|
+Sidekiq.configure_server do
   ActiveRecord::Base.configurations[Rails.env.to_s]['pool'] = 30
 end
 
