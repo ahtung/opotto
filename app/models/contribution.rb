@@ -125,7 +125,7 @@ class Contribution < ActiveRecord::Base
   def payment_receivers
     [
       { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
-      { email: jar.receiver.email, amount: amount.to_f - ( amount.to_f * ENV['WIN'].to_f ) }
+      { email: jar.receiver.email, amount: amount.to_f - (amount.to_f * ENV['WIN'].to_f) }
     ]
   end
 

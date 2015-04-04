@@ -92,7 +92,7 @@ class Jar < ActiveRecord::Base
     byteCounter = 0
     key.first(6).each_byte do |c, _|
       coords << { x: scaled_coordinate(c.to_i), y: byteCounter * 40 }
-      byteCounter = byteCounter + 1
+      byteCounter += 1
     end
     coords
   end
