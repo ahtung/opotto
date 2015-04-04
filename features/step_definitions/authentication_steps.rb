@@ -3,5 +3,5 @@ Given /^I am not authenticated$/ do
 end
 
 When(/^I sign in as a user with Google$/) do
-  visit "/users/auth/google_oauth2"
+  visit '/users/auth/google_oauth2'
 end

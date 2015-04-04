@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-
   get 'payments/success'
   get 'payments/failure'
 
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
-  resources  :users, only: :show
+  resources :users, only: :show
 
   # Discover
   # TODO (dunyakirkali) move to high voltage?
