@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = {host: "https://opotto-staging.herokuapp.com/"}
+  config.action_mailer.default_url_options = { host: 'https://opotto-staging.herokuapp.com' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -43,7 +43,7 @@ Rails.application.configure do
     password: ENV['GMAIL_PASSWORD'],
     domain: 'opotto.com',
     enable_starttls_auto: true
-   }
+  }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
