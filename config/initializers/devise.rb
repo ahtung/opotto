@@ -217,10 +217,8 @@ Devise.setup do |config|
     :google_oauth2,
     ENV['GOOGLE_CLIENT_ID'],
     ENV['GOOGLE_CLIENT_SECRET'],
-    {
-      scope: 'plus.login, plus.me, email, profile, https://www.google.com/m8/feeds',
-      prompt: 'consent'
-    }
+    scope: 'plus.login, plus.me, email, profile, https://www.google.com/m8/feeds',
+    prompt: 'consent'
   )
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
