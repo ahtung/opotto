@@ -30,4 +30,3 @@ Rails.application.routes.draw do
   # Non-Authenticated
   root to: 'home#welcome'
 end
-
