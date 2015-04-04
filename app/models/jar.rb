@@ -23,27 +23,33 @@ class Jar < ActiveRecord::Base
   def fullness
     total_contribution.to_f / 1000
   end
+
   # returns the total contribution
   def total_contribution
     contributions.completed.map(&:amount).inject { |a, e| a + e } || 0
   end
+
   # returns the contributor count
   def total_contributors
     contributors.count
   end
+
   # returns the guest count
   def total_guests
     guests.count
   end
+
   # payout and notify guests
   def payout
     # TODO
     update_attribute(:paid_at, Date.today)
     notify_payout
   end
+
   def open?
     end_at >= Date.today
   end
+
   # Class methods
   class << self
     # scope for all visible jars

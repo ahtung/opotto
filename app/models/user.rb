@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   # A method nedeed by omniauth-google-oauth2 gem
   # User is being created if it does not exist
-  def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
+  def self.find_for_google_oauth2(access_token, _ = nil)
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
@@ -75,13 +75,13 @@ class User < ActiveRecord::Base
 
   def get_contact_details(google_contacts_user)
     google_contacts_user.contacts.map do |contact|
-      { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
+      { email: contact.primary_email, name: contact.full_name, paypal_member: User.paypal_account?(contact.primary_email) }
     end.reject do |contact|
       contact[:email].nil?
     end
   end
 
-  def self.has_paypal_account?(email)
+  def self.paypal_account?(email)
     api = PayPal::SDK::AdaptiveAccounts::API.new
     get_verified_status = api.build_get_verified_status(
       emailAddress: email,
