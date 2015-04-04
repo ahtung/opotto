@@ -27,7 +27,7 @@ class Contribution < ActiveRecord::Base
     response = initiate_payment
     return unless response
     update_payment_details(response)
-    get_payment_info
+    payment_info
     PaymentsWorker.perform_in(payment_time, id)
   end
 
@@ -90,7 +90,7 @@ class Contribution < ActiveRecord::Base
   end
 
   # describe
-  def get_payment_info
+  def payment_info
     api.execute(:PaymentDetails, pay_key: payment_key) do |response|
       if response.success?
         self.user = User.where(email: response.sender.email).first
