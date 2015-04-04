@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   # Discover
-  # TODO (dunyakirkali) move to high voltage?
+  # TODO: (dunyakirkali) move to high voltage?
   get '/discover' => 'home#index', as: :discover
 
   # Jars
