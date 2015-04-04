@@ -24,11 +24,11 @@ class Contribution < ActiveRecord::Base
 
   # start the paypal payment
   def pay
-    if response = initiate_payment
-      update_payment_details(response)
-      get_payment_info
-      PaymentsWorker.perform_in(payment_time, id)
-    end
+    response = initiate_payment
+    return unless response
+    update_payment_details(response)
+    get_payment_info
+    PaymentsWorker.perform_in(payment_time, id)
   end
 
   # completes the paypal payment
