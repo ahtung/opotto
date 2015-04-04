@@ -49,11 +49,10 @@ class User < ActiveRecord::Base
   # Gets the access_token using users's refresh token
   def access_token
     return unless refresh_token
-    client = OAuth2::Client.new ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+    client = OAuth2::Client.new ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
        site: 'https://accounts.google.com',
        authorize_url: '/o/oauth2/auth',
        token_url: '/o/oauth2/token'
-     }
      OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
 
