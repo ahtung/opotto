@@ -50,10 +50,10 @@ class User < ActiveRecord::Base
   def access_token
     return unless refresh_token
     client = OAuth2::Client.new ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
-       site: 'https://accounts.google.com',
-       authorize_url: '/o/oauth2/auth',
-       token_url: '/o/oauth2/token'
-     OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
+      site: 'https://accounts.google.com',
+      authorize_url: '/o/oauth2/auth',
+      token_url: '/o/oauth2/token'
+    OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
 
   # import user's contacts from google
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def self.has_paypal_account?(email)
-    api = PayPal::SDK::AdaptiveAccounts::API.new()
+    api = PayPal::SDK::AdaptiveAccounts::API.new
     get_verified_status = api.build_get_verified_status(
       emailAddress: email,
       matchCriteria: 'NONE'
