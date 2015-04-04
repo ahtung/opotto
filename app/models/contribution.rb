@@ -112,12 +112,12 @@ class Contribution < ActiveRecord::Base
   # payment options for initial paypal payment
   def payment_options
     {
-      action_type:     "PAY_PRIMARY",
-      currency_code:   amount.currency.iso_code,
-      fees_payer:      ENV['PAYPAL_FEESPAYER'],
-      return_url:      Rails.application.routes.url_helpers.payments_success_url,
-      cancel_url:      Rails.application.routes.url_helpers.payments_failure_url,
-      receivers:       payment_receivers
+      action_type: 'PAY_PRIMARY',
+      currency_code: amount.currency.iso_code,
+      fees_payer: ENV['PAYPAL_FEESPAYER'],
+      return_url: Rails.application.routes.url_helpers.payments_success_url,
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url,
+      receivers: payment_receivers
     }
   end
 
