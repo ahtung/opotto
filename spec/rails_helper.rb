@@ -50,7 +50,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
-  config.before(:each) do |example|
+  config.before(:each) do
     Sidekiq::Worker.clear_all
   end
 
