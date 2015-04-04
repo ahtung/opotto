@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
-
   describe 'user with name' do
     before(:each) do
       ActionMailer::Base.deliveries = []
