@@ -25,7 +25,7 @@ class Jar < ActiveRecord::Base
   end
   # returns the total contribution
   def total_contribution
-    contributions.completed.map(&:amount).inject { |sum, x| sum + x } || 0
+    contributions.completed.map(&:amount).inject { |a, e| a + e } || 0
   end
   # returns the contributor count
   def total_contributors
