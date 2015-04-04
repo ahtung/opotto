@@ -59,7 +59,7 @@ class Contribution < ActiveRecord::Base
 
   private
 
-  # TODO (dunyakirkali) efactor payment code to class
+  # TODO: (dunyakirkali) efactor payment code to class
   # Completes payment (pay secondary receiver)
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options do |response|
