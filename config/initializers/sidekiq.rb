@@ -5,11 +5,11 @@ Sidekiq.configure_server do |config|
 end
 
 if Rails.env.production?
- Sidekiq.configure_server do |config|
-   config.redis = { url: ENV['REDISTOGO_URL'] }
+  Sidekiq.configure_server do |config|
+    config.redis = { url: ENV['REDISTOGO_URL'] }
   end
 
   Sidekiq.configure_client do |config|
-   config.redis = { url: ENV['REDISTOGO_URL'] }
+    config.redis = { url: ENV['REDISTOGO_URL'] }
   end
 end
