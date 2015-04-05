@@ -32,7 +32,10 @@ en:
     title: o-Potto
     about:
       title: About
-      content: About...
+      content: what is opotto?
+    secuirty:
+      title: Secuirty
+      content: how secure is opotto?
     contact: Contact
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover
@@ -41,8 +44,6 @@ en:
     sign_in_with_google: Sign in with Google
     pots: Pots
     introduction: opotto is a beatiful way of giving a present to your friends
-    about: what is opotto?
-    security: how secure is opotto?
     navigation:
       back: Back
   date:

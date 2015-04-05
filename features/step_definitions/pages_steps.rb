@@ -8,6 +8,5 @@ When(/^I visit Me Page$/) do
 end
 
 Then(/^page should have translated "(.*?)" content$/) do |arg1|
-  save_and_open_page
   expect(page).to have_content I18n.t(arg1)
 end
