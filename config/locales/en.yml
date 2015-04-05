@@ -30,7 +30,9 @@ en:
     discover: Discover
     hello: hello
     title: o-Potto
-    about: About
+    about:
+      title: About
+      content: About...
     contact: Contact
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover

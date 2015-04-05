@@ -6,7 +6,7 @@ Feature: Pages
 
   Scenario: Browse about page
     When I visit "about"
-    Then page should have translated "site.about" content
+    Then page should have translated "site.about.content" content
 
   Scenario: Browse contact page
     When I visit "contact"

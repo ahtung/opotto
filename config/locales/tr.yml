@@ -43,7 +43,9 @@ tr:
     me: Ben
     hello: Merhaba
     discover: Kesfet
-    about: Hakkimizda
+    about:
+      title: Hakkimizda
+      content: Hakkimizda...
     contact: Kahveye gelin
     title: o-Potto
     pots: Kumbaralar
