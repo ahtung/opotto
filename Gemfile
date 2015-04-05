@@ -38,6 +38,7 @@ gem 'browser-timezone-rails'
 gem 'rubocop'
 gem 'cane'
 gem 'factory_girl_rails'
+gem 'localeapp'
 
 group :production do
   gem 'rails_12factor'
