@@ -11,4 +11,3 @@ rescue NameError
 end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
