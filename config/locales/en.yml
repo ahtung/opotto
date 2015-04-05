@@ -50,7 +50,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -76,7 +76,7 @@ en:
       long: "%B %d, %Y"
       short: "%b %d"
     month_names:
-    - 
+    -
     - January
     - February
     - March
@@ -210,13 +210,13 @@ en:
         message: Message
         optional: Optional
         receiver: Receiver
-        description: 
-        receiver_id: 
-        upper_bound: 
-        visible: 
+        description:
+        receiver_id:
+        upper_bound:
+        visible:
       contribution:
         amount: Amount
-        anonymous: 
+        anonymous:
   number:
     currency:
       format:
@@ -291,9 +291,9 @@ en:
         end_at: End date
         name: Name
         upper_bound: Upper bound (US$)
-        description: 
-        receiver_id: 
-        visible: 
+        description:
+        receiver_id:
+        visible:
       contribution:
         amount: Amount
         anonymous: Anonymous
