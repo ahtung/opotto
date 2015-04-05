@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount_roboto
   get 'payments/success'
   get 'payments/failure'
 
