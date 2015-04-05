@@ -8,6 +8,6 @@ export RACK_ENV="test"
 git push git@heroku.com:opotto-staging.git develop:master
 heroku run rake db:migrate --app opotto-staging
 heroku run rake db:seed --app opotto-staging
-heroku run rake sitemap:refresh
+heroku run rake sitemap:refresh --app opotto-staging
 bundle exec rake smoke:staging
 
