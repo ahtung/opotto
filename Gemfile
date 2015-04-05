@@ -39,13 +39,14 @@ gem 'rubocop'
 gem 'cane'
 gem 'factory_girl_rails'
 gem 'roboto'
+gem 'fog'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
-  gem 'dynamic_sitemaps'
+  gem 'sitemap_generator'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false

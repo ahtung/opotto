@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 Disallow: /admin
-Sitemap: <%= sitemap_url %>
+Sitemap: https://s3.eu-central-1.amazonaws.com/opotto/sitemaps/sitemap.xml.gz
