@@ -15,7 +15,7 @@
 
 ### Documentation
 
-Run ``` foreman run -e Procfile.dev.env rake doc ``` and open docs with ``` open doc/index.html ```
+Run ``` yard ``` and open docs with ``` open doc/index.html ```
 
 ## Deploy
 
