@@ -652,7 +652,6 @@ DEPENDENCIES
   slim-rails
   spring
   test_after_commit
-  thor
   timecop
   uglifier
   validates_timeliness (~> 3.0)
