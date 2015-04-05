@@ -12,6 +12,9 @@ tr:
         guest_ids: Misafirler
         name: Isim
         upper_bound: "Üst limit ($)"
+        description: Tanım
+        receiver_id: Alıcı
+        visible: Görünür
       user:
         current_password: Current password
         email: Email
@@ -43,27 +46,19 @@ tr:
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
     new: Yeni katkı
     previous: "Önceki katkılar"
-  devise:
-    confirmations:
-      confirmed: Hesabınız başarıyla onaylandı.
-      send_instructions: Hesabınızı onaylamak için gereken bilgiler e-postanıza gönderildi.
-    failure:
-      already_authenticated: Kullanıcı girişi yapıldı.
-      unauthenticated: "İzinsiz kullanıcı"
-      unconfirmed: Onaylanmmaış kullanıcı
-      user:
-        unauthenticated: Cik cik cik! Izinsiz giris ha!
-    omniauth_callbacks:
-      success: Basariyla giris
-    sessions:
-      user:
-        signed_out: Basariyla cikis
   errors:
     format: "%{attribute} %{message}"
   helpers:
+    select:
+      prompt: Seç
+    submit:
+      create: "%{model} oluştur"
+      submit: "%{model} kaydet"
+      update: "%{model} güncelle"
     label:
       contribution:
         amount: Miktar
+        anonymous: Anonim
       jar:
         description: Tanım
         end_at_date: Bitiş tarihi
@@ -98,19 +93,6 @@ tr:
     save: Kaydet
     total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
-  number:
-    currency:
-      format:
-        delimiter: ","
-        separator: "."
-        unit: "$"
-    format:
-      delimiter: ","
-      separator: "."
-    human:
-      decimal_units:
-        units:
-          unit: "."
   payments:
     failure:
       header: "Ödeme başarısız."
