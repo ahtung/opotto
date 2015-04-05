@@ -1,5 +1,5 @@
 When(/^I visit "(.*?)"$/) do |arg1|
-  visit eval(arg1)
+  visit page_path(arg1)
 end
 
 When(/^I visit Me Page$/) do
