@@ -17,6 +17,10 @@
 
 Run ``` yard ``` and open docs with ``` open doc/index.html ```
 
+### Sitemap
+
+Run ``` foreman run -e Procfile.dev.env rake sitemap:refresh ``` and it ill be uploaded to the ``` opotto-devbucket ``` on S3
+
 ## Deploy
 
 ### Auto
