@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get 'payments/success'
   get 'payments/failure'
 
+  constraints(format: 'xml') do
+    get '/sitemap', to: redirect('https://s3.eu-central-1.amazonaws.com/opotto/sitemaps/sitemap.xml.gz')
+  end
+
   # User
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
