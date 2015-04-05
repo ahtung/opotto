@@ -17,7 +17,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
 gem 'newrelic_rpm'                      # NewRelic
-gem 'unicorn'
+gem 'puma'
 gem 'money-rails'
 gem 'google_contacts_api'
 gem 'rails-assets-select2'              # Select2.js

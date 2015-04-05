@@ -5,17 +5,17 @@ class Jar < ActiveRecord::Base
   # Relations
   belongs_to :owner, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
-  has_many   :contributions, dependent: :destroy
-  has_many   :contributors, -> { uniq }, through: :contributions, source: :user
-  has_many   :invitations, dependent: :destroy
-  has_many   :guests, -> { uniq }, through: :invitations, source: :user
+  has_many :contributions, dependent: :destroy
+  has_many :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many :invitations, dependent: :destroy
+  has_many :guests, -> { uniq }, through: :invitations, source: :user
 
   # Validations
-  validates           :receiver, presence: true
-  validates           :name, presence: true, uniqueness: true
-  validates           :end_at, presence: true
-  validates_datetime  :end_at, on: :create, between: [Time.zone.now, Time.zone.now+90.days]
-  validate            :receiver_not_a_guest
+  validates :receiver, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :end_at, presence: true
+  validates_datetime :end_at, on: :create, between: [Time.zone.now, Time.zone.now + 90.days]
+  validate :receiver_not_a_guest
 
   date_time_attribute :end_at
 
@@ -23,27 +23,33 @@ class Jar < ActiveRecord::Base
   def fullness
     total_contribution.to_f / 1000
   end
+
   # returns the total contribution
   def total_contribution
-    contributions.completed.map(&:amount).inject { |sum, x| sum + x } || 0
+    contributions.completed.map(&:amount).inject { |a, e| a + e } || 0
   end
+
   # returns the contributor count
   def total_contributors
     contributors.count
   end
+
   # returns the guest count
   def total_guests
     guests.count
   end
+
   # payout and notify guests
   def payout
     # TODO
     update_attribute(:paid_at, Date.today)
     notify_payout
   end
+
   def open?
     end_at >= Date.today
   end
+
   # Class methods
   class << self
     # scope for all visible jars
@@ -75,7 +81,7 @@ class Jar < ActiveRecord::Base
     key = Digest::SHA1.hexdigest name
     coordinates = convert_to_ascii(key)
     reversed_coordinates = coordinates.reverse.map do |point|
-      { x: 200 - point[:x] , y: point[:y] }
+      { x: 200 - point[:x], y: point[:y] }
     end
     coordinates + reversed_coordinates
   end
@@ -89,10 +95,10 @@ class Jar < ActiveRecord::Base
   # Converts key's each character to ascii, creates an array with 6 points
   def convert_to_ascii(key)
     coords = []
-    byteCounter = 0
-    key.first(6).each_byte do |c, index|
-      coords << { x: scaled_coordinate(c.to_i), y: byteCounter * 40 }
-      byteCounter = byteCounter + 1
+    byte_counter = 0
+    key.first(6).each_byte do |c, _|
+      coords << { x: scaled_coordinate(c.to_i), y: byte_counter * 40 }
+      byte_counter += 1
     end
     coords
   end

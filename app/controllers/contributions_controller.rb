@@ -1,6 +1,5 @@
 # ContributionsController
 class ContributionsController < ApplicationController
-
   include ActionView::Helpers::NumberHelper
 
   before_action :authenticate_user!
@@ -17,7 +16,10 @@ class ContributionsController < ApplicationController
   def create
     @contribution = Contribution.new(contribution_params)
     if @contribution.save
-      redirect_to @contribution.authorization_url, notice: t('contribution.created', name: @contribution.jar.name, amount: number_to_currency(@contribution.amount))
+      redirect_to(
+        @contribution.authorization_url,
+        notice: t('contribution.created', name: @contribution.jar.name, amount: number_to_currency(@contribution.amount))
+      )
     else
       render :new
     end

@@ -9,12 +9,9 @@
 ## Tasks
 
     foreman run -e Procfile.dev.env rake spec
-    foreman run -e Procfile.dev.env rake quality
     foreman run -e Procfile.dev.env rake style
-
-### Security
-
-Run ``` foreman run -e Procfile.dev.env rake security ``` and use ``` brakeman ```
+    foreman run -e Procfile.dev.env rake security
+    foreman run -e Procfile.dev.env rake quality
 
 ### Documentation
 

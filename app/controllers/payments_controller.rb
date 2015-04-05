@@ -7,5 +7,4 @@ class PaymentsController < ApplicationController
   # payment failure
   def failure
   end
-
 end

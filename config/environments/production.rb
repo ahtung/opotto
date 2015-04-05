@@ -88,7 +88,7 @@ Rails.application.configure do
     password: ENV['GMAIL_PASSWORD'],
     domain: 'opotto.com',
     enable_starttls_auto: true
-   }
+  }
 
   config.action_mailer.default_url_options = { host: 'opotto.com' }
   config.action_mailer.delivery_method = :smtp

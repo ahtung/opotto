@@ -35,7 +35,7 @@ ActionController::Base.allow_rescue = false
 begin
   DatabaseCleaner.strategy = :transaction
 rescue NameError
-  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+  raise 'You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it.'
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
@@ -62,12 +62,7 @@ Before('@omniauth') do
   OmniAuth.config.test_mode = true
   # Capybara.default_host = 'http://example.com'
 
-  OmniAuth.config.add_mock(:google_oauth2, {
-    uid:  '12345',
-    info: {
-      name: 'twitteruser',
-    }
-  })
+  OmniAuth.config.add_mock(:google_oauth2, uid: '12345', info: { name: 'twitteruser' })
 end
 
 After('@omniauth') do

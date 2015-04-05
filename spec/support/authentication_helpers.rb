@@ -2,7 +2,7 @@
 module AuthenticationHelpers
   # mock omniauth hash
   def omniauth_hash(email)
-    OmniAuth::AuthHash.new({
+    OmniAuth::AuthHash.new(
       provider: 'google',
       uid: '1337',
       info: {
@@ -12,6 +12,6 @@ module AuthenticationHelpers
           refresh_token: 'TOKEN_STRING'
         }
       }
-    })
+    )
   end
 end

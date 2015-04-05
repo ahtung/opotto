@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   has_many :invitations, dependent: :destroy
   has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
   has_many :friendships
-  has_many :friends, :through => :friendships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :friends, through: :friendships
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   after_commit :schedule_import_contacts
 
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   # A method nedeed by omniauth-google-oauth2 gem
   # User is being created if it does not exist
-  def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
+  def self.find_for_google_oauth2(access_token, _ = nil)
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
@@ -49,12 +49,14 @@ class User < ActiveRecord::Base
   # Gets the access_token using users's refresh token
   def access_token
     return unless refresh_token
-    client = OAuth2::Client.new ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
-       site: 'https://accounts.google.com',
-       authorize_url: '/o/oauth2/auth',
-       token_url: '/o/oauth2/token'
-     }
-     OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
+    client = OAuth2::Client.new(
+      ENV['GOOGLE_CLIENT_ID'],
+      ENV['GOOGLE_CLIENT_SECRET'],
+      site: 'https://accounts.google.com',
+      authorize_url: '/o/oauth2/auth',
+      token_url: '/o/oauth2/token'
+    )
+    OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
 
   # import user's contacts from google
@@ -75,23 +77,21 @@ class User < ActiveRecord::Base
   end
 
   def get_contact_details(google_contacts_user)
-    google_contacts_user.contacts.map do |contact|
-      { email: contact.primary_email, name: contact.full_name, paypal_member: User.has_paypal_account?(contact.primary_email) }
-    end.reject do |contact|
-      contact[:email].nil?
+    contact_info = google_contacts_user.contacts.map do |contact|
+      { email: contact.primary_email, name: contact.full_name, paypal_member: User.paypal_account?(contact.primary_email) }
     end
+    contact_info.reject { |contact| contact[:email].nil? }
   end
 
-  def self.has_paypal_account?(email)
-    api = PayPal::SDK::AdaptiveAccounts::API.new()
-    get_verified_status = api.build_get_verified_status({
+  def self.paypal_account?(email)
+    api = PayPal::SDK::AdaptiveAccounts::API.new
+    get_verified_status = api.build_get_verified_status(
       emailAddress: email,
-      matchCriteria: 'NONE' })
+      matchCriteria: 'NONE'
+    )
     get_verified_status_response = api.get_verified_status(get_verified_status)
     if get_verified_status_response.success?
       Rails.logger.info get_verified_status_response.accountStatus
-      Rails.logger.info get_verified_status_response.countryCode
-      Rails.logger.info get_verified_status_response.userInfo
     else
       Rails.logger.error get_verified_status_response.error
     end
