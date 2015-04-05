@@ -8,6 +8,10 @@ Feature: Pages
     When I visit about page
     Then page should have translated "site.about_text" content
 
-  Scenario: Contact
+  Scenario: Browse contact page
     When I visit Contact Page
-    Then page should have "Seven things to know about Kickstarter"
+    Then page should have translated "site.contact" content
+
+  Scenario: Browse secuirty page
+    When I visit Security Page
+    Then page should have translated "site.security" content
