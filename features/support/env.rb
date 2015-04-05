@@ -14,16 +14,14 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 Before('@omniauth_test') do
   OmniAuth.config.test_mode = true
-
-  # the symbol passed to mock_auth is the same as the name of the provider set up in the initializer
-  OmniAuth.config.add_mock(:google_oauth2, {
-    uid: '12345',
-    refresh_token: '12345',
+  default = {
+    provider: :google_oauth2,
+    uuid: "1234",
     info: {
-      name: 'twitteruser',
-      email: "test@xxxx.com"
+      email: "foobar@example.com",
     }
-  })
+  }
+  OmniAuth.config.add_mock(:twitter, default)
 end
 
 After('@omniauth_test') do
