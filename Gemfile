@@ -40,7 +40,7 @@ gem 'cane'
 gem 'factory_girl_rails'
 gem 'devise-i18n'
 gem 'tolk'
-gem 'will_paginate'
+gem 'kaminari'
 
 group :production do
   gem 'rails_12factor'
