@@ -17,9 +17,11 @@ tr:
       less_than_x_minutes:
         one: 1 dakikadan az
         other: "%{count} dakikadan az"
+        zero: 1 dakikadan az
       less_than_x_seconds:
         one: 1 saniyeden az
         other: "%{count} saniyeden az"
+        zero: 1 saniyeden az
       over_x_years:
         one: 1 yıldan fazla
         other: "%{count} yıldan fazla"
@@ -38,7 +40,7 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: © 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir.
+    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     sign_in_with_google: Google'la giris
     me: Ben
     hello: Merhaba
@@ -48,14 +50,14 @@ tr:
     title: o-Potto
     pots: Kumbaralar
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
-    about_text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"'
+    about_text: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
     navigation:
       back: Geri
   jar:
     description: Tanim
     save: Kaydet
     edit: Düzenle
-    new: Başla
+    new: Basla
     created: Kumbara başarıyla kaydedildi.
     updated: Kumbara bilgileri başarıyla güncellendi.
     guest: Davetli
@@ -68,24 +70,24 @@ tr:
     receiver: Alıcı
   user:
     login: Giriş yap
-    logout: Çıkış yap
+    logout: "Çıkış yap"
   contribution:
     new: Yeni katkı
     created: '"%{name}" için %{amount} başarıyla aktarıldı.'
-    amount: Miktar ($)
+    amount: Miktar
     previous: "Önceki katkılar"
   payments:
     success:
-      header: Ödeme başarılı.
+      header: "Ödeme başarılı."
       message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan alıcıya aktarılacaktır.
     failure:
-      header: Ödeme başarısız.
-      message: Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.
+      header: "Ödeme başarısız."
+      message: "Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz."
   number:
     human:
       decimal_units:
         units:
-          unit: '.'
+          unit: "."
     format:
       delimiter: ","
       separator: "."
@@ -108,9 +110,12 @@ tr:
         end_at_time: Bitis tarihi
         name: Isim
         end_at: Bitis zamani
-        upper_bound: Üst limit ($)
+        upper_bound: "Üst limit ($)"
+        visible: Herkese açık
+        receiver_id: Alıcı
+        description: Tanım
       contribution:
-        amount: Miktar ($)
+        amount: Amount
     errors:
       models:
         contribution:
@@ -124,7 +129,7 @@ tr:
               blank: bos olamaz o
               invalid_datetime: uygunsuz zaman
               on_or_before: Bitiş tarihi 90 gün içinde seçilmelidir.
-              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir.
+              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir."
             name:
               blank: Bos olmaz o
               taken: Bu isimde kumbara zaten var
@@ -155,9 +160,13 @@ tr:
         guest_ids: Misafirler
         name: Adı
         message: Mesajınız
-        optional: İsteğe bağlı
+        optional: "İsteğe bağlı"
         receiver: Alıcı
+        receiver_id: Alıcı
+        description: Tanım
+        upper_bound: Üst sınır
+        visible: Herkese açık
       contribution:
-        amount: Miktar ($)
+        amount: Miktar
   errors:
     format: "%{attribute} %{message}"

@@ -5,11 +5,11 @@ en:
     description: Description
     save: Save
     guest: Guests
-    contributors: Contributors
+    contributors: Contributos
     contributions: Contributions
     new: New
     contribute: Contribute
-    edit: Edit
+    edit: Contribute
     created: Pot successfully created!
     updated: Pot successfully updated!
     guests: Guests
@@ -28,18 +28,16 @@ en:
     logout: Logout
   site:
     discover: Discover
-    hello: hello
+    hello: Hello
     title: o-Potto
     about: About
     contact: Contact
-    copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
-    discover: Discover
-    hello: Hello
+    copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
     me: Me
     sign_in_with_google: Sign in with Google
     pots: Pots
     introduction: opotto is a beatiful way of giving a present to your friends
-    about_text: 'Taylor Moore, Megan McFerren, Liz Cook, Natalie Ung, Julio Terra, Katie Needs, Victoria Rogers, Julie Wood, Nitsuh Abebe, Alex Proba, Chase Pashkowich, Nick Yulman, Craig Engler, Margot Atwell, Sam Hockley-Smith, David Peter, Dana Haynes, Alfie Palao, Charlie Mirisola, Margaret Raimondi, Maris Kreizman, Jes Nelson, Sara Rowghani, Jon Leland, Melissa Wong, Win Giamportone, Owen Katz, Katie Mandel, Alex Hudson, Emma Tangoren, Ryan Closner, Nigel Warren, Kevin Showkat, Keith Holjencin, Jackson Lynch, Scott Briggs, Marissa Demers, Christine Tadler, Ben Linsay, Renee Park, Dan Schoenbrun, Jason Goss'
+    about_text: Taylor Moore, Megan McFerren, Liz Cook, Natalie Ung, Julio Terra, Katie Needs, Victoria Rogers, Julie Wood, Nitsuh Abebe, Alex Proba, Chase Pashkowich, Nick Yulman, Craig Engler, Margot Atwell, Sam Hockley-Smith, David Peter, Dana Haynes, Alfie Palao, Charlie Mirisola, Margaret Raimondi, Maris Kreizman, Jes Nelson, Sara Rowghani, Jon Leland, Melissa Wong, Win Giamportone, Owen Katz, Katie Mandel, Alex Hudson, Emma Tangoren, Ryan Closner, Nigel Warren, Kevin Showkat, Keith Holjencin, Jackson Lynch, Scott Briggs, Marissa Demers, Christine Tadler, Ben Linsay, Renee Park, Dan Schoenbrun, Jason Goss
     navigation:
       back: Back
   date:
@@ -52,7 +50,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    -
+    - 
     - Jan
     - Feb
     - Mar
@@ -78,7 +76,7 @@ en:
       long: "%B %d, %Y"
       short: "%b %d"
     month_names:
-    -
+    - 
     - January
     - February
     - March
@@ -197,7 +195,7 @@ en:
         optional: Optional
         receiver: Receiver
       contribution:
-        amount: Amount (US$)
+        amount: Amount
   number:
     currency:
       format:
@@ -223,9 +221,9 @@ en:
           quadrillion: Quadrillion
           thousand: Thousand
           trillion: Trillion
-          unit: '.'
+          unit: "."
       format:
-        delimiter: ','
+        delimiter: ","
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -241,10 +239,10 @@ en:
           tb: TB
     percentage:
       format:
-        delimiter: '.'
+        delimiter: "."
     precision:
       format:
-        delimiter: ','
+        delimiter: ","
   support:
     array:
       last_word_connector: ", and "
@@ -273,14 +271,14 @@ en:
         name: Name
         upper_bound: Upper bound (US$)
       contribution:
-        amount: Amount (US$)
+        amount: Amount
         anonymous: Anonymous
     errors:
       models:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: That's not possible
+              greater_than_or_equal_to: That'snot possible
               amount_out_of_bounds: out of bounds
         jar:
           attributes:
