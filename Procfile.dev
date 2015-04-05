@@ -1,4 +1,4 @@
 redis-server: redis-server /usr/local/etc/redis.conf
-web: bundle exec puma -C config/puma.rb
+web: bundle exec puma -C config/puma.rb -p 3000
 mailcather: mailcatcher -f
 sidekiq: bundle exec sidekiq
