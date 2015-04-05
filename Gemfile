@@ -41,6 +41,7 @@ gem 'factory_girl_rails'
 gem 'devise-i18n'
 gem 'thor'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+gem 'translate-rails3', :require => 'translate', :group => :development
 
 group :production do
   gem 'rails_12factor'
