@@ -210,10 +210,10 @@ en:
         message: Message
         optional: Optional
         receiver: Receiver
-        description:
-        receiver_id:
-        upper_bound:
-        visible:
+        description: Description
+        receiver_id: Receiver
+        upper_bound: Upper bound
+        visible: Visible
       contribution:
         amount: Amount
         anonymous:
