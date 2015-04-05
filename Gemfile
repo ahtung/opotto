@@ -40,6 +40,9 @@ gem 'cane'
 gem 'factory_girl_rails'
 gem 'localeapp'
 gem 'devise-i18n'
+gem 'roboto'
+gem 'fog'
+gem 'sitemap_generator'
 
 group :production do
   gem 'rails_12factor'
