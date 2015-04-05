@@ -40,102 +40,6 @@ en:
     about_text: Taylor Moore, Megan McFerren, Liz Cook, Natalie Ung, Julio Terra, Katie Needs, Victoria Rogers, Julie Wood, Nitsuh Abebe, Alex Proba, Chase Pashkowich, Nick Yulman, Craig Engler, Margot Atwell, Sam Hockley-Smith, David Peter, Dana Haynes, Alfie Palao, Charlie Mirisola, Margaret Raimondi, Maris Kreizman, Jes Nelson, Sara Rowghani, Jon Leland, Melissa Wong, Win Giamportone, Owen Katz, Katie Mandel, Alex Hudson, Emma Tangoren, Ryan Closner, Nigel Warren, Kevin Showkat, Keith Holjencin, Jackson Lynch, Scott Briggs, Marissa Demers, Christine Tadler, Ben Linsay, Renee Park, Dan Schoenbrun, Jason Goss
     navigation:
       back: Back
-  date:
-    abbr_day_names:
-    - Sun
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    abbr_month_names:
-    - 
-    - Jan
-    - Feb
-    - Mar
-    - Apr
-    - May
-    - Jun
-    - Jul
-    - Aug
-    - Sep
-    - Oct
-    - Nov
-    - Dec
-    day_names:
-    - Sunday
-    - Monday
-    - Tuesday
-    - Wednesday
-    - Thursday
-    - Friday
-    - Saturday
-    formats:
-      default: "%Y-%m-%d"
-      long: "%B %d, %Y"
-      short: "%b %d"
-    month_names:
-    - 
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
-    order:
-    - :year
-    - :month
-    - :day
-  datetime:
-    distance_in_words:
-      about_x_hours:
-        one: about 1 hour
-        other: about %{count} hours
-      about_x_months:
-        one: about 1 month
-        other: about %{count} months
-      about_x_years:
-        one: about 1 year
-        other: about %{count} years
-      almost_x_years:
-        one: almost 1 year
-        other: almost %{count} years
-      half_a_minute: half a minute
-      less_than_x_minutes:
-        one: less than a minute
-        other: less than %{count} minutes
-      less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
-      over_x_years:
-        one: over 1 year
-        other: over %{count} years
-      x_days:
-        one: 1 day
-        other: "%{count} days"
-      x_minutes:
-        one: 1 minute
-        other: "%{count} minutes"
-      x_months:
-        one: 1 month
-        other: "%{count} months"
-      x_seconds:
-        one: 1 second
-        other: "%{count} seconds"
-    prompts:
-      day: Day
-      hour: Hour
-      minute: Minute
-      month: Month
-      second: Seconds
-      year: Year
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -166,22 +70,14 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
-      after: must be after %{restriction}
       already_confirmed: was already confirmed, please try signing in
-      before: must be before %{restriction}
       confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
       expired: has expired, please request a new one
-      invalid_date: is not a valid date
-      invalid_datetime: is not a valid datetime
-      invalid_time: is not a valid time
-      is_at: must be at %{restriction}
       not_found: not found
       not_locked: was not locked
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
-      on_or_after: must be on or after %{restriction}
-      on_or_before: must be on or before %{restriction}
     template:
       body: 'There were problems with the following fields:'
       header:
@@ -210,72 +106,13 @@ en:
         message: Message
         optional: Optional
         receiver: Receiver
-        description: 
-        receiver_id: 
-        upper_bound: 
-        visible: 
+        description: Description
+        receiver_id: Receiver
+        upper_bound: Upper bound
+        visible: Visible
       contribution:
         amount: Amount
-        anonymous: 
-  number:
-    currency:
-      format:
-        delimiter: ","
-        format: "%u%n"
-        precision: 2
-        separator: "."
-        significant: false
-        strip_insignificant_zeros: false
-        unit: "$"
-    format:
-      delimiter: ","
-      precision: 3
-      separator: "."
-      significant: false
-      strip_insignificant_zeros: false
-    human:
-      decimal_units:
-        format: "%n %u"
-        units:
-          billion: Billion
-          million: Million
-          quadrillion: Quadrillion
-          thousand: Thousand
-          trillion: Trillion
-          unit: "."
-      format:
-        delimiter: ","
-        precision: 3
-        significant: true
-        strip_insignificant_zeros: true
-      storage_units:
-        format: "%n %u"
-        units:
-          byte:
-            one: Byte
-            other: Bytes
-          gb: GB
-          kb: KB
-          mb: MB
-          tb: TB
-    percentage:
-      format:
-        delimiter: "."
-    precision:
-      format:
-        delimiter: ","
-  support:
-    array:
-      last_word_connector: ", and "
-      two_words_connector: " and "
-      words_connector: ", "
-  time:
-    am: am
-    formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
-      long: "%B %d, %Y %H:%M"
-      short: "%d %b %H:%M"
-    pm: pm
+        anonymous: Anonymous
   activerecord:
     attributes:
       user:
@@ -291,9 +128,9 @@ en:
         end_at: End date
         name: Name
         upper_bound: Upper bound (US$)
-        description: 
-        receiver_id: 
-        visible: 
+        description: Description
+        receiver_id: Receiver
+        visible: Visible
       contribution:
         amount: Amount
         anonymous: Anonymous
@@ -317,63 +154,8 @@ en:
     models:
       contribution: Contribution
       jar: Pot
-  devise:
-    failure:
-      user:
-        unauthenticated: No no no!
-      already_authenticated: You are already signed in.
-      inactive: Your account is not activated yet.
-      invalid: Invalid email or password.
-      last_attempt: You have one more attempt before your account will be locked.
-      locked: Your account is locked.
-      not_found_in_database: Invalid email or password.
-      timeout: Your session expired. Please sign in again to continue.
-      unauthenticated: You need to sign in or sign up before continuing.
-      unconfirmed: You have to confirm your account before continuing.
-    omniauth_callbacks:
-      success: Logged in!
-      failure: Could not authenticate you from %{kind} because "%{reason}".
-    sessions:
-      user:
-        signed_out: Logged out!
-      signed_in: Signed in successfully.
-      signed_out: Signed out successfully.
-    confirmations:
-      confirmed: Your account was successfully confirmed.
-      send_instructions: You will receive an email with instructions about how to confirm your account in a few minutes.
-      send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes.
-    mailer:
-      confirmation_instructions:
-        subject: Confirmation instructions
-      reset_password_instructions:
-        subject: Reset password instructions
-      unlock_instructions:
-        subject: Unlock Instructions
-    passwords:
-      no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
-      send_instructions: You will receive an email with instructions on how to reset your password in a few minutes.
-      send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
-      updated: Your password was changed successfully. You are now signed in.
-      updated_not_active: Your password was changed successfully.
-    registrations:
-      destroyed: Bye! Your account was successfully cancelled. We hope to see you again soon.
-      signed_up: Welcome! You have signed up successfully.
-      signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
-      signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
-      signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please open the link to activate your account.
-      updated: You updated your account successfully.
-      update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address.
-    unlocks:
-      send_instructions: You will receive an email with instructions about how to unlock your account in a few minutes.
-      send_paranoid_instructions: If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.
-      unlocked: Your account has been unlocked successfully. Please sign in to continue.
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
     new: New contribution
     previous: Previous contributions
-  validates_timeliness:
-    error_value_formats:
-      date: "%Y-%m-%d"
-      datetime: "%Y-%m-%d %H:%M:%S"
-      time: "%H:%M:%S"
