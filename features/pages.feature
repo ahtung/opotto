@@ -6,7 +6,7 @@ Feature: Pages
 
   Scenario: Browse about page
     When I visit "page_path('about')"
-    Then page should have translated "site.about_text" content
+    Then page should have translated "site.about" content
 
   Scenario: Browse contact page
     When I visit "page_path('contact')"

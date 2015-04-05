@@ -48,7 +48,7 @@ tr:
     title: o-Potto
     pots: Kumbaralar
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
-    about_text: opotto hakkinda...
+    about: opotto hakkinda...
     navigation:
       back: Geri
   jar:
