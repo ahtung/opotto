@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  
+  mount Tolk::Engine => '/tolk', :as => 'tolk'
   get 'payments/success'
   get 'payments/failure'
 
