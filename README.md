@@ -13,10 +13,6 @@
     foreman run -e Procfile.dev.env rake security
     foreman run -e Procfile.dev.env rake quality
 
-### Security
-
-Run ``` foreman run -e Procfile.dev.env rake security ``` and use ``` brakeman ```
-
 ### Documentation
 
 Run ``` foreman run -e Procfile.dev.env rake doc ``` and open docs with ``` open doc/index.html ```
