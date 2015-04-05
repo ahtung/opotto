@@ -38,9 +38,12 @@ gem 'browser-timezone-rails'
 gem 'rubocop'
 gem 'cane'
 gem 'factory_girl_rails'
+gem 'devise-i18n'
 gem 'roboto'
 gem 'fog'
 gem 'sitemap_generator'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+gem 'i18n-tasks', '~> 0.8.2'
 
 group :production do
   gem 'rails_12factor'

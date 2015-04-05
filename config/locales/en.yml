@@ -5,11 +5,11 @@ en:
     description: Description
     save: Save
     guest: Guests
-    contributors: Contributors
+    contributors: Contributos
     contributions: Contributions
     new: New
     contribute: Contribute
-    edit: Edit
+    edit: Contribute
     created: Pot successfully created!
     updated: Pot successfully updated!
     guests: Guests
@@ -28,10 +28,17 @@ en:
     logout: Logout
   site:
     discover: Discover
-    hello: hello
+    hello: Hello
     title: o-Potto
-    about: About
-    contact: Contact
+    about:
+      title: About
+      content: what is opotto?
+    security:
+      title: Secuirty
+      content: how secure is opotto?
+    contact:
+      title: Contact
+      content: where secure is opotto?
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover
     hello: Hello
@@ -39,105 +46,8 @@ en:
     sign_in_with_google: Sign in with Google
     pots: Pots
     introduction: opotto is a beatiful way of giving a present to your friends
-    about_text: 'Taylor Moore, Megan McFerren, Liz Cook, Natalie Ung, Julio Terra, Katie Needs, Victoria Rogers, Julie Wood, Nitsuh Abebe, Alex Proba, Chase Pashkowich, Nick Yulman, Craig Engler, Margot Atwell, Sam Hockley-Smith, David Peter, Dana Haynes, Alfie Palao, Charlie Mirisola, Margaret Raimondi, Maris Kreizman, Jes Nelson, Sara Rowghani, Jon Leland, Melissa Wong, Win Giamportone, Owen Katz, Katie Mandel, Alex Hudson, Emma Tangoren, Ryan Closner, Nigel Warren, Kevin Showkat, Keith Holjencin, Jackson Lynch, Scott Briggs, Marissa Demers, Christine Tadler, Ben Linsay, Renee Park, Dan Schoenbrun, Jason Goss'
     navigation:
       back: Back
-  date:
-    abbr_day_names:
-    - Sun
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    abbr_month_names:
-    -
-    - Jan
-    - Feb
-    - Mar
-    - Apr
-    - May
-    - Jun
-    - Jul
-    - Aug
-    - Sep
-    - Oct
-    - Nov
-    - Dec
-    day_names:
-    - Sunday
-    - Monday
-    - Tuesday
-    - Wednesday
-    - Thursday
-    - Friday
-    - Saturday
-    formats:
-      default: "%Y-%m-%d"
-      long: "%B %d, %Y"
-      short: "%b %d"
-    month_names:
-    -
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
-    order:
-    - :year
-    - :month
-    - :day
-  datetime:
-    distance_in_words:
-      about_x_hours:
-        one: about 1 hour
-        other: about %{count} hours
-      about_x_months:
-        one: about 1 month
-        other: about %{count} months
-      about_x_years:
-        one: about 1 year
-        other: about %{count} years
-      almost_x_years:
-        one: almost 1 year
-        other: almost %{count} years
-      half_a_minute: half a minute
-      less_than_x_minutes:
-        one: less than a minute
-        other: less than %{count} minutes
-      less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
-      over_x_years:
-        one: over 1 year
-        other: over %{count} years
-      x_days:
-        one: 1 day
-        other: "%{count} days"
-      x_minutes:
-        one: 1 minute
-        other: "%{count} minutes"
-      x_months:
-        one: 1 month
-        other: "%{count} months"
-      x_seconds:
-        one: 1 second
-        other: "%{count} seconds"
-    prompts:
-      day: Day
-      hour: Hour
-      minute: Minute
-      month: Month
-      second: Seconds
-      year: Year
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -168,6 +78,14 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
+      already_confirmed: was already confirmed, please try signing in
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
+      expired: has expired, please request a new one
+      not_found: not found
+      not_locked: was not locked
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
     template:
       body: 'There were problems with the following fields:'
       header:
@@ -196,67 +114,13 @@ en:
         message: Message
         optional: Optional
         receiver: Receiver
+        description: Description
+        receiver_id: Receiver
+        upper_bound: Upper bound
+        visible: Visible
       contribution:
-        amount: Amount (US$)
-  number:
-    currency:
-      format:
-        delimiter: ","
-        format: "%u%n"
-        precision: 2
-        separator: "."
-        significant: false
-        strip_insignificant_zeros: false
-        unit: "$"
-    format:
-      delimiter: ","
-      precision: 3
-      separator: "."
-      significant: false
-      strip_insignificant_zeros: false
-    human:
-      decimal_units:
-        format: "%n %u"
-        units:
-          billion: Billion
-          million: Million
-          quadrillion: Quadrillion
-          thousand: Thousand
-          trillion: Trillion
-          unit: '.'
-      format:
-        delimiter: ','
-        precision: 3
-        significant: true
-        strip_insignificant_zeros: true
-      storage_units:
-        format: "%n %u"
-        units:
-          byte:
-            one: Byte
-            other: Bytes
-          gb: GB
-          kb: KB
-          mb: MB
-          tb: TB
-    percentage:
-      format:
-        delimiter: '.'
-    precision:
-      format:
-        delimiter: ','
-  support:
-    array:
-      last_word_connector: ", and "
-      two_words_connector: " and "
-      words_connector: ", "
-  time:
-    am: am
-    formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
-      long: "%B %d, %Y %H:%M"
-      short: "%d %b %H:%M"
-    pm: pm
+        amount: Amount
+        anonymous: Anonymous
   activerecord:
     attributes:
       user:
@@ -272,15 +136,18 @@ en:
         end_at: End date
         name: Name
         upper_bound: Upper bound (US$)
+        description: Description
+        receiver_id: Receiver
+        visible: Visible
       contribution:
-        amount: Amount (US$)
+        amount: Amount
         anonymous: Anonymous
     errors:
       models:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: That's not possible
+              greater_than_or_equal_to: That'snot possible
               amount_out_of_bounds: out of bounds
         jar:
           attributes:
@@ -295,15 +162,6 @@ en:
     models:
       contribution: Contribution
       jar: Pot
-  devise:
-    failure:
-      user:
-        unauthenticated: No no no!
-    omniauth_callbacks:
-      success: Logged in!
-    sessions:
-      user:
-        signed_out: Logged out!
   contribution:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun

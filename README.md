@@ -21,6 +21,12 @@ Run ``` yard ``` and open docs with ``` open doc/index.html ```
 
 Run ``` foreman run -e Procfile.dev.env rake sitemap:refresh ``` and it ill be uploaded to the ``` opotto-devbucket ``` on S3
 
+## Test
+
+Run unit tests with ``` foreman run -e Procfile.dev.env rake spec ```
+and
+Feature tests with ``` foreman run -e Procfile.dev.env cucumber ```
+
 ## Deploy
 
 ### Auto

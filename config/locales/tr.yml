@@ -1,163 +1,128 @@
+---
 tr:
-  datetime:
-    distance_in_words:
-      about_x_hours:
-        one: yaklaşık 1 saat
-        other: yaklaşık %{count} saat
-      about_x_months:
-        one: yaklaşık 1 ay
-        other: yaklaşık %{count} ay
-      about_x_years:
-        one: yaklaşık 1 yıl
-        other: yaklaşık %{count} yıl
-      almost_x_years:
-        one: neredeyse 1 yıl
-        other: neredeyse %{count} yıl
-      half_a_minute: yarım dakika
-      less_than_x_minutes:
-        one: 1 dakikadan az
-        other: "%{count} dakikadan az"
-      less_than_x_seconds:
-        one: 1 saniyeden az
-        other: "%{count} saniyeden az"
-      over_x_years:
-        one: 1 yıldan fazla
-        other: "%{count} yıldan fazla"
-      x_days:
-        one: 1 gün
-        other: "%{count} gün"
-      x_minutes:
-        one: 1 dakika
-        other: "%{count} dakika"
-      x_months:
-        one: 1 ay
-        other: "%{count} ay"
-      x_seconds:
-        one: 1 saniye
-        other: "%{count} saniye"
-  pundit:
-    user_not_authorized: Yassak gardesim, hadi..
-  site:
-    copyright: © 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir.
-    sign_in_with_google: Google'la giris
-    me: Ben
-    hello: Merhaba
-    discover: Kesfet
-    about: Hakkimizda
-    contact: Kahveye gelin
-    title: o-Potto
-    pots: Kumbaralar
-    introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
-    about_text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"'
-    navigation:
-      back: Geri
-  jar:
-    description: Tanim
-    save: Kaydet
-    edit: Düzenle
-    new: Başla
-    created: Kumbara başarıyla kaydedildi.
-    updated: Kumbara bilgileri başarıyla güncellendi.
-    guest: Davetli
-    guests: Davetliler
-    contributors: Katılımcı
-    contributions: Katkı
-    contribute: Katkı Yap
-    total: Toplam katkı
-    owned_by: "%{email} tarafından"
-    receiver: Alıcı
-  user:
-    login: Giriş yap
-    logout: Çıkış yap
-  contribution:
-    new: Yeni katkı
-    created: '"%{name}" için %{amount} başarıyla aktarıldı.'
-    amount: Miktar ($)
-    previous: "Önceki katkılar"
-  payments:
-    success:
-      header: Ödeme başarılı.
-      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan alıcıya aktarılacaktır.
-    failure:
-      header: Ödeme başarısız.
-      message: Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.
-  number:
-    human:
-      decimal_units:
-        units:
-          unit: '.'
-    format:
-      delimiter: ","
-      separator: "."
-    currency:
-      format:
-        delimiter: ","
-        separator: "."
-        unit: "$"
   activerecord:
     attributes:
+      contribution:
+        amount: Amount
+        anonymous: Anonim katkı
+      jar:
+        end_at: Bitis zamani
+        end_at_date: Bitis gunu
+        end_at_time: Bitis tarihi
+        guest_ids: Misafirler
+        name: Isim
+        upper_bound: "Üst limit ($)"
+        description: Tanım
+        receiver_id: Alıcı
+        visible: Görünür
       user:
+        current_password: Current password
         email: Email
         password: Password
-        remember_me: Remember me
         password_confirmation: Password confirmation
-        current_password: Current password
-      jar:
-        end_at_date: Bitis gunu
-        guest_ids: Misafirler
-        end_at_time: Bitis tarihi
-        name: Isim
-        end_at: Bitis zamani
-        upper_bound: Üst limit ($)
-      contribution:
-        amount: Miktar ($)
+        remember_me: Remember me
     errors:
       models:
         contribution:
           attributes:
             amount:
-              greater_than_or_equal_to: oyle olmaz o
               amount_out_of_bounds: belirlenen üst limiti aşıyor.
+              greater_than_or_equal_to: oyle olmaz o
         jar:
           attributes:
             end_at:
               blank: bos olamaz o
               invalid_datetime: uygunsuz zaman
+              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir."
               on_or_before: Bitiş tarihi 90 gün içinde seçilmelidir.
-              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir.
             name:
               blank: Bos olmaz o
               taken: Bu isimde kumbara zaten var
     models:
       contribution: Katki
       jar: Kumbara
-  devise:
-    failure:
-      user:
-        unauthenticated: Cik cik cik! Izinsiz giris ha!
-    omniauth_callbacks:
-      success: Basariyla giris
-    sessions:
-      user:
-        signed_out: Basariyla cikis
-  helpers:
-    label:
-      user:
-        email: e-posta
-        password: sifre
-        remember_me: beni hatirla
-        current_password: su anki sifre
-        password_confirmation: sifre digrulama
-      jar:
-        ends_at: Bitiş tarihi
-        end_at_date: Bitiş tarihi
-        end_at_time: Bitiş saati
-        guest_ids: Misafirler
-        name: Adı
-        message: Mesajınız
-        optional: İsteğe bağlı
-        receiver: Alıcı
-      contribution:
-        amount: Miktar ($)
+  contribution:
+    amount: Miktar
+    created: '"%{name}" için %{amount} başarıyla aktarıldı.'
+    new: Yeni katkı
+    previous: "Önceki katkılar"
   errors:
     format: "%{attribute} %{message}"
+  helpers:
+    select:
+      prompt: Seç
+    submit:
+      create: "%{model} oluştur"
+      submit: "%{model} kaydet"
+      update: "%{model} güncelle"
+    label:
+      contribution:
+        amount: Miktar
+        anonymous: Anonim
+      jar:
+        description: Tanım
+        end_at_date: Bitiş tarihi
+        end_at_time: Bitiş saati
+        ends_at: Bitiş tarihi
+        guest_ids: Misafirler
+        message: Mesajınız
+        name: Adı
+        optional: "İsteğe bağlı"
+        receiver: Alıcı
+        receiver_id: Alıcı
+        upper_bound: "Üst sınır"
+        visible: Herkese açık
+      user:
+        current_password: su anki sifre
+        email: e-posta
+        password: sifre
+        password_confirmation: sifre digrulama
+        remember_me: beni hatirla
+  jar:
+    contribute: Katkı Yap
+    contributions: Katkı
+    contributors: Katılımcı
+    created: Kumbara başarıyla kaydedildi.
+    description: Tanim
+    edit: Düzenle
+    guest: Davetli
+    guests: Davetliler
+    new: Basla
+    owned_by: "%{email} tarafından"
+    receiver: Alıcı
+    save: Kaydet
+    total: Toplam katkı
+    updated: Kumbara bilgileri başarıyla güncellendi.
+  payments:
+    failure:
+      header: "Ödeme başarısız."
+      message: "Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz."
+    success:
+      header: "Ödeme başarılı."
+      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan
+        alıcıya aktarılacaktır.
+  pundit:
+    user_not_authorized: Yassak gardesim, hadi..
+  site:
+    about:
+      title: Hakkimizda
+      content: opotto nedir?
+    security:
+      title: Guvenlik
+      content: opotto ne kadar guvenli?
+    contact:
+      title: Iletisim
+      content: opotto nerede?
+    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
+    discover: Kesfet
+    hello: Merhaba
+    introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
+    me: Ben
+    navigation:
+      back: Geri
+    pots: Kumbaralar
+    sign_in_with_google: Google'la giris
+    title: o-Potto
+  user:
+    login: Giriş yap
+    logout: "Çıkış yap"
