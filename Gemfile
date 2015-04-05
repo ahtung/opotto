@@ -45,6 +45,7 @@ group :production do
 end
 
 group :development do
+  gem 'dynamic_sitemaps'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
