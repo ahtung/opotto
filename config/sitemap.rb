@@ -5,9 +5,9 @@ SitemapGenerator::Sitemap.sitemaps_host = "http://#{ENV['FOG_DIRECTORY']}.s3.ama
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 SitemapGenerator::Sitemap.create do
   # Root
-  add '/', change_freq: 'daily', priority: 1.0
+  add '/', changefreq: 'daily', priority: 1.0
 
   # Pages
-  add '/pages/about', change_freq: 'daily', priority: 0.9
-  add '/pages/contact', change_freq: 'daily', priority: 0.9
+  add '/pages/about', changefreq: 'daily', priority: 0.9
+  add '/pages/contact', changefreq: 'daily', priority: 0.9
 end
