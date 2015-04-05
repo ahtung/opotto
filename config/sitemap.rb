@@ -10,4 +10,5 @@ SitemapGenerator::Sitemap.create do
   # Pages
   add '/pages/about', changefreq: 'daily', priority: 0.9
   add '/pages/contact', changefreq: 'daily', priority: 0.9
+  add '/pages/security', changefreq: 'daily', priority: 0.9
 end

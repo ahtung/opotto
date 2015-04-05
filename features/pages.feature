@@ -5,9 +5,13 @@ Feature: Pages
   Should be able to browse pages
 
   Scenario: Browse about page
-    When I visit about page
-    Then page should have translated "site.about_text" content
+    When I visit "about"
+    Then page should have translated "site.about.content" content
 
-  Scenario: Contact
-    When I visit Contact Page
-    Then page should have "Seven things to know about Kickstarter"
+  Scenario: Browse contact page
+    When I visit "contact"
+    Then page should have translated "site.contact.content" content
+
+  Scenario: Browse secuirty page
+    When I visit "security"
+    Then page should have translated "site.security.content" content
