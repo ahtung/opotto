@@ -40,13 +40,13 @@ gem 'cane'
 gem 'factory_girl_rails'
 gem 'roboto'
 gem 'fog'
+gem 'sitemap_generator'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
-  gem 'sitemap_generator'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false

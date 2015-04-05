@@ -7,5 +7,5 @@ export RACK_ENV='test'
 
 git push git@heroku.com:opotto.git master
 heroku run rake db:migrate --app opotto
-bundle exec rake sitemap:refresh
+heroku run rake sitemap:refresh --app opotto
 bundle exec rake smoke:production
