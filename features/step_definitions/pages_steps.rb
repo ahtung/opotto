@@ -1,3 +1,7 @@
+When(/^I visit Security Page$/) do
+  visit('/pages/security')
+end
+
 When(/^I visit about page$/) do
   visit('/pages/about')
 end
