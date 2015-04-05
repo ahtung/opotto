@@ -1,11 +1,18 @@
 # Contribution
 class Contribution < ActiveRecord::Base
+  # Concerns
+  include Taggable
+
+  # Relations
   belongs_to :user
   belongs_to :jar
 
+  # Validations
   validate :amount_inside_the_pot_bounds
 
+  # Callbacks
   after_commit :pay, on: :create
+
   attr_accessor :authorization_url
 
   monetize :amount_cents, numericality: {
