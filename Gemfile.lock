@@ -131,7 +131,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
-    dynamic_sitemaps (2.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.5)
@@ -391,6 +390,8 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sitemap_generator (5.0.5)
+      builder
     skinny (0.2.3)
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
@@ -480,7 +481,6 @@ DEPENDENCIES
   database_cleaner
   date_time_attribute
   devise
-  dynamic_sitemaps
   factory_girl_rails
   faker
   foreman
@@ -520,6 +520,7 @@ DEPENDENCIES
   sidekiq
   simplecov
   sinatra
+  sitemap_generator
   slim-rails
   spring
   test_after_commit
