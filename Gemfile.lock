@@ -6,6 +6,15 @@ GIT
       capybara
       rspec
 
+GIT
+  remote: git://github.com/svenfuchs/rails-i18n.git
+  revision: d73fb5475880e9baf7d43cd799bdf2787c79136b
+  branch: master
+  specs:
+    rails-i18n (4.0.4)
+      i18n (~> 0.6)
+      railties (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -183,9 +192,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.4.1)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -359,7 +365,6 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.6.5)
       sexp_processor (~> 4.1)
-    safe_yaml (1.0.4)
     sass (3.4.13)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -431,9 +436,6 @@ GEM
     timeliness (0.3.7)
     timers (4.0.1)
       hitimes
-    tolk (1.9.1)
-      rails (>= 4.0, < 4.3)
-      safe_yaml (>= 0.8.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -495,7 +497,6 @@ DEPENDENCIES
   http_accept_language
   jbuilder
   jquery-rails
-  kaminari
   launchy
   mailcatcher
   money-rails
@@ -512,6 +513,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-assets-d3
   rails-assets-select2
+  rails-i18n!
   rails_12factor
   rspec-its
   rspec-rails
@@ -527,8 +529,8 @@ DEPENDENCIES
   slim-rails
   spring
   test_after_commit
+  thor
   timecop
-  tolk
   uglifier
   validates_timeliness (~> 3.0)
   web-console (~> 2.0)
