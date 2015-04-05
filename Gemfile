@@ -38,8 +38,9 @@ gem 'browser-timezone-rails'
 gem 'rubocop'
 gem 'cane'
 gem 'factory_girl_rails'
-gem 'localeapp'
 gem 'devise-i18n'
+gem 'tolk'
+gem 'will_paginate'
 
 group :production do
   gem 'rails_12factor'

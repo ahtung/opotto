@@ -155,7 +155,6 @@ GEM
       rails (>= 3.2.0)
     gherkin (2.12.2)
       multi_json (~> 1.3)
-    gli (2.12.3)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     google_contacts_api (0.5.0)
@@ -186,13 +185,6 @@ GEM
     jwt (1.4.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    localeapp (0.9.0)
-      gli
-      i18n
-      json
-      rack
-      rest-client
-      ya2yaml
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -364,6 +356,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.6.5)
       sexp_processor (~> 4.1)
+    safe_yaml (1.0.4)
     sass (3.4.13)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -435,6 +428,9 @@ GEM
     timeliness (0.3.7)
     timers (4.0.1)
       hitimes
+    tolk (1.9.1)
+      rails (>= 4.0, < 4.3)
+      safe_yaml (>= 0.8.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -461,10 +457,10 @@ GEM
     websocket-driver (0.5.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.0.7)
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    ya2yaml (0.31)
     yard (0.8.7.6)
     yard-rspec (0.1)
       yard
@@ -498,7 +494,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   launchy
-  localeapp
   mailcatcher
   money-rails
   newrelic_rpm
@@ -530,8 +525,10 @@ DEPENDENCIES
   spring
   test_after_commit
   timecop
+  tolk
   uglifier
   validates_timeliness (~> 3.0)
   web-console (~> 2.0)
+  will_paginate
   yard
   yard-rspec
