@@ -45,12 +45,16 @@ tr:
     discover: Kesfet
     about:
       title: Hakkimizda
-      content: Hakkimizda...
-    contact: Kahveye gelin
+      content: opotto nedir?
+    secuirty:
+      title: Guvenlik
+      content: opotto ne kadar guvenli?
+    contact:
+      title: Iletisim
+      content: opotto nerede?
     title: o-Potto
     pots: Kumbaralar
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
-    about: opotto hakkinda...
     navigation:
       back: Geri
   jar:

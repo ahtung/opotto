@@ -10,8 +10,8 @@ Feature: Pages
 
   Scenario: Browse contact page
     When I visit "contact"
-    Then page should have translated "site.contact" content
+    Then page should have translated "site.contact.content" content
 
   Scenario: Browse secuirty page
     When I visit "security"
-    Then page should have translated "site.security" content
+    Then page should have translated "site.security.content" content
