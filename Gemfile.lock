@@ -316,6 +316,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    roboto (0.2.0)
+      actionpack (>= 3.0.0)
+      rails (>= 3.1.0)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -503,6 +506,7 @@ DEPENDENCIES
   rails-assets-d3
   rails-assets-select2
   rails_12factor
+  roboto
   rspec-its
   rspec-rails
   rspec-sidekiq
