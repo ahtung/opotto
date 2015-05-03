@@ -17,7 +17,6 @@ Bundler.require(*Rails.groups)
 module Pot
   # Application
   class Application < Rails::Application
-    config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-59771384-2'
     config.i18n.available_locales = [:tr, :en]
     config.generators.helper = false
     config.generators.stylesheets = false
