@@ -1,3 +1,19 @@
+When(/^create a jar$/) do
+  dummy_jar = build(:jar)
+  click_on t('jar.new')
+
+  fill_in 'jar_name', dummy_jar.name
+  # fill_in 'jar_name', dummy_jar.name
+  # fill_in 'jar_name', dummy_jar.name
+  fill_in 'jar_description', dummy_jar.description
+  fill_in 'jar_upper_bound', dummy_jar.upper_bound
+  # fill_in 'jar_name', dummy_jar.name
+  # fill_in 'jar_name', dummy_jar.name
+  # fill_in 'jar_name', dummy_jar.name
+
+  click_on t('jar.save')
+end
+
 Then(/^I should see user's contributed jars$/) do
   user = User.last
   within '.contributions' do

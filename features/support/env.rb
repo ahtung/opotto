@@ -2,7 +2,10 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'cucumber/rails'
 
+include FactoryGirl::Syntax::Methods
 include Warden::Test::Helpers
+include AbstractController::Translation
+
 Warden.test_mode!
 
 ActionController::Base.allow_rescue = false
