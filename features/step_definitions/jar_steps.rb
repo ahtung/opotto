@@ -42,4 +42,3 @@ Then(/^I should see user's invited jars$/) do
     expect(page).to have_selector '.jar', count: user.invited_jars.count
   end
 end
-

@@ -19,9 +19,9 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 def select2(value, options)
-  raise "Must pass a hash containing 'from'" if not options.is_a?(Hash) or not options.has_key?(:from)
+  fail "Must pass a hash containing 'from'" if !options.is_a?(Hash) || !options.key?(:from)
   label = first('label', text: options[:from])
-  raise "No label that contains '#{ label }' found" unless label
+  fail "No label that contains '#{ label }' found" unless label
   if options[:search]
     # Open the search field
     label.find(:xpath, '..').find('.select2-container .select2-search-field').click
@@ -30,18 +30,18 @@ def select2(value, options)
     # FIXME wait for the results from the server
     sleep 1
     # Click on the first match
-    find(:xpath, "//body").find('.select2-drop li').click
+    find(:xpath, '//body').find('.select2-drop li').click
   elsif options[:create]
     # Open the search field
     label.find(:xpath, '..').find('.select2-container a').click
     # Enter a value
-    find(:xpath, "//body").find('.select2-drop-active.select2-with-searchbox input').set value
+    find(:xpath, '//body').find('.select2-drop-active.select2-with-searchbox input').set value
     # FIXME wait for the results from the server
     sleep 1
     # Click on the first match
-    find(:xpath, "//body").find('.select2-drop li').click
+    find(:xpath, '//body').find('.select2-drop li').click
   elsif options[:multi]
-    # FIXME Use capybara methods instead of JS
+    # FIXME: Use capybara methods instead of JS
     page.execute_script <<-JS
       $('label:contains("#{ options[:from] }")').parent().find('input.select2-offscreen').select2('data', { text: '#{ value }' }, true);
     JS
@@ -55,7 +55,7 @@ end
 def fill_in_jar_form(jar)
   fill_in 'jar_name', with: jar.name
   select2 'onurkucukkece@gmail.com', from: t('jar.receiver')
-  select2 'us-personal@gmail.com', {multi: true, from: t('activerecord.attributes.jar.guest_ids')}
+  select2 'us-personal@gmail.com', multi: true, from: t('activerecord.attributes.jar.guest_ids')
   fill_in 'jar_description', with: jar.description
   fill_in 'jar_end_at_date', with: DateTime.now + 10.days
   fill_in 'jar_end_at_time', with: DateTime.now + 10.days
