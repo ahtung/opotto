@@ -10,7 +10,12 @@ When(/^I sign in as a user with Google$/) do
 end
 
 When(/^I sign in with "(.*?)"$/) do |email|
-  create(:user, :with_invitations, :with_contributions, :with_jars, email: email)
+  dunya = create(:user, :with_invitations, :with_contributions, :with_jars, email: email)
+  onur = create(:user, :onur, email: 'onurkucukkece@gmail.com', password: '123QwETR')
+  us = create(:user, :with_paypal, password: '123QwETR')
+  onur.friends << [dunya, us]
+  dunya.friends << [onur, us]
+
   user = User.where(email: email).first
   login_as(user, scope: :user)
   visit authenticated_root_path

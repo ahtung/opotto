@@ -4,6 +4,7 @@ Feature: Jar CRUD
   A User
   Should be able to CRUD jars
 
+  @focus
   Scenario: Create Jar
     When I sign in with "dunyakirkali@gmail.com"
      And create a jar
