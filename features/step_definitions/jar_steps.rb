@@ -8,14 +8,13 @@ end
 
 When(/^read a jar$/) do
   user = User.where(email: 'dunyakirkali@gmail.com').first
-  click_on 'Stats'
-  click_on user.jars.first.name
+  visit user_path(user)
 end
 
 When(/^update a jar$/) do
   user = User.where(email: 'dunyakirkali@gmail.com').first
   dummy_jar = build(:jar)
-  click_on 'Stats'
+  visit user_path(user)
   click_on user.jars.first.name
   fill_in_jar_form(dummy_jar)
   click_on t('jar.save')
