@@ -8,3 +8,8 @@ When(/^I sign in as a user with Google$/) do
   FactoryGirl.create(:user, :with_contributions, email: 'test@xxx.com')
   visit '/users/auth/google_oauth2'
 end
+
+When(/^I sign in with "(.*?)"$/) do |email|
+  user = User.where(email: email).first
+  login_as(user, scope: :user)
+end

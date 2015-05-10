@@ -2,6 +2,9 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'cucumber/rails'
 
+include Warden::Test::Helpers
+Warden.test_mode!
+
 ActionController::Base.allow_rescue = false
 
 begin
