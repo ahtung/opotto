@@ -1,4 +1,4 @@
-@javascript @omniauth_test @ignore
+@javascript @omniauth_test
 Feature: Me Page
   In order to have insight on usage
   A User
