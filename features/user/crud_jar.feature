@@ -11,7 +11,7 @@ Feature: Jar CRUD
   Scenario: Read Jar
     When I sign in with "dunyakirkali@gmail.com"
      And read a jar
-    Then page should have translated "jar.edit" content
+    Then page should have translated "jar.ontribute" content
   Scenario: Update Jar
     When I sign in with "dunyakirkali@gmail.com"
      And update a jar
