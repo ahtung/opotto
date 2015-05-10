@@ -16,8 +16,6 @@ require 'database_cleaner'
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
 
-Warden.test_mode!
-
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -76,5 +74,9 @@ RSpec.configure do |config|
 
   config.after(:each) do
     I18n.locale = :en
+  end
+
+  config.before(:suite) do
+    Warden.test_mode!
   end
 end

@@ -16,7 +16,7 @@ AllCops:
 Style/LineLength:
   Max: 150
 Metrics/AbcSize:
-  Max: 15
+  Max: 19
 Metrics/BlockNesting:
   Max: 3
 Metrics/ClassLength:

@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/goodwill/capybara-select2.git
-  revision: c0826f33707b85fd39a838c6909ee12d0bff64a1
-  specs:
-    capybara-select2 (1.0.1)
-      capybara
-      rspec
-
-GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: d73fb5475880e9baf7d43cd799bdf2787c79136b
   branch: master
@@ -598,7 +590,6 @@ DEPENDENCIES
   byebug
   cane
   capybara
-  capybara-select2!
   codeclimate-test-reporter
   coffee-rails
   cucumber-rails

@@ -73,7 +73,6 @@ end
 group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
-  gem 'capybara-select2', github: 'goodwill/capybara-select2'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq'
