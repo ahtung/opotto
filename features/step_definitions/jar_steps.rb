@@ -16,6 +16,7 @@ When(/^update a jar$/) do
   dummy_jar = build(:jar)
   visit user_path(user)
   click_on user.jars.first.name
+  click_on t('jar.edit')
   fill_in_jar_form(dummy_jar)
   click_on t('jar.save')
 end
