@@ -10,7 +10,7 @@ When(/^I sign in as a user with Google$/) do
 end
 
 When(/^I sign in with "(.*?)"$/) do |email|
-  create(:user, :with_invitations, :with_contributions, email: email)
+  create(:user, :with_invitations, :with_contributions, :with_jars, email: email)
   user = User.where(email: email).first
   login_as(user, scope: :user)
   visit authenticated_root_path

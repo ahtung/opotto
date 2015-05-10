@@ -5,6 +5,8 @@ require 'cucumber/rails'
 include FactoryGirl::Syntax::Methods
 include Warden::Test::Helpers
 include AbstractController::Translation
+include Capybara::Select2
+include Capybara::Selectors::TagSelector
 
 Warden.test_mode!
 

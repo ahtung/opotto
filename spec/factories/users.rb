@@ -5,12 +5,12 @@ FactoryGirl.define do
     email { Faker::Internet.email }
 
     trait :with_jars do
-      jars { create_list(:jar, 5) }
+      jars { create_list(:jar, 3) }
     end
 
     trait :with_invitations do
       after :create do |instance|
-        instance.invitations = create_list(:invitation, 10)
+        instance.invitations = create_list(:invitation, 3)
       end
     end
 
@@ -24,7 +24,7 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price)
+        instance.contributions = create_list(:contribution, 3, amount: Faker::Commerce.price)
       end
     end
 
