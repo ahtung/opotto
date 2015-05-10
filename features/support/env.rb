@@ -16,9 +16,9 @@ Before('@omniauth_test') do
   OmniAuth.config.test_mode = true
   default = {
     provider: :google_oauth2,
-    uuid: "1234",
+    uuid: '1234',
     info: {
-      email: "foobar@example.com",
+      email: 'foobar@example.com'
     }
   }
   OmniAuth.config.add_mock(:twitter, default)
