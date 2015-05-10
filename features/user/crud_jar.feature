@@ -16,7 +16,3 @@ Feature: Jar CRUD
     When I sign in with "dunyakirkali@gmail.com"
      And update a jar
     Then page should have translated "jar.updated" content
-  Scenario: Destroy Jar
-    When I sign in with "dunyakirkali@gmail.com"
-     And destroy a jar
-    Then page should have translated "jar.deleted" content

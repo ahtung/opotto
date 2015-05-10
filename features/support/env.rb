@@ -51,3 +51,14 @@ def select2(value, options)
     find(:xpath, '//body').find('.select2-drop li', text: value).click
   end
 end
+
+def fill_in_jar_form(jar)
+  fill_in 'jar_name', with: dummy_jar.name
+  select2 'onurkucukkece@gmail.com', from: t('jar.receiver')
+  select2 'us-personal@gmail.com', {multi: true, from: t('activerecord.attributes.jar.guest_ids')}
+  fill_in 'jar_description', with: dummy_jar.description
+  fill_in 'jar_end_at_date', with: DateTime.now + 10.days
+  fill_in 'jar_end_at_time', with: DateTime.now + 10.days
+  check 'jar_visible'
+  fill_in 'jar_upper_bound', with: dummy_jar.upper_bound
+end
