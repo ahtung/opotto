@@ -14,19 +14,3 @@ rescue NameError
 end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
-Before('@omniauth_test') do
-  OmniAuth.config.test_mode = true
-  default = {
-    provider: :google_oauth2,
-    uuid: '1234',
-    info: {
-      email: 'foobar@example.com'
-    }
-  }
-  OmniAuth.config.add_mock(:twitter, default)
-end
-
-After('@omniauth_test') do
-  OmniAuth.config.test_mode = false
-end
