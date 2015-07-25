@@ -1,16 +1,14 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
-
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.3'
 gem 'foundation-rails', '~> 5.5.0'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
 gem 'uglifier'
 gem 'coffee-rails'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.4'
 gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
@@ -20,8 +18,6 @@ gem 'newrelic_rpm'                      # NewRelic
 gem 'puma'
 gem 'money-rails'
 gem 'google_contacts_api'
-gem 'rails-assets-select2'              # Select2.js
-gem 'rails-assets-d3'                   # D3.js
 gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'             # Google Analytics
 gem 'sidekiq'                           # Background Jobs
@@ -80,4 +76,9 @@ group :test do
   gem 'timecop'
   gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-select2'              # Select2.js
+  gem 'rails-assets-d3'                   # D3.js
 end
