@@ -1,6 +1,6 @@
 # pot
 
-[![Circle CI](https://circleci.com/gh/dunyakirkali/pot.png?circle-token=f174742eaf65e547a254e8a3df6d511704ac8ab4)](https://circleci.com/gh/dunyakirkali/pot)
+[![Circle CI](https://circleci.com/gh/dunyakirkali/opotto.svg?style=svg)](https://circleci.com/gh/dunyakirkali/opotto)
 
 ## Development
 
@@ -43,4 +43,3 @@ CircleCI will do ``` circle.yml ``` and eventually deploy to heroku.
 ## Mails
 
 visit ``` localhost:1080 ```
-
