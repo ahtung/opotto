@@ -41,7 +41,6 @@ gem 'sitemap_generator'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 gem 'i18n-tasks', '~> 0.8.2'
 
-
 group :production do
   gem 'rails_12factor'
 end
