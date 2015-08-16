@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  after_commit :schedule_import_contacts
+  after_commit :schedule_import_contacts, on: :update
+  after_commit :schedule_check_paypal, on: :update
 
   # returns user's handle
   def handle
@@ -64,21 +65,22 @@ class User < ActiveRecord::Base
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     conact_details = get_contact_details(google_contacts_user)
-    ActiveRecord::Base.transaction do
-      begin
-        conact_details.each do |conact_detail|
-          contacts << User.where(email: conact_detail[:email]).first_or_create.update(conact_detail)
-        end
-        update_attribute(:last_contact_sync_at, DateTime.now)
-      rescue
-        next
-      end
+    conact_details.each do |conact_detail|
+      friend = User.where(email: conact_detail[:email]).first_or_create
+      friend.update(conact_detail)
+      friends << friend unless friends.include?(friend)
     end
+    update_attribute(:last_contact_sync_at, Time.zone.now)
+  end
+
+  def check_paypal
+    return unless email
+    update_attribute(:paypal_member, User.paypal_account?(email))
   end
 
   def get_contact_details(google_contacts_user)
     contact_info = google_contacts_user.contacts.map do |contact|
-      { email: contact.primary_email, name: contact.full_name, paypal_member: User.paypal_account?(contact.primary_email) }
+      { email: contact.primary_email, name: contact.full_name }
     end
     contact_info.reject { |contact| contact[:email].nil? }
   end
@@ -103,5 +105,9 @@ class User < ActiveRecord::Base
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_in(10.seconds, id) if last_contact_sync_at.nil?
+  end
+
+  def schedule_check_paypal
+    PayPalChecker.perform_in(10.seconds, id) if paypal_member.nil?
   end
 end

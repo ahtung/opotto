@@ -47,7 +47,7 @@ FactoryGirl.define do
     end
 
     trait :visible do
-      visible  { true }
+      visible { true }
     end
 
     trait :with_approved_paypal_user do

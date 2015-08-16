@@ -19,7 +19,7 @@ FactoryGirl.define do
     end
 
     trait :registered do
-      last_sign_in_at { Faker::Date.between(2.days.ago, Date.today) }
+      last_sign_in_at { Faker::Date.between(2.days.ago, Time.zone.now) }
     end
 
     trait :with_contributions do
