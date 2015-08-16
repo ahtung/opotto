@@ -13,6 +13,9 @@ class Contribution < ActiveRecord::Base
   # Attributes
   attr_accessor :authorization_url
 
+  # Scopes
+  scope :complete, -> { with_state(:completed) }
+
   # States
   state_machine initial: :initiated do
     event :success do
