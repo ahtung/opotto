@@ -8,7 +8,7 @@ RSpec.describe Contribution, type: :model do
 
   # States
   it { should have_states :initiated, :failed, :completed }
-  it { should handle_events :success, :fail, when: :initiated }
+  it { should handle_events :success, :error, when: :initiated }
   it { should handle_events :retry, when: :failed }
 
   describe '#' do
@@ -28,28 +28,32 @@ RSpec.describe Contribution, type: :model do
       end
 
       it 'should return user email if it didn\'t set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_noname)
+        contribution = FactoryGirl.create(:contribution, :with_user_noname, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.email)
       end
 
       it 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_with_name)
+        contribution = FactoryGirl.create(:contribution, :with_user_with_name, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
     end
 
-    describe 'complete' do
-      let(:contribution) { create(:contribution) }
+    describe 'success' do
+      let(:contribution) { create(:contribution, state: :initiated) }
 
       it 'updates status column to completed if payment completes' do
         contribution.payment_key = 'PK-ASD123ADASDAS'
-        contribution.complete
-        expect(contribution.status).to eq('completed')
+        contribution.success!
+        expect(contribution.state).to eq('completed')
       end
+    end
 
-      xit 'updates status column to failed if payment fails' do
-        contribution.complete
-        expect(contribution.status).to eq('failed')
+    describe 'fail' do
+      let(:contribution) { create(:contribution, state: :initiated) }
+
+      it 'updates status column to failed if payment fails' do
+        contribution.error!
+        expect(contribution.state).to eq('failed')
       end
     end
 

@@ -22,7 +22,7 @@ class Contribution < ActiveRecord::Base
       transition initiated: :completed
     end
 
-    event :fail do
+    event :error do
       transition initiated: :failed
     end
 
