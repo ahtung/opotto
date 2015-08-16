@@ -8,4 +8,4 @@ us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 onur.friends << [dunya, us]
 dunya.friends << [onur, us]
 
-jar = FactoryGirl.create(:jar, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
+FactoryGirl.create_list(:jar, 5, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
