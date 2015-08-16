@@ -36,7 +36,7 @@ gem 'cane'
 gem 'factory_girl_rails'
 gem 'devise-i18n'
 gem 'roboto'
-gem 'fog'
+gem 'fog-aws'
 gem 'sitemap_generator'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 gem 'i18n-tasks', '~> 0.8.2'
