@@ -44,12 +44,4 @@ class Contribution < ActiveRecord::Base
       user.handle
     end
   end
-
-  # class methods
-  class << self
-    # scope for completed contibutions
-    def completed
-      where(status: 'completed')
-    end
-  end
 end
