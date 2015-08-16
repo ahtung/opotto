@@ -5,3 +5,5 @@ us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 
 onur.friends << [dunya, us]
 dunya.friends << [onur, us]
+
+jar = FactoryGirl.create(:jar, :with_contributions, owner: onur, guests: [dunya], visible: true)
