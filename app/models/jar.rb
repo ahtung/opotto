@@ -42,12 +42,12 @@ class Jar < ActiveRecord::Base
   # payout and notify guests
   def payout
     # TODO
-    update_attribute(:paid_at, Date.today)
+    update_attribute(:paid_at, Time.zone.now)
     notify_payout
   end
 
   def open?
-    end_at >= Date.today
+    end_at >= Time.zone.now
   end
 
   # Class methods
@@ -59,12 +59,12 @@ class Jar < ActiveRecord::Base
 
     # scope for all open jars
     def open
-      where('end_at >= ?', Date.today)
+      where('end_at >= ?', Time.zone.now)
     end
 
     # scope for all closed jars
     def closed
-      where('end_at < ?', Date.today)
+      where('end_at < ?', Time.zone.now)
     end
 
     # scope for all ended jars

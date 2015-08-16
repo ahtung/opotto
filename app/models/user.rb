@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
       friend.update(conact_detail)
       friends << friend unless friends.include?(friend)
     end
-    update_attribute(:last_contact_sync_at, DateTime.now)
+    update_attribute(:last_contact_sync_at, Time.zone.now)
   end
 
   def check_paypal
