@@ -9,7 +9,6 @@ RSpec.describe 'Factory Girl' do
           expect(factory).to be_valid, -> { factory.errors.full_messages.join("\n") }
         end
       end
-
       # FactoryGirl.factories[factory_name].definition.defined_traits.map(&:name).each do |trait_name|
       #   context "with trait #{trait_name}" do
       #     it 'is valid' do
@@ -20,7 +19,6 @@ RSpec.describe 'Factory Girl' do
       #     end
       #   end
       # end
-
     end
   end
 end
