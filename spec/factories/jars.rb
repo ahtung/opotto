@@ -7,7 +7,9 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price, jar_id: instance.id, state: 'completed')
+        10.times do
+          instance.contributions << create(:contribution, amount: Faker::Commerce.price, jar_id: instance.id, state: 'completed')
+        end
       end
     end
 

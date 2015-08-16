@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816154436) do
+ActiveRecord::Schema.define(version: 20150816162125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20150816154436) do
     t.string   "amount_currency", default: "USD", null: false
     t.boolean  "anonymous"
     t.string   "payment_key"
-    t.string   "status"
     t.string   "state"
   end
 

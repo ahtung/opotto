@@ -19,9 +19,9 @@ module Payable
   # completes the paypal payment
   def complete
     if complete_payment
-      update_column(:status, 'completed')
+      success!
     else
-      update_column(:status, 'failed')
+      fail!
     end
   end
 
