@@ -7,7 +7,7 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price, jar_id: instance.id)
+        instance.contributions = create_list(:contribution, 10, amount: Faker::Commerce.price, jar_id: instance.id, state: 'completed')
       end
     end
 
@@ -51,7 +51,7 @@ FactoryGirl.define do
     end
 
     trait :with_approved_paypal_user do
-      receiver { create(:user, :dunya) }
+      receiver { create(:user, :with_paypal) }
     end
   end
 end
