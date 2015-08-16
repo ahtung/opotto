@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328181915) do
+ActiveRecord::Schema.define(version: 20150816154436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150328181915) do
     t.boolean  "anonymous"
     t.string   "payment_key"
     t.string   "status"
+    t.string   "state"
   end
 
   add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree

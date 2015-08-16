@@ -13,6 +13,21 @@ class Contribution < ActiveRecord::Base
   # Attributes
   attr_accessor :authorization_url
 
+  # States
+  state_machine initial: :initiated do
+    event :success do
+      transition initiated: :completed
+    end
+
+    event :fail do
+      transition initiated: :failed
+    end
+
+    event :retry do
+      transition failed: :initiated
+    end
+  end
+
   monetize :amount_cents, numericality: {
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 10_00

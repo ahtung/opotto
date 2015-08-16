@@ -530,6 +530,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
     state_machine (1.2.0)
+    state_machine_rspec (0.2.0)
+      activesupport
+      rspec (>= 3.0.0.rc1)
+      state_machine (>= 1.1.0)
     temple (0.7.6)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
@@ -646,6 +650,7 @@ DEPENDENCIES
   slim-rails
   spring
   state_machine (~> 1.2.0)
+  state_machine_rspec
   test_after_commit
   timecop
   uglifier

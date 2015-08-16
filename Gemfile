@@ -78,6 +78,7 @@ group :test do
   gem 'timecop'
   gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
+  gem 'state_machine_rspec'
 end
 
 source 'https://rails-assets.org' do
