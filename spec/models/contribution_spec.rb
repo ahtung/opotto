@@ -7,9 +7,9 @@ RSpec.describe Contribution, type: :model do
   it { should monetize(:amount_cents) }
 
   # States
-  fit { should have_states :initiated, :failed, :completed }
-  fit { should handle_events :success, :fail, when: :initiated }
-  fit { should handle_events :retry, when: :failed }
+  it { should have_states :initiated, :failed, :completed }
+  it { should handle_events :success, :fail, when: :initiated }
+  it { should handle_events :retry, when: :failed }
 
   describe '#' do
     describe 'payment_time' do
