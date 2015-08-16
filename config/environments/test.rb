@@ -49,3 +49,4 @@ Rails.application.configure do
     Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   end
 end
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
