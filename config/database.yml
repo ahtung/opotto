@@ -11,9 +11,5 @@ test: &test
   <<: *default
   database: jars_test
 
-production:
-  <<: *default
-  database: jars_production
-
 cucumber:
   <<: *test
