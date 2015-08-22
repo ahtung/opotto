@@ -26,10 +26,6 @@ module Payable
     end
   end
 
-  # Refunds payment
-  def refund_payment
-  end
-
   # returns the payment time
   def payment_time
     jar.end_at - Time.zone.now

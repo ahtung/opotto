@@ -13,6 +13,9 @@ RSpec.describe Contribution, type: :model do
   it { should handle_events :retry, when: :schedule_failed }
   it { should handle_events :retry, when: :failed }
 
+  # Concerns
+  it_behaves_like 'payable'
+
   describe '#' do
     describe 'payment_time' do
       it 'should return time dif to jar ent_at' do
@@ -40,7 +43,7 @@ RSpec.describe Contribution, type: :model do
       end
     end
 
-    # TODO (Onur) Refactor to concern spec
+    # TODO: (onurkucukkece) Refactor to concern spec
     describe 'success' do
       describe 'when initiated' do
         let(:contribution) { create(:contribution, state: :initiated) }
@@ -75,7 +78,7 @@ RSpec.describe Contribution, type: :model do
     describe 'pay' do
       let(:contribution) { create(:contribution) }
 
-      xit 'updates payment_key column' do
+      it 'updates payment_key column' do
         contribution.pay
         expect(contribution.payment_key).not_to eq(nil)
       end

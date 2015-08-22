@@ -1,6 +1,6 @@
 # JarMailer
 class JarMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: 'info@opotto.com'
   layout 'mailer'
 
   def scheduled_email(contribution)
