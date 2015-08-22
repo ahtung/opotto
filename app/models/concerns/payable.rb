@@ -9,7 +9,6 @@ module Payable
 
   # start the paypal payment
   def pay
-    binding.pry
     response = initiate_payment
     return unless response
     update_payment_details(response)
