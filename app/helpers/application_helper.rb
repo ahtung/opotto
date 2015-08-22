@@ -1,3 +1,4 @@
+# Application Helper
 module ApplicationHelper
   def phone_number_link(text)
     sets_of_numbers = text.scan(/[0-9]+/)
