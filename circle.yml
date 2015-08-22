@@ -1,6 +1,4 @@
 machine:
-  timezone:
-    Amsterdam
   environment:
     SPAMMERS: floating-share-buttons.com,get-free-social-traffic.com,site6.free-floating-buttons.com,site1.free-floating-buttons.com,site2.free-floating-buttons.com,site8.free-floating-buttons.com,www.event-tracking.com,free-social-buttons.com,www.Get-Free-Traffic-Now.com,chinese-amezon.com,e-buyeasy.com,erot.co,hongfanji.com,how-to-earn-quick-money.com,site10.free-floating-buttons.com,site5.free-floating-buttons.com,forum.topic62554071.darodar.com
 test:
