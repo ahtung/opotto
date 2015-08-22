@@ -16,4 +16,11 @@ class JarMailer < ActionMailer::Base
     @jar = contribution.jar
     mail(subject: 'You have sucessfully contributed!', to: @user.email)
   end
+
+  def failed_payment(contribution)
+    @contribution = contribution
+    @user = @contribution.user
+    @jar = contribution.jar
+    mail(subject: 'Your payment has failed', to: @user.email)
+  end
 end
