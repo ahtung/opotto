@@ -4,7 +4,7 @@ RSpec.describe PaymentsWorker, type: :worker do
   it { expect(PaymentsWorker).to be_processed_in :default }
   it { expect(PaymentsWorker).to be_retryable false }
 
-  xit 'should trigger import_contacts on user' do
+  xit 'should trigger complete_payment on user' do
     contribution = create(:contribution)
     Sidekiq::Testing.inline! do
       expect(contribution).to receive(:complete_payment)
