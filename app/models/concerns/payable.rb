@@ -29,8 +29,6 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
-  private
-
   # Completes payment (pay secondary receiver)
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options do |response|
@@ -41,6 +39,8 @@ module Payable
       end
     end
   end
+
+  private
 
   # Initiates a payment
   def initiate_payment
