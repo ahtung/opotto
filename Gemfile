@@ -44,6 +44,7 @@ gem 'net-ssh', '~> 2.9.2'
 gem 'state_machines-activerecord','~> 0.3.0'
 gem 'mapbox-rails'
 gem 'faker'
+gem 'rack-attack'
 
 group :production do
   gem 'rails_12factor'
