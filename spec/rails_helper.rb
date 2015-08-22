@@ -12,6 +12,7 @@ require 'money-rails/test_helpers'
 require 'sidekiq/testing'
 require 'pundit/rspec'
 require 'database_cleaner'
+require 'webmock/rspec'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist
@@ -50,7 +51,18 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before(:each) do
-    Sidekiq::Worker.clear_all
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay').
+      to_return(status: 200, body: {}.to_json, headers: {})
+
+    stub_request(:post, "https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails").
+      to_return(status: 200, body: '', headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus').
+      to_return(status: 200, body: { accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus').
+      with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}' ).
+      to_return(status: 200, body: { accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
   end
 
   config.before(:suite) do
