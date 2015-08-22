@@ -50,6 +50,8 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
+  WebMock.disable_net_connect!(allow_localhost: true)
+
   config.before(:each) do
     stub_request(:post, 'https://accounts.google.com/o/oauth2/token')
       .to_return(status: 200, body: {
