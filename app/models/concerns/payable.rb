@@ -61,6 +61,7 @@ module Payable
 
   def parse_payment_info(response)
     if response.success?
+      self.user = User.find_by(email: response.sender.email)
       Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
     else
       Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"
