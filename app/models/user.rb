@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   # returns jars that the user have not created
   def discoverable_jars
-    Jar.visible - jars - contributed_jars - invited_jars + contributed_jars.visible
+    Jar.visible - jars - invited_jars
   end
 
   # returns jars that the user have not yet contributed to
@@ -92,12 +92,12 @@ class User < ActiveRecord::Base
       matchCriteria: 'NONE'
     )
     get_verified_status_response = api.get_verified_status(get_verified_status)
-    if get_verified_status_response.success?
+    if get_verified_status_response.accountStatus == 'VERIFIED'
       Rails.logger.info get_verified_status_response.accountStatus
     else
       Rails.logger.error get_verified_status_response.error
     end
-    get_verified_status_response.success?
+    get_verified_status_response.accountStatus == 'VERIFIED'
   end
 
   private
