@@ -15,15 +15,6 @@ module Payable
     payment_info
   end
 
-  # completes the paypal payment
-  def complete
-    if complete_payment
-      success!
-    else
-      fail!
-    end
-  end
-
   # returns the payment time
   def payment_time
     jar.end_at - Time.zone.now
