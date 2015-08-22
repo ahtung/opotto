@@ -13,6 +13,7 @@ require 'sidekiq/testing'
 require 'pundit/rspec'
 require 'database_cleaner'
 require 'webmock/rspec'
+require 'money-rails/test_helpers'
 
 # Enable Capyara
 Capybara.javascript_driver = :poltergeist

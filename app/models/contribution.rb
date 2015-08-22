@@ -41,10 +41,7 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  monetize :amount, numericality: {
-    greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 1_000
-  }
+  monetize :amount
 
   # Returns the proper user name
   def owner_name

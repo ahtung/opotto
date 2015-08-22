@@ -19,9 +19,7 @@ class Jar < ActiveRecord::Base
 
   date_time_attribute :end_at
 
-  monetize :upper_bound, allow_nil: true, numericality: {
-    greater_than_or_equal_to: 1
-  }
+  monetize :upper_bound, allow_nil: true
 
   # retuns the fullness value
   def fullness

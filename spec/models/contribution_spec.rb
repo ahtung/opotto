@@ -4,7 +4,9 @@ RSpec.describe Contribution, type: :model do
   # Relations
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
-  it { should monetize(:amount_cents) }
+
+  # Attributes
+  it { is_expected.to monetize(:amount) }
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }

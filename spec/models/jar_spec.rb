@@ -11,6 +11,9 @@ describe Jar do
     it { should have_many(:guests).through(:invitations).class_name('User') }
   end
 
+  # Attributes
+  it { is_expected.to monetize(:upper_bound).allow_nil }
+
   # Validations
   describe 'validations' do
     it { should validate_presence_of(:end_at) }
