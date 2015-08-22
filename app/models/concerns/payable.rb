@@ -24,8 +24,10 @@ module Payable
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options do |response|
       if response.success?
+        success! if scheduled?
         Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
       else
+        error! if scheduled?
         Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
       end
     end
@@ -59,6 +61,7 @@ module Payable
 
   def parse_payment_info(response)
     if response.success?
+      self.user = User.find_by(email: response.sender.email)
       Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
     else
       Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"

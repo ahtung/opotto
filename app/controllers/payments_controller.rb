@@ -18,6 +18,7 @@ class PaymentsController < ApplicationController
 
   private
 
+  # Set contribution for assigned actions
   def set_contribution
     @contribution = Contribution.find(params[:contribution])
   end
