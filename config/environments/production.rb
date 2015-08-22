@@ -96,4 +96,6 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.force_ssl = true
+
+  config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-62554071-1'
 end
