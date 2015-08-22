@@ -12,7 +12,7 @@ describe Jar do
   end
 
   # Attributes
-  xit { is_expected.to monetize(:upper_bound).allow_nil }
+  it { is_expected.to monetize(:upper_bound).allow_nil }
 
   # Validations
   describe 'validations' do
