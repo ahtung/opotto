@@ -42,6 +42,7 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 gem 'i18n-tasks', '~> 0.8.2'
 gem 'net-ssh', '~> 2.9.2'
 gem 'state_machines-activerecord','~> 0.3.0'
+gem 'mapbox-rails'
 
 group :production do
   gem 'rails_12factor'
