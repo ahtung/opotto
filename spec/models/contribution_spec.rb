@@ -12,7 +12,7 @@ RSpec.describe Contribution, type: :model do
   it { should handle_events :retry, when: :failed }
 
   # Concerns
-  it_behaves_like "payable"
+  it_behaves_like 'payable'
 
   describe '#' do
     describe 'payment_time' do

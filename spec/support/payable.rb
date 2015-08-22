@@ -1,13 +1,10 @@
 shared_examples 'payable' do
-  describe "#" do
-    describe "pay" do
-
+  describe '#' do
+    describe 'pay' do
     end
-    describe "complete" do
-
+    describe 'complete' do
     end
-    describe "refund" do
-
+    describe 'refund' do
     end
   end
 end
