@@ -20,6 +20,7 @@ class Contribution < ActiveRecord::Base
   state_machine initial: :initiated do
     after_transition initiated: :scheduled do |contribution, _|
       JarMailer.scheduled_email(contribution).deliver_later
+      PaymentsWorker.perform_in(@contribution.payment_time, @contribution.id)
     end
     after_transition scheduled: :completed do |contribution, _|
       JarMailer.completed_email(contribution).deliver_later

@@ -13,8 +13,6 @@ module Payable
     return unless response
     update_payment_details(response)
     payment_info
-    success!
-    PaymentsWorker.perform_in(payment_time, id)
   end
 
   # completes the paypal payment
@@ -90,8 +88,8 @@ module Payable
       action_type: 'PAY_PRIMARY',
       currency_code: amount.currency.iso_code,
       fees_payer: ENV['PAYPAL_FEESPAYER'],
-      return_url: Rails.application.routes.url_helpers.payments_success_url,
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url,
+      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
       receivers: payment_receivers
     }
   end
