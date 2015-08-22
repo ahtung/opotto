@@ -79,6 +79,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
   gem 'state_machine_rspec'
+  gem 'webmock'
 end
 
 source 'https://rails-assets.org' do
