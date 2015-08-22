@@ -24,8 +24,10 @@ module Payable
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options do |response|
       if response.success?
+        success! if scheduled?
         Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
       else
+        error! if scheduled?
         Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
       end
     end
