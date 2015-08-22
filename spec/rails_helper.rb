@@ -51,6 +51,14 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before(:each) do
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
+      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"actionType\":\"PAY\"}")
+      .to_return(status: 200, body: { paymentExecStatus: 'COMPLETED' }.to_json, headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
+      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"actionType\":\"PAY\"}")
+      .to_return(status: 200, body: { paymentExecStatus: 'INCOMPLETE' }.to_json, headers: {})
+
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
       .to_return(status: 200, body: { payKey: '' }.to_json, headers: {})
 
