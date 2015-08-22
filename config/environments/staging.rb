@@ -50,6 +50,6 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'staging.opotto.com' }
 
-  config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-59771384-2'
+  config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-62554071-2'
 end
 Rails.application.routes.default_url_options[:host] = 'staging.opotto.com'
