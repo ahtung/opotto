@@ -28,7 +28,7 @@ BrowserTZone.setCookie = ->
 
 $ ->
   if $('#map').length > 0
-    map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([37.9, -77], 5)
+    map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([41.046952, 28.973507], 12)
   $(document).foundation()
   $(".jar-guests").select2()
   BrowserTZone.setCookie()
