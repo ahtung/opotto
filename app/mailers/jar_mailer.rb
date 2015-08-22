@@ -1,4 +1,5 @@
-class JarMailer < ApplicationMailer
+# JarMailer
+class JarMailer < ActionMailer::Base
   default from: "from@example.com"
   layout 'mailer'
 
