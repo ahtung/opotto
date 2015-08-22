@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
       authorize_url: '/o/oauth2/auth',
       token_url: '/o/oauth2/token'
     )
+    binding.pry
     OAuth2::AccessToken.from_hash(client, refresh_token: refresh_token).refresh!
   end
 
