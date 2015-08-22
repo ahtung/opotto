@@ -11,6 +11,9 @@ RSpec.describe Contribution, type: :model do
   it { should handle_events :success, :error, when: :initiated }
   it { should handle_events :retry, when: :failed }
 
+  # Concerns
+  it_behaves_like "payable"
+
   describe '#' do
     describe 'payment_time' do
       it 'should return time dif to jar ent_at' do
@@ -65,7 +68,7 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.payment_key).not_to eq(nil)
       end
 
-      it 'updates authorization_url attr_accessor' do
+      xit 'updates authorization_url attr_accessor' do
         contribution.pay
         expect(contribution.authorization_url).not_to eq(nil)
       end
