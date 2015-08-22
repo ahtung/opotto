@@ -25,6 +25,9 @@ class Contribution < ActiveRecord::Base
     after_transition scheduled: :completed do |contribution, _|
       JarMailer.completed_email(contribution).deliver_later
     end
+    after_transition scheduled: :failed do |contribution, _|
+      JarMailer.failed_payment_email(contribution).deliver_later
+    end
     event :success do
       transition scheduled: :completed, initiated: :scheduled
     end
