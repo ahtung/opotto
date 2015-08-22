@@ -4,7 +4,7 @@ RSpec.describe PayPalChecker, type: :worker do
   it { expect(PayPalChecker).to be_processed_in :default }
   it { expect(PayPalChecker).to be_retryable false }
 
-  xit 'should trigger import_contacts on user' do
+  xit 'should trigger check_paypal on user' do
     user = create(:user)
     Sidekiq::Testing.inline! do
       expect(user).to receive(:check_paypal)

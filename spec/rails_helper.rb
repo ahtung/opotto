@@ -56,7 +56,7 @@ RSpec.configure do |config|
         access_token: 'ya29.1wG-l4jjtF6OOEmCf7RB6w07UheAcEkdEj2fJ52tOZzK_kDd8J400PCBmWU7BzgqUQqa',
         token_type: 'Bearer',
         expires_in: 3600,
-        refresh_token: "1/L7S-j2AOqJLQE3kYAsiFKVtykz3sAYhx2XOiuCjTce9IgOrJDtdun6zK6XiATCKT"
+        refresh_token: '1/L7S-j2AOqJLQE3kYAsiFKVtykz3sAYhx2XOiuCjTce9IgOrJDtdun6zK6XiATCKT'
       }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')

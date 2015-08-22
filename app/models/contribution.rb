@@ -30,7 +30,7 @@ class Contribution < ActiveRecord::Base
     end
 
     event :error do
-      transition initiated: :failed,  scheduled: :schedule_failed
+      transition initiated: :failed, scheduled: :schedule_failed
     end
 
     event :retry do
