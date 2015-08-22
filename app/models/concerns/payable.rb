@@ -13,8 +13,6 @@ module Payable
     return unless response
     update_payment_details(response)
     payment_info
-    success!
-    PaymentsWorker.perform_in(payment_time, id)
   end
 
   # completes the paypal payment
