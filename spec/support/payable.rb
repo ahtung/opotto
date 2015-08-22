@@ -1,5 +1,5 @@
 shared_examples 'payable' do
-  let(:contribution) { create(:contribution) }
+  let(:contribution) { create(:contribution, state: :scheduled) }
 
   describe '#' do
     describe 'pay' do
@@ -18,7 +18,7 @@ shared_examples 'payable' do
         expect(contribution).to receive(:success!)
         contribution.complete_payment
       end
-      xit 'should call fail! unless complete_payment' do
+      it 'should call fail! unless complete_payment' do
         expect(contribution).to receive(:error!)
         contribution.complete_payment
       end
