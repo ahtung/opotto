@@ -51,20 +51,6 @@ describe Jar do
 
   # Instenace methods
   describe '#' do
-    describe 'payout' do
-      let(:jar) { build(:jar) }
-
-      it 'should set the paid_at value to today' do
-        jar.payout
-        jar.reload
-        expect(jar.paid_at).not_to be(nil)
-      end
-
-      it 'should send an email' do
-        expect { jar.payout }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      end
-    end
-
     describe 'open?' do
       it 'returns true if end_at in future' do
         jar = build(:jar, end_at: 10.days.from_now)

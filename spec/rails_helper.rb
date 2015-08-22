@@ -50,6 +50,8 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.order = 'random'
 
+  WebMock.disable_net_connect!(allow_localhost: true)
+
   config.before(:each) do
     stub_request(:post, 'https://accounts.google.com/o/oauth2/token')
       .to_return(status: 200, body: {
@@ -60,8 +62,12 @@ RSpec.configure do |config|
       }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"payKey\":\"\",\"actionType\":\"PAY\"}")
+      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"payKey\":\"GOOD_KEY\",\"actionType\":\"PAY\"}")
       .to_return(status: 200, body: { paymentExecStatus: 'COMPLETED' }.to_json, headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
+      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"payKey\":\"BAD_KEY\",\"actionType\":\"PAY\"}")
+      .to_return(status: 200, body: { paymentExecStatus: 'ERROR' }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
       .to_return(status: 200, body: { payKey: '' }.to_json, headers: {})

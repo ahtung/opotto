@@ -43,13 +43,6 @@ class Jar < ActiveRecord::Base
     guests.count
   end
 
-  # payout and notify guests
-  def payout
-    # TODO
-    update_attribute(:paid_at, Time.zone.now)
-    notify_payout
-  end
-
   def open?
     end_at >= Time.zone.now
   end
@@ -92,10 +85,6 @@ class Jar < ActiveRecord::Base
 
   private
 
-  # email guests about payout
-  def notify_payout
-    UserMailer.payout_email(owner, self).deliver_now
-  end
   # Converts key's each character to ascii, creates an array with 6 points
   def convert_to_ascii(key)
     coords = []
