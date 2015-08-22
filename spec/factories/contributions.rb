@@ -6,7 +6,7 @@ FactoryGirl.define do
     jar
     user
     anonymous { [true, false].sample }
-    state 'completed'
+    state 'initiated'
 
     trait :anonymous do
       anonymous { true }
