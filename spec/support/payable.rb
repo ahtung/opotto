@@ -15,10 +15,12 @@ shared_examples 'payable' do
 
     describe 'complete_payment' do
       xit 'should call success! if complete_payment' do
+        contribution.update_attribute(:payment_key, 'GOOD_KEY')
         expect(contribution).to receive(:success!)
         contribution.complete_payment
       end
       it 'should call fail! unless complete_payment' do
+        contribution.update_attribute(:payment_key, 'BAD_KEY')
         expect(contribution).to receive(:error!)
         contribution.complete_payment
       end
