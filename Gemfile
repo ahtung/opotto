@@ -16,7 +16,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'newrelic_rpm'                      # NewRelic
 gem 'puma'
-gem 'money-rails', github: 'ahtung/money-rails'
+gem 'money-rails'
 gem 'google_contacts_api'
 gem 'omniauth-google-oauth2'
 gem 'rack-google-analytics'             # Google Analytics
