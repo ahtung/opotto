@@ -25,18 +25,15 @@ class Contribution < ActiveRecord::Base
       JarMailer.completed_email(contribution).deliver_later
     end
     event :success do
-      transition scheduled: :completed, if: ->(contribution) { contribution.scheduled? }
-      transition initiated: :scheduled, if: ->(contribution) { contribution.initiated? }
+      transition scheduled: :completed, initiated: :scheduled
     end
 
     event :error do
-      transition initiated: :failed
-      transition scheduled: :failed
+      transition initiated: :failed,  scheduled: :failed
     end
 
     event :retry do
-      transition schedule_failed: :initiated
-      transition failed: :scheduled
+      transition schedule_failed: :initiated, failed: :scheduled
     end
   end
 
