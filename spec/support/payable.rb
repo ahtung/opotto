@@ -13,14 +13,14 @@ shared_examples 'payable' do
       end
     end
 
-    describe 'complete' do
+    describe 'complete_payment' do
       it 'should call success! if complete_payment' do
         expect(contribution).to receive(:success!)
-        contribution.complete
+        contribution.complete_payment
       end
       xit 'should call fail! unless complete_payment' do
         expect(contribution).to receive(:fail!)
-        contribution.complete
+        contribution.complete_payment
       end
     end
   end
