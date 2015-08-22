@@ -49,7 +49,6 @@ RSpec.describe Contribution, type: :model do
         let(:contribution) { create(:contribution, state: :initiated) }
 
         it 'updates status column to scheduled if payment scheduled' do
-          contribution.payment_key = 'PK-ASD123ADASDAS'
           contribution.success!
           expect(contribution.state).to eq('scheduled')
         end
@@ -59,19 +58,29 @@ RSpec.describe Contribution, type: :model do
         let(:contribution) { create(:contribution, state: :scheduled) }
 
         it 'updates status column to completed if payment completes' do
-          contribution.payment_key = 'PK-ASD123ADASDAS'
           contribution.success!
           expect(contribution.state).to eq('completed')
         end
       end
     end
 
-    describe 'fail' do
-      let(:contribution) { create(:contribution, state: :initiated) }
+    describe 'error' do
+      describe 'when initiated' do
+        let(:contribution) { create(:contribution, state: :initiated) }
 
-      it 'updates status column to failed if payment fails' do
-        contribution.error!
-        expect(contribution.state).to eq('failed')
+        it 'updates status column to failed if payment fails' do
+          contribution.error!
+          expect(contribution.state).to eq('failed')
+        end
+      end
+
+      describe 'when scheduled' do
+        let(:contribution) { create(:contribution, state: :scheduled) }
+
+        it 'updates status column to schedule_failed if payment fails' do
+          contribution.error!
+          expect(contribution.state).to eq('schedule_failed')
+        end
       end
     end
 
