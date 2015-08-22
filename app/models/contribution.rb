@@ -41,7 +41,7 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  monetize :amount, with_model_currency: :currency, numericality: {
+  monetize :amount_cents, numericality: {
     less_than_or_equal_to: 1000,
     greater_than_or_equal_to: 0
   }
