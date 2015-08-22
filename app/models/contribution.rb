@@ -41,9 +41,9 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  monetize :amount_cents, numericality: {
+  monetize :amount, numericality: {
     greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 10_00
+    less_than_or_equal_to: 1_000
   }
 
   # Returns the proper user name
