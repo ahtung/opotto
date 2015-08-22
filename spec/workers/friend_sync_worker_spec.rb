@@ -4,11 +4,11 @@ RSpec.describe FriendSyncWorker, type: :worker do
   it { expect(FriendSyncWorker).to be_processed_in :default }
   it { expect(FriendSyncWorker).to be_retryable false }
 
-  xit 'should trigger import_ontacts on user' do
+  xit 'should trigger import_contacts on user' do
     user = create(:user)
     Sidekiq::Testing.inline! do
-      FriendSyncWorker.perform_async(user.id)
       expect(user).to receive(:import_contacts)
+      FriendSyncWorker.perform_async(user.id)
     end
   end
 

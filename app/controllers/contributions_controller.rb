@@ -15,6 +15,7 @@ class ContributionsController < ApplicationController
   # POST /contributions
   def create
     @contribution = Contribution.new(contribution_params)
+    @contribution.user = current_user
     if @contribution.save
       redirect_to(
         @contribution.authorization_url,

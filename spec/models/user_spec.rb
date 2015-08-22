@@ -12,7 +12,7 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
-    describe '#handle' do
+    describe 'handle' do
       it 'returns name if user has name' do
         user = create(:user, name: 'DUN')
         expect(user.handle).to eq(user.name)
@@ -24,9 +24,18 @@ describe User do
       end
     end
 
-    it 'uncontributed_jars' do
-      user = create(:user, :with_jars)
-      expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
+    describe 'uncontributed_jars' do
+      it 'should return user.jars - user.contributed_jars' do
+        user = create(:user, :with_jars)
+        expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
+      end
+    end
+
+    describe 'iscoverable_jars' do
+      it 'should return user.jars - user.contributed_jars' do
+        user = create(:user, :with_jars)
+        expect(user.discoverable_jars).to eq(Jar.visible - user.jars - user.invited_jars)
+      end
     end
   end
 
@@ -74,6 +83,11 @@ describe User do
 
     it 'should return nil if no refresh_token' do
       expect(user.access_token).to be_nil
+    end
+
+    xit 'should return access_token if refresh_token' do
+      user.refresh_token = 'TOKEN'
+      expect(user.access_token).not_to be_nil
     end
   end
 

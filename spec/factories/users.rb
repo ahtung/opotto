@@ -32,15 +32,5 @@ FactoryGirl.define do
       email 'us-personal@gmail.com'
       paypal_member true
     end
-
-    trait :dunya do
-      email 'dunyakirkali@gmail.com'
-      paypal_member true
-    end
-
-    trait :onur do
-      email 'onurkucukkece@gmail.com'
-      paypal_member true
-    end
   end
 end

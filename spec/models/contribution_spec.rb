@@ -1,9 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Contribution, type: :model do
+  # Relations
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
-  it { should monetize(:amount_cents) }
+
+  # Attributes
+  it { is_expected.to monetize(:amount) }
+
+  # States
+  it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
+  it { should handle_events :success, :error, when: :initiated }
+  it { should handle_events :success, :error, when: :scheduled }
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should handle_events :retry, when: :failed }
+
+  # Concerns
+  it_behaves_like 'payable'
 
   describe '#' do
     describe 'payment_time' do
@@ -22,35 +35,61 @@ RSpec.describe Contribution, type: :model do
       end
 
       it 'should return user email if it didn\'t set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_noname)
+        contribution = FactoryGirl.create(:contribution, :with_user_noname, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.email)
       end
 
       it 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_with_name)
+        contribution = FactoryGirl.create(:contribution, :with_user_with_name, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
     end
 
-    describe 'complete' do
-      let(:contribution) { create(:contribution) }
+    # TODO: (onurkucukkece) Refactor to concern spec
+    describe 'success' do
+      describe 'when initiated' do
+        let(:contribution) { create(:contribution, state: :initiated) }
 
-      it 'updates status column to completed if payment completes' do
-        contribution.payment_key = 'PK-ASD123ADASDAS'
-        contribution.complete
-        expect(contribution.status).to eq('completed')
+        it 'updates status column to scheduled if payment scheduled' do
+          contribution.success!
+          expect(contribution.state).to eq('scheduled')
+        end
       end
 
-      xit 'updates status column to failed if payment fails' do
-        contribution.complete
-        expect(contribution.status).to eq('failed')
+      describe 'when scheduled' do
+        let(:contribution) { create(:contribution, state: :scheduled) }
+
+        it 'updates status column to completed if payment completes' do
+          contribution.success!
+          expect(contribution.state).to eq('completed')
+        end
+      end
+    end
+
+    describe 'error' do
+      describe 'when initiated' do
+        let(:contribution) { create(:contribution, state: :initiated) }
+
+        it 'updates status column to failed if payment fails' do
+          contribution.error!
+          expect(contribution.state).to eq('failed')
+        end
+      end
+
+      describe 'when scheduled' do
+        let(:contribution) { create(:contribution, state: :scheduled) }
+
+        it 'updates status column to schedule_failed if payment fails' do
+          contribution.error!
+          expect(contribution.state).to eq('schedule_failed')
+        end
       end
     end
 
     describe 'pay' do
       let(:contribution) { create(:contribution) }
 
-      xit 'updates payment_key column' do
+      it 'updates payment_key column' do
         contribution.pay
         expect(contribution.payment_key).not_to eq(nil)
       end
@@ -72,14 +111,20 @@ RSpec.describe Contribution, type: :model do
       end
 
       it 'should return true if amount is below upper bound' do
-        jar = create(:jar, upper_bound: 1000)
-        contribution = build(:contribution, jar: jar, amount: 900)
+        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
+        contribution = build(:contribution, jar: jar, amount: Money.new(900, 'USD'))
         expect(contribution.valid?).to eq true
       end
 
-      it 'should return false if amount is above bound' do
+      xit 'should return fale if amount is above upper bound' do
+        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
+        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
+        expect(contribution.valid?).to eq false
+      end
+
+      xit 'should return false if amount is above bound' do
         jar = create(:jar)
-        contribution = build(:contribution, jar: jar, amount: 1100)
+        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end
     end

@@ -5,7 +5,7 @@ en:
     description: Description
     save: Save
     guest: Guests
-    contributors: Contributos
+    contributors: Contributors
     contributions: Contributions
     new: New
     contribute: Contribute
@@ -38,7 +38,7 @@ en:
       content: how secure is opotto?
     contact:
       title: Contact
-      content: where secure is opotto?
+      content: where is opotto?
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover
     hello: Hello

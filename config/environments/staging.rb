@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'https://opotto-staging.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://staging.opotto.com' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -48,6 +48,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'opotto-staging.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'staging.opotto.com' }
+
+  config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-62554071-2'
 end
-Rails.application.routes.default_url_options[:host] = 'opotto-staging.herokuapp.com'
+Rails.application.routes.default_url_options[:host] = 'staging.opotto.com'

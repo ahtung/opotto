@@ -4,7 +4,7 @@ module Payable
 
   included do
     # Callbacks
-    after_commit :pay, on: :create
+    after_create :pay
   end
 
   # start the paypal payment
@@ -13,20 +13,6 @@ module Payable
     return unless response
     update_payment_details(response)
     payment_info
-    PaymentsWorker.perform_in(payment_time, id)
-  end
-
-  # completes the paypal payment
-  def complete
-    if complete_payment
-      update_column(:status, 'completed')
-    else
-      update_column(:status, 'failed')
-    end
-  end
-
-  # Refunds payment
-  def refund_payment
   end
 
   # returns the payment time
@@ -34,18 +20,20 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
-  private
-
   # Completes payment (pay secondary receiver)
   def complete_payment
     api.execute :ExecutePayment, secondary_payment_options do |response|
       if response.success?
+        success! if scheduled?
         Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
       else
+        error! if scheduled?
         Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
       end
     end
   end
+
+  private
 
   # Initiates a payment
   def initiate_payment
@@ -94,8 +82,8 @@ module Payable
       action_type: 'PAY_PRIMARY',
       currency_code: amount.currency.iso_code,
       fees_payer: ENV['PAYPAL_FEESPAYER'],
-      return_url: Rails.application.routes.url_helpers.payments_success_url,
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url,
+      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
       receivers: payment_receivers
     }
   end
