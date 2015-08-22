@@ -16,4 +16,4 @@
 h2 = t('contribution.previous')
 ul
   - current_user.contributions.where(jar: jar).each do |contribution|
-    li= humanized_money_with_symbol(contribution.amount)
+    li= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"

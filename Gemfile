@@ -41,6 +41,8 @@ gem 'sitemap_generator'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 gem 'i18n-tasks', '~> 0.8.2'
 gem 'net-ssh', '~> 2.9.2'
+gem 'state_machines-activerecord','~> 0.3.0'
+gem 'mapbox-rails'
 
 group :production do
   gem 'rails_12factor'
@@ -65,11 +67,11 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'pry'
+  gem 'pry-remote'
 end
 
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails', require: false
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq'
@@ -77,6 +79,8 @@ group :test do
   gem 'timecop'
   gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
+  gem 'state_machine_rspec'
+  gem 'webmock'
 end
 
 source 'https://rails-assets.org' do

@@ -19,6 +19,8 @@ class Jar < ActiveRecord::Base
 
   date_time_attribute :end_at
 
+  monetize :upper_bound, allow_nil: true, with_model_currency: :currency
+
   # retuns the fullness value
   def fullness
     total_contribution.to_f / 1000
@@ -26,7 +28,7 @@ class Jar < ActiveRecord::Base
 
   # returns the total contribution
   def total_contribution
-    contributions.completed.map(&:amount).inject { |a, e| a + e } || 0
+    contributions.complete.map(&:amount).inject { |a, e| a + e } || 0
   end
 
   # returns the contributor count
@@ -37,13 +39,6 @@ class Jar < ActiveRecord::Base
   # returns the guest count
   def total_guests
     guests.count
-  end
-
-  # payout and notify guests
-  def payout
-    # TODO
-    update_attribute(:paid_at, Time.zone.now)
-    notify_payout
   end
 
   def open?
@@ -88,10 +83,6 @@ class Jar < ActiveRecord::Base
 
   private
 
-  # email guests about payout
-  def notify_payout
-    UserMailer.payout_email(owner, self).deliver_now
-  end
   # Converts key's each character to ascii, creates an array with 6 points
   def convert_to_ascii(key)
     coords = []

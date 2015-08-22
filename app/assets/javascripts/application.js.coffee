@@ -20,12 +20,15 @@
 #= require jquery.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
+#= require mapbox
 
 window.BrowserTZone ||= {}
 BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
+  if $('#map').length > 0
+    map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([37.9, -77], 5)
   $(document).foundation()
   $(".jar-guests").select2()
   BrowserTZone.setCookie()

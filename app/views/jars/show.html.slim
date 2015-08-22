@@ -12,7 +12,7 @@ p
 
 p
   strong = "#{t('jar.contributions')}:"
-  = @jar.contributions.count
+  = @jar.contributions.complete.count
 
 p
   strong = "#{t('jar.guests')}:"
@@ -24,7 +24,7 @@ p
   strong = "#{t('jar.contributors')}:"
   = @jar.total_contributors
   ul
-    - @jar.contributions.completed.each do |contribution|
+    - @jar.contributions.complete.each do |contribution|
       li = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"
