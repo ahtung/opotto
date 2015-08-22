@@ -43,7 +43,7 @@ RSpec.describe Contribution, type: :model do
       end
     end
 
-    # TODO (Onur) Refactor to concern spec
+    # TODO: (onurkucukkece) Refactor to concern spec
     describe 'success' do
       describe 'when initiated' do
         let(:contribution) { create(:contribution, state: :initiated) }
