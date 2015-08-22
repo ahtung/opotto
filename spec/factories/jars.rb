@@ -26,7 +26,7 @@ FactoryGirl.define do
     end
 
     trait :with_upper_bound do
-      upper_bound { Faker::Number.number(2) }
+      upper_bound { Faker::Commerce.price }
     end
 
     trait :public do

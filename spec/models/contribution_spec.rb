@@ -6,7 +6,7 @@ RSpec.describe Contribution, type: :model do
   it { should belong_to(:jar) }
 
   # Attributes
-  xit { is_expected.to monetize(:amount) }
+  it { is_expected.to monetize(:amount) }
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
@@ -111,20 +111,20 @@ RSpec.describe Contribution, type: :model do
       end
 
       it 'should return true if amount is below upper bound' do
-        jar = create(:jar, upper_bound: 1000)
+        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
         contribution = build(:contribution, jar: jar, amount: Money.new(900, 'USD'))
         expect(contribution.valid?).to eq true
       end
 
       xit 'should return fale if amount is above upper bound' do
-        jar = create(:jar, upper_bound: 1000)
-        contribution = build(:contribution, jar: jar, amount: Money.new(1100, 'USD'))
+        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
+        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end
 
       xit 'should return false if amount is above bound' do
         jar = create(:jar)
-        contribution = build(:contribution, jar: jar, amount: Money.new(1100, 'USD'))
+        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end
     end
