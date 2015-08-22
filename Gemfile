@@ -43,6 +43,7 @@ gem 'i18n-tasks', '~> 0.8.2'
 gem 'net-ssh', '~> 2.9.2'
 gem 'state_machines-activerecord','~> 0.3.0'
 gem 'mapbox-rails'
+gem 'faker'
 
 group :production do
   gem 'rails_12factor'
@@ -61,7 +62,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
-  gem 'faker'
   gem 'shoulda'
   gem 'launchy'
   gem 'database_cleaner'
