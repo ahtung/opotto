@@ -7,8 +7,10 @@ RSpec.describe Contribution, type: :model do
   it { should monetize(:amount_cents) }
 
   # States
-  it { should have_states :initiated, :failed, :completed }
+  it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   it { should handle_events :success, :error, when: :initiated }
+  it { should handle_events :success, :error, when: :scheduled }
+  it { should handle_events :retry, when: :schedule_failed }
   it { should handle_events :retry, when: :failed }
 
   describe '#' do
@@ -38,13 +40,26 @@ RSpec.describe Contribution, type: :model do
       end
     end
 
+    # TODO (Onur) Refactor to concern spec
     describe 'success' do
-      let(:contribution) { create(:contribution, state: :initiated) }
+      describe 'when initiated' do
+        let(:contribution) { create(:contribution, state: :initiated) }
 
-      it 'updates status column to completed if payment completes' do
-        contribution.payment_key = 'PK-ASD123ADASDAS'
-        contribution.success!
-        expect(contribution.state).to eq('completed')
+        it 'updates status column to scheduled if payment scheduled' do
+          contribution.payment_key = 'PK-ASD123ADASDAS'
+          contribution.success!
+          expect(contribution.state).to eq('scheduled')
+        end
+      end
+
+      describe 'when scheduled' do
+        let(:contribution) { create(:contribution, state: :scheduled) }
+
+        it 'updates status column to completed if payment completes' do
+          contribution.payment_key = 'PK-ASD123ADASDAS'
+          contribution.success!
+          expect(contribution.state).to eq('completed')
+        end
       end
     end
 
