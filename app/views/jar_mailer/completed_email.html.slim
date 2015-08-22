@@ -1,0 +1,5 @@
+h1= "Hello #{@receiver.name ? @receiver.name : @receiver.email}"
+
+p
+  = "You have successfully contributed to "
+  = link_to @jar.name, root_url
