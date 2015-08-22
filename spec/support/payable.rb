@@ -4,11 +4,11 @@ shared_examples 'payable' do
   describe '#' do
     describe 'pay' do
     end
-    
+
     describe 'payment_time' do
       it 'should return time left to payment' do
         Timecop.freeze(Time.zone.now) do
-          expect(contribution.payment_time).to eq(864000.0)
+          expect(contribution.payment_time).to eq(864_000.0)
         end
       end
     end

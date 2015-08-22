@@ -84,6 +84,11 @@ describe User do
     it 'should return nil if no refresh_token' do
       expect(user.access_token).to be_nil
     end
+
+    xit 'should return access_token if refresh_token' do
+      user.refresh_token = 'TOKEN'
+      expect(user.access_token).not_to be_nil
+    end
   end
 
   describe '#import_contacts' do
