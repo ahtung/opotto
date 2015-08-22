@@ -1,6 +1,17 @@
 = content_for :title, "opotto - #{ t('site.contact.title') }"
-= t('site.contact.content')
+h2= t('site.contact.content')
 
+h3 Visit us
 #map.pencil
 
+h3 Mail us
+= mail_to "info@opotto.com", "email"
+
+h3 Call us
 = phone_number_link('90 312 284 31 48')
+
+h3 Like us
+= 'TODO'
+
+h3 Tip us
+= 'TODO'
