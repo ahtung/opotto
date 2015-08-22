@@ -66,6 +66,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'pry'
+  gem 'pry-remote'
 end
 
 group :test do

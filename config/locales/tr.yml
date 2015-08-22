@@ -28,6 +28,8 @@ tr:
             amount:
               amount_out_of_bounds: belirlenen üst limiti aşıyor.
               greater_than_or_equal_to: oyle olmaz o
+            state:
+              invalid_transition: Geçersiz tranzisyon
         jar:
           attributes:
             end_at:

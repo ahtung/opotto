@@ -4,7 +4,7 @@ module Payable
 
   included do
     # Callbacks
-    after_commit :pay, on: :create
+    after_create :pay
   end
 
   # start the paypal payment
