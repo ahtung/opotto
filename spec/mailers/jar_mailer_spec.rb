@@ -33,6 +33,10 @@ RSpec.describe JarMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{contribution.user.name}")
     end
 
+    it 'should have link to jar' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
+    end
+
     it 'should have a header' do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('h1')
     end
@@ -76,6 +80,10 @@ RSpec.describe JarMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('h1')
     end
 
+    it 'should have link to jar' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
+    end
+
     after(:each) do
       ActionMailer::Base.deliveries.clear
     end
@@ -93,6 +101,10 @@ RSpec.describe JarMailer, type: :mailer do
 
     it 'renders the receiver email' do
       ActionMailer::Base.deliveries.first.to match_array contribution.user.email
+    end
+
+    it 'should have link to jar' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
     end
 
     it 'should set the subject to the correct subject' do
