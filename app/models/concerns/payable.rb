@@ -80,7 +80,7 @@ module Payable
   def payment_options
     {
       action_type: 'PAY_PRIMARY',
-      currency_code: currency || 'EUR',
+      currency_code: amount.currency.iso_code,
       fees_payer: ENV['PAYPAL_FEESPAYER'],
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
