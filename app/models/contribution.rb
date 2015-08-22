@@ -18,6 +18,9 @@ class Contribution < ActiveRecord::Base
 
   # States
   state_machine initial: :initiated do
+    after_transition :initiated => :completed do |contribution, transition|
+      JarMailer.completed_email(user, self).deliver_later
+    end
     event :success do
       transition initiated: :completed
     end
