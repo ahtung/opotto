@@ -63,12 +63,12 @@ RSpec.describe Contribution, type: :model do
     describe 'pay' do
       let(:contribution) { create(:contribution) }
 
-      xit 'updates payment_key column' do
+      it 'updates payment_key column' do
         contribution.pay
         expect(contribution.payment_key).not_to eq(nil)
       end
 
-      xit 'updates authorization_url attr_accessor' do
+      it 'updates authorization_url attr_accessor' do
         contribution.pay
         expect(contribution.authorization_url).not_to eq(nil)
       end
