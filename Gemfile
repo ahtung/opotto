@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.2.3'
-gem 'foundation-rails', '~> 5.5.0'
+gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
 gem 'uglifier'
