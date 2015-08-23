@@ -18,7 +18,7 @@ require 'webmock/rspec'
 Capybara.register_driver :poltergeist do |app|
   options = {
     js_errors: false,
-    debug: true,
+    debug: true
   }
   Capybara::Poltergeist::Driver.new(app, options)
 end
