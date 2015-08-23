@@ -15,6 +15,13 @@ require 'database_cleaner'
 require 'webmock/rspec'
 
 # Enable Capyara
+Capybara.register_driver :poltergeist do |app|
+  options = {
+    js_errors: false,
+    debug: true,
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
