@@ -13,6 +13,9 @@ html lang='en'
   body
     = render 'navigation'
     = render 'notices', flash: flash
-    == yield
+    .container
+      .row
+        .col.s12
+          == yield
     = render 'footer'
     = javascript_include_tag 'application'
