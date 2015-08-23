@@ -14,14 +14,14 @@ p
   ul.collection.with-header
     li.collection-header
       h4= "#{@jar.guests.count} #{t('jar.guests')}"
-      - @jar.guests.each do |guest|
-        li.collection-item= guest.name ? guest.name : guest.email
+    - @jar.guests.each do |guest|
+      li.collection-item= guest.name ? guest.name : guest.email
 p
   ul.collection.with-header
     li.collection-header
       h4= "#{@jar.total_contributors} #{t('jar.contributors')}"
-      - @jar.contributions.complete.each do |contribution|
-        li.collection-item = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
+    - @jar.contributions.complete.each do |contribution|
+      li.collection-item = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
@@ -39,4 +39,4 @@ p
         = link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
       .col.s12.m6.offset-m6
         - if policy(@jar).update?
-          li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
+          = link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
