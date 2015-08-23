@@ -38,6 +38,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include MoneyRails::TestHelpers
   config.include Warden::Test::Helpers
+  config.include Devise::TestHelpers, type: :controller
   config.include AbstractController::Translation
   config.include ActionView::Helpers::NumberHelper
   config.include ActionView::Helpers::DateHelper
