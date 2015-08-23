@@ -11,7 +11,6 @@ RSpec.describe JarsController, type: :controller do
   it { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:create) }
   xit { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:update) }
 
-
   describe 'GET show' do
     let(:jar) { create(:jar, owner: user) }
 

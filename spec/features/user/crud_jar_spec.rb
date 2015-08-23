@@ -18,11 +18,11 @@ RSpec.describe 'User', type: :feature, js: true do
     click_on 'Get going'
     fill_in 'jar_name', with: jar.name
 
-    first(".receiver-select .select-dropdown").click
-    first(".receiver-select .select-dropdown").first('li').click
+    first('.receiver-select .select-dropdown').click
+    first('.receiver-select .select-dropdown').first('li').click
 
-    first(".guests-select .select-dropdown").click
-    first(".guests-select .select-dropdown").first('li').click
+    first('.guests-select .select-dropdown').click
+    first('.guests-select .select-dropdown').first('li').click
 
     fill_in 'jar_description', with: jar.description
     fill_in 'jar_end_at', with: Time.zone.now + 10.days
