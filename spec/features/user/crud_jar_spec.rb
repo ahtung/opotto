@@ -14,7 +14,7 @@ RSpec.describe 'User', type: :feature, js: true do
     click_on 'Log in'
   end
 
-  fit 'should be able to create a jar' do
+  xit 'should be able to create a jar' do
     click_on 'Get going'
     fill_in 'jar_name', with: jar.name
 
