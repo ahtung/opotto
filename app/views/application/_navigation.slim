@@ -1,21 +1,12 @@
-nav.top-bar data-topbar=true
-  ul.title-area
-    li.name
-      h1= link_to t('site.title'), root_path
-    li.toggle-topbar.menu-icon
-      a href="#"
-        span Menu
-  section.top-bar-section
-    ul.right
-      li.has-dropdown
-        a href="#"= t('site.me')
-        ul.dropdown
-          - if user_signed_in?
-            li= link_to(t('user.logout'), destroy_user_session_path, method: :delete)
-            li= link_to(t('site.stats'), user_path(current_user))
-          - else
-            li= link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2)
-    - if user_signed_in?
-      ul.left
-        li= link_to t('site.discover'), discover_path
+nav
+  .nav-wrapper
+    = link_to t('site.title'), root_path, class: 'brand-logo'
+    ul#nav-mobile.right.hide-on-med-and-down
+      - if user_signed_in?
+        li= link_to t('site.discover'), authenticated_root_path
+        li= link_to t('site.me'), user_path(current_user)
         li= link_to t('jar.new'), new_jar_path
+      - if user_signed_in?
+        li= link_to(t('user.logout'), destroy_user_session_path, method: :delete)
+      - else
+        li= link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2)

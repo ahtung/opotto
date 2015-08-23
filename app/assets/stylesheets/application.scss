@@ -11,19 +11,14 @@
  * file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
  *= require select2
  *= require jars
  *= require banner
  *= require mapbox
- *= require map 
+ *= require map
+ *= require footer
  */
 
-
-#top {
-	background-color:red;
-}
-
-#bottom {
-	background-color:green;
-}
+@import 'materialize/components/color';
+// $primary-color: color('blue', 'lighten-2') !default;
+@import 'materialize';

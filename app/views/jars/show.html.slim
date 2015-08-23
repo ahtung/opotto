@@ -11,21 +11,17 @@ p
   = @jar.description
 
 p
-  strong = "#{t('jar.contributions')}:"
-  = @jar.contributions.complete.count
-
-p
-  strong = "#{t('jar.guests')}:"
-  ul
+  ul.collection.with-header
+    li.collection-header
+      h4= "#{@jar.guests.count} #{t('jar.guests')}"
     - @jar.guests.each do |guest|
-      li= guest.name ? guest.name : guest.email
-
+      li.collection-item= guest.name ? guest.name : guest.email
 p
-  strong = "#{t('jar.contributors')}:"
-  = @jar.total_contributors
-  ul
+  ul.collection.with-header
+    li.collection-header
+      h4= "#{@jar.total_contributors} #{t('jar.contributors')}"
     - @jar.contributions.complete.each do |contribution|
-      li = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
+      li.collection-item = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"
   = number_to_currency(@jar.total_contribution)
@@ -34,8 +30,13 @@ p
   strong = "#{t('helpers.label.jar.ends_at')}:"
   = @jar.end_at.strftime('%d %b %y')
 
-ul.button-group.round
-  li= link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'button'
-  li= link_to t('site.navigation.back'), root_path, class: 'button'
-  - if policy(@jar).update?
-    li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'button'
+.row
+  .col.s12.m6.offset-m6
+    .row
+      .col.s6
+        = link_to t('site.navigation.back'), root_path, class: 'btn'
+      .col.s6
+        = link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
+      .col.s12.m6.offset-m6
+        - if policy(@jar).update?
+          = link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'

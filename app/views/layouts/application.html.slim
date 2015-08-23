@@ -1,23 +1,21 @@
 doctype html
-html lang="en"
+html lang='en'
   head
-    meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta charset='utf-8'
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
 
     title == content_for?(:title) ? yield(:title) : 'opotto'
 
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "vendor/modernizr"
+    = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
+    = stylesheet_link_tag 'application'
     = csrf_meta_tag
 
   body
     = render 'navigation'
-    .row
-      columns.small-12.small-centered.medium-8
-        = render 'notices', flash: flash
-    .row
-      .columns.small-12.small-8.small-centered
-        == yield
+    = render 'notices', flash: flash
+    .container
+      .row
+        .col.s12
+          == yield
     = render 'footer'
-
-    = javascript_include_tag "application"
+    = javascript_include_tag 'application'

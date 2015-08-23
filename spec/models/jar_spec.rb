@@ -14,6 +14,10 @@ describe Jar do
   # Attributes
   it { is_expected.to monetize(:upper_bound).allow_nil }
 
+  # DB
+  it { should have_db_index(:owner_id) }
+  it { should have_db_index(:receiver_id) }
+
   # Validations
   describe 'validations' do
     it { should validate_presence_of(:end_at) }
