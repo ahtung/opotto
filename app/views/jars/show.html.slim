@@ -30,8 +30,13 @@ p
   strong = "#{t('helpers.label.jar.ends_at')}:"
   = @jar.end_at.strftime('%d %b %y')
 
-ul.button-group.round
-  li= link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
-  li= link_to t('site.navigation.back'), root_path, class: 'btn'
-  - if policy(@jar).update?
-    li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
+.row
+  .col.s12.m6.offset-m6
+    .row
+      .col.s6
+        = link_to t('site.navigation.back'), root_path, class: 'btn'
+      .col.s6
+        = link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
+      .col.s12.m6.offset-m6
+        - if policy(@jar).update?
+          li= link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
