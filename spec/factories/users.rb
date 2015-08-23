@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
+    password { Faker::Number.number(8) }
 
     trait :with_jars do
       jars { create_list(:jar, 3) }

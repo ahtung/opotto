@@ -1,18 +1,8 @@
 .col.s12
-  - unless @user.invited_jars.empty?
-    ul.collection.with-header
-      li.collection-header
-        h4= t('site.pots')
-      = render collection: @user.invited_jars, partial: 'jars/jar_li', as: :jar
-.col.s12
   - unless @user.jars.empty?
     ul.collection.with-header
       li.collection-header
         h4 Created
       = render collection: @user.jars, partial: 'jars/jar_li', as: :jar
-.col.s12
-  - unless @user.contributed_jars.empty?
-    ul.collection.with-header
-      li.collection-header
-        h4 Contributed To
-      = render collection: @user.contributed_jars, partial: 'jars/jar_li', as: :jar
+  - else
+    = link_to 'Get going', new_jar_path, class: 'btn'

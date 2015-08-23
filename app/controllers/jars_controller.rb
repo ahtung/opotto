@@ -54,6 +54,6 @@ class JarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def jar_params
-    params.require(:jar).permit(:name, :end_at_date, :end_at_time, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
+    params.require(:jar).permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
   end
 end

@@ -66,7 +66,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'pry'
   gem 'pry-remote'
 end

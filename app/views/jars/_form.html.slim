@@ -8,10 +8,10 @@
       = f.text_field :name
       = f.label :name
   .row
-    .input-field.col.s12.m6
+    .input-field.col.s12.m6.receiver-select
       = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
       = f.label :receiver_id
-    .input-field.col.s12.m6
+    .input-field.col.s12.m6.guest-select
       = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true
       = f.label :guest_ids
   .row
