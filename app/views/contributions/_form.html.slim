@@ -1,19 +1,29 @@
-= form_for([jar, contribution]) do |f|
-  - if contribution.errors.any?
-    .alert-box data-alert=true class="alert"
-      = contribution.errors.full_messages.join(',')
-      a.close href="#" &times;
-  .field
-    = f.label :amount
-    = f.number_field :amount, step: 'any'
-  .field
-    = f.label :anonymous
-    = f.check_box :anonymous
+.row
+  = form_for [jar, contribution], class: 'col s12' do |f|
+    - if contribution.errors.any?
+      .alert-box data-alert=true class="alert"
+        = contribution.errors.full_messages.join(',')
+        a.close href="#" &times;
+    
+    .row
+      .input-field.col.s12.m8
+        = f.number_field :amount, step: 'any'
+        = f.label :amount
+      .input-field.col.s12.m4
+        = f.check_box :anonymous
+        = f.label :anonymous
+    .row
+      .input-field.col.s12
+        = f.hidden_field :jar_id, value: jar.id
 
-  = f.hidden_field :jar_id, value: jar.id
-  .actions = f.submit t('jar.save'), class: 'button'
+    .row
+      .input-field.col.s12
+        = f.submit t('jar.save'), class: 'btn'
+        = link_to t('site.navigation.back'), root_path, class: 'btn'
 
-h2 = t('contribution.previous')
-ul
-  - current_user.contributions.where(jar: jar).each do |contribution|
-    li= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"
+.row
+  .col.s12
+    h3 = t('contribution.previous')
+    ul
+      - current_user.contributions.where(jar: jar).each do |contribution|
+        li= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"

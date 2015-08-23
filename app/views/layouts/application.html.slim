@@ -8,13 +8,11 @@ html lang='en'
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'vendor/modernizr'
     = csrf_meta_tag
 
   body
     = render 'navigation'
-    .container
-      = render 'notices', flash: flash
-      == yield
+    = render 'notices', flash: flash
+    == yield
     = render 'footer'
     = javascript_include_tag 'application'
