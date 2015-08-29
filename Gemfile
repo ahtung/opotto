@@ -45,6 +45,7 @@ gem 'state_machines-activerecord','~> 0.3.0'
 gem 'mapbox-rails'
 gem 'faker'
 gem 'rack-attack'
+gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
 
 group :production do
   gem 'rails_12factor'

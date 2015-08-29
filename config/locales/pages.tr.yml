@@ -1,0 +1,14 @@
+tr:
+  pages:
+    about:
+      title: Hakkimizda
+      description: opotto makes crowd-gifting fun
+      content: opotto nedir?
+    security:
+      title: Guvenlik
+      description: secure ssl oauth2
+      content: opotto ne kadar guvenli?
+    contact:
+      decription: the hague istanbul contact
+      title: Iletisim
+      content: opotto nerede?
