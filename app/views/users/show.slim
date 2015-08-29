@@ -2,7 +2,21 @@
   - unless @user.jars.empty?
     ul.collection.with-header
       li.collection-header
-        h4 Created
+        h4 You're creations
       = render collection: @user.jars, partial: 'jars/jar_li', as: :jar
   - else
     = link_to 'Get going', new_jar_path, class: 'btn'
+
+.col.s12
+  - unless @user.contributed_jars.empty?
+    ul.collection.with-header
+      li.collection-header
+        h4 You're contributions
+      = render collection: @user.contributed_jars, partial: 'jars/jar_li', as: :jar
+
+.col.s12
+  - unless @user.invited_jars.empty?
+    ul.collection.with-header
+      li.collection-header
+        h4 You're invitations
+      = render collection: @user.invited_jars, partial: 'jars/jar_li', as: :jar

@@ -11,11 +11,13 @@ html lang='en'
     = csrf_meta_tag
 
   body
-    = render 'navigation'
-    = render 'notices', flash: flash
-    .container
-      .row
-        .col.s12
-          == yield
+    header
+      = render 'navigation'
+      = render 'notices', flash: flash
+    main
+      .container
+        .row
+          .col.s12
+            == yield
     = render 'footer'
     = javascript_include_tag 'application'

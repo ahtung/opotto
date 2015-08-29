@@ -12,11 +12,9 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require select2
-#= require d3
-#= require materialize-sprockets
+#= require select2/select2.full
+#= require materialize
 #= require jquery.transit.min
-#= require jar
 #= require jquery.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
@@ -27,8 +25,25 @@ BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
+  # Select 2
+  $('#jar_guest_ids').select2()
+  $("#jar_guest_ids").hide()
+
+  $('#jar_guest_ids').select2().on 'select2:open', (event) ->
+    $(".select2-results__options").addClass("collection")
+    $(".select2-results__option").addClass("collection-item")
+
+  # Map
   if $('#map').length > 0
-    map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([41.046952, 28.973507], 12)
+    map = L.mapbox.map('map', 'examples.map-y7l23tes', zoomControl: false).setView([41.046952, 28.973507], 12)
+    map.dragging.disable()
+    map.touchZoom.disable()
+    map.doubleClickZoom.disable()
+    map.scrollWheelZoom.disable()
+    # Disable tap handler, if present.
+    if map.tap
+      map.tap.disable()
+
   BrowserTZone.setCookie()
   $('select').material_select()
   $('.datepicker').pickadate({
