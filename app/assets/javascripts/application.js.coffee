@@ -12,7 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require select2
+#= require select2/select2.full
 #= require materialize
 #= require jquery.transit.min
 #= require jquery.cookie
@@ -26,8 +26,12 @@ BrowserTZone.setCookie = ->
 
 $ ->
   # Select 2
-  # $('select').select2();
-  # $('select').material_select();
+  $('#jar_guest_ids').select2()
+  $("#jar_guest_ids").hide()
+
+  $('#jar_guest_ids').select2().on 'select2:open', (event) ->
+    $(".select2-results__options").addClass("collection")
+    $(".select2-results__option").addClass("collection-item")
 
   # Map
   if $('#map').length > 0

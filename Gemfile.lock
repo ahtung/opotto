@@ -548,7 +548,7 @@ DEPENDENCIES
   rack-google-analytics
   rails (= 4.2.4)
   rails-assets-materialize!
-  rails-assets-select2!
+  rails-assets-select2 (~> 4.0.0)!
   rails-i18n!
   rails_12factor
   roboto
