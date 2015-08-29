@@ -14,14 +14,11 @@
  *= require select2
  *= require jars
  *= require banner
+ *= require materialize
  *= require mapbox
  *= require map
  *= require footer
  */
-
-@import 'materialize/components/color';
-// $primary-color: color('blue', 'lighten-2') !default;
-@import 'materialize';
 
 .facebook_link{
   background:

@@ -13,7 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require select2
-#= require materialize-sprockets
+#= require materialize
 #= require jquery.transit.min
 #= require jquery.cookie
 #= require jstz
@@ -26,7 +26,8 @@ BrowserTZone.setCookie = ->
 
 $ ->
   # Select 2
-  $('select').select2();
+  # $('select').select2();
+  # $('select').material_select();
 
   # Map
   if $('#map').length > 0

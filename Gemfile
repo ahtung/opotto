@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.2.3'
-gem 'materialize-sass'
+gem 'rails', '4.2.4'
+# gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
 gem 'uglifier'
@@ -86,4 +86,5 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2'              # Select2.js
+  gem 'rails-assets-materialize'
 end
