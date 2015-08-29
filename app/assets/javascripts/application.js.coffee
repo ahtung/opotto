@@ -31,7 +31,15 @@ $ ->
 
   # Map
   if $('#map').length > 0
-    map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([41.046952, 28.973507], 12)
+    map = L.mapbox.map('map', 'examples.map-y7l23tes', zoomControl: false).setView([41.046952, 28.973507], 12)
+    map.dragging.disable()
+    map.touchZoom.disable()
+    map.doubleClickZoom.disable()
+    map.scrollWheelZoom.disable()
+    # Disable tap handler, if present.
+    if map.tap
+      map.tap.disable()
+
   BrowserTZone.setCookie()
   $('select').material_select()
   $('.datepicker').pickadate({
