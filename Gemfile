@@ -14,7 +14,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
-gem 'newrelic_rpm'                      # NewRelic
 gem 'puma'
 gem 'money-rails'
 gem 'google_contacts_api'
