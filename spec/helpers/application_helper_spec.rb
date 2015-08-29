@@ -4,7 +4,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "#phone_number_link" do
     it "returns phone number link" do
       phone_number = '90 312 284 31 48'
-      expect(helper.phone_number_link(phone_number)).to eq('<a href="tel://+90-312-284-31-48">+90 312 284 31 48</a>')
+      expect(helper.phone_number_link(phone_number)).to eq('<a href="tel://+90-312-284-31-48"><i class="material-icons">phone</i></a>')
     end
   end
 end
