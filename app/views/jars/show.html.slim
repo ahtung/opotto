@@ -31,12 +31,12 @@ p
   = @jar.end_at.strftime('%d %b %y')
 
 .row
-  .col.s12.m6.offset-m6
+  .col.s12
     .row
-      .col.s6
+      .col.s2
         = link_to t('site.navigation.back'), root_path, class: 'btn'
-      .col.s6
+      .col.s4
         = link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
-      .col.s12.m6.offset-m6
+      .col.s6.right-align
         - if policy(@jar).update?
           = link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
