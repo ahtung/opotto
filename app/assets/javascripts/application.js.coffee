@@ -25,6 +25,10 @@ BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
+  # Select 2
+  $('select').select2();
+
+  # Map
   if $('#map').length > 0
     map = L.mapbox.map('map', 'examples.map-y7l23tes').setView([41.046952, 28.973507], 12)
   BrowserTZone.setCookie()
