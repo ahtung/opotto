@@ -8,4 +8,8 @@ module ApplicationHelper
       '<i class="material-icons">phone</i>'.html_safe
     end
   end
+
+  def facebook_link(page_path)
+    link_to '', "https://www.facebook.com/#{page_path}", class: 'facebook_link', target: '_blank'
+  end
 end
