@@ -86,5 +86,4 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2'              # Select2.js
-  gem 'rails-assets-d3'                   # D3.js
 end

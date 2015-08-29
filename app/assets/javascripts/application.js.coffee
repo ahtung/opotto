@@ -13,10 +13,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require select2
-#= require d3
 #= require materialize-sprockets
 #= require jquery.transit.min
-#= require jar
 #= require jquery.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
