@@ -26,7 +26,7 @@ BrowserTZone.setCookie = ->
 
 $ ->
   # Select 2
-  # $('select').select2();
+  $('#jar_guest_ids').select2();
   # $('select').material_select();
 
   # Map
