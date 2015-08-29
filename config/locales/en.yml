@@ -27,18 +27,10 @@ en:
     login: Login
     logout: Logout
   site:
+    stats: Stats
     discover: Discover
     hello: Hello
     title: o-Potto
-    about:
-      title: About
-      content: what is opotto?
-    security:
-      title: Secuirty
-      content: how secure is opotto?
-    contact:
-      title: Contact
-      content: where is opotto?
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover
     hello: Hello

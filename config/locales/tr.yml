@@ -106,15 +106,6 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    about:
-      title: Hakkimizda
-      content: opotto nedir?
-    security:
-      title: Guvenlik
-      content: opotto ne kadar guvenli?
-    contact:
-      title: Iletisim
-      content: opotto nerede?
     copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     discover: Kesfet
     hello: Merhaba
