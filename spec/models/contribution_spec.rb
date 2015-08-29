@@ -18,6 +18,10 @@ RSpec.describe Contribution, type: :model do
   # Concerns
   it_behaves_like 'payable'
 
+  # DB
+  it { should have_db_index(:user_id) }
+  it { should have_db_index(:jar_id) }
+
   describe '#' do
     describe 'payment_time' do
       it 'should return time dif to jar ent_at' do

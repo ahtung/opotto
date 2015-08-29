@@ -1,39 +1,36 @@
-= form_for jar do |f|
+= form_for jar, html: { class: 'col s12' } do |f|
   - if jar.errors.any?
     .alert-box data-alert=true class="alert"
       = jar.errors.full_messages.join(',')
       a.close href="#" &times;
-
-  .field
-    = f.label :name
-    = f.text_field :name
-
-  .field
-    = f.label :receiver_id
-    = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, class: 'jar-guests'
-
-  .field
-    = f.label :guest_ids
-    = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'jar-guests'
-
-  .field
-    = f.label :description
-    = f.text_area :description, rows: 6, cols:24, placeholder: t('helpers.label.jar.optional')
-
-  .field
-    = f.label :end_at_date
-    = f.date_field :end_at_date
-
-  .field
-    = f.label :end_at_time
-    = f.time_field :end_at_time
-
-  .field
-    = f.label :visible
-    = f.check_box :visible
-
-  .field
-    = f.label :upper_bound
-    = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound ? jar.upper_bound.to_f : ''
-
-  .actions = f.submit t('jar.save'), class: 'button'
+  .row
+    .input-field.col.s12
+      = f.text_field :name
+      = f.label :name
+  .row
+    .input-field.col.s12.m6.receiver-select
+      = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
+      = f.label :receiver_id
+    .input-field.col.s12.m6.guest-select
+      = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
+      = f.label :guest_ids
+  .row
+    .input-field.col.s12
+      = f.text_area :description, placeholder: t('helpers.label.jar.optional'), class: 'materialize-textarea'
+      = f.label :description
+  .row
+    .input-field.col.s12.m6
+      = f.date_field :end_at, class: 'datepicker'
+      = f.label :end_at
+    .input-field.col.s12.m6
+      = f.check_box :visible
+      = f.label :visible
+  .row
+    .input-field.col.s12.m6
+      = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound ? jar.upper_bound.to_f : ''
+      = f.label :upper_bound
+  .row
+    .input-field.col.s6
+      = link_to t('site.navigation.back'), root_path, class: 'btn'
+    .input-field.col.s6
+      = f.submit t('jar.save'), class: 'btn'

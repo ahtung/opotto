@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.2.3'
-gem 'foundation-rails', '~> 5.5.0'
+gem 'rails', '4.2.4'
+# gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
 gem 'uglifier'
@@ -14,7 +14,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'slim-rails'
 gem 'devise'
-gem 'newrelic_rpm'                      # NewRelic
 gem 'puma'
 gem 'money-rails'
 gem 'google_contacts_api'
@@ -67,7 +66,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'pry'
   gem 'pry-remote'
 end
@@ -86,6 +85,6 @@ group :test do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-select2'              # Select2.js
-  gem 'rails-assets-d3'                   # D3.js
+  gem 'rails-assets-select2', '~> 4.0.0'
+  gem 'rails-assets-materialize'
 end

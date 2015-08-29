@@ -1,9 +1,16 @@
-.row.text-center
-  .small-12.medium-4.columns.small-centered
-    p
-      = link_to t('pages.about.title'), page_path('about'), style: "display: inline-block"
-      br
-      = link_to t('pages.contact.title'), page_path('contact'), style: "display: inline-block"
-      br
-      = link_to t('pages.security.title'), page_path('security'), style: "display: inline-block"
-  p.copyright= t('site.copyright', year: Time.zone.now.year)
+footer.page-footer
+  .container
+    .row
+      .col.l6.s12
+        h5.white-text Footer Content
+        p.grey-text.text-lighten-4 You can use rows and columns here to organize your footer content.
+      .col.l4.offset-l2.s12
+        h5.white-text Links
+        ul
+          li= link_to t('site.about.title'), page_path('about'), class: 'grey-text text-lighten-3'
+          li= link_to t('site.contact.title'), page_path('contact'), class: 'grey-text text-lighten-3'
+          li= link_to t('site.security.title'), page_path('security'), class: 'grey-text text-lighten-3'
+  .footer-copyright
+    .container
+      = t('site.copyright', year: Time.zone.now.year)
+      a.grey-text.text-lighten-4.right href='#!' More Links

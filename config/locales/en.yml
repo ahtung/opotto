@@ -27,10 +27,18 @@ en:
     login: Login
     logout: Logout
   site:
-    stats: Stats
     discover: Discover
     hello: Hello
-    title: o-Potto
+    title: opotto
+    about:
+      title: About
+      content: what is opotto?
+    security:
+      title: Security
+      content: how secure is opotto?
+    contact:
+      title: Contact
+      content: where is opotto?
     copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
     discover: Discover
     hello: Hello
@@ -158,4 +166,4 @@ en:
     created: Successfully contributed %{amount} to "%{name}".
     amount: Amoun
     new: New contribution
-    previous: Previous contributions
+    previous: You're previous contributions

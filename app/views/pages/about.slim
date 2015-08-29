@@ -1,2 +1,5 @@
-- set_meta_tags site: 'opotto', title: t('pages.about.title'), description: t('pages.about.description')
-= t('pages.about.content')
+= content_for :title, "opotto - #{ t('site.about.title') }"
+
+h2= t('site.about.title')
+
+= t('site.about.content')
