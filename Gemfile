@@ -45,6 +45,7 @@ gem 'mapbox-rails'
 gem 'faker'
 gem 'rack-attack'
 gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
+gem 'skylight', '~> 0.6.1'
 
 group :production do
   gem 'rails_12factor'
