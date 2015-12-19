@@ -13,8 +13,8 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Pot
-module Pot
+# Opotto
+module Opotto
   # Application
   class Application < Rails::Application
     config.i18n.available_locales = [:tr, :en]

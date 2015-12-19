@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 # gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
@@ -25,7 +25,7 @@ gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
 gem 'pundit'                            # Authorization
 gem 'http_accept_language'
-gem 'high_voltage', '~> 2.2.1'          # Static Pages
+gem 'high_voltage', '~> 2.4.0'          # Static Pages
 gem 'gaffe'                             # Errors
 gem 'pp-adaptive'
 gem 'paypal-sdk-adaptiveaccounts'
@@ -38,12 +38,15 @@ gem 'roboto'
 gem 'fog-aws'
 gem 'sitemap_generator'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
-gem 'i18n-tasks', '~> 0.8.2'
+gem 'i18n-tasks', '~> 0.9.2'
 gem 'net-ssh', '~> 2.9.2'
 gem 'state_machines-activerecord','~> 0.3.0'
 gem 'mapbox-rails'
 gem 'faker'
 gem 'rack-attack'
+gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
+gem 'skylight', '~> 0.10.0'
+gem 'rollbar', '~> 2.7.0'
 
 group :production do
   gem 'rails_12factor'
@@ -58,8 +61,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda'

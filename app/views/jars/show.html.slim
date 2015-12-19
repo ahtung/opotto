@@ -1,3 +1,5 @@
+- set_meta_tags site: 'opotto', title: @jar.name, og: { title: @jar.name, type: 'product' }
+
 h1= @jar.name
 h3.subheader
   = t('jar.owned_by', email: @jar.owner.email)
