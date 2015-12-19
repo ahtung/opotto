@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 # gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
@@ -25,7 +25,7 @@ gem 'date_time_attribute'
 gem 'validates_timeliness', '~> 3.0'
 gem 'pundit'                            # Authorization
 gem 'http_accept_language'
-gem 'high_voltage', '~> 2.2.1'          # Static Pages
+gem 'high_voltage', '~> 2.4.0'          # Static Pages
 gem 'gaffe'                             # Errors
 gem 'pp-adaptive'
 gem 'paypal-sdk-adaptiveaccounts'
