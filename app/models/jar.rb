@@ -93,10 +93,12 @@ class Jar < ActiveRecord::Base
     end
     coords
   end
+
   # Scales the ascii number to 100
   def scaled_coordinate(coordinate)
     coordinate * 100 / 255
   end
+
   # Validates that the receiver is not in guest list
   def receiver_not_a_guest
     errors.add(:guests, "Receiver can't be a guest") if guests.include?(receiver)

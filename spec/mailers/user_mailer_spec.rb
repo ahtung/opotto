@@ -29,7 +29,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(ActionMailer::Base.deliveries.first.from).to match_array ['info@opotto.com']
+      expect(ActionMailer::Base.deliveries.first.from).to match_array ['info@ahtung.co']
     end
 
     it 'should have user\'s name in the body' do
