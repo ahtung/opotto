@@ -304,9 +304,9 @@ GEM
       railties (= 4.2.4)
       sprockets-rails
     rails-assets-jquery (2.1.4)
-    rails-assets-materialize (0.97.0)
+    rails-assets-materialize (0.97.3)
       rails-assets-jquery (>= 2.1.1)
-    rails-assets-select2 (4.0.0)
+    rails-assets-select2 (4.0.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
