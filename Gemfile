@@ -46,7 +46,7 @@ gem 'faker'
 gem 'rack-attack'
 gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
 gem 'skylight', '~> 0.10.0'
-gem 'rollbar', '~> 2.4.0'
+gem 'rollbar', '~> 2.7.0'
 
 group :production do
   gem 'rails_12factor'
@@ -61,8 +61,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda'
