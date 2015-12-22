@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :invitation do
-    user
-    jar
+    association :jar, strategy: :build
+    association :user, strategy: :build
   end
 end

@@ -5,6 +5,10 @@ RSpec.describe Contribution, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
 
+  # Validations
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:jar) }
+
   # Attributes
   it { is_expected.to monetize(:amount) }
 
@@ -120,14 +124,8 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.valid?).to eq true
       end
 
-      xit 'should return fale if amount is above upper bound' do
+      it 'should return fale if amount is above upper bound' do
         jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
-        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
-        expect(contribution.valid?).to eq false
-      end
-
-      xit 'should return false if amount is above bound' do
-        jar = create(:jar)
         contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end

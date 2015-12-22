@@ -9,12 +9,17 @@ class Contribution < ActiveRecord::Base
 
   # Validations
   validate :amount_inside_the_pot_bounds
+  validates :jar, presence: true
+  validates :user, presence: true
 
   # Attributes
   attr_accessor :authorization_url
 
   # Scopes
   scope :complete, -> { with_state([:completed, :scheduled]) }
+
+  # Money
+  monetize :amount_cents
 
   # States
   state_machine initial: :initiated do
@@ -40,8 +45,6 @@ class Contribution < ActiveRecord::Base
       transition schedule_failed: :initiated, failed: :scheduled
     end
   end
-
-  monetize :amount_cents
 
   # Returns the proper user name
   def owner_name
