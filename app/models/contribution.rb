@@ -18,6 +18,9 @@ class Contribution < ActiveRecord::Base
   # Scopes
   scope :complete, -> { with_state([:completed, :scheduled]) }
 
+  # Money
+  monetize :amount_cents
+
   # States
   state_machine initial: :initiated do
     after_transition initiated: :scheduled do |contribution, _|
@@ -42,8 +45,6 @@ class Contribution < ActiveRecord::Base
       transition schedule_failed: :initiated, failed: :scheduled
     end
   end
-
-  monetize :amount_cents
 
   # Returns the proper user name
   def owner_name
