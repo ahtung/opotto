@@ -9,6 +9,8 @@ class Contribution < ActiveRecord::Base
 
   # Validations
   validate :amount_inside_the_pot_bounds
+  validates :jar, presence: true
+  validates :user, presence: true
 
   # Attributes
   attr_accessor :authorization_url

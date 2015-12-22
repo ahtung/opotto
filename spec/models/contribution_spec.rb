@@ -5,6 +5,10 @@ RSpec.describe Contribution, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
 
+  # Validations
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:jar) }
+
   # Attributes
   it { is_expected.to monetize(:amount) }
 
