@@ -124,14 +124,8 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.valid?).to eq true
       end
 
-      xit 'should return fale if amount is above upper bound' do
+      it 'should return fale if amount is above upper bound' do
         jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
-        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
-        expect(contribution.valid?).to eq false
-      end
-
-      xit 'should return false if amount is above bound' do
-        jar = create(:jar)
         contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end
