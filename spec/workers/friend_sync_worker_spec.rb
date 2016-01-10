@@ -6,10 +6,8 @@ RSpec.describe FriendSyncWorker, type: :worker do
 
   xit 'should trigger import_contacts on user' do
     user = create(:user)
-    Sidekiq::Testing.inline! do
-      expect(user).to receive(:import_contacts)
-      FriendSyncWorker.perform_async(user.id)
-    end
+    expect(user).to receive(:import_contacts)
+    FriendSyncWorker.perform_async(user.id)
   end
 
   it 'should function' do
