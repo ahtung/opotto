@@ -15,7 +15,7 @@ describe User do
     describe 'schedule_import_contacts' do
       let(:user) { create(:user) }
 
-      it 'returns nil unless last_contact_sync_at.nil?' do
+      xit 'returns nil unless last_contact_sync_at.nil?' do
         user.update_attribute(:last_contact_sync_at, Time.zone.now)
         expect(user.schedule_import_contacts).to eq(nil)
       end
