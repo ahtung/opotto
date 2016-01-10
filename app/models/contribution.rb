@@ -9,6 +9,7 @@ class Contribution < ActiveRecord::Base
 
   # Validations
   validate :amount_inside_the_pot_bounds
+  validates :amount_cents, numericality: { greater_than: 0 }
 
   # Attributes
   attr_accessor :authorization_url
