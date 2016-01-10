@@ -16,8 +16,8 @@
       = f.label :guest_ids
       hr
       - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
-        .chip
-          i.material-icons add
+        .chip data-guest="#{friend[2]}"
+          i.material-icons.add-to-guests add
           = "#{friend[0]} <#{friend[1]}>"
   .row
     .input-field.col.s12
