@@ -12,12 +12,12 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require select2/select2.full
-#= require materialize
+#= require materialize-sprockets
 #= require jquery.transit.min
 #= require jquery.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
+#= require select_guest
 #= require mapbox
 
 window.BrowserTZone ||= {}
@@ -25,14 +25,6 @@ BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
-  # Select 2
-  $('#jar_guest_ids').select2()
-  $("#jar_guest_ids").hide()
-
-  $('#jar_guest_ids').select2().on 'select2:open', (event) ->
-    $(".select2-results__options").addClass("collection")
-    $(".select2-results__option").addClass("collection-item")
-
   # Map
   if $('#map').length > 0
     map = L.mapbox.map('map', 'examples.map-y7l23tes', zoomControl: false).setView([41.046952, 28.973507], 12)
@@ -50,3 +42,26 @@ $ ->
     selectMonths: true,
     selectYears: 15
   })
+
+  # Initialize Select Guest Class
+  guests = new SelectGuest
+
+  # Add guest to invited list
+  $('.guest-select').on 'click', '.add-to-guests', ->
+    guest_id = $(this).parent().data('guest')
+    guests.add_guest(guest_id)
+
+  # Remove Guest from invited list
+  $('.guest-select').on 'click', '.remove-from-guests', ->
+    guest_id = $(this).parent().data('guest')
+    guests.remove_guest(guest_id)
+
+  # Show errors in toast
+  if $('.alert-box').length > 0
+    $toastContent = $('<span>', html: $('.alert-box').html())
+    $toastContent.append($('<i>', {class: 'material-icons close-alert', text: 'close' }))
+    Materialize.toast $toastContent, 5000
+    $('.alert-box').remove()
+    $('#toast-container').on 'click', '.close-alert', ->
+      $('#toast-container').fadeOut 'slow', ->
+        $(this).remove()
