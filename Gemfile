@@ -45,6 +45,7 @@ gem 'rack-attack', '~> 4.3.1'
 gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
 gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.7.0'
+gem 'rubocop'
 
 group :production do
   gem 'rails_12factor'
@@ -59,7 +60,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rubocop'
   gem 'cane'
   gem 'spring'
   gem 'rspec-rails'
