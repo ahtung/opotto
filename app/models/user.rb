@@ -99,8 +99,6 @@ class User < ActiveRecord::Base
     get_verified_status_response.accountStatus == 'VERIFIED'
   end
 
-  private
-
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_in(10.seconds, id) if last_contact_sync_at.nil?
