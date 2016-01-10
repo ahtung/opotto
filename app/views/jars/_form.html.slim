@@ -15,7 +15,7 @@
     .col.s12.guest-select
       = f.label :guest_ids
       hr
-      - current_user.friends.collect { |x| [x.name, x.email, x.id] }.each do |friend|
+      - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
         .chip
           i.material-icons add
           = "#{friend[0]} <#{friend[1]}>"
