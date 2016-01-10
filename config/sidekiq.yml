@@ -1,7 +1,7 @@
 ---
 :concurrency: 5
 staging:
-  :concurrency: 5
+  :concurrency: <%= ENV['MAX_THREADS'] %>
 production:
   :concurrency: <%= ENV['MAX_THREADS'] %>
 :queues:
