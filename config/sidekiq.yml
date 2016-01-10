@@ -3,7 +3,7 @@
 staging:
   :concurrency: 5
 production:
-  :concurrency: 20
+  :concurrency: 10
 :queues:
   - default
   - paypal_checker
