@@ -3,7 +3,7 @@
 staging:
   :concurrency: 5
 production:
-  :concurrency: 10
+  :concurrency: <%= ENV['MAX_THREADS'] %>
 :queues:
   - default
   - paypal_checker
