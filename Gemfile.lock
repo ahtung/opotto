@@ -404,6 +404,8 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-limit_fetch (3.0.1)
+      sidekiq (>= 4)
     simplecov (0.11.1)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -557,6 +559,7 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq (~> 4.0.2)
+  sidekiq-limit_fetch
   simplecov
   sinatra
   sitemap_generator

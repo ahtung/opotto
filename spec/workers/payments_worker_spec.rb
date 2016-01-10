@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PaymentsWorker, type: :worker do
-  it { expect(PaymentsWorker).to be_processed_in :default }
+  it { expect(PaymentsWorker).to be_processed_in :payments }
   it { expect(PaymentsWorker).to be_retryable false }
 
   xit 'should trigger complete_payment on user' do
