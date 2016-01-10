@@ -6,3 +6,10 @@ production:
   :concurrency: 20
 :queues:
   - default
+  - paypal_checker
+  - friend_sync
+  - payments
+:limits:
+  paypal_checker: 5
+  friend_sync: 5
+  payments: 2

@@ -8,3 +8,4 @@ export RACK_ENV='test'
 git push git@heroku.com:opotto.git master
 heroku run rake db:migrate --app opotto
 heroku run rake sitemap:refresh --app opotto
+heroku run rake db:seed --app opotto

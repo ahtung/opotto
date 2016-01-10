@@ -64,10 +64,9 @@ class User < ActiveRecord::Base
   def import_contacts
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
-    conact_details = get_contact_details(google_contacts_user)
-    conact_details.each do |conact_detail|
-      friend = User.where(email: conact_detail[:email]).first_or_create
-      friend.update(conact_detail)
+    contact_details = get_contact_details(google_contacts_user)
+    contact_details.each do |contact_detail|
+      friend = User.where(email: contact_detail[:email].downcase).first_or_create(contact_detail)
       friends << friend unless friends.include?(friend)
     end
     update_attribute(:last_contact_sync_at, Time.zone.now)
@@ -101,7 +100,7 @@ class User < ActiveRecord::Base
 
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
-    FriendSyncWorker.perform_in(10.seconds, id) if last_contact_sync_at.nil?
+    FriendSyncWorker.perform_in(10.seconds, id) # if last_contact_sync_at.nil?
   end
 
   def schedule_check_paypal
