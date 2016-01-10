@@ -15,6 +15,14 @@
       = f.label :guest_ids
       = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
   .row
+    .col.s12.guest-select
+      = f.label :guest_ids
+      hr
+      - current_user.friends.collect { |x| [x.name, x.email, x.id] }.each do |friend|
+        .chip
+          i.material-icons add
+          = "#{friend[0]} <#{friend[1]}>"
+  .row
     .input-field.col.s12
       = f.text_area :description, placeholder: t('helpers.label.jar.optional'), class: 'materialize-textarea'
       = f.label :description
