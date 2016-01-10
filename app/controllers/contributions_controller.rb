@@ -19,7 +19,7 @@ class ContributionsController < ApplicationController
     if @contribution.save
       redirect_to(
         @contribution.authorization_url,
-        notice: t('contribution.created', name: @contribution.jar.name, amount: number_to_currency(@contribution.amount))
+        notice: t('contribution.created', name: @contribution.jar.name, amount: humanized_money_with_symbol(@contribution.amount))
       )
     else
       render :new
