@@ -29,6 +29,7 @@ class Contribution < ActiveRecord::Base
     end
     after_transition scheduled: :completed do |contribution, _|
       JarMailer.completed_email(contribution).deliver_later
+      contribution.jar.update_attribute :paid_at, Time.zone.now
     end
     after_transition scheduled: :failed do |contribution, _|
       JarMailer.failed_payment_email(contribution).deliver_later

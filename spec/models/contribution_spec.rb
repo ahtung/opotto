@@ -67,9 +67,16 @@ RSpec.describe Contribution, type: :model do
       describe 'when scheduled' do
         let(:contribution) { create(:contribution, state: :scheduled) }
 
-        it 'updates status column to completed if payment completes' do
+        before :each do
           contribution.success!
+        end
+
+        it 'updates status column to completed if payment completes' do
           expect(contribution.state).to eq('completed')
+        end
+
+        it 'updates paid_at column of jar if payment completes' do
+          expect(contribution.jar.paid_at).not_to eq(nil)
         end
       end
     end
