@@ -44,7 +44,12 @@ $ ->
 
   $('.add-to-guests').click ->
     guest_id = $(this).parent().data('guest')
-    guest_elem = $("<div>", { class: "chip", text: $(this).parent().find('.guest-name').text()+' '+$(this).parent().find('.guest-email').text() })
+    guest_name = $('<span>', {class: 'guest_name', text: $(this).parent().find('.guest-name').text() })
+    guest_email = $('<span>', {class: 'guest_email', text: $(this).parent().find('.guest-email').text() })
+
+    guest_elem = $('<div>', { class: 'chip' })
+    guest_elem.append guest_name
+    guest_elem.append guest_email
     guest_elem.append($('<i>', {class: 'material-icons remove-from-guests', text: 'close' }))
-    guest_elem.data('guest', guest_id)
+    guest_elem.attr('data-guest', guest_id)
     $('.invited-list').append(guest_elem)
