@@ -44,8 +44,8 @@ $ ->
 
   $('.guest-select').on 'click', '.add-to-guests', ->
     guest_id = $(this).parent().data('guest')
-    guest_name = $('<span>', {class: 'guest_name', text: $(this).parent().find('.guest-name').text() })
-    guest_email = $('<span>', {class: 'guest_email', text: $(this).parent().find('.guest-email').text() })
+    guest_name = $('<span>', {class: 'guest-name', text: $(this).parent().find('.guest-name').text() })
+    guest_email = $('<span>', {class: 'guest-email', text: $(this).parent().find('.guest-email').text() })
 
     guest_elem = $('<div>', { class: 'chip' })
     guest_elem.append guest_name
