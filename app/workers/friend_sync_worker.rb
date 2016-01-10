@@ -3,7 +3,7 @@ class FriendSyncWorker
   include Sidekiq::Worker
 
   sidekiq_options retry: false
-  sidekiq_options queue: "friend_sync"
+  sidekiq_options queue: 'friend_sync'
 
   # perform worker
   def perform(user_id)
