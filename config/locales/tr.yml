@@ -106,9 +106,19 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     discover: Kesfet
     hello: Merhaba
+    title: opotto
+    about:
+      title: Hakkımızda
+      content: opotto nedir?
+    security:
+      title: Güvenlik
+      content: opotto ne kadar güvenli?
+    contact:
+      title: Bize ulaşın
+      content: opotto nerede?
+    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
     me: Ben
     navigation:
