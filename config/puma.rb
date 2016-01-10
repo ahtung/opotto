@@ -11,7 +11,7 @@ environment ENV['RACK_ENV'] || 'development'
 on_worker_boot do
   ActiveSupport.on_load(:active_record) do
     config = ActiveRecord::Base.configurations[Rails.env] ||
-                Rails.application.config.database_configuration[Rails.env]
+             Rails.application.config.database_configuration[Rails.env]
     config['pool'] = threads_count
     ActiveRecord::Base.establish_connection(config)
   end
