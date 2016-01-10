@@ -46,6 +46,7 @@ gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
 gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.7.0'
 gem 'rubocop'
+gem 'cane'
 
 group :production do
   gem 'rails_12factor'
@@ -60,7 +61,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cane'
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda'
