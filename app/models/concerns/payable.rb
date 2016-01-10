@@ -71,7 +71,7 @@ module Payable
   # Validates payment is inside bounds
   def amount_inside_the_pot_bounds
     return if jar.nil?
-    return true unless jar.upper_bound
+    return true if jar.upper_bound.nil?
     return true if amount <= jar.upper_bound
     errors.add(:amount, :amount_out_of_bounds)
     false

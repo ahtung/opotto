@@ -74,7 +74,6 @@ class User < ActiveRecord::Base
   end
 
   def check_paypal
-    return unless email
     update_attribute(:paypal_member, User.paypal_account?(email))
   end
 
@@ -99,8 +98,6 @@ class User < ActiveRecord::Base
     end
     get_verified_status_response.accountStatus == 'VERIFIED'
   end
-
-  private
 
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
