@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.4'
 
 gem 'rails', '4.2.5'
-# gem 'materialize-sass'
+gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg'
 gem 'uglifier'
@@ -82,8 +82,4 @@ group :test do
   gem 'rspec-its'
   gem 'state_machine_rspec'
   gem 'webmock'
-end
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-materialize', '~> 0.97.3'
 end

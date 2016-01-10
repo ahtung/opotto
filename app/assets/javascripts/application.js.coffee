@@ -12,7 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require materialize
+#= require materialize-sprockets
 #= require jquery.transit.min
 #= require jquery.cookie
 #= require jstz
