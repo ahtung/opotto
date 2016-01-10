@@ -54,3 +54,17 @@ $ ->
     guest_elem.attr('data-guest', guest_id)
     $('.invited-list').append(guest_elem)
     $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', true)
+
+  $('.guest-select').on 'click', '.remove-from-guests', ->
+    guest_id = $(this).parent().data('guest')
+    console.log($(this).parent().find('.guest-name').text())
+    guest_name = $('<span>', { class: 'guest-name', text: $(this).parent().find('.guest-name').text() })
+    guest_email = $('<span>', { class: 'guest-email', text: $(this).parent().find('.guest-email').text() })
+
+    guest_elem = $('<div>', { class: 'chip' })
+    guest_elem.append guest_name
+    guest_elem.append guest_email
+    guest_elem.append($('<i>', {class: 'material-icons add-to-guests', text: 'add' }))
+    guest_elem.attr('data-guest', guest_id)
+    $('.not-invited-list').append(guest_elem)
+    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', false)
