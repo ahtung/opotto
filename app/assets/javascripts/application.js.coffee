@@ -53,3 +53,4 @@ $ ->
     guest_elem.append($('<i>', {class: 'material-icons remove-from-guests', text: 'close' }))
     guest_elem.attr('data-guest', guest_id)
     $('.invited-list').append(guest_elem)
+    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', true)
