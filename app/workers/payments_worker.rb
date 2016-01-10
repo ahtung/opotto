@@ -3,6 +3,7 @@ class PaymentsWorker
   include Sidekiq::Worker
 
   sidekiq_options retry: false
+  sidekiq_options queue: 'payments'
 
   # perform worker
   def perform(contribution_id)
