@@ -6,7 +6,11 @@ module Users
     def google_oauth2
       # You need to implement the method below in your model (e.g. app/models/user.rb)
       @user = User.find_for_google_oauth2(request.env['omniauth.auth'], current_user)
-      @user.update_attribute(:refresh_token, request.env['omniauth.auth'].info.credentials.refresh_token)
+      if request.env['omniauth.auth'].credentials
+        @user.update_attribute(:refresh_token, request.env['omniauth.auth'].credentials.refresh_token)
+      else
+        @user.update_attribute(:refresh_token, request.env['omniauth.auth'].info.credentials.refresh_token)
+      end
       set_notice_and_redirect
     end
 
