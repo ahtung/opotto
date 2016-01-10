@@ -2,23 +2,17 @@ require 'spec_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller, focus: true do
   describe "#annonymous user" do
+    let(:user) { build(:user) }
+
     context "when google_oauth2 email doesn't exist in the system" do
       before(:each) do
         stub_env_for_omniauth
-
         get :google_oauth2
-        @user = User.where(:email => "ghost@nobody.com").first
+        @user = User.find_by(email: user.email)
       end
 
       it { @user.should_not be_nil }
-
-      it "should create authentication with google_oauth2 id" do
-        authentication = User.first
-        authentication.should_not be_nil
-      end
-
       it { should be_user_signed_in }
-
       it { response.should redirect_to tasks_path }
     end
 
@@ -99,7 +93,6 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller, focus: tru
 end
 
 def stub_env_for_omniauth
-  user = build(:user)
   request.env['devise.mapping'] = Devise.mappings[:user]
   request.env['omniauth.auth'] = omniauth_hash(user.email)
 end
