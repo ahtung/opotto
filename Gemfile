@@ -82,6 +82,7 @@ group :test do
   gem 'rspec-its'
   gem 'state_machine_rspec'
   gem 'webmock'
+  gem 'rspec_junit_formatter', '~> 0.2.3'
 end
 
 source 'https://rails-assets.org' do
