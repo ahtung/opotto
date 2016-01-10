@@ -21,7 +21,7 @@ class Jar < ActiveRecord::Base
 
   monetize :upper_bound_cents, allow_nil: true
 
-  default_scope { includes(:owner).includes(:contributors) }
+  default_scope { includes(:owner) }
 
   # retuns the fullness value
   def fullness
