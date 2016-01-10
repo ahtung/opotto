@@ -74,7 +74,6 @@ class User < ActiveRecord::Base
   end
 
   def check_paypal
-    return unless email
     update_attribute(:paypal_member, User.paypal_account?(email))
   end
 
