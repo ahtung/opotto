@@ -12,7 +12,6 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require select2/select2.full
 #= require materialize
 #= require jquery.transit.min
 #= require jquery.cookie
@@ -25,15 +24,6 @@ BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
-  # Select 2
-  $('#jar_guest_ids').select2()
-
-  $('#jar_guest_ids').select2().on 'select2:open', (event) ->
-    $(".select2-results__options").addClass("collection")
-    $(".select2-results__option").addClass("collection-item")
-
-
-
   # Map
   if $('#map').length > 0
     map = L.mapbox.map('map', 'examples.map-y7l23tes', zoomControl: false).setView([41.046952, 28.973507], 12)

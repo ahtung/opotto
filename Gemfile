@@ -85,6 +85,5 @@ group :test do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-select2', '~> 4.0.0'
   gem 'rails-assets-materialize', '~> 0.97.3'
 end
