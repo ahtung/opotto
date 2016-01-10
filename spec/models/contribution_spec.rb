@@ -12,6 +12,9 @@ RSpec.describe Contribution, type: :model do
   # Attributes
   it { is_expected.to monetize(:amount) }
 
+  # Validations
+  it { should validate_numericality_of(:amount_cents).is_greater_than(0) }
+
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   it { should handle_events :success, :error, when: :initiated }
