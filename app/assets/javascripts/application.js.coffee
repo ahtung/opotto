@@ -17,6 +17,7 @@
 #= require jquery.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
+#= require select_guest
 #= require mapbox
 
 window.BrowserTZone ||= {}
@@ -42,29 +43,15 @@ $ ->
     selectYears: 15
   })
 
+  # Initialize Select Guest Class
+  guests = new SelectGuest
+
+  # Add guest to invited list
   $('.guest-select').on 'click', '.add-to-guests', ->
     guest_id = $(this).parent().data('guest')
-    guest_name = $('<span>', {class: 'guest-name', text: $(this).parent().find('.guest-name').text() })
-    guest_email = $('<span>', {class: 'guest-email', text: $(this).parent().find('.guest-email').text() })
+    guests.add_guest(guest_id)
 
-    guest_elem = $('<div>', { class: 'chip' })
-    guest_elem.append guest_name
-    guest_elem.append guest_email
-    guest_elem.append($('<i>', {class: 'material-icons remove-from-guests', text: 'close' }))
-    guest_elem.attr('data-guest', guest_id)
-    $('.invited-list').append(guest_elem)
-    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', true)
-
+  # Remove Guest from invited list
   $('.guest-select').on 'click', '.remove-from-guests', ->
     guest_id = $(this).parent().data('guest')
-    console.log($(this).parent().find('.guest-name').text())
-    guest_name = $('<span>', { class: 'guest-name', text: $(this).parent().find('.guest-name').text() })
-    guest_email = $('<span>', { class: 'guest-email', text: $(this).parent().find('.guest-email').text() })
-
-    guest_elem = $('<div>', { class: 'chip' })
-    guest_elem.append guest_name
-    guest_elem.append guest_email
-    guest_elem.append($('<i>', {class: 'material-icons add-to-guests', text: 'add' }))
-    guest_elem.attr('data-guest', guest_id)
-    $('.not-invited-list').append(guest_elem)
-    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', false)
+    guests.remove_guest(guest_id)
