@@ -2,7 +2,6 @@
   - if jar.errors.any?
     .alert-box data-alert=true class="alert"
       = jar.errors.full_messages.join(',')
-      a.close href="#" &times;
   .row
     .input-field.col.s12
       = f.text_field :name

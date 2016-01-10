@@ -2,7 +2,6 @@
   - if contribution.errors.any?
     .alert-box data-alert=true class="alert"
       = contribution.errors.full_messages.join(',')
-      a.close href="#" &times;    
   .row
     .input-field.col.s12.m8
       = f.number_field :amount, step: 'any'
