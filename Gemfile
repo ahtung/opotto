@@ -47,6 +47,7 @@ gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.7.0'
 gem 'rubocop'
 gem 'cane'
+gem 'bullet'
 
 group :production do
   gem 'rails_12factor'
@@ -57,7 +58,6 @@ group :development do
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
-  gem 'bullet'
 end
 
 group :development, :test do
