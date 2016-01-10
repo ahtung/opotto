@@ -12,6 +12,48 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
+    describe 'schedule_import_contacts' do
+      let(:user) { create(:user) }
+
+      xit 'should schedule import contacts on update' do
+        user.save
+        expect(FriendSyncWorker).to have_enqueued_job('FriendSyncWorker').at(10.seconds)
+      end
+
+      xit 'should not schedule import contacts on create' do
+        expect(FriendSyncWorker).not_to have_enqueued_job('FriendSyncWorker')
+      end
+    end
+
+    describe 'access_token' do
+      let(:user) { create(:user) }
+
+      it 'should return nil if no refresh_token' do
+        expect(user.access_token).to be_nil
+      end
+
+      xit 'should return access_token if refresh_token' do
+        user.refresh_token = 'TOKEN'
+        expect(user.access_token).not_to be_nil
+      end
+    end
+
+    describe 'import_contacts' do
+      let(:user) { create(:user) }
+
+      it 'should return nil if no access_token' do
+        expect(user.import_contacts).to be_nil
+      end
+    end
+
+    describe 'check_paypal' do
+      it 'updates paypal_member' do
+        user = create(:user, paypal_member: nil)
+        user.check_paypal
+        expect(user.paypal_member).not_to eq(nil)
+      end
+    end
+
     describe 'handle' do
       it 'returns name if user has name' do
         user = create(:user, name: 'DUN')
@@ -52,68 +94,34 @@ describe User do
         expect(User.with_paypal_account).not_to match_array(users_without)
       end
     end
-  end
 
-  describe '.find_for_google_oauth2' do
-    it 'should create a new user if does not exist' do
-      user = build(:user)
-      expect { User.find_for_google_oauth2(omniauth_hash(user.email), nil) }.to change { User.count }.by(1)
-    end
+    describe 'find_for_google_oauth2' do
+      it 'should create a new user if does not exist' do
+        user = build(:user)
+        expect { User.find_for_google_oauth2(omniauth_hash(user.email), nil) }.to change { User.count }.by(1)
+      end
 
-    it 'should return user if exists' do
-      user = create(:user)
-      expect(User.find_for_google_oauth2(omniauth_hash(user.email), nil)).to eq(user)
-    end
-  end
-
-  describe '#schedule_import_contacts' do
-    let(:user) { create(:user) }
-
-    xit 'should schedule import contacts on update' do
-      user.save
-      expect(FriendSyncWorker).to have_enqueued_job('FriendSyncWorker').at(10.seconds)
-    end
-
-    xit 'should not schedule import contacts on create' do
-      expect(FriendSyncWorker).not_to have_enqueued_job('FriendSyncWorker')
-    end
-  end
-
-  describe '#access_token' do
-    let(:user) { create(:user) }
-
-    it 'should return nil if no refresh_token' do
-      expect(user.access_token).to be_nil
-    end
-
-    xit 'should return access_token if refresh_token' do
-      user.refresh_token = 'TOKEN'
-      expect(user.access_token).not_to be_nil
-    end
-  end
-
-  describe '#import_contacts' do
-    let(:user) { create(:user) }
-
-    it 'should return nil if no access_token' do
-      expect(user.import_contacts).to be_nil
-    end
-  end
-
-  describe '.paypal_account?' do
-    describe 'for a user with paypal account' do
-      let(:user) { create(:user, :with_paypal) }
-
-      it 'should return true if email has paypal account' do
-        expect(User.paypal_account?(user.email)).to be true
+      it 'should return user if exists' do
+        user = create(:user)
+        expect(User.find_for_google_oauth2(omniauth_hash(user.email), nil)).to eq(user)
       end
     end
 
-    describe 'for a user with no paypal account' do
-      let(:user) { create(:user) }
+    describe 'paypal_account?' do
+      describe 'for a user with paypal account' do
+        let(:user) { create(:user, :with_paypal) }
 
-      it 'should return false if email has no paypal account' do
-        expect(User.paypal_account?(user.email)).to be false
+        it 'should return true if email has paypal account' do
+          expect(User.paypal_account?(user.email)).to be true
+        end
+      end
+
+      describe 'for a user with no paypal account' do
+        let(:user) { create(:user) }
+
+        it 'should return false if email has no paypal account' do
+          expect(User.paypal_account?(user.email)).to be false
+        end
       end
     end
   end
