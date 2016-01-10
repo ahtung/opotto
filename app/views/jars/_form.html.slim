@@ -14,11 +14,14 @@
   .row
     .col.s12.guest-select
       = f.label :guest_ids
+      .invited-list
       hr
-      - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
-        .chip data-guest="#{friend[2]}"
-          i.material-icons.add-to-guests add
-          = "#{friend[0]} <#{friend[1]}>"
+      .not-invited-list
+        - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
+          .chip data-guest="#{friend[2]}"
+            i.material-icons.add-to-guests add
+            span.guest-name = "#{friend[0]} "
+            span.guest-email = "<#{friend[1]}>"
   .row
     .input-field.col.s12
       = f.text_area :description, placeholder: t('helpers.label.jar.optional'), class: 'materialize-textarea'
