@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
 
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
-    FriendSyncWorker.perform_in(10.seconds, id)# if last_contact_sync_at.nil?
+    FriendSyncWorker.perform_in(10.seconds, id) # if last_contact_sync_at.nil?
   end
 
   def schedule_check_paypal
