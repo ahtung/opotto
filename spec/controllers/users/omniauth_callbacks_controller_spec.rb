@@ -16,7 +16,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it { response.should redirect_to root_path }
     end
 
-    context "when google_oauth2 email already exist in the system" do
+    context 'when google_oauth2 email already exist in the system' do
       before(:each) do
         stub_env_for_omniauth
         create(:user, email: user.email)
@@ -24,12 +24,12 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         @user = User.find_by(email: user.email)
       end
 
-      it { flash[:notice].should == "Successfully authenticated from Google account."}
+      it { flash[:notice].should == 'Successfully authenticated from Google account.' }
       it { response.should redirect_to root_path }
     end
   end
 
-  describe "#logged in user" do
+  describe '#logged in user' do
     before(:each) do
       stub_env_for_omniauth
       @user = create(:user, email: user.email)
@@ -39,7 +39,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
     it { should be_user_signed_in }
     it { response.should redirect_to root_path }
-    it { flash[:notice].should == "Successfully authenticated from Google account."}
+    it { flash[:notice].should == 'Successfully authenticated from Google account.' }
   end
 end
 
