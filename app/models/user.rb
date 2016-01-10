@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     conact_details = get_contact_details(google_contacts_user)
     conact_details.each do |conact_detail|
-      friend = User.where(email: conact_detail[:email]).first_or_create
+      friend = User.find_by(email: conact_detail[:email]).first_or_create
       friend.update(conact_detail)
       friends << friend unless friends.include?(friend)
     end
