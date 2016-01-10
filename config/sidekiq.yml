@@ -11,5 +11,5 @@ production:
   - payments
 :limits:
   paypal_checker: 5
-  friend_sync: 5
+  friend_sync: 10
   payments: 2

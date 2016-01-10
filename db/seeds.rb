@@ -11,10 +11,10 @@ if Rails.env.development? || Rails.env.staging?
 
   # Random Jars
   FactoryGirl.create_list(:jar, 3, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
-elsif Rails.env.production?
+elsif Rails.env.production? || Rails.env.staging?
   Jar.where(name: 'PayPal test Jar').destroy_all
   onur = User.find_by(email: 'onurkucukkece@gmail.com')
   dunya = User.find_by(email: 'dunyakirkali@gmail.com')
-  paypal = User.find_by(email: 'paypal@opotto.com')
+  paypal = User.where(email: 'paypal@opotto.com').first_or_create
   FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal], visible: true)
 end
