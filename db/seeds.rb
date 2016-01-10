@@ -13,4 +13,4 @@ dunya.friends << [onur, us, paypal]
 FactoryGirl.create_list(:jar, 3, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
 
 # PayPal's test jar
-FactoryGirl.create(:jar, owner: dunya, guests: [dunya, onur, paypal], visible: true)
+FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal], visible: true)
