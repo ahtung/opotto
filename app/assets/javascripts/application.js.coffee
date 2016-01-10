@@ -41,3 +41,10 @@ $ ->
     selectMonths: true,
     selectYears: 15
   })
+
+  $('.add-to-guests').click ->
+    guest_id = $(this).parent().data('guest')
+    guest_elem = $("<div>", { class: "chip", text: $(this).parent().find('.guest-name').text()+' '+$(this).parent().find('.guest-email').text() })
+    guest_elem.append($('<i>', {class: 'material-icons remove-from-guests', text: 'close' }))
+    guest_elem.data('guest', guest_id)
+    $('.invited-list').append(guest_elem)
