@@ -5,8 +5,15 @@ RSpec.describe Contribution, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:jar) }
 
+  # Validations
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:jar) }
+
   # Attributes
   it { is_expected.to monetize(:amount) }
+
+  # Validations
+  it { should validate_numericality_of(:amount_cents).is_greater_than(0) }
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
@@ -63,9 +70,16 @@ RSpec.describe Contribution, type: :model do
       describe 'when scheduled' do
         let(:contribution) { create(:contribution, state: :scheduled) }
 
-        it 'updates status column to completed if payment completes' do
+        before :each do
           contribution.success!
+        end
+
+        it 'updates status column to completed if payment completes' do
           expect(contribution.state).to eq('completed')
+        end
+
+        it 'updates paid_at column of jar if payment completes' do
+          expect(contribution.jar.paid_at).not_to eq(nil)
         end
       end
     end
@@ -120,14 +134,8 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.valid?).to eq true
       end
 
-      xit 'should return fale if amount is above upper bound' do
+      it 'should return fale if amount is above upper bound' do
         jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
-        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
-        expect(contribution.valid?).to eq false
-      end
-
-      xit 'should return false if amount is above bound' do
-        jar = create(:jar)
         contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end

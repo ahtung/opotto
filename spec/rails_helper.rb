@@ -8,7 +8,6 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'money-rails/test_helpers'
-require 'sidekiq/testing'
 require 'pundit/rspec'
 require 'database_cleaner'
 require 'webmock/rspec'

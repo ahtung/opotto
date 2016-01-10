@@ -3,7 +3,7 @@ machine:
     SPAMMERS: floating-share-buttons.com,get-free-social-traffic.com,site6.free-floating-buttons.com,site1.free-floating-buttons.com,site2.free-floating-buttons.com,site8.free-floating-buttons.com,www.event-tracking.com,free-social-buttons.com,www.Get-Free-Traffic-Now.com,chinese-amezon.com,e-buyeasy.com,erot.co,hongfanji.com,how-to-earn-quick-money.com,site10.free-floating-buttons.com,site5.free-floating-buttons.com,forum.topic62554071.darodar.com
 test:
   override:
-    - bundle exec rake spec
+    - bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
     - bundle exec rake style
     - bundle exec rake security
     - bundle exec rake quality

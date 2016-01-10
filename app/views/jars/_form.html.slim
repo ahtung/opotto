@@ -2,7 +2,6 @@
   - if jar.errors.any?
     .alert-box data-alert=true class="alert"
       = jar.errors.full_messages.join(',')
-      a.close href="#" &times;
   .row
     .input-field.col.s12
       = f.text_field :name
@@ -11,9 +10,18 @@
     .input-field.col.s12.m6.receiver-select
       = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
       = f.label :receiver_id
-    .input-field.col.s12.m6.guest-select
-      = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
+  .row
+    .col.s12.guest-select
       = f.label :guest_ids
+      = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
+      .invited-list
+      hr
+      .not-invited-list
+        - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
+          .chip data-guest="#{friend[2]}"
+            i.material-icons.add-to-guests add
+            span.guest-name = "#{friend[0]} "
+            span.guest-email = "<#{friend[1]}>"
   .row
     .input-field.col.s12
       = f.text_area :description, placeholder: t('helpers.label.jar.optional'), class: 'materialize-textarea'
