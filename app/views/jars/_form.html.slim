@@ -14,6 +14,7 @@
   .row
     .col.s12.guest-select
       = f.label :guest_ids
+      = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
       .invited-list
       hr
       .not-invited-list
