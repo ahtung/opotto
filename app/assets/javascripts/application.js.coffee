@@ -27,11 +27,12 @@ BrowserTZone.setCookie = ->
 $ ->
   # Select 2
   $('#jar_guest_ids').select2()
-  $("#jar_guest_ids").hide()
 
   $('#jar_guest_ids').select2().on 'select2:open', (event) ->
     $(".select2-results__options").addClass("collection")
     $(".select2-results__option").addClass("collection-item")
+
+
 
   # Map
   if $('#map').length > 0
