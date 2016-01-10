@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_many :jars, dependent: :destroy, foreign_key: :owner_id
+  has_many :jars, -> { includes(:contributors) }, dependent: :destroy, foreign_key: :owner_id
   has_many :contributions, dependent: :destroy
-  has_many :contributed_jars, -> { uniq }, through: :contributions, source: :jar
+  has_many :contributed_jars, -> { uniq.includes(:contributors) }, through: :contributions, source: :jar
   has_many :invitations, dependent: :destroy
-  has_many :invited_jars, -> { uniq }, through: :invitations, source: :jar
+  has_many :invited_jars, -> { uniq.includes(:contributors) }, through: :invitations, source: :jar
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'

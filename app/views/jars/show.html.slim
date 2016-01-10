@@ -22,7 +22,7 @@ p
   ul.collection.with-header
     li.collection-header
       h4= "#{@jar.total_contributors} #{t('jar.contributors')}"
-    - @jar.contributions.complete.each do |contribution|
+    - @jar.contributions.includes(:user).complete.each do |contribution|
       li.collection-item = "#{contribution.owner_name} with #{number_to_currency(contribution.amount)}"
 p
   strong = "#{t('jar.total')}:"
