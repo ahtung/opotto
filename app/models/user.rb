@@ -65,13 +65,17 @@ class User < ActiveRecord::Base
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     contact_details = get_contact_details(google_contacts_user)
+    batch_import_contacts(contact_details)
+    update_attribute(:last_contact_sync_at, Time.zone.now)
+  end
+
+  def batch_import_contacts(contact_details)
     ActiveRecord::Base.transaction do
       contact_details.each do |contact_detail|
         friend = User.where(email: contact_detail[:email].downcase).first_or_create(contact_detail)
         friends << friend unless friends.include?(friend)
       end
     end
-    update_attribute(:last_contact_sync_at, Time.zone.now)
   end
 
   def check_paypal
