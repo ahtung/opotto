@@ -110,6 +110,6 @@ class User < ActiveRecord::Base
   end
 
   def schedule_check_paypal
-    PayPalChecker.perform_in(10.seconds, id) if paypal_member.nil?
+    PayPalChecker.perform_in(10.seconds, id)
   end
 end
