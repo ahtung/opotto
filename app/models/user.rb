@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
-      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil
+      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil,
+      admin: false
     )
   end
 
