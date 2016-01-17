@@ -17,21 +17,13 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new(contribution_params)
     @contribution.user = current_user
     if @contribution.save
-      redirect_to(@contribution.authorization_url, notice: success_notice)
+      redirect_to(@contribution.authorization_url)
     else
       render :new
     end
   end
 
   private
-
-  def success_notice
-    t(
-      'contribution.created',
-      name: @contribution.jar.name,
-      amount: ApplicationController.helpers.humanized_money_with_symbol(@contribution.amount)
-    )
-  end
 
   # authorize user from contributing to a jar
   def authorize_jar
