@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   # after_commit :schedule_import_contacts, on: :update
-  after_commit :schedule_check_paypal, on: :update
+  after_commit :schedule_check_paypal
 
   # returns user's handle
   def handle
