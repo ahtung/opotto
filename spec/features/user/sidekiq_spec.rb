@@ -18,7 +18,6 @@ RSpec.describe 'User', type: :feature, js: true do
     fill_in 'user_email', with: admin.email
     fill_in 'user_password', with: admin.password
     click_on 'Log in'
-    save_and_open_page
     visit sidekiq_web_path
     expect(page).to have_content('Dashboard')
   end
