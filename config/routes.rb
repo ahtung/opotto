@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   # Authenticated
-  authenticated :user, lambda { |u| u.admin? } do
+  authenticated :user, -> { |u| u.admin? } do
     # Sidekiq
     mount Sidekiq::Web => '/sidekiq'
     root to: 'users#show', as: :authenticated_root
