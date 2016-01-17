@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def check_paypal
-    update_attribute(:paypal_member, User.paypal_account?(email))
+    update_column(:paypal_member, User.paypal_account?(email))
   end
 
   def get_contact_details(google_contacts_user)
