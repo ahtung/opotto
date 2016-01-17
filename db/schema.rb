@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822170655) do
+ActiveRecord::Schema.define(version: 20160117172229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20150822170655) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "end_at"
-    t.datetime "paid_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "receiver_id"
     t.string   "currency"
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
+    t.datetime "paid_at"
   end
 
   add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150822170655) do
     t.string   "refresh_token"
     t.boolean  "paypal_member"
     t.datetime "last_contact_sync_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  after_commit :schedule_import_contacts, on: :update
-  after_commit :schedule_check_paypal, on: :update
+  # after_commit :schedule_import_contacts, on: :update
+  after_commit :schedule_check_paypal
 
   # returns user's handle
   def handle
@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
-      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil
+      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil,
+      admin: false
     )
   end
 
@@ -65,15 +66,21 @@ class User < ActiveRecord::Base
     return unless access_token
     google_contacts_user = GoogleContactsApi::User.new(access_token)
     contact_details = get_contact_details(google_contacts_user)
-    contact_details.each do |contact_detail|
-      friend = User.where(email: contact_detail[:email].downcase).first_or_create(contact_detail)
-      friends << friend unless friends.include?(friend)
-    end
+    batch_import_contacts(contact_details)
     update_attribute(:last_contact_sync_at, Time.zone.now)
   end
 
+  def batch_import_contacts(contact_details)
+    ActiveRecord::Base.transaction do
+      contact_details.each do |contact_detail|
+        friend = User.where(email: contact_detail[:email].downcase).first_or_create(contact_detail)
+        friends << friend unless friends.include?(friend)
+      end
+    end
+  end
+
   def check_paypal
-    update_attribute(:paypal_member, User.paypal_account?(email))
+    update_column(:paypal_member, User.paypal_account?(email))
   end
 
   def get_contact_details(google_contacts_user)
@@ -104,6 +111,6 @@ class User < ActiveRecord::Base
   end
 
   def schedule_check_paypal
-    PayPalChecker.perform_in(10.seconds, id) if paypal_member.nil?
+    PayPalChecker.perform_in(10.seconds, id)
   end
 end

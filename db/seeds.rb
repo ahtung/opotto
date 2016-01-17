@@ -1,9 +1,12 @@
 if Rails.env.development? || Rails.env.staging?
   User.delete_all
   Jar.delete_all
+  Friendship.delete_all
+  Invitation.delete_all
+  Contribution.delete_all
 
-  onur = FactoryGirl.create(:user, email: 'onurkucukkece@gmail.com', password: '123QwETR')
-  dunya = FactoryGirl.create(:user, email: 'dunyakirkali@gmail.com', password: '123QwETR')
+  onur = FactoryGirl.create(:user, :admin, email: 'onurkucukkece@gmail.com', password: '123QwETR')
+  dunya = FactoryGirl.create(:user, :admin, email: 'dunyakirkali@gmail.com', password: '123QwETR')
   us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 
   onur.friends << [dunya, us]
@@ -11,7 +14,7 @@ if Rails.env.development? || Rails.env.staging?
 
   # Random Jars
   FactoryGirl.create_list(:jar, 3, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
-elsif Rails.env.production? || Rails.env.staging?
+elsif Rails.env.production?
   Jar.where(name: 'PayPal test Jar').destroy_all
   onur = User.find_by(email: 'onurkucukkece@gmail.com')
   dunya = User.find_by(email: 'dunyakirkali@gmail.com')

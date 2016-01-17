@@ -10,6 +10,6 @@ production:
   - friend_sync
   - payments
 :limits:
-  paypal_checker: 5
-  friend_sync: 10
-  payments: 2
+  paypal_checker: 10
+  friend_sync: 2
+  payments: 5
