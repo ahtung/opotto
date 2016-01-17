@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
     password { Faker::Number.number(8) }
+    admin 'false'
 
     trait :with_jars do
       jars { create_list(:jar, 3) }
@@ -32,6 +33,10 @@ FactoryGirl.define do
     trait :with_paypal do
       email 'us-personal@gmail.com'
       paypal_member true
+    end
+
+    trait :admin do
+      admin 'true'
     end
   end
 end
