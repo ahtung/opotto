@@ -155,7 +155,7 @@ RSpec.describe Contribution, type: :model do
       end
     end
 
-    describe 'limit_per_user_per_pot', focus: true do
+    describe 'limit_per_user_per_pot' do
       let!(:user) { create(:user) }
       let!(:jar) { create(:jar, guests: [user])}
 
