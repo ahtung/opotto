@@ -7,12 +7,16 @@ FactoryGirl.define do
     admin 'false'
 
     trait :with_jars do
-      jars { create_list(:jar, 3) }
+      jars { create_list(:jar, 2, :open) }
+    end
+
+    trait :with_closed_jars do
+      jars { create_list(:jar, 2, :closed) }
     end
 
     trait :with_invitations do
       after :create do |instance|
-        instance.invitations = create_list(:invitation, 3)
+        instance.invitations = create_list(:invitation, 2)
       end
     end
 
@@ -26,7 +30,7 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 3, amount: Faker::Commerce.price)
+        instance.contributions = create_list(:contribution, 2, amount: Faker::Commerce.price)
       end
     end
 

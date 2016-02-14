@@ -13,7 +13,21 @@ RSpec.describe Contribution, type: :model do
   it { is_expected.to monetize(:amount) }
 
   # Validations
-  it { should validate_numericality_of(:amount_cents).is_greater_than(0) }
+  it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
+  describe 'should be' do
+    let!(:user) { create(:user) }
+    let!(:jar) { create(:jar, guests: [user]) }
+    let(:contribution) { build(:contribution, user: user, amount: 200, jar: jar) }
+
+    it "valid if owner's total donations to this pot < 2000$" do
+      user.contributions << create_list(:contribution, 2, amount: 100, jar: jar)
+      expect(contribution).to be_valid
+    end
+    it "invalid if owner's total donations to this pot >= 2000$" do
+      user.contributions << create_list(:contribution, 2, amount: 900, jar: jar)
+      expect(contribution).not_to be_valid
+    end
+  end
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
@@ -138,6 +152,22 @@ RSpec.describe Contribution, type: :model do
         jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
         contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
+      end
+    end
+
+    describe 'limit_per_user_per_pot' do
+      let!(:user) { create(:user) }
+      let!(:jar) { create(:jar, guests: [user]) }
+
+      it 'should return error if user contributed more than 4 for a pot' do
+        create_list(:contribution, 4, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        expect(contribution.valid?).to eq false
+      end
+
+      it 'should validate contribution if user contributed less than 4 for a pot' do
+        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        expect(contribution.valid?).to eq true
       end
     end
   end

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Contribution
 class Contribution < ActiveRecord::Base
   # Concerns
@@ -9,9 +10,11 @@ class Contribution < ActiveRecord::Base
 
   # Validations
   validate :amount_inside_the_pot_bounds
+  validate :limit_per_user_per_pot, if: -> { user }
   validates :jar, presence: true
   validates :user, presence: true
-  validates :amount_cents, numericality: { greater_than: 0 }
+  validates :amount_cents, numericality: { greater_than: 100 }
+  validate :users_contribution_limit, if: -> { user }
 
   # Attributes
   attr_accessor :authorization_url
@@ -21,6 +24,14 @@ class Contribution < ActiveRecord::Base
 
   # Money
   monetize :amount_cents
+
+  # Checks user's previous contribution total
+  def users_contribution_limit
+    contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] ? ENV['DONATION_PER_USER_PER_PROJECT'].to_i : 200_000
+    contributions_so_far = user.contributions.where(jar: jar).sum(:amount_cents)
+    return unless contributions_so_far + amount_cents >= contribution_limit
+    errors.add(:base, "Contribution limit of #{contribution_limit} reached")
+  end
 
   # States
   state_machine initial: :initiated do
@@ -55,5 +66,14 @@ class Contribution < ActiveRecord::Base
     else
       user.handle
     end
+  end
+
+  private
+
+  # Checks if contribution amount is less then the limit
+  def limit_per_user_per_pot
+    contribution_count = user.contributions.where(jar: jar).count
+    contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'] ? ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i : 4
+    errors.add(:base, "Can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
   end
 end
