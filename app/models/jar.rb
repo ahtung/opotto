@@ -17,6 +17,7 @@ class Jar < ActiveRecord::Base
   validates_datetime :end_at, on: :create, between: [Time.zone.now, Time.zone.now + 90.days]
   validate :receiver_not_a_guest
   validate :owners_pot_count, if: -> { owner }
+  validate :yearly_pot_limit, if: -> { owner }
 
   date_time_attribute :end_at
 
@@ -30,8 +31,14 @@ class Jar < ActiveRecord::Base
     errors.add(:base, "Can't have more than #{pot_per_person} pots") if owner.jars.open.count > pot_per_person
   end
 
+  def yearly_pot_limit
+    yearly_limit = ENV['POT_LIMIT_PER_YEAR'].to_i || 4
+    jar_count_since_new_year = owner.jars.where('created_at > ?', Date.today.beginning_of_year).count
+    errors.add(:base, "Can't have more than #{yearly_limit} pots in a year") if jar_count_since_new_year > yearly_limit
+  end
+
   # retuns the fullness value
-  def fullness
+  def fullnes
     total_contribution.to_f / 1000
   end
 
