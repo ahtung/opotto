@@ -154,5 +154,21 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.valid?).to eq false
       end
     end
+
+    describe 'limit_per_user_per_pot' do
+      let!(:user) { create(:user) }
+      let!(:jar) { create(:jar, guests: [user])}
+
+      it 'should return error if user contributed more than 4 for a pot' do
+        create_list(:contribution, 4, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        expect(contribution.valid?).to eq false
+      end
+
+      it 'should validate contribution if user contributed less than 4 for a pot' do
+        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        expect(contribution.valid?).to eq true
+      end
+    end
   end
 end

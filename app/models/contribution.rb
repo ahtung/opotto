@@ -9,6 +9,7 @@ class Contribution < ActiveRecord::Base
 
   # Validations
   validate :amount_inside_the_pot_bounds
+  validate :limit_per_user_per_pot, if: -> { user }
   validates :jar, presence: true
   validates :user, presence: true
   validates :amount_cents, numericality: { greater_than: 100 }
@@ -65,5 +66,14 @@ class Contribution < ActiveRecord::Base
     else
       user.handle
     end
+  end
+
+  private
+
+  # Checks ıf contribution amount is less then the limit
+  def limit_per_user_per_pot
+    contribution_count = user.contributions.where(jar: jar).count
+    contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i || 4
+    errors.add(:base, "can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
   end
 end
