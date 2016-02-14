@@ -16,12 +16,19 @@ class Jar < ActiveRecord::Base
   validates :end_at, presence: true
   validates_datetime :end_at, on: :create, between: [Time.zone.now, Time.zone.now + 90.days]
   validate :receiver_not_a_guest
+  validate :owners_pot_count, if: -> { owner }
 
   date_time_attribute :end_at
 
   monetize :upper_bound_cents, allow_nil: true
 
   default_scope { includes(:owner) }
+
+  # Checks owner's pot count
+  def owners_pot_count
+    pot_per_person = ENV['POT_PER_USER'] || 2
+    errors.add(:base, "Can't have more than #{pot_per_person} pots") if owner.jars.count >= pot_per_person
+  end
 
   # retuns the fullness value
   def fullness
