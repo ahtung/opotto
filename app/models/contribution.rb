@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Contribution
 class Contribution < ActiveRecord::Base
   # Concerns
@@ -26,7 +27,7 @@ class Contribution < ActiveRecord::Base
 
   # Checks user's previous contribution total
   def users_contribution_limit
-    contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] || 200000
+    contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] ? ENV['DONATION_PER_USER_PER_PROJECT'].to_i : 200000
     contributions_so_far = user.contributions.where(jar: jar).sum(:amount_cents)
     if contributions_so_far + amount_cents >= contribution_limit
       errors.add(:base, "Contribution limit of #{contribution_limit} reached")
@@ -73,7 +74,7 @@ class Contribution < ActiveRecord::Base
   # Checks ıf contribution amount is less then the limit
   def limit_per_user_per_pot
     contribution_count = user.contributions.where(jar: jar).count
-    contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i || 4
-    errors.add(:base, "can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
+    contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'] ? ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i : 4
+    errors.add(:base, "Can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
   end
 end
