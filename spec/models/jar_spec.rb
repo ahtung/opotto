@@ -34,7 +34,8 @@ describe Jar do
       end
       it 'invalid if owner\'s pot count > 2' do
         @user = create(:user, :with_jars)
-        expect(jar).not_to be_valid
+        last_jar = create(:jar, owner: @user)
+        expect(last_jar).not_to be_valid
       end
       it "valid if owner's inactive pot count >= 2" do
         @user = create(:user, :with_closed_jars)
