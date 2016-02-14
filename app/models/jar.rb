@@ -26,7 +26,7 @@ class Jar < ActiveRecord::Base
 
   # Checks owner's pot count
   def owners_pot_count
-    pot_per_person = ENV['POT_PER_USER'] || 2
+    pot_per_person = ENV['POT_PER_USER'] ? ENV['POT_PER_USER'].to_i : 2
     errors.add(:base, "Can't have more than #{pot_per_person} pots") if owner.jars.open.count > pot_per_person
   end
 
