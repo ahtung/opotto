@@ -31,8 +31,9 @@ class Jar < ActiveRecord::Base
     errors.add(:base, "Can't have more than #{pot_per_person} pots") if owner.jars.open.count > pot_per_person
   end
 
+  # Checks owner's pot's in this year
   def yearly_pot_limit
-    yearly_limit = ENV['POT_LIMIT_PER_YEAR'].to_i || 4
+    yearly_limit = ENV['POT_LIMIT_PER_YEAR'] ? ENV['POT_LIMIT_PER_YEAR'].to_i : 4
     jar_count_since_new_year = owner.jars.where('created_at > ?', Date.today.beginning_of_year).count
     errors.add(:base, "Can't have more than #{yearly_limit} pots in a year") if jar_count_since_new_year > yearly_limit
   end
