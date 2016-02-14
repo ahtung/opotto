@@ -11,7 +11,7 @@ class Contribution < ActiveRecord::Base
   validate :amount_inside_the_pot_bounds
   validates :jar, presence: true
   validates :user, presence: true
-  validates :amount_cents, numericality: { greater_than: 0 }
+  validates :amount_cents, numericality: { greater_than: 100 }
   validate :users_contribution_limit, if: -> { user }
 
   # Attributes

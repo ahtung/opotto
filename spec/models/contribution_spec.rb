@@ -13,7 +13,7 @@ RSpec.describe Contribution, type: :model do
   it { is_expected.to monetize(:amount) }
 
   # Validations
-  it { should validate_numericality_of(:amount_cents).is_greater_than(0) }
+  it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
   describe "should be" do
     let!(:user) { create(:user) }
     let!(:jar) { create(:jar, guests: [user])}
