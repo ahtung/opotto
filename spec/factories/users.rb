@@ -7,7 +7,7 @@ FactoryGirl.define do
     admin 'false'
 
     trait :with_jars do
-      jars { create_list(:jar, 2) }
+      jars { create_list(:jar, 2, :open) }
     end
 
     trait :with_closed_jars do
