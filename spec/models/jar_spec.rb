@@ -45,15 +45,16 @@ describe Jar do
     describe 'should be' do
       let(:jar) { build(:jar, owner: @user) }
 
-      it 'valid if owner has lass then 4 pots this year' do
+      it 'valid if owner has less then 4 pots this year' do
         @user = create(:user)
         expect(jar).to be_valid
       end
 
-      it 'invalid if owner has lass then 4 pots this year' do
-        create_list(:jar, 4, owner: @user)
-        jar = create(:jar, owner: @user)
-        expect(jar).not_to be_valid
+      it 'invalid if owner has more then 4 pots this year' do
+        @user = create(:user)
+        create_list(:jar, 4, :closed, owner: @user)
+        last_jar = create(:jar, owner: @user)
+        expect(last_jar.valid?).to eq false
       end
     end
 
