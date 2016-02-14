@@ -14,9 +14,9 @@ RSpec.describe Contribution, type: :model do
 
   # Validations
   it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
-  describe "should be" do
+  describe 'should be' do
     let!(:user) { create(:user) }
-    let!(:jar) { create(:jar, guests: [user])}
+    let!(:jar) { create(:jar, guests: [user]) }
     let(:contribution) { build(:contribution, user: user, amount: 200, jar: jar) }
 
     it "valid if owner's total donations to this pot < 2000$" do
@@ -157,7 +157,7 @@ RSpec.describe Contribution, type: :model do
 
     describe 'limit_per_user_per_pot' do
       let!(:user) { create(:user) }
-      let!(:jar) { create(:jar, guests: [user])}
+      let!(:jar) { create(:jar, guests: [user]) }
 
       it 'should return error if user contributed more than 4 for a pot' do
         create_list(:contribution, 4, user: user, jar: jar, amount: Money.new(1000, 'USD'))
