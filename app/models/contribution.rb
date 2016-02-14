@@ -68,6 +68,8 @@ class Contribution < ActiveRecord::Base
     end
   end
 
+  private
+
   # Checks ıf contribution amount is less then the limit
   def limit_per_user_per_pot
     contribution_count = user.contributions.where(jar: jar).count
