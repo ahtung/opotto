@@ -10,6 +10,10 @@ FactoryGirl.define do
       jars { create_list(:jar, 2) }
     end
 
+    trait :with_closed_jars do
+      jars { create_list(:jar, 2, :closed) }
+    end
+
     trait :with_invitations do
       after :create do |instance|
         instance.invitations = create_list(:invitation, 2)

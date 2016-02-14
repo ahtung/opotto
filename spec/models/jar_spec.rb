@@ -28,13 +28,17 @@ describe Jar do
     describe "should be" do
       let(:jar) { build(:jar, owner: @user) }
 
-      it "valid if owner's pot count < 2" do
+      it "valid if owner's active pot count < 2" do
         @user = create(:user)
         expect(jar).to be_valid
       end
-      it "invalid if owner's pot count >= 2" do
+      it "invalid if owner's active pot count >= 2" do
         @user = create(:user, :with_jars)
         expect(jar).not_to be_valid
+      end
+      it "valid if owner's inactive pot count >= 2" do
+        @user = create(:user, :with_closed_jars)
+        expect(jar).to be_valid
       end
     end
 
