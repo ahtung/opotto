@@ -25,6 +25,40 @@ describe Jar do
     it { should validate_presence_of(:receiver) }
     it { should validate_uniqueness_of(:name) }
 
+    describe 'should be' do
+      let(:jar) { build(:jar, owner: @user) }
+
+      it 'valid if owner\'s pot count <= 2' do
+        @user = create(:user)
+        expect(jar).to be_valid
+      end
+      it 'invalid if owner\'s pot count > 2' do
+        @user = create(:user, :with_jars)
+        last_jar = create(:jar, owner: @user)
+        expect(last_jar).not_to be_valid
+      end
+      it "valid if owner's inactive pot count >= 2" do
+        @user = create(:user, :with_closed_jars)
+        expect(jar).to be_valid
+      end
+    end
+
+    describe 'should be' do
+      let(:jar) { build(:jar, owner: @user) }
+
+      it 'valid if owner has less then 4 pots this year' do
+        @user = create(:user)
+        expect(jar).to be_valid
+      end
+
+      it 'invalid if owner has more then 4 pots this year' do
+        @user = create(:user)
+        create_list(:jar, 4, :closed, owner: @user)
+        last_jar = create(:jar, owner: @user)
+        expect(last_jar.valid?).to eq false
+      end
+    end
+
     describe 'should validate that the receiver' do
       let(:jar) { create(:jar) }
 
