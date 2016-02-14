@@ -12,6 +12,7 @@ class Contribution < ActiveRecord::Base
   validates :jar, presence: true
   validates :user, presence: true
   validates :amount_cents, numericality: { greater_than: 0 }
+  validate :users_contribution_limit, if: -> { user }
 
   # Attributes
   attr_accessor :authorization_url
@@ -21,6 +22,15 @@ class Contribution < ActiveRecord::Base
 
   # Money
   monetize :amount_cents
+
+  # Checks user's previous contribution total
+  def users_contribution_limit
+    contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] || 200000
+    contributions_so_far = user.contributions.where(jar: jar).sum(:amount_cents)
+    if contributions_so_far + amount_cents >= contribution_limit
+      errors.add(:base, "Contribution limit of #{contribution_limit} reached")
+    end
+  end
 
   # States
   state_machine initial: :initiated do
