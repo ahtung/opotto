@@ -23,7 +23,7 @@ class JarsController < ApplicationController
   def create
     @jar = current_user.jars.build(jar_params)
     authorize @jar
-    if @jar.save
+    if verify_recaptcha(model: @jar) && @jar.save
       Rails.logger.info("Payment log | Pot is created, will end at #{@jar.end_at}")
       redirect_to @jar, notice: t('jar.created')
     else
