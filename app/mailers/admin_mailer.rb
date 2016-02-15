@@ -1,7 +1,5 @@
+# Admin Mailer
 class AdminMailer < ApplicationMailer
-  layout 'mailer'
-  default from: 'info@ahtung.co'
-
   def update_email
     @admins = User.admin
     @pots = Jar.this_week
