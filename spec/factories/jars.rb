@@ -38,7 +38,7 @@ FactoryGirl.define do
 
     trait :closed do
       after :create do |model|
-        model.update_column(:end_at, 3.days.ago)
+        model.update_columns(end_at: 3.days.ago, created_at: 10.days.ago)
       end
     end
 

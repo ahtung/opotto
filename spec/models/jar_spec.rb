@@ -18,6 +18,18 @@ describe Jar do
   it { should have_db_index(:owner_id) }
   it { should have_db_index(:receiver_id) }
 
+  # Scope
+  describe 'this_week' do
+    it 'should return jars created last week' do
+      jar = create(:jar)
+      expect(Jar.this_week).to include(jar)
+    end
+    it 'should not return jars create before last week' do
+      jar = create(:jar, :closed)
+      expect(Jar.this_week).not_to include(jar)
+    end
+  end
+
   # Validations
   describe 'validations' do
     it { should validate_presence_of(:end_at) }

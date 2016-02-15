@@ -87,6 +87,19 @@ describe User do
   end
 
   describe '.' do
+    describe 'admin' do
+      let(:admin) { create(:user, :admin) }
+      let(:user) { create(:user) }
+
+      it 'returns admins' do
+        expect(User.admin).to include(admin)
+      end
+
+      it 'does not return regular users' do
+        expect(User.admin).not_to include(user)
+      end
+    end
+
     describe 'with_paypal_account' do
       let(:users_with) { create_list(:user, 2, paypal_member: true) }
       let(:users_without) { create_list(:user, 2, paypal_member: false) }
