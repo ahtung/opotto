@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_country
     request_country = GeoipRails.geolocate(request.remote_ip)["country_code"]
-    redirect_to unsupported_path if unsupported_countries.include?(request_country)
+    redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
   end
 
   # Redirect visitor to root_path in not authorized
