@@ -49,6 +49,7 @@ gem 'rollbar', '~> 2.7.0'
 gem 'rubocop'
 gem 'cane'
 gem 'bullet'
+gem 'geokit-rails'
 
 group :production do
   gem 'rails_12factor'

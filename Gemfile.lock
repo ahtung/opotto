@@ -158,6 +158,10 @@ GEM
     formatador (0.2.5)
     gaffe (1.0.2)
       rails (>= 3.2.0)
+    geokit (1.10.0)
+    geokit-rails (2.1.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google_contacts_api (0.7.1)
@@ -520,6 +524,7 @@ DEPENDENCIES
   fog-aws (~> 0.7.6)
   foreman (~> 0.78.0)
   gaffe (~> 1.0.2)
+  geokit-rails
   google_contacts_api (~> 0.7.0)
   high_voltage (~> 2.4.0)
   http_accept_language (~> 2.0.5)
