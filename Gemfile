@@ -50,6 +50,8 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'geoip_rails'
+gem 'httparty'
 
 group :production do
   gem 'rails_12factor'
