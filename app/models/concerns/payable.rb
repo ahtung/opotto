@@ -100,7 +100,7 @@ module Payable
   # paypal api
   def api
     @api ||= AdaptivePayments::Client.new(
-      sandbox: true,
+      sandbox: !Rails.env.production?,
       app_id: ENV['PAYPAL_APP_ID'],
       user_id: ENV['PAYPAL_USER'],
       password: ENV['PAYPAL_PASSWORD'],
