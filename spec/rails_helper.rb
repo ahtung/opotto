@@ -83,12 +83,12 @@ RSpec.configure do |config|
       .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}')
       .to_return(status: 200, body: { accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
-    stub_request(:get, "http://freegeoip.net/json/0.0.0.0")
-      .with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'})
-      .to_return(:status => 200, :body => { country_code: 'NL' }.to_json, :headers => {})
+    stub_request(:get, 'http://freegeoip.net/json/0.0.0.0')
+      .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' })
+      .to_return(status: 200, body: { country_code: 'NL' }.to_json, headers: { 'content-type' => 'application/json' })
 
-    stub_request(:get, "http://freegeoip.net/json/58.3.128.0")
-      .with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'})
+    stub_request(:get, 'http://freegeoip.net/json/58.3.128.0')
+      .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' })
       .to_return(status: 200, body: { country_code: 'JP' }.to_json, headers: { 'content-type' => 'application/json' })
   end
 
