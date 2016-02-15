@@ -38,6 +38,9 @@
       = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound ? jar.upper_bound.to_f : ''
       = f.label :upper_bound
   .row
+    .col.s12.m6
+      = recaptcha_tags
+  .row
     .input-field.col.s6
       = link_to t('site.navigation.back'), root_path, class: 'btn'
     .input-field.col.s6
