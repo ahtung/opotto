@@ -1,0 +1,5 @@
+= "Hello #{@admins.pluck(:name).join(',') }"
+
+This weeks creations are:
+- @pots.each do |pot|
+  = "- #{ pot.name }: #{ pot.description }"

@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   # after_commit :schedule_import_contacts, on: :update
   after_commit :schedule_check_paypal
 
+  scope :admin, -> { where(admin: true) }
+
   # returns user's handle
   def handle
     return name if name
