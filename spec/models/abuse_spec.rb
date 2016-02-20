@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Abuse, type: :model do
 
+  # Relations
   it { should belong_to(:resource) }
 
+  # Instance methods
   describe 'confirm!' do
     let(:abuse) { build(:abuse) }
 
