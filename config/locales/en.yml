@@ -11,6 +11,7 @@ en:
     contribute: Contribute
     edit: Edit
     created: Pot successfully created!
+    reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
     updated: Pot successfully updated!
     guests: Guests
     owned_by: By %{email}
