@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Jar do
+  it_behaves_like 'abusable'
+
   # Relations
   describe 'relations' do
     it { should belong_to(:owner).class_name('User') }

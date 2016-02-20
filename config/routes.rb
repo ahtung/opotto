@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   # Jars
   resources :jars, except: [:index, :destroy] do
+    member do
+      get 'report'
+    end
     resources :contributions, only: [:new, :create]
   end
 

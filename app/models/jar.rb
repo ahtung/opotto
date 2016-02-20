@@ -1,6 +1,7 @@
 # Jar
 class Jar < ActiveRecord::Base
   include DateTimeAttribute
+  include Abusable
 
   # Relations
   belongs_to :owner, class_name: 'User'
