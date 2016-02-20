@@ -5,7 +5,7 @@ en:
     previous: You're previous contributions
   devise:
     omniauth_callbacks:
-      success: Success
+      success: Successfully authenticated from Google account.
   helpers:
     label:
       jar:
