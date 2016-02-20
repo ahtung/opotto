@@ -1,72 +1,77 @@
+---
 en:
-  pundit:
-    user_not_authorized: You are not authorized to perform this action.
-  jar:
-    description: Description
-    save: Save
-    guest: Guests
-    contributors: Contributors
-    contributions: Contributions
-    new: New
-    contribute: Contribute
-    edit: Edit
-    created: Pot successfully created!
-    reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
-    updated: Pot successfully updated!
-    guests: Guests
-    owned_by: By %{email}
-    total: Total contribution
-    receiver: Receiver
-  payments:
-    success:
-      header: Preapprovel payment approved.
-      message: Conguratulations. Your payment is saved. It will be sent to the recipient on the day the pot ends.
-    failure:
-      header: Payment failed
-      message: Your payment cannot be completed. Please try again later. If the problem persists, please contact us.
-  user:
-    login: Login
-    logout: Logout
-  site:
-    discover: Discover
-    hello: Hello
-    title: opotto
-    about:
-      title: About
-      content: what is opotto?
-    security:
-      title: Security
-      content: how secure is opotto?
-    contact:
-      title: Contact
-      content: where is opotto?
-    copyright: © 2015‐%{year} DKDH Limited. All rights reserved.
-    discover: Discover
-    hello: Hello
-    me: Me
-    sign_in_with_google: Sign in with Google
-    pots: Pots
-    introduction: opotto is a beautiful way of giving a present to your friends
-    navigation:
-      back: Back
+  activerecord:
+    attributes:
+      contribution:
+        amount: Amount
+        anonymous: Anonymous
+      jar:
+        description: Description
+        end_at: End date
+        end_at_date: End day
+        end_at_time: End time
+        guest_ids: Guests
+        name: Name
+        receiver_id: Receiver
+        upper_bound: Upper bound (US$)
+        visible: Visible
+      user:
+        current_password: Current password
+        email: Emai
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remember me
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              amount_out_of_bounds: out of bounds
+              greater_than_or_equal_to: That'snot possible
+        jar:
+          attributes:
+            end_at:
+              blank: Can't be blank
+              invalid_datetime: Unlogical time
+              on_or_after: End date cannot be the past.
+              on_or_before: End date must be between 90 days
+            name:
+              blank: Can't be blank
+              taken: Name already taken
+    models:
+      contribution: Contribution
+      jar: Pot
+  contribution:
+    amount: Amoun
+    created: Successfully contributed %{amount} to "%{name}".
+    new: New contribution
+    previous: You're previous contributions
   errors:
     format: "%{attribute} %{message}"
     messages:
       accepted: must be accepted
+      already_confirmed: was already confirmed, please try signing in
       blank: can't be blank
       confirmation: doesn't match confirmation
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even
       exclusion: is reserved
+      expired: has expired, please request a new one
       greater_than: must be greater than %{count}
       greater_than_or_equal_to: must be greater than or equal to %{count}
       inclusion: is not included in the list
       invalid: is invalid
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
-      not_an_integer: must be an integer
       not_a_number: is not a number
+      not_an_integer: must be an integer
+      not_found: not found
+      not_locked: was not locked
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
       odd: must be odd
       record_invalid: 'Validation failed: %{errors}'
       taken: has already been taken
@@ -79,92 +84,86 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
-      already_confirmed: was already confirmed, please try signing in
-      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
-      expired: has expired, please request a new one
-      not_found: not found
-      not_locked: was not locked
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
     template:
       body: 'There were problems with the following fields:'
       header:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
   helpers:
+    label:
+      contribution:
+        amount: Amount
+        anonymous: Anonymous
+      jar:
+        description: Description
+        end_at_date: End day
+        end_at_time: End time
+        ends_at: Ends at
+        guest_ids: Guests
+        message: Message
+        name: Name
+        optional: Optional
+        receiver: Receiver
+        receiver_id: Receiver
+        upper_bound: Upper bound
+        visible: Visible
+      user:
+        current_password: Current password
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remeber me
     select:
       prompt: Please select
     submit:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
-    label:
-      user:
-        email: Email
-        password: Password
-        remember_me: Remeber me
-        current_password: Current password
-        password_confirmation: Password confirmation
-      jar:
-        ends_at: Ends at
-        end_at_date: End day
-        end_at_time: End time
-        guest_ids: Guests
-        name: Name
-        message: Message
-        optional: Optional
-        receiver: Receiver
-        description: Description
-        receiver_id: Receiver
-        upper_bound: Upper bound
-        visible: Visible
-      contribution:
-        amount: Amount
-        anonymous: Anonymous
-  activerecord:
-    attributes:
-      user:
-        email: Emai
-        password: Password
-        remember_me: Remember me
-        password_confirmation: Password confirmation
-        current_password: Current password
-      jar:
-        end_at_date: End day
-        guest_ids: Guests
-        end_at_time: End time
-        end_at: End date
-        name: Name
-        upper_bound: Upper bound (US$)
-        description: Description
-        receiver_id: Receiver
-        visible: Visible
-      contribution:
-        amount: Amount
-        anonymous: Anonymous
-    errors:
-      models:
-        contribution:
-          attributes:
-            amount:
-              greater_than_or_equal_to: That'snot possible
-              amount_out_of_bounds: out of bounds
-        jar:
-          attributes:
-            end_at:
-              blank: Can't be blank
-              invalid_datetime: Unlogical time
-              on_or_before: End date must be between 90 days
-              on_or_after: End date cannot be the past.
-            name:
-              blank: Can't be blank
-              taken: Name already taken
-    models:
-      contribution: Contribution
-      jar: Pot
-  contribution:
-    created: Successfully contributed %{amount} to "%{name}".
-    amount: Amoun
-    new: New contribution
-    previous: You're previous contributions
+  jar:
+    contribute: Contribute
+    contributions: Contributions
+    contributors: Contributors
+    created: Pot successfully created!
+    description: Description
+    edit: Edit
+    guest: Guests
+    guests: Guests
+    new: New
+    owned_by: By %{email}
+    receiver: Receiver
+    reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
+    save: Save
+    total: Total contribution
+    updated: Pot successfully updated!
+  payments:
+    failure:
+      header: Payment failed
+      message: Your payment cannot be completed. Please try again later. If the problem persists, please contact us.
+    success:
+      header: Preapprovel payment approved.
+      message: Conguratulations. Your payment is saved. It will be sent to the recipient on the day the pot ends.
+  pundit:
+    user_not_authorized: You are not authorized to perform this action.
+  site:
+    about:
+      content: what is opotto?
+      title: About
+    contact:
+      content: where is opotto?
+      title: Contact
+    copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
+    discover: Discover
+    hello: Hello
+    introduction: opotto is a beautiful way of giving a present to your friends
+    me: Me
+    navigation:
+      back: Back
+    pots: Pots
+    security:
+      content: how secure is opotto?
+      title: Security
+    sign_in_with_google: Sign in with Google
+    title: opotto
+  user:
+    login: Login
+    logout: Logout

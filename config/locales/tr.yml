@@ -6,14 +6,14 @@ tr:
         amount: Amount
         anonymous: Anonim katkı
       jar:
+        description: Tanım
         end_at: Bitis zamani
         end_at_date: Bitis gunu
         end_at_time: Bitis tarihi
         guest_ids: Misafirler
         name: Isim
-        upper_bound: "Üst limit ($)"
-        description: Tanım
         receiver_id: Alıcı
+        upper_bound: "Üst limit ($)"
         visible: Görünür
       user:
         current_password: Current password
@@ -51,12 +51,6 @@ tr:
   errors:
     format: "%{attribute} %{message}"
   helpers:
-    select:
-      prompt: Seç
-    submit:
-      create: "%{model} oluştur"
-      submit: "%{model} kaydet"
-      update: "%{model} güncelle"
     label:
       contribution:
         amount: Miktar
@@ -80,12 +74,17 @@ tr:
         password: sifre
         password_confirmation: sifre digrulama
         remember_me: beni hatirla
+    select:
+      prompt: Seç
+    submit:
+      create: "%{model} oluştur"
+      submit: "%{model} kaydet"
+      update: "%{model} güncelle"
   jar:
     contribute: Katkı Yap
     contributions: Katkı
     contributors: Katılımcı
     created: Kumbara başarıyla kaydedildi.
-    reported: Bizi ayik tuttugunuz icin tesekkur ederiz. Bir an evvel arastirmaya basliyacagiz.
     description: Tanim
     edit: Düzenle
     guest: Davetli
@@ -93,6 +92,7 @@ tr:
     new: Basla
     owned_by: "%{email} tarafından"
     receiver: Alıcı
+    reported: Bizi ayik tuttugunuz icin tesekkur ederiz. Bir an evvel arastirmaya basliyacagiz.
     save: Kaydet
     total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
@@ -102,29 +102,27 @@ tr:
       message: "Ödeme işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyiniz."
     success:
       header: "Ödeme başarılı."
-      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan
-        alıcıya aktarılacaktır.
+      message: Tebrikler, ödemeniz kaydedilmiştir. Ödeme kumbara bitiş tarihinde hesabınızdan alıcıya aktarılacaktır.
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
+    about:
+      content: opotto nedir?
+      title: Hakkımızda
+    contact:
+      content: opotto nerede?
+      title: Bize ulaşın
+    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     discover: Kesfet
     hello: Merhaba
-    title: opotto
-    about:
-      title: Hakkımızda
-      content: opotto nedir?
-    security:
-      title: Güvenlik
-      content: opotto ne kadar güvenli?
-    contact:
-      title: Bize ulaşın
-      content: opotto nerede?
-    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
     me: Ben
     navigation:
       back: Geri
     pots: Kumbaralar
+    security:
+      content: opotto ne kadar güvenli?
+      title: Güvenlik
     sign_in_with_google: Google'la giris
     title: opotto
   user:
