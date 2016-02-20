@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Abuse, type: :model do
-
   # Relations
   it { should belong_to(:resource) }
 
@@ -24,7 +23,6 @@ RSpec.describe Abuse, type: :model do
 
   # Class methods
   describe '.' do
-
     describe 'confirmed' do
       it 'should return all confirmed abuses' do
         abuse = create(:abuse, confirmed: true)

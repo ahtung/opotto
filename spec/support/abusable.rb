@@ -2,14 +2,14 @@ shared_examples 'abusable' do
   let(:jar) { create(:jar) }
 
   describe '#' do
-    describe 'is_an_abuse?' do
+    describe 'abuse?' do
       it 'should return true if has a confirmed abuse' do
-        expect(jar.is_an_abuse?).to be(false)
+        expect(jar.abuse?).to be(false)
       end
 
       it 'should return false if has no confirmed abuses' do
         jar.reported_abuses << create(:abuse, confirmed: true)
-        expect(jar.is_an_abuse?).to be(true)
+        expect(jar.abuse?).to be(true)
       end
     end
   end

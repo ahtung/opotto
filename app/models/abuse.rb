@@ -1,3 +1,4 @@
+# Abuse model
 class Abuse < ActiveRecord::Base
   # Relations
   belongs_to :resource, polymorphic: true

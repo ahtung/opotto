@@ -6,7 +6,7 @@ module Abusable
     has_many :reported_abuses, class_name: 'Abuse', as: :resource
   end
 
-  def is_an_abuse?
-    !self.reported_abuses.confirmed.blank?
+  def abuse?
+    !reported_abuses.confirmed.blank?
   end
 end
