@@ -28,6 +28,8 @@ en:
             amount:
               amount_out_of_bounds: out of bounds
               greater_than_or_equal_to: That'snot possible
+            state:
+              invalid_transition: Invalid transition
         jar:
           attributes:
             end_at:
@@ -46,6 +48,9 @@ en:
     created: Successfully contributed %{amount} to "%{name}".
     new: New contribution
     previous: You're previous contributions
+  devise:
+    omniauth_callbacks:
+      success: Success
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -129,6 +134,7 @@ en:
     guest: Guests
     guests: Guests
     new: New
+    not_reported: Not reported
     owned_by: By %{email}
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
