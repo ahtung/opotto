@@ -2,8 +2,8 @@
 class JarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_jar, only: [:show, :edit, :update, :destroy, :report]
-  before_action :authorize_jar
-  after_action :verify_authorized
+  before_action :authorize_jar, except: [:new, :create, :report]
+  after_action :verify_authorized, except: [:new, :create, :report]
 
   # GET /jars/1
   def show
@@ -11,7 +11,6 @@ class JarsController < ApplicationController
 
   # GET /jars/new
   def new
-    authorize Jar
     @jar = Jar.new
   end
 
