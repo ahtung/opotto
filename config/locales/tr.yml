@@ -1,132 +1,18 @@
 ---
 tr:
-  activerecord:
-    attributes:
-      contribution:
-        amount: Amount
-        anonymous: Anonim katkı
-      jar:
-        description: Tanım
-        end_at: Bitis zamani
-        end_at_date: Bitis gunu
-        end_at_time: Bitis tarihi
-        guest_ids: Misafirler
-        name: Isim
-        receiver_id: Alıcı
-        upper_bound: "Üst limit ($)"
-        visible: Görünür
-      user:
-        current_password: Current password
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        remember_me: Remember me
-    errors:
-      models:
-        contribution:
-          attributes:
-            amount:
-              amount_out_of_bounds: belirlenen üst limiti aşıyor.
-              greater_than_or_equal_to: oyle olmaz o
-            state:
-              invalid_transition: Geçersiz tranzisyon
-        jar:
-          attributes:
-            end_at:
-              blank: bos olamaz o
-              invalid_datetime: uygunsuz zaman
-              on_or_after: Bitiş tarihi ileri bir tarih seçilmelidir."
-              on_or_before: Bitiş tarihi 90 gün içinde seçilmelidir.
-            name:
-              blank: Bos olmaz o
-              taken: Bu isimde kumbara zaten var
-    models:
-      contribution: Katki
-      jar: Kumbara
   contribution:
-    amount: Miktar
-    created: '"%{name}" için %{amount} başarıyla aktarıldı.'
     new: Yeni katkı
     previous: "Önceki katkılar"
   devise:
     omniauth_callbacks:
       success: Basari
-  errors:
-    format: "%{attribute} %{message}"
-    messages:
-      accepted: must be accepted
-      already_confirmed: was already confirmed, please try signing in
-      blank: can't be blank
-      confirmation: doesn't match confirmation
-      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      expired: has expired, please request a new one
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      not_found: not found
-      not_locked: was not locked
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
-      odd: must be odd
-      record_invalid: 'Validation failed: %{errors}'
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is 1 character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is 1 character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be 1 character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: 1 error prohibited this %{model} from being saved
-        other: "%{count} errors prohibited this %{model} from being saved"
   helpers:
     label:
-      contribution:
-        amount: Miktar
-        anonymous: Anonim
       jar:
-        description: Tanım
-        end_at_date: Bitiş tarihi
-        end_at_time: Bitiş saati
         ends_at: Bitiş tarihi
-        guest_ids: Misafirler
-        message: Mesajınız
-        name: Adı
         optional: "İsteğe bağlı"
-        receiver: Alıcı
-        receiver_id: Alıcı
-        upper_bound: "Üst sınır"
-        visible: Herkese açık
-      user:
-        current_password: su anki sifre
-        email: e-posta
-        password: sifre
-        password_confirmation: sifre digrulama
-        remember_me: beni hatirla
-    select:
-      prompt: Seç
-    submit:
-      create: "%{model} oluştur"
-      submit: "%{model} kaydet"
-      update: "%{model} güncelle"
   jar:
     contribute: Katkı Yap
-    contributions: Katkı
     contributors: Katılımcı
     created: Kumbara başarıyla kaydedildi.
     description: Tanim
@@ -158,13 +44,11 @@ tr:
       content: opotto nerede?
       title: Bize ulaşın
     copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
-    discover: Kesfet
     hello: Merhaba
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
     me: Ben
     navigation:
       back: Geri
-    pots: Kumbaralar
     security:
       content: opotto ne kadar güvenli?
       title: Güvenlik

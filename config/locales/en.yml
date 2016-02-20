@@ -1,132 +1,18 @@
 ---
 en:
-  activerecord:
-    attributes:
-      contribution:
-        amount: Amount
-        anonymous: Anonymous
-      jar:
-        description: Description
-        end_at: End date
-        end_at_date: End day
-        end_at_time: End time
-        guest_ids: Guests
-        name: Name
-        receiver_id: Receiver
-        upper_bound: Upper bound (US$)
-        visible: Visible
-      user:
-        current_password: Current password
-        email: Emai
-        password: Password
-        password_confirmation: Password confirmation
-        remember_me: Remember me
-    errors:
-      models:
-        contribution:
-          attributes:
-            amount:
-              amount_out_of_bounds: out of bounds
-              greater_than_or_equal_to: That'snot possible
-            state:
-              invalid_transition: Invalid transition
-        jar:
-          attributes:
-            end_at:
-              blank: Can't be blank
-              invalid_datetime: Unlogical time
-              on_or_after: End date cannot be the past.
-              on_or_before: End date must be between 90 days
-            name:
-              blank: Can't be blank
-              taken: Name already taken
-    models:
-      contribution: Contribution
-      jar: Pot
   contribution:
-    amount: Amoun
-    created: Successfully contributed %{amount} to "%{name}".
     new: New contribution
     previous: You're previous contributions
   devise:
     omniauth_callbacks:
       success: Success
-  errors:
-    format: "%{attribute} %{message}"
-    messages:
-      accepted: must be accepted
-      already_confirmed: was already confirmed, please try signing in
-      blank: can't be blank
-      confirmation: doesn't match confirmation
-      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      expired: has expired, please request a new one
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      not_found: not found
-      not_locked: was not locked
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
-      odd: must be odd
-      record_invalid: 'Validation failed: %{errors}'
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is 1 character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is 1 character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be 1 character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: 1 error prohibited this %{model} from being saved
-        other: "%{count} errors prohibited this %{model} from being saved"
   helpers:
     label:
-      contribution:
-        amount: Amount
-        anonymous: Anonymous
       jar:
-        description: Description
-        end_at_date: End day
-        end_at_time: End time
         ends_at: Ends at
-        guest_ids: Guests
-        message: Message
-        name: Name
         optional: Optional
-        receiver: Receiver
-        receiver_id: Receiver
-        upper_bound: Upper bound
-        visible: Visible
-      user:
-        current_password: Current password
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        remember_me: Remeber me
-    select:
-      prompt: Please select
-    submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
   jar:
     contribute: Contribute
-    contributions: Contributions
     contributors: Contributors
     created: Pot successfully created!
     description: Description
@@ -158,13 +44,11 @@ en:
       content: where is opotto?
       title: Contact
     copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
-    discover: Discover
     hello: Hello
     introduction: opotto is a beautiful way of giving a present to your friends
     me: Me
     navigation:
       back: Back
-    pots: Pots
     security:
       content: how secure is opotto?
       title: Security
