@@ -1,8 +1,8 @@
 # JarsController
 class JarsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_jar, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_jar, only: [:update, :show, :edit]
+  before_action :set_jar, only: [:show, :edit, :update, :destroy, :report]
+  before_action :authorize_jar
   after_action :verify_authorized
 
   # GET /jars/1
@@ -17,6 +17,16 @@ class JarsController < ApplicationController
 
   # GET /jars/1/edit
   def edit
+  end
+
+  # GET /jars/1/report
+  def report
+    @abuse = @jar.reported_abuses.new
+    if @abuse.save
+      redirect_to @jar, notice: t('jar.reported')
+    else
+      redirect_to @jar, notice: t('jar.not_reported')
+    end
   end
 
   # POST /jars
