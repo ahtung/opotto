@@ -63,11 +63,11 @@ RSpec.configure do |config|
       }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"payKey\":\"GOOD_KEY\",\"actionType\":\"PAY\"}")
+      .with(body: "{'requestEnvelope':{'errorLanguage':'en_US'},'payKey':'GOOD_KEY','actionType':'PAY'}")
       .to_return(status: 200, body: { paymentExecStatus: 'COMPLETED' }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: "{\"requestEnvelope\":{\"errorLanguage\":\"en_US\"},\"payKey\":\"BAD_KEY\",\"actionType\":\"PAY\"}")
+      .with(body: "{'requestEnvelope':{'errorLanguage':'en_US'},'payKey':'BAD_KEY', 'actionType':PAY'}")
       .to_return(status: 200, body: { paymentExecStatus: 'ERROR' }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
