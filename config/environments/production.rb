@@ -83,7 +83,7 @@ Rails.application.configure do
   # Google Analytics
   config.middleware.use Rack::GoogleAnalytics, tracker: ENV['GOOGLE_ANALYTICS'] if ENV['GOOGLE_ANALYTICS'].present?
 
-   config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
     authentication: :plain,
