@@ -11,6 +11,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'log/**/*'
+  RunRailsCops: true
 
 Style/LineLength:
   Max: 150
