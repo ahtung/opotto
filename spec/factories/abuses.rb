@@ -4,7 +4,7 @@ FactoryGirl.define do
     title { Faker::Book.title }
     referer { Faker::Internet.url }
     description "MyString"
-    confirmed { [true,false].sample }
+    confirmed { false }
     resource_id 1
     resource_type "MyString"
     created_at { Time.zone.now }
