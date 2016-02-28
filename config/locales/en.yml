@@ -52,7 +52,7 @@ en:
     security:
       content: how secure is opotto?
       title: Security
-    sign_in_with_google: Login
+    sign_in_with_google: Sign in with Google
     title: opotto
   user:
     login: Login
