@@ -12,9 +12,9 @@
  *
  *= require_self
  *= require skeleton-sass
- *= require mapbox
- *= require map
  *= require footer
+ *= require_tree settings
+
  */
 
 $primary-color: color("blue", "lighten-2") !default;
