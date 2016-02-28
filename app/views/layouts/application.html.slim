@@ -13,9 +13,5 @@ html lang='en'
   body
     header
       = render 'notices', flash: flash
-    main
-      .container
-        .row
-          .col.s12
-            == yield
+    == yield
     = javascript_include_tag 'application'
