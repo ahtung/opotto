@@ -19,11 +19,10 @@
 // Tools
 @import 'tools/mixins';
 // Generic
-// @import 'skeleton-sass';
+@import 'semantic';
 // Base
 @import 'base/headers';
 // Components
-@import 'components/buttons';
 @import 'components/boxes';
 // Trumps
 @import 'trumps/home';
