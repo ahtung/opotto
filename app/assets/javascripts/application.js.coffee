@@ -17,7 +17,7 @@
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
 #= require select_guest
-#= require semantic-ui
+#= require semantic
 
 window.BrowserTZone ||= {}
 BrowserTZone.setCookie = ->
