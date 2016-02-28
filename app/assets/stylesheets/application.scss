@@ -14,7 +14,7 @@
  *= require skeleton-sass
  *= require footer
  *= require_tree settings
-
+ *= require_tree tools
  */
 
 $primary-color: color("blue", "lighten-2") !default;
