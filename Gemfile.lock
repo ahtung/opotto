@@ -209,7 +209,6 @@ GEM
       skinny (~> 0.2.3)
       sqlite3 (~> 1.3)
       thin (~> 1.5.0)
-    mapbox-rails (1.6.1.1)
     materialize-sass (0.97.5)
       sass (~> 3.3)
     meta-tags (2.1.0)
@@ -531,7 +530,6 @@ DEPENDENCIES
   jquery-rails (~> 4.0.4)
   launchy
   mailcatcher
-  mapbox-rails (~> 1.6.1.1)
   materialize-sass
   meta-tags (~> 2.1.0)
   money-rails (~> 1.6.0)
