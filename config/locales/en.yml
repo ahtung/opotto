@@ -44,7 +44,7 @@ en:
       content: where is opotto?
       title: Contact
     copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
-    hello: Hello
+    hello: Opotto
     introduction: opotto is a beautiful way of giving a present to your friends
     me: Me
     navigation:
@@ -52,7 +52,7 @@ en:
     security:
       content: how secure is opotto?
       title: Security
-    sign_in_with_google: Sign in with Google
+    sign_in_with_google: Login
     title: opotto
   user:
     login: Login
