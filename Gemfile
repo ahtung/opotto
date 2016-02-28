@@ -41,7 +41,6 @@ gem 'state_machines-activerecord','~> 0.3.0'
 gem 'faker'
 gem 'rack-attack', '~> 4.3.1'
 gem 'meta-tags', '~> 1.5.0', require: 'meta_tags'
-gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.7.0'
 gem 'rubocop'
 gem 'cane'
@@ -56,6 +55,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'skylight', '~> 0.10.0'
 end
 
 group :development do
