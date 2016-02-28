@@ -51,7 +51,7 @@ gem 'geoip_rails'
 gem 'httparty'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-skeleton-sass'
+
 end
 
 group :production do
