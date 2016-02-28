@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.4'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.5.1'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg', '~> 0.18.4'
 gem 'uglifier'
@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman', '~> 0.78.0'
 gem 'slim-rails', '~> 3.0.1'
 gem 'devise', '~> 3.5.3'
-gem 'puma', '~> 2.15.3'
+gem 'puma', '~> 3.0.2'
 gem 'money-rails', '~> 1.4.1'
 gem 'google_contacts_api', '~> 0.7.0'
 gem 'omniauth-google-oauth2', '~> 0.2.10'
