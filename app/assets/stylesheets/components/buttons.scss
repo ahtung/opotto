@@ -1,6 +1,7 @@
 .btn {
 //  @include font-weight(bold);
   color: $red;
+  background-color: $red;
   @include attention() {
     background-color: darken($red, 10%);
     border-color: darken($red, 10%);
