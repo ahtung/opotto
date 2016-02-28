@@ -299,7 +299,7 @@ GEM
       railties (= 4.2.5)
       sprockets-rails
     rails-assets-jquery (2.2.1)
-    rails-assets-semantic-ui (2.1.8)
+    rails-assets-semantic (2.1.8)
       rails-assets-jquery (>= 1.8)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -548,7 +548,7 @@ DEPENDENCIES
   rack-attack (~> 4.3.1)
   rack-google-analytics (~> 1.2.0)
   rails (= 4.2.5)
-  rails-assets-semantic-ui!
+  rails-assets-semantic!
   rails-i18n (~> 4.0.8)
   rails_12factor
   recaptcha

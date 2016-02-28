@@ -51,7 +51,7 @@ gem 'geoip_rails'
 gem 'httparty'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-semantic-ui'
+  gem 'rails-assets-semantic'
 end
 
 group :production do
