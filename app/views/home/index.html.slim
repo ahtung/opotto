@@ -1,8 +1,9 @@
-.row
-  .tvelve.columns.blue-light#welcome-header
-.row
-  .twelve.columns
-    h1= t('site.hello')
-    h2= t('site.motto')
-    p= t('pages.home.introduction')
-    = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'btn box'
+.container
+  .row
+    .tvelve.columns.blue-light#welcome-header
+  .row
+    .six.columns
+      h1= t('site.hello')
+      h2= t('site.motto')
+      p= t('pages.home.introduction')
+      = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'btn box'
