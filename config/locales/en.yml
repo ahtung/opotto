@@ -37,6 +37,7 @@ en:
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:
+    motto: Biriktir . Topla . Paylas
     about:
       content: what is opotto?
       title: About
