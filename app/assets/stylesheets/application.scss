@@ -11,15 +11,16 @@
  * file per style scope.
  *
  *= require_self
+ *= require skeleton-sass
+ *= require mapbox
+ *= require map
  *= require footer
 
  *= require_tree settings
 
  */
 
-@import 'materialize/components/color';
 $primary-color: color("blue", "lighten-2") !default;
-@import 'materialize';
 
 .facebook_link{
   background:

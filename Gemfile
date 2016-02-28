@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.2.4'
 
 gem 'rails', '4.2.6'
-gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg', '~> 0.18.4'
 gem 'uglifier'
@@ -50,6 +49,10 @@ gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'geoip_rails'
 gem 'httparty'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-skeleton-sass'
+end
 
 group :production do
   gem 'rails_12factor'
