@@ -24,11 +24,6 @@ BrowserTZone.setCookie = ->
 
 $ ->
   BrowserTZone.setCookie()
-  $('select').material_select()
-  $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15
-  })
 
   # Initialize Select Guest Class
   guests = new SelectGuest

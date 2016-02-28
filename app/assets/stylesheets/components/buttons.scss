@@ -1,0 +1,17 @@
+.btn {
+//  @include font-weight(bold);
+  color: $red;
+  @include attention() {
+    background-color: darken($red, 10%);
+    border-color: darken($red, 10%);
+  }
+}
+
+.btn-secondary {
+  background: none;
+  color: $color-brand;
+  @include attention() {
+    background: none;
+    color: darken($color-brand, 10%);
+  }
+}
