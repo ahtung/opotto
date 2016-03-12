@@ -1,6 +1,7 @@
 # Jar
 class Jar < ActiveRecord::Base
   include DateTimeAttribute
+  include Abusable
 
   # Relations
   belongs_to :owner, class_name: 'User'
@@ -24,6 +25,7 @@ class Jar < ActiveRecord::Base
   monetize :upper_bound_cents, allow_nil: true
 
   default_scope { includes(:owner) }
+  scope :this_week, -> { where('created_at >= ?', 1.week.ago).where('created_at <= ?', Time.zone.now) }
 
   # Checks owner's pot count
   def owners_pot_count

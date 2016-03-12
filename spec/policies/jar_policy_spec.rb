@@ -51,26 +51,6 @@ describe JarPolicy do
     end
   end
 
-  permissions :new? do
-    it 'allows access to members' do
-      expect(subject).to permit(user, jar)
-    end
-
-    it 'denies access to non members' do
-      expect(subject).not_to permit(nil, jar)
-    end
-  end
-
-  permissions :create? do
-    it 'allows access to members' do
-      expect(subject).to permit(user, jar)
-    end
-
-    it 'denies access to non members' do
-      expect(subject).not_to permit(nil, jar)
-    end
-  end
-
   permissions :edit? do
     it 'allows access to owner' do
       expect(subject).to permit(user, jar)

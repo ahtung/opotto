@@ -37,7 +37,6 @@ gem 'roboto', '~> 0.2.0'
 gem 'fog-aws', '~> 0.7.6'
 gem 'sitemap_generator'
 gem 'rails-i18n', '~> 4.0.8'
-gem 'i18n-tasks', '~> 0.9.2'
 gem 'net-ssh', '~> 2.9.2'
 gem 'state_machines-activerecord','~> 0.3.0'
 gem 'mapbox-rails', '~> 1.6.1.1'
@@ -50,6 +49,8 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'geoip_rails'
+gem 'httparty'
 
 group :production do
   gem 'rails_12factor'
@@ -60,6 +61,7 @@ group :development do
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'mailcatcher'
+  gem 'i18n-tasks', '~> 0.9.4'
 end
 
 group :development, :test do

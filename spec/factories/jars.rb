@@ -13,6 +13,14 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_abuses do
+      after :create do |instance|
+        10.times do
+          instance.reported_abuses << create(:abuse, resource_id: instance.id, resource_type: 'Jar')
+        end
+      end
+    end
+
     trait :with_owner do
       owner { create(:user) }
     end
@@ -38,7 +46,7 @@ FactoryGirl.define do
 
     trait :closed do
       after :create do |model|
-        model.update_column(:end_at, 3.days.ago)
+        model.update_columns(end_at: 3.days.ago, created_at: 10.days.ago)
       end
     end
 

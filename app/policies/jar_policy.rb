@@ -18,19 +18,9 @@ class JarPolicy
     user && jar.open?
   end
 
-  # new?
-  def new?
-    user
-  end
-
   # edit?
   def edit?
     jar.owner == user
-  end
-
-  # create?
-  def create?
-    user
   end
 
   # update?

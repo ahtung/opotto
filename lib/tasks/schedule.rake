@@ -3,4 +3,9 @@ namespace :schedule do
   task destroy_pots: :environment do
     Jar.ended.map(&:destroy)
   end
+
+  desc "Admin's will be notified"
+  task notify_admins: :environment do
+    AdminMailer.update_email.deliver_later
+  end
 end

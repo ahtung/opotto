@@ -1,9 +1,9 @@
 # JarsController
 class JarsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_jar, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_jar, only: [:update, :show, :edit]
-  after_action :verify_authorized
+  before_action :set_jar, only: [:show, :edit, :update, :destroy, :report]
+  before_action :authorize_jar, except: [:new, :create, :report]
+  after_action :verify_authorized, except: [:new, :create, :report]
 
   # GET /jars/1
   def show
@@ -11,7 +11,6 @@ class JarsController < ApplicationController
 
   # GET /jars/new
   def new
-    authorize Jar
     @jar = Jar.new
   end
 
@@ -19,10 +18,19 @@ class JarsController < ApplicationController
   def edit
   end
 
+  # GET /jars/1/report
+  def report
+    @abuse = @jar.reported_abuses.new
+    if @abuse.save
+      redirect_to @jar, notice: t('jar.reported')
+    else
+      redirect_to @jar, notice: t('jar.not_reported')
+    end
+  end
+
   # POST /jars
   def create
     @jar = current_user.jars.build(jar_params)
-    authorize @jar
     if verify_recaptcha(model: @jar) && @jar.save
       Rails.logger.info("Payment log | Pot is created, will end at #{@jar.end_at}")
       redirect_to @jar, notice: t('jar.created')

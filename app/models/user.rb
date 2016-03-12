@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   # after_commit :schedule_import_contacts, on: :update
   after_commit :schedule_check_paypal
 
+  scope :admin, -> { where(admin: true) }
+
   # returns user's handle
   def handle
     return name if name
@@ -39,7 +41,7 @@ class User < ActiveRecord::Base
     data = access_token.info
     User.where(email: data['email']).first_or_create(
       name: data['name'],
-      refresh_token: (access_token.credentials) ? access_token.credentials.refresh_token : nil,
+      refresh_token: access_token.credentials ? access_token.credentials.refresh_token : nil,
       admin: false
     )
   end

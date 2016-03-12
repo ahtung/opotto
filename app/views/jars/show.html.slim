@@ -31,6 +31,8 @@ p
   strong = "#{t('helpers.label.jar.ends_at')}:"
   = @jar.end_at.strftime('%d %b %y')
 
+p
+  = link_to 'Report abuse', report_jar_path(@jar)
 .row
   .col.s12
     .row
