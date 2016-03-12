@@ -157,7 +157,6 @@ GEM
     formatador (0.2.5)
     gaffe (1.0.2)
       rails (>= 3.2.0)
-    geoip_rails (0.0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google_contacts_api (0.7.1)
@@ -174,9 +173,6 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_accept_language (2.0.5)
-    httparty (0.13.7)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n-tasks (0.9.4)
       activesupport (>= 4.0.2)
@@ -526,11 +522,9 @@ DEPENDENCIES
   fog-aws (~> 0.7.6)
   foreman (~> 0.78.0)
   gaffe (~> 1.0.2)
-  geoip_rails
   google_contacts_api (~> 0.7.0)
   high_voltage (~> 2.4.0)
   http_accept_language (~> 2.0.5)
-  httparty
   i18n-tasks (~> 0.9.4)
   jbuilder
   jquery-rails (~> 4.0.4)
