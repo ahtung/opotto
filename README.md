@@ -1,6 +1,9 @@
 # pot
 
-[![Circle CI](https://circleci.com/gh/dunyakirkali/opotto.svg?style=svg)](https://circleci.com/gh/dunyakirkali/opotto)
+![](https://img.shields.io/badge/Ruby-2.2.4-green.svg)
+![](https://img.shields.io/badge/Rails-4.2.6-green.svg)
+[![Circle CI](https://circleci.com/gh/ahtung/opotto/tree/master.svg?style=shield&circle-token=917522f32c616b7c174960bc0fe3dbe95d510501)](https://circleci.com/gh/ahtung/opotto/tree/master)
+
 
 ## Development
 
