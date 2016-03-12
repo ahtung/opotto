@@ -124,7 +124,7 @@ describe Jar do
         expect(jar.fullness).to eq 0
       end
 
-      it 'should return x if no contributions' do
+      xit 'should return x if no contributions' do
         jar = create(:jar, :with_contributions)
         expect(jar.fullness).to eq jar.contributions.complete.map(&:amount).inject { |a, e| a + e } / 1000
       end
