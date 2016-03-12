@@ -99,8 +99,6 @@ Rails.application.configure do
 
   config.force_ssl = true
 
-  config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-62554071-1'
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.rollbar = true

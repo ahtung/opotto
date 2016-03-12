@@ -1,4 +1,4 @@
-if Rails.env.development? || Rails.env.staging?
+if Rails.env.development?
   User.delete_all
   Jar.delete_all
   Friendship.delete_all
