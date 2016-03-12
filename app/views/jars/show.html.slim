@@ -31,15 +31,9 @@ p
   strong = "#{t('helpers.label.jar.ends_at')}:"
   = @jar.end_at.strftime('%d %b %y')
 
-p
-  = link_to 'Report abuse', report_jar_path(@jar)
-.row
-  .col.s12
-    .row
-      .col.s4.m2
-        = link_to t('site.navigation.back'), root_path, class: 'btn'
-      .col.s6.m4
-        = link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'btn'
-      - if policy(@jar).update?
-        .col.s12
-          p = link_to t('jar.edit'), edit_jar_path(@jar), class: 'btn'
+
+= link_to 'Report abuse', report_jar_path(@jar), class: 'button ui secondary'
+= link_to t('site.navigation.back'), root_path, class: 'ui button'
+= link_to t('jar.contribute'), new_jar_contribution_path(@jar), class: 'ui primary button'
+- if policy(@jar).update?
+  = link_to t('jar.edit'), edit_jar_path(@jar), class: 'ui button'
