@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/Rails-4.2.6-green.svg)
 
-[![Circle CI](https://circleci.com/gh/ahtung/opotto/tree/master.svg?style=svg)](https://circleci.com/gh/ahtung/opotto/tree/master)
+[![Circle CI](https://circleci.com/gh/ahtung/opotto/tree/master.svg?style=shield)](https://circleci.com/gh/ahtung/opotto/tree/master)
 
 
 ## Development
