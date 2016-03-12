@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.4'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg', '~> 0.18.4'
