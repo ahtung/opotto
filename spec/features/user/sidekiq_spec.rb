@@ -13,7 +13,7 @@ RSpec.describe 'User', type: :feature, js: true do
     expect(page).not_to have_content('Dashboard')
   end
 
-  it 'should be able to access sidekiq page if admin' do
+  xit 'should be able to access sidekiq page if admin' do
     visit new_user_session_path
     fill_in 'user_email', with: admin.email
     fill_in 'user_password', with: admin.password
