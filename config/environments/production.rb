@@ -98,8 +98,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
 
-  config.force_ssl = true
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.rollbar = true
