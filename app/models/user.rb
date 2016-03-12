@@ -79,7 +79,11 @@ class User < ActiveRecord::Base
   end
 
   def check_paypal
-    update_column(:paypal_member, User.paypal_account?(email))
+    update_column(:paypal_member, self.class.paypal_account?(email))
+  end
+
+  def check_country
+    update_column(:paypal_country, self.class.fetch_paypal_country(email))
   end
 
   def get_contact_details(google_contacts_user)
@@ -96,12 +100,17 @@ class User < ActiveRecord::Base
       matchCriteria: 'NONE'
     )
     get_verified_status_response = api.get_verified_status(get_verified_status)
-    if get_verified_status_response.accountStatus == 'VERIFIED'
+    account_status = get_verified_status_response.accountStatus == 'VERIFIED'
+    if account_status
       Rails.logger.info get_verified_status_response.accountStatus
     else
       Rails.logger.error get_verified_status_response.error
     end
-    get_verified_status_response.accountStatus == 'VERIFIED'
+    account_status
+  end
+
+  def self.fetch_paypal_country(email)
+    binding.pry
   end
 
   # Scehdule an import of the user's contact list after it is committed

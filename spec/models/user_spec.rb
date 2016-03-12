@@ -59,6 +59,15 @@ describe User do
       end
     end
 
+    describe 'check_country', focus: true do
+      it 'update paypal_country' do
+        user = create(:user)
+        user.check_country
+        expect(user.paypal_country).not_to eq(nil)
+      end
+    end
+
+
     describe 'handle' do
       it 'returns name if user has name' do
         user = create(:user, name: 'DUN')
