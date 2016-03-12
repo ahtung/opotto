@@ -49,6 +49,10 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'geoip_rails'
 gem 'httparty'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-semantic'
+end
+
 group :production do
   gem 'rails_12factor'
   gem 'skylight', '~> 0.10.0'
