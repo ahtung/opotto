@@ -82,10 +82,6 @@ class User < ActiveRecord::Base
     update_column(:paypal_member, self.class.paypal_account?(email))
   end
 
-  def check_country
-    update_column(:paypal_country, self.class.fetch_paypal_country(email))
-  end
-
   def get_contact_details(google_contacts_user)
     contact_info = google_contacts_user.contacts.map do |contact|
       { email: contact.primary_email, name: contact.full_name }
@@ -106,14 +102,11 @@ class User < ActiveRecord::Base
     else
       Rails.logger.error get_verified_status_response.error
     end
+    update_column(:paypal_country, get_verified_status_response.countryCode)
     account_status
   end
 
-  def self.fetch_paypal_country(email)
-    binding.pry
-  end
-
-  # Scehdule an import of the user's contact list after it is committed
+   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_async(id) # if last_contact_sync_at.nil?
   end
