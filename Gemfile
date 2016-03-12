@@ -30,7 +30,7 @@ gem 'high_voltage', '~> 2.4.0'
 gem 'gaffe', '~> 1.0.2'
 gem 'pp-adaptive', '~> 1.0.0'
 gem 'paypal-sdk-adaptiveaccounts', '~> 1.102.1'
-gem 'browser-timezone-rails', '~> 0.0.8'
+gem 'browser-timezone-rails'
 gem 'factory_girl_rails', '~> 4.5.0'
 gem 'devise-i18n', '~> 0.12.1'
 gem 'roboto', '~> 0.2.0'
@@ -82,7 +82,6 @@ group :test do
   gem 'rspec-sidekiq', github: 'wpolicarpo/rspec-sidekiq', branch: 'perform-in-composable-matcher'
   gem 'simplecov', require: false
   gem 'timecop'
-  gem 'codeclimate-test-reporter', require: false
   gem 'rspec-its'
   gem 'state_machine_rspec'
   gem 'webmock'
