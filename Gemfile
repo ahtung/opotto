@@ -48,7 +48,7 @@ gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'geoip_rails'
 gem 'httparty'
-gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'semantic-ui-sass', github: 'ahtung/semantic-ui-sass'
 
 group :production do
   gem 'rails_12factor'
