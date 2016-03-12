@@ -57,7 +57,7 @@ class JarsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_jar
-    @jar = Jar.find(params[:id])
+    @jar = Jar.includes(contributions: :user).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
