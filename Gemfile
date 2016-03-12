@@ -49,6 +49,7 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'paypal-sdk-rest', '~> 1.4.3'
 
 group :production do
   gem 'rails_12factor'
