@@ -48,7 +48,6 @@ gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'geoip_rails'
 gem 'httparty'
-gem 'neat'
 
 group :production do
   gem 'rails_12factor'
