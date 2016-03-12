@@ -231,7 +231,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    net-ssh (2.9.4)
+    net-ssh (3.0.2)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -336,7 +336,7 @@ GEM
     roboto (0.2.0)
       actionpack (>= 3.0.0)
       rails (>= 3.1.0)
-    rollbar (2.7.1)
+    rollbar (2.8.3)
       multi_json
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -536,7 +536,7 @@ DEPENDENCIES
   materialize-sass
   meta-tags (~> 1.5.0)
   money-rails (~> 1.6.0)
-  net-ssh (~> 2.9.2)
+  net-ssh (~> 3.0.2)
   omniauth-google-oauth2 (~> 0.2.10)
   paypal-sdk-adaptiveaccounts (~> 1.102.1)
   pg (~> 0.18.4)
@@ -552,7 +552,7 @@ DEPENDENCIES
   rails_12factor
   recaptcha
   roboto (~> 0.2.0)
-  rollbar (~> 2.7.0)
+  rollbar (~> 2.8.3)
   rspec-its
   rspec-rails
   rspec-sidekiq!
