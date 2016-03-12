@@ -262,10 +262,6 @@ GEM
     paypal-sdk-core (0.3.4)
       multi_json (~> 1.0)
       xml-simple
-    paypal-sdk-rest (1.4.3)
-      multi_json (~> 1.0)
-      uuidtools (~> 2.1)
-      xml-simple
     pg (0.18.4)
     powerpack (0.1.1)
     pp-adaptive (1.0.0)
@@ -485,7 +481,6 @@ GEM
     unf_ext (0.0.7.2)
     unicode-display_width (0.3.1)
     uniform_notifier (1.9.0)
-    uuidtools (2.1.5)
     validates_timeliness (3.0.15)
       timeliness (~> 0.3.7)
     virtus (1.0.5)
@@ -542,7 +537,6 @@ DEPENDENCIES
   net-ssh (~> 2.9.2)
   omniauth-google-oauth2 (~> 0.2.10)
   paypal-sdk-adaptiveaccounts (~> 1.102.1)
-  paypal-sdk-rest (~> 1.4.3)
   pg (~> 0.18.4)
   pp-adaptive (~> 1.0.0)
   pry
