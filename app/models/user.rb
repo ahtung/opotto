@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   after_commit :schedule_check_paypal
 
   scope :admin, -> { where(admin: true) }
+  scope :with_paypal_account, -> { where(paypal_member: true) }
 
   # returns user's handle
   def handle
@@ -44,10 +45,6 @@ class User < ActiveRecord::Base
       refresh_token: access_token.credentials ? access_token.credentials.refresh_token : nil,
       admin: false
     )
-  end
-
-  def self.with_paypal_account
-    where(paypal_member: true)
   end
 
   # Gets the access_token using users's refresh token
