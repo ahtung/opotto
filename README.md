@@ -1,6 +1,6 @@
 # pot
 
-[![CircleCI](https://img.shields.io/circleci/project/dunyakirkali/opotto.svg)]()
+[![CircleCI](https://img.shields.io/circleci/project/BrightFlair/PHP.Gt.svg)](https://circleci.com/gh/ahtung/opotto)
 
 ## Development
 
