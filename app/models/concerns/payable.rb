@@ -19,17 +19,17 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
+  # Complete preapproved payments to receivers
+  def complete_payment
+    api.execute :Pay, payment_options(preapproval_key)
+    payment_info
+  end
+
   private
 
   # Setup the Payment and return pay object
   def setup_preapproval
     api.execute :Preapproval, preapproval_payment_options
-  end
-
-  # Complete preapproved payments to receivers
-  def complete_payment
-    api.execute :Pay, payment_options(preapproval_key)
-    payment_info
   end
 
   # describe
