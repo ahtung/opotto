@@ -33,7 +33,7 @@ describe Jar do
   end
 
   # Validations
-  describe 'validations', focus: true do
+  describe 'validations' do
     it { should validate_presence_of(:owner) }
     it { should validate_presence_of(:end_at) }
     it { should validate_presence_of(:name) }
