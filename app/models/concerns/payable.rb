@@ -79,9 +79,9 @@ module Payable
   # Set options for setting up preapproval payment
   def preapproval_payment_options
     {
-      ending_date: self.jar.end_at.utc,
+      ending_date: jar.end_at.utc,
       starting_date: Time.now.utc,
-      senderEmail: self.user.email,
+      senderEmail: user.email,
       currency_code: amount.currency.iso_code,
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
