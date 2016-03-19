@@ -8,7 +8,7 @@ class PaymentsWorker
   # perform worker
   def perform(contribution_id)
     contribution = Contribution.find(contribution_id)
-    contribution.complete_payment
+    contribution.make_preapproved_payments
     Rails.logger.info("Payment log | Payment worker for #{contribution_id}")
   end
 end
