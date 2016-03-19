@@ -9,7 +9,8 @@ module Payable
 
   # start the paypal payment
   def pay
-    response = initiate_payment
+    preapproval = setup_preapproval
+    response = redirect_to_paypal(preapproval)
     return unless response
     update_payment_details(response)
     payment_info
@@ -35,14 +36,19 @@ module Payable
 
   private
 
-  # Initiates a payment
-  def initiate_payment
-    api.execute :Pay, payment_options do |response|
-      if response.success?
-        Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
-      else
-        Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
-      end
+
+  # Setup the Payment and return pay object
+  def setup_preapproval
+    api.execute :Preapproval, preapproval_payment_options
+  end
+
+  # Redirect the Customer to PayPal for Authorization and return response
+  def redirect_to_paypal(response)
+    if response.success?
+      p "Pay key: #{response.preapproval_key}".green
+      Launchy.open(api.preapproval_url(response))
+    else
+      p "#{response.ack_code}: #{response.error_message}".red
     end
   end
 
