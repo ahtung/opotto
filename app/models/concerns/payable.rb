@@ -52,12 +52,13 @@ module Payable
     Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time / 60} minutes")
   end
 
-  # describe
+  # Retrieve Data about the Payment
   def payment_info
     response = api.execute(:PaymentDetails, pay_key: payment_key)
     parse_payment_info(response)
   end
 
+  # Pare payment info
   def parse_payment_info(response)
     if response.success?
       self.user = User.find_by(email: response.sender.email)
@@ -76,15 +77,26 @@ module Payable
     false
   end
 
-  # payment options for initial paypal payment
-  def payment_options
+  # Set payment options when payment triggered
+  def payment_options(preapproval_key)
     {
-      action_type: 'PAY_PRIMARY',
+      preapproval_key: preapproval_key,
+      action_type:    'PAY',
+      currency_code:  amount.currency.iso_code,
+      receivers: payment_receivers
+    }
+  end
+
+  # Set options for setting up preapproval payment
+  def preapproval_payment_options
+    {
+      ending_date: self.jar.end_at,
+      starting_date: DateTime.now,
+      senderEmail: self.user.email,
       currency_code: amount.currency.iso_code,
-      fees_payer: ENV['PAYPAL_FEESPAYER'],
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
-      receivers: payment_receivers
+      feesPayer: 'PRIMARYRECEIVER'
     }
   end
 
