@@ -62,18 +62,13 @@ RSpec.configure do |config|
         refresh_token: '1/L7S-j2AOqJLQE3kYAsiFKVtykz3sAYhx2XOiuCjTce9IgOrJDtdun6zK6XiATCKT'
       }.to_json, headers: {})
 
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"payKey":"GOOD_KEY","actionType":"PAY"}')
-      .to_return(status: 200, body: { paymentExecStatus: 'COMPLETED' }.to_json, headers: {})
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"payKey":"BAD_KEY","actionType":"PAY"}')
-      .to_return(status: 200, body: { paymentExecStatus: 'ERROR' }.to_json, headers: {})
-
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
       .to_return(status: 200, body: { payKey: '' }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
+      .to_return(status: 200, body: {}.to_json, headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
       .to_return(status: 200, body: {}.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
@@ -82,18 +77,6 @@ RSpec.configure do |config|
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
       .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}')
       .to_return(status: 200, body: { accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
-
-    stub_request(:get, 'http://freegeoip.net/json/0.0.0.0')
-      .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' })
-      .to_return(status: 200, body: { country_code: 'NL' }.to_json, headers: { 'content-type' => 'application/json' })
-
-    stub_request(:get, 'http://freegeoip.net/json/127.0.0.1')
-      .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' })
-      .to_return(status: 200, body: { country_code: 'NL' }.to_json, headers: { 'content-type' => 'application/json' })
-
-    stub_request(:get, 'http://freegeoip.net/json/58.3.128.0')
-      .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' })
-      .to_return(status: 200, body: { country_code: 'JP' }.to_json, headers: { 'content-type' => 'application/json' })
   end
 
   config.before(:suite) do
