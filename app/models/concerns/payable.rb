@@ -34,7 +34,7 @@ module Payable
 
   # describe
   def update_payment_details(payment)
-    self.authorization_url = api.payment_url(payment)
+    self.authorization_url = api.preapproval_url(payment)
     update_column(:payment_key, payment.pay_key)
     Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time / 60} minutes")
   end
