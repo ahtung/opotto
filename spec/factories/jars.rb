@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :jar do
     name     { Faker::Name.name }
     end_at   { 10.days.from_now }
-    association :owner, factory: :user, strategy: :build
-    association :receiver, factory: :user, strategy: :build
+    association :owner, factory: :user
+    association :receiver, factory: :user
 
     trait :with_contributions do
       after :create do |instance|
@@ -19,10 +19,6 @@ FactoryGirl.define do
           instance.reported_abuses << create(:abuse, resource_id: instance.id, resource_type: 'Jar')
         end
       end
-    end
-
-    trait :with_owner do
-      owner { create(:user) }
     end
 
     trait :with_guests do

@@ -33,7 +33,8 @@ describe Jar do
   end
 
   # Validations
-  describe 'validations' do
+  describe 'validations', focus: true do
+    it { should validate_presence_of(:owner) }
     it { should validate_presence_of(:end_at) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:receiver) }
@@ -83,6 +84,20 @@ describe Jar do
 
       it 'is not a guest' do
         expect(jar.valid?).to eq true
+      end
+    end
+
+    describe "should validate that the receiver's PayPal account's country allows opotto" do
+      it 'and allow if from NL' do
+        user = create(:user, paypal_country: 'NL')
+        jar = build(:jar, owner: user)
+        expect(jar).to be_valid
+      end
+
+      it 'and deny if from JP' do
+        user = create(:user, paypal_country: 'JP')
+        jar = build(:jar, owner: user)
+        expect(jar).not_to be_valid
       end
     end
 
