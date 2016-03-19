@@ -9,8 +9,7 @@ module Payable
 
   # start the paypal payment
   def pay
-    preapproval = setup_preapproval
-    response = redirect_to_paypal(preapproval)
+    response = setup_preapproval
     return unless response
     update_payment_details(response)
   end
