@@ -13,7 +13,6 @@ module Payable
     response = redirect_to_paypal(preapproval)
     return unless response
     update_payment_details(response)
-    payment_info
   end
 
   # returns the payment time
