@@ -31,8 +31,8 @@ class Jar < ActiveRecord::Base
 
   # Validates whether the owner is from an Crowdfunding allowing country
   def owners_paypal_country
-    return unless DisallowedCountries.include?(owner.paypal_country)
-    errors.add(:base, "Fundraising is prohibited in your country")
+    return unless DISALLOWED_COUNTRIES.include?(owner.paypal_country)
+    errors.add(:base, 'Fundraising is prohibited in your country')
   end
 
   # Validates owner's pot count
@@ -44,7 +44,7 @@ class Jar < ActiveRecord::Base
 
   # Validates that the receiver is not in guest list
   def receiver_not_a_guest
-    return unless  guests.include?(receiver)
+    return unless guests.include?(receiver)
     errors.add(:guests, "Receiver can't be a guest")
   end
 

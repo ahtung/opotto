@@ -50,7 +50,6 @@ RSpec.describe Contribution, type: :model do
     end
   end
 
-
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   it { should handle_events :success, :error, when: :initiated }

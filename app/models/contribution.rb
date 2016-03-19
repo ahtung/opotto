@@ -28,8 +28,8 @@ class Contribution < ActiveRecord::Base
 
   # Validates user's paypal country
   def users_paypal_country
-    return unless DisallowedCountries.include?(user.paypal_country)
-    errors.add(:base, "Fundraising is prohibited in your country")
+    return unless DISALLOWED_COUNTRIES.include?(user.paypal_country)
+    errors.add(:base, 'Fundraising is prohibited in your country')
   end
 
   # Validates user's previous contribution total

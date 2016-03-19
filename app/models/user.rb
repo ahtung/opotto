@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
     account_status
   end
 
-   # Scehdule an import of the user's contact list after it is committed
+  # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_async(id) # if last_contact_sync_at.nil?
   end
