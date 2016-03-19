@@ -21,18 +21,6 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
-  # Completes payment (pay secondary receiver)
-  def complete_payment
-    api.execute :ExecutePayment, secondary_payment_options do |response|
-      if response.success?
-        success! if scheduled?
-        Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
-      else
-        error! if scheduled?
-        Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
-      end
-    end
-  end
 
   private
 
@@ -50,6 +38,12 @@ module Payable
     else
       p "#{response.ack_code}: #{response.error_message}".red
     end
+  end
+
+  # Make preapproved payments to receivers
+  def make_preapproved_payments
+    api.execute :Pay, payment_options(preapproval_key)
+    payment_info
   end
 
   # describe
