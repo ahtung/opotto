@@ -12,13 +12,15 @@ class Jar < ActiveRecord::Base
   has_many :guests, -> { uniq }, through: :invitations, source: :user
 
   # Validations
+  validates :owner, presence: true
   validates :receiver, presence: true
   validates :name, presence: true, uniqueness: true
   validates :end_at, presence: true
   validates_datetime :end_at, on: :create, between: [Time.zone.now, Time.zone.now + 90.days]
-  validate :receiver_not_a_guest
+  validate :receiver_not_a_guest, if: -> { receiver }
   validate :owners_pot_count, if: -> { owner }
   validate :yearly_pot_limit, if: -> { owner }
+  validate :owners_paypal_country, if: -> { owner }
 
   date_time_attribute :end_at
 
@@ -27,14 +29,26 @@ class Jar < ActiveRecord::Base
   default_scope { includes(:owner) }
   scope :this_week, -> { where('created_at >= ?', 1.week.ago).where('created_at <= ?', Time.zone.now) }
 
-  # Checks owner's pot count
+  # Validates whether the owner is from an Crowdfunding allowing country
+  def owners_paypal_country
+    return unless DISALLOWED_COUNTRIES.include?(owner.paypal_country)
+    errors.add(:base, 'Fundraising is prohibited in your country')
+  end
+
+  # Validates owner's pot count
   def owners_pot_count
     pot_per_person = ENV['POT_PER_USER'] ? ENV['POT_PER_USER'].to_i : 2
     return unless owner.jars.open.count > pot_per_person
     errors.add(:base, "Can't have more than #{pot_per_person} pots")
   end
 
-  # Checks owner's pot's in this year
+  # Validates that the receiver is not in guest list
+  def receiver_not_a_guest
+    return unless guests.include?(receiver)
+    errors.add(:guests, "Receiver can't be a guest")
+  end
+
+  # Validates owner's pot's in this year
   def yearly_pot_limit
     yearly_limit = ENV['POT_LIMIT_PER_YEAR'] ? ENV['POT_LIMIT_PER_YEAR'].to_i : 4
     jar_count_since_new_year = owner.jars.where('created_at > ?', Time.zone.today.beginning_of_year).count
@@ -118,11 +132,5 @@ class Jar < ActiveRecord::Base
   # Scales the ascii number to 100
   def scaled_coordinate(coordinate)
     coordinate * 100 / 255
-  end
-
-  # Validates that the receiver is not in guest list
-  def receiver_not_a_guest
-    errors.add(:guests, "Receiver can't be a guest") if guests.include?(receiver)
-    true
   end
 end

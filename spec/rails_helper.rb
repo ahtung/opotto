@@ -77,11 +77,11 @@ RSpec.configure do |config|
       .to_return(status: 200, body: {}.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
-      .to_return(status: 200, body: { accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(status: 200, body: { countryCode: 'NL', accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
       .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}')
-      .to_return(status: 200, body: { accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(status: 200, body: { countryCode: 'NL', accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
   end
 
   config.before(:suite) do

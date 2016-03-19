@@ -12,8 +12,13 @@ RSpec.describe Contribution, type: :model do
   # Attributes
   it { is_expected.to monetize(:amount) }
 
+  # DB indexes
+  it { should have_db_index(:user_id) }
+  it { should have_db_index(:jar_id) }
+
   # Validations
   it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
+
   describe 'should be' do
     let!(:user) { create(:user) }
     let!(:jar) { create(:jar, guests: [user]) }
@@ -25,6 +30,22 @@ RSpec.describe Contribution, type: :model do
     end
     it "invalid if owner's total donations to this pot >= 2000$" do
       user.contributions << create_list(:contribution, 2, amount: 900, jar: jar)
+      expect(contribution).not_to be_valid
+    end
+  end
+
+  describe "should validate that the user's PayPal account's country allows opotto" do
+    it 'and allow if from NL' do
+      user = create(:user, paypal_country: 'NL')
+      jar = create(:jar, guests: [user])
+      contribution = build(:contribution, user: user, amount: 200, jar: jar)
+      expect(contribution).to be_valid
+    end
+
+    it 'and deny if from JP' do
+      user = create(:user, paypal_country: 'JP')
+      jar = create(:jar, guests: [user])
+      contribution = build(:contribution, user: user, amount: 200, jar: jar)
       expect(contribution).not_to be_valid
     end
   end

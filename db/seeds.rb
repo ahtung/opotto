@@ -18,9 +18,9 @@ if Rails.env.development?
   FactoryGirl.create_list(:jar, 3, :with_contributions, owner: onur, guests: [dunya] + FactoryGirl.create_list(:user, 3), visible: true)
 elsif Rails.env.production?
   Jar.where(name: 'PayPal test Jar').destroy_all
-  onur = User.find_by(email: 'onurkucukkece@gmail.com')
-  dunya = User.find_by(email: 'dunyakirkali@gmail.com')
-  ilana = User.find_by(email: 'ilana@madco.nl')
+  onur = User.where(email: 'onurkucukkece@gmail.com').first_or_create
+  dunya = User.where(email: 'dunyakirkali@gmail.com').first_or_create
+  ilana = User.where(email: 'ilana@madco.nl').first_or_create
   paypal = User.where(email: 'paypal@opotto.com').first_or_create
   FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal, ilana], visible: true)
 end

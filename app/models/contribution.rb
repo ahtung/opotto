@@ -15,6 +15,7 @@ class Contribution < ActiveRecord::Base
   validates :user, presence: true
   validates :amount_cents, numericality: { greater_than: 100 }
   validate :users_contribution_limit, if: -> { user }
+  validate :users_paypal_country, if: -> { user }
 
   # Attributes
   attr_accessor :authorization_url
@@ -25,7 +26,13 @@ class Contribution < ActiveRecord::Base
   # Money
   monetize :amount_cents
 
-  # Checks user's previous contribution total
+  # Validates user's paypal country
+  def users_paypal_country
+    return unless DISALLOWED_COUNTRIES.include?(user.paypal_country)
+    errors.add(:base, 'Fundraising is prohibited in your country')
+  end
+
+  # Validates user's previous contribution total
   def users_contribution_limit
     contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] ? ENV['DONATION_PER_USER_PER_PROJECT'].to_i : 200_000
     contributions_so_far = user.contributions.where(jar: jar).sum(:amount_cents)

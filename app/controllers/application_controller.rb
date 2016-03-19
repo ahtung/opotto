@@ -7,15 +7,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  before_action :authorize_country
   around_action :set_time_zone
 
   private
-
-  def authorize_country
-    request_country = request.headers['HTTP_CF_IPCOUNTRY'] || ''
-    redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
-  end
 
   # Redirect visitor to root_path in not authorized
   def user_not_authorized
@@ -35,9 +29,5 @@ class ApplicationController < ActionController::Base
   # Gets the time zone from browser cookie
   def browser_timezone
     cookies['browser.timezone']
-  end
-
-  def unsupported_countries
-    ENV['UNSUPPORTED_COUNTRIES'] ? ENV['UNSUPPORTED_COUNTRIES'].split(',') : %w(JP TW SG MY IN)
   end
 end

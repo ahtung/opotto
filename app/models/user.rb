@@ -14,10 +14,11 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  # after_commit :schedule_import_contacts, on: :update
+  after_commit :schedule_import_contacts, on: :update
   after_commit :schedule_check_paypal
 
   scope :admin, -> { where(admin: true) }
+  scope :with_paypal_account, -> { where(paypal_member: true) }
 
   # returns user's handle
   def handle
@@ -44,10 +45,6 @@ class User < ActiveRecord::Base
       refresh_token: access_token.credentials ? access_token.credentials.refresh_token : nil,
       admin: false
     )
-  end
-
-  def self.with_paypal_account
-    where(paypal_member: true)
   end
 
   # Gets the access_token using users's refresh token
@@ -82,7 +79,9 @@ class User < ActiveRecord::Base
   end
 
   def check_paypal
-    update_column(:paypal_member, User.paypal_account?(email))
+    details = self.class.paypal_details(email)
+    update_column(:paypal_member, details.first)
+    update_column(:paypal_country, details.second)
   end
 
   def get_contact_details(google_contacts_user)
@@ -92,19 +91,16 @@ class User < ActiveRecord::Base
     contact_info.reject { |contact| contact[:email].nil? }
   end
 
-  def self.paypal_account?(email)
+  def self.paypal_details(email)
     api = PayPal::SDK::AdaptiveAccounts::API.new
     get_verified_status = api.build_get_verified_status(
       emailAddress: email,
       matchCriteria: 'NONE'
     )
     get_verified_status_response = api.get_verified_status(get_verified_status)
-    if get_verified_status_response.accountStatus == 'VERIFIED'
-      Rails.logger.info get_verified_status_response.accountStatus
-    else
-      Rails.logger.error get_verified_status_response.error
-    end
-    get_verified_status_response.accountStatus == 'VERIFIED'
+    account_status = get_verified_status_response.accountStatus == 'VERIFIED'
+    account_country = get_verified_status_response.countryCode
+    [account_status, account_country]
   end
 
   # Scehdule an import of the user's contact list after it is committed
