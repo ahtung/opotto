@@ -121,9 +121,9 @@ RSpec.describe Contribution, type: :model do
     describe 'pay' do
       let(:contribution) { create(:contribution) }
 
-      it 'updates payment_key column' do
+      it 'updates preapproval_key column' do
         contribution.pay
-        expect(contribution.payment_key).not_to eq(nil)
+        expect(contribution.preapproval_key).not_to eq(nil)
       end
 
       it 'updates authorization_url attr_accessor' do
