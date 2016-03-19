@@ -13,8 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_country
-    result = GeoipRails.geolocate(request.remote_ip)
-    request_country = result['country_code']
+    request_country = request.headers.env['CF-IPCountry'] || ''
     redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
   end
 
