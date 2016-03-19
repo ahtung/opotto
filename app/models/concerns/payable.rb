@@ -106,12 +106,4 @@ module Payable
       signature: ENV['PAYPAL_SIGNATURE']
     )
   end
-
-  # payment options for secondary paypal payment
-  def secondary_payment_options
-    {
-      action_type: 'PAY',
-      pay_key: payment_key
-    }
-  end
 end
