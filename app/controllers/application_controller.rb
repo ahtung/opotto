@@ -7,18 +7,11 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  before_action :authorize_country
   around_action :set_time_zone
 
   private
 
-  def authorize_country
-    result = GeoipRails.geolocate(request.remote_ip)
-    request_country = result['country_code']
-    redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
-  end
-
-  # Redirect visitor to root_path in not authorized
+    # Redirect visitor to root_path in not authorized
   def user_not_authorized
     flash[:alert] = I18n.t('pundit.user_not_authorized')
     redirect_to(request.referrer || root_path)
