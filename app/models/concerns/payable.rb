@@ -27,7 +27,7 @@ module Payable
   end
 
   # Make preapproved payments to receivers
-  def make_preapproved_payments
+  def complete_payment
     api.execute :Pay, payment_options(preapproval_key)
     payment_info
   end
