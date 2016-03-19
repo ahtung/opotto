@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_country
-    request_country = request.headers['CF-IPCountry'] || ''
+    request_country = request.headers.env['CF-IPCountry'] || ''
     redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
   end
 
