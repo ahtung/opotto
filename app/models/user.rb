@@ -97,13 +97,17 @@ class User < ActiveRecord::Base
     )
     get_verified_status_response = api.get_verified_status(get_verified_status)
     account_status = get_verified_status_response.accountStatus == 'VERIFIED'
+    log_paypal_status
+    update_column(:paypal_country, get_verified_status_response.countryCode)
+    account_status
+  end
+
+  def log_paypal_status
     if account_status
       Rails.logger.info get_verified_status_response.accountStatus
     else
       Rails.logger.error get_verified_status_response.error
     end
-    update_column(:paypal_country, get_verified_status_response.countryCode)
-    account_status
   end
 
   # Scehdule an import of the user's contact list after it is committed
