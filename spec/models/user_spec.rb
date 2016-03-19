@@ -57,6 +57,12 @@ describe User do
         user.check_paypal
         expect(user.paypal_member).not_to eq(nil)
       end
+
+      it 'updates paypal_country' do
+        user = create(:user, paypal_country: nil)
+        user.check_paypal
+        expect(user.paypal_country).not_to eq(nil)
+      end
     end
 
     describe 'handle' do
@@ -125,12 +131,12 @@ describe User do
       end
     end
 
-    describe 'paypal_account?' do
+    describe 'paypal_details' do
       describe 'for a user with paypal account' do
         let(:user) { create(:user, :with_paypal) }
 
         it 'should return true if email has paypal account' do
-          expect(User.paypal_account?(user.email)).to be true
+          expect(User.paypal_details(user.email)).to match_array [true, 'NL']
         end
       end
 
@@ -138,7 +144,7 @@ describe User do
         let(:user) { create(:user) }
 
         it 'should return false if email has no paypal account' do
-          expect(User.paypal_account?(user.email)).to be false
+          expect(User.paypal_details(user.email)).to match_array [false, 'NL']
         end
       end
     end
