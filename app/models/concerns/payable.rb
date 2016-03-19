@@ -20,23 +20,11 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
-
   private
-
 
   # Setup the Payment and return pay object
   def setup_preapproval
     api.execute :Preapproval, preapproval_payment_options
-  end
-
-  # Redirect the Customer to PayPal for Authorization and return response
-  def redirect_to_paypal(response)
-    if response.success?
-      p "Pay key: #{response.preapproval_key}".green
-      Launchy.open(api.preapproval_url(response))
-    else
-      p "#{response.ack_code}: #{response.error_message}".red
-    end
   end
 
   # Make preapproved payments to receivers
