@@ -9,10 +9,9 @@ module Payable
 
   # start the paypal payment
   def pay
-    response = initiate_payment
+    response = setup_preapproval
     return unless response
     update_payment_details(response)
-    payment_info
   end
 
   # returns the payment time
@@ -20,51 +19,43 @@ module Payable
     jar.end_at - Time.zone.now
   end
 
-  # Completes payment (pay secondary receiver)
+  # Complete preapproved payments to receivers
   def complete_payment
-    api.execute :ExecutePayment, secondary_payment_options do |response|
-      if response.success?
-        success! if scheduled?
-        Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
-      else
-        error! if scheduled?
-        Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
-      end
-    end
+    api.execute :Pay, payment_options(preapproval_key)
+    payment_info
   end
 
   private
 
-  # Initiates a payment
-  def initiate_payment
-    api.execute :Pay, payment_options do |response|
-      if response.success?
-        Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
-      else
-        Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
-      end
-    end
+  # Setup the Payment and return pay object
+  def setup_preapproval
+    api.execute :Preapproval, preapproval_payment_options
   end
 
   # describe
   def update_payment_details(payment)
-    self.authorization_url = api.payment_url(payment)
-    update_column(:payment_key, payment.pay_key)
-    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time / 60} minutes")
+    if payment.success?
+      self.authorization_url = api.preapproval_url(payment)
+      update_column(:preapproval_key, payment.preapproval_key)
+    end
+    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.preapproval_key} in #{payment_time / 60} minutes")
   end
 
-  # describe
+  # Retrieve Data about the Payment
   def payment_info
-    response = api.execute(:PaymentDetails, pay_key: payment_key)
+    response = api.execute(:PaymentDetails, pay_key: preapproval_key)
     parse_payment_info(response)
   end
 
+  # Pare payment info
   def parse_payment_info(response)
     if response.success?
       self.user = User.find_by(email: response.sender.email)
-      Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
+      success! if scheduled?
+      Rails.logger.info "Payment log |  Payment completed for #{payment_options(preapproval_key)}"
     else
-      Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"
+      error! if scheduled?
+      Rails.logger.error "Payment log |  Payment completed for #{payment_options(preapproval_key)}"
     end
   end
 
@@ -77,23 +68,34 @@ module Payable
     false
   end
 
-  # payment options for initial paypal payment
-  def payment_options
+  # Set payment options when payment triggered
+  def payment_options(preapproval_key)
     {
-      action_type: 'PAY_PRIMARY',
+      preapproval_key: preapproval_key,
+      action_type:    'PAY',
+      currency_code:  amount.currency.iso_code,
+      receivers: payment_receivers
+    }
+  end
+
+  # Set options for setting up preapproval payment
+  def preapproval_payment_options
+    {
+      ending_date: jar.end_at.utc,
+      starting_date: Time.now.utc,
+      senderEmail: user.email,
       currency_code: amount.currency.iso_code,
-      fees_payer: ENV['PAYPAL_FEESPAYER'],
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
-      receivers: payment_receivers
+      feesPayer: 'PRIMARYRECEIVER'
     }
   end
 
   # list of receivers for initial paypal payment
   def payment_receivers
     [
-      { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
-      { email: jar.receiver.email, amount: amount.to_f - (amount.to_f * ENV['WIN'].to_f) }
+      { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f },
+      { email: jar.receiver.email, amount: amount.to_f - (amount.to_f * ENV['WIN'].to_f), primary: true }
     ]
   end
 
@@ -106,13 +108,5 @@ module Payable
       password: ENV['PAYPAL_PASSWORD'],
       signature: ENV['PAYPAL_SIGNATURE']
     )
-  end
-
-  # payment options for secondary paypal payment
-  def secondary_payment_options
-    {
-      action_type: 'PAY',
-      pay_key: payment_key
-    }
   end
 end

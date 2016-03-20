@@ -62,19 +62,14 @@ RSpec.configure do |config|
         refresh_token: '1/L7S-j2AOqJLQE3kYAsiFKVtykz3sAYhx2XOiuCjTce9IgOrJDtdun6zK6XiATCKT'
       }.to_json, headers: {})
 
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"payKey":"GOOD_KEY","actionType":"PAY"}')
-      .to_return(status: 200, body: { paymentExecStatus: 'COMPLETED' }.to_json, headers: {})
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment')
-      .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"payKey":"BAD_KEY","actionType":"PAY"}')
-      .to_return(status: 200, body: { paymentExecStatus: 'ERROR' }.to_json, headers: {})
-
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
-      .to_return(status: 200, body: { payKey: '' }.to_json, headers: {})
+      .to_return(status: 200, body: { payKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
-      .to_return(status: 200, body: {}.to_json, headers: {})
+      .to_return(status: 200, body: { payKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+
+    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
+      .to_return(status: 200, body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
       .to_return(status: 200, body: { countryCode: 'NL', accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})

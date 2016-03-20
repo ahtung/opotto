@@ -7,6 +7,7 @@ FactoryGirl.define do
     association :user, strategy: :build
     anonymous { [true, false].sample }
     state 'initiated'
+    preapproval_key 'GOOD_KEY'
 
     trait :anonymous do
       anonymous { true }

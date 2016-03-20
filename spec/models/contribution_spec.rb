@@ -138,20 +138,6 @@ RSpec.describe Contribution, type: :model do
         end
       end
     end
-
-    describe 'pay' do
-      let(:contribution) { create(:contribution) }
-
-      it 'updates payment_key column' do
-        contribution.pay
-        expect(contribution.payment_key).not_to eq(nil)
-      end
-
-      it 'updates authorization_url attr_accessor' do
-        contribution.pay
-        expect(contribution.authorization_url).not_to eq(nil)
-      end
-    end
   end
 
   # Validations
