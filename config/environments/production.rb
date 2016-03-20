@@ -98,8 +98,8 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.rollbar = true
+    Bullet.enable = ENV['ROLLBAR_ENABLED'] == 'true'
+    Bullet.rollbar = ENV['ROLLBAR_ENABLED'] == 'true'
   end
 end
 Rails.application.routes.default_url_options[:host] = ENV['HOST']
