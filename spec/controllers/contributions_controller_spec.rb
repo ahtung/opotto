@@ -18,7 +18,7 @@ RSpec.describe ContributionsController, type: :controller do
   describe 'POST create' do
     it 'redirects to PayPal' do
       post :create, jar_id: jar.id, contribution: attributes_for(:contribution).merge(jar_id: jar.id)
-      expect(response).to redirect_to('https://www.sandbox.paypal.com/webscr?cmd=_ap-payment&paykey=')
+      expect(response).to redirect_to('https://www.sandbox.paypal.com/webscr?cmd=_ap-preapproval&preapprovalkey=')
     end
   end
 end

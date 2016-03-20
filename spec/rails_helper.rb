@@ -63,13 +63,13 @@ RSpec.configure do |config|
       }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
-      .to_return(status: 200, body: { payKey: '' }.to_json, headers: {})
+      .to_return(status: 200, body: { payKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
-      .to_return(status: 200, body: {}.to_json, headers: {})
+      .to_return(status: 200, body: { payKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
-      .to_return(status: 200, body: {}.to_json, headers: {})
+      .to_return(status: 200, body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
       .to_return(status: 200, body: { accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})

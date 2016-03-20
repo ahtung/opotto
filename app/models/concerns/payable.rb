@@ -52,10 +52,10 @@ module Payable
     if response.success?
       self.user = User.find_by(email: response.sender.email)
       success! if scheduled?
-      Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
+      Rails.logger.info "Payment log |  Payment completed for #{ payment_options }"
     else
       error! if scheduled?
-      Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
+      Rails.logger.error "Payment log |  Payment completed for #{ payment_options }"
     end
   end
 
