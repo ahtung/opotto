@@ -1,7 +1,7 @@
 namespace :schedule do
   desc 'Ended pots will be destroyed.'
   task destroy_pots: :environment do
-    Jar.ended.map(&:destroy)
+    Pot.ended.map(&:destroy)
   end
 
   desc "Admin's will be notified"

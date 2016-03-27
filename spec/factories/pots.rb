@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :jar do
+  factory :pot do
     name     { Faker::Name.name }
     end_at   { 10.days.from_now }
     association :owner, factory: :user
@@ -8,7 +8,7 @@ FactoryGirl.define do
     trait :with_contributions do
       after :create do |instance|
         2.times do
-          instance.contributions << create(:contribution, amount: Faker::Commerce.price, jar_id: instance.id, state: 'completed')
+          instance.contributions << create(:contribution, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
         end
       end
     end
@@ -16,7 +16,7 @@ FactoryGirl.define do
     trait :with_abuses do
       after :create do |instance|
         2.times do
-          instance.reported_abuses << create(:abuse, resource_id: instance.id, resource_type: 'Jar')
+          instance.reported_abuses << create(:abuse, resource_id: instance.id, resource_type: 'Pot')
         end
       end
     end

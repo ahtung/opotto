@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Jar do
+describe Pot do
   it_behaves_like 'abusable'
 
   # Relations
@@ -22,13 +22,13 @@ describe Jar do
 
   # Scope
   describe 'this_week' do
-    it 'should return jars created last week' do
-      jar = create(:jar)
-      expect(Jar.this_week).to include(jar)
+    it 'should return pots created last week' do
+      pot = create(:pot)
+      expect(Pot.this_week).to include(pot)
     end
-    it 'should not return jars create before last week' do
-      jar = create(:jar, :closed)
-      expect(Jar.this_week).not_to include(jar)
+    it 'should not return pots create before last week' do
+      pot = create(:pot, :closed)
+      expect(Pot.this_week).not_to include(pot)
     end
   end
 
@@ -41,91 +41,91 @@ describe Jar do
     it { should validate_uniqueness_of(:name) }
 
     describe 'should be' do
-      let(:jar) { build(:jar, owner: @user) }
+      let(:pot) { build(:pot, owner: @user) }
 
       it 'valid if owner\'s pot count <= 2' do
         @user = create(:user)
-        expect(jar).to be_valid
+        expect(pot).to be_valid
       end
       it 'invalid if owner\'s pot count > 2' do
-        @user = create(:user, :with_jars)
-        last_jar = create(:jar, owner: @user)
-        expect(last_jar).not_to be_valid
+        @user = create(:user, :with_pots)
+        last_pot = create(:pot, owner: @user)
+        expect(last_pot).not_to be_valid
       end
       it "valid if owner's inactive pot count >= 2" do
-        @user = create(:user, :with_closed_jars)
-        expect(jar).to be_valid
+        @user = create(:user, :with_closed_pots)
+        expect(pot).to be_valid
       end
     end
 
     describe 'should be' do
-      let(:jar) { build(:jar, owner: @user) }
+      let(:pot) { build(:pot, owner: @user) }
 
       it 'valid if owner has less then 4 pots this year' do
         @user = create(:user)
-        expect(jar).to be_valid
+        expect(pot).to be_valid
       end
 
       it 'invalid if owner has more then 4 pots this year' do
         @user = create(:user)
-        create_list(:jar, 4, :closed, owner: @user)
-        last_jar = create(:jar, owner: @user)
-        expect(last_jar.valid?).to eq false
+        create_list(:pot, 4, :closed, owner: @user)
+        last_pot = create(:pot, owner: @user)
+        expect(last_pot.valid?).to eq false
       end
     end
 
     describe 'should validate that the receiver' do
-      let(:jar) { create(:jar) }
+      let(:pot) { create(:pot) }
 
       it 'can not be a guest' do
-        jar.guests << jar.receiver
-        expect(jar.valid?).to eq false
+        pot.guests << pot.receiver
+        expect(pot.valid?).to eq false
       end
 
       it 'is not a guest' do
-        expect(jar.valid?).to eq true
+        expect(pot.valid?).to eq true
       end
     end
 
     describe "should validate that the receiver's PayPal account's country allows opotto" do
       it 'and allow if from NL' do
         user = create(:user, paypal_country: 'NL')
-        jar = build(:jar, owner: user)
-        expect(jar).to be_valid
+        pot = build(:pot, owner: user)
+        expect(pot).to be_valid
       end
 
       it 'and deny if from JP' do
         user = create(:user, paypal_country: 'JP')
-        jar = build(:jar, owner: user)
-        expect(jar).not_to be_valid
+        pot = build(:pot, owner: user)
+        expect(pot).not_to be_valid
       end
     end
 
     describe 'should validate that end_at' do
       it 'is in the future' do
-        jar = build(:jar, end_at: 10.days.ago)
-        expect(jar.valid?).to eq false
+        pot = build(:pot, end_at: 10.days.ago)
+        expect(pot.valid?).to eq false
       end
 
       it 'is in the future not more then 90 days' do
-        jar = build(:jar, end_at: 91.days.from_now)
-        expect(jar.valid?).to eq false
+        pot = build(:pot, end_at: 91.days.from_now)
+        expect(pot.valid?).to eq false
       end
 
       it 'is in the future not more then 90 days' do
-        jar = build(:jar, end_at: 10.days.from_now)
-        expect(jar.valid?).to eq true
+        pot = build(:pot, end_at: 10.days.from_now)
+        expect(pot.valid?).to eq true
       end
     end
 
     describe 'should validate immutable' do
-      let(:mock) { create(:jar, :with_guests, :with_description, :with_upper_bound) }
+      let(:mock) { create(:pot, :with_guests, :with_description, :with_upper_bound) }
 
-      Jar::IMMUTABLE.each do |immutable_attr|
+      Pot::IMMUTABLE.each do |immutable_attr|
         it immutable_attr.to_s do
-          jar = create(:jar)
-          jar.send("#{immutable_attr}=", mock.send(immutable_attr))
-          expect(jar.valid?).to eq false
+          pot = create(:pot)
+          pot.send("#{immutable_attr}=", mock.send(immutable_attr))
+          expect(pot.valid?).to eq false
         end
       end
     end
@@ -135,49 +135,49 @@ describe Jar do
   describe '#' do
     describe 'open?' do
       it 'returns true if end_at in future' do
-        jar = build(:jar, end_at: 10.days.from_now)
-        expect(jar.open?).to eq true
+        pot = build(:pot, end_at: 10.days.from_now)
+        expect(pot.open?).to eq true
       end
 
       it 'returns false if end_at in past' do
-        jar = build(:jar, end_at: 10.days.ago)
-        expect(jar.open?).to eq false
+        pot = build(:pot, end_at: 10.days.ago)
+        expect(pot.open?).to eq false
       end
     end
 
     describe 'total_contribution' do
       it 'should return 0 if no contributions' do
-        jar = create(:jar)
-        expect(jar.total_contribution).to eq 0
+        pot = create(:pot)
+        expect(pot.total_contribution).to eq 0
       end
 
       it 'should return the sum of contributions if contributions' do
-        jar = create(:jar, :with_contributions)
-        expect(jar.total_contribution).to eq jar.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
+        pot = create(:pot, :with_contributions)
+        expect(pot.total_contribution).to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
       end
     end
 
     describe 'total_contributors' do
       it 'should return 0 if no contributors' do
-        jar = create(:jar)
-        expect(jar.total_contributors).to eq 0
+        pot = create(:pot)
+        expect(pot.total_contributors).to eq 0
       end
 
       it 'should return the number of contributors if contributors' do
-        jar = create(:jar, :with_contributions)
-        expect(jar.total_contributors).to eq jar.contributors.count
+        pot = create(:pot, :with_contributions)
+        expect(pot.total_contributors).to eq pot.contributors.count
       end
     end
 
     describe 'total_guests' do
       it 'should return 0 if no guests' do
-        jar = create(:jar)
-        expect(jar.total_guests).to eq 0
+        pot = create(:pot)
+        expect(pot.total_guests).to eq 0
       end
 
       it 'should return the number of guests if guests' do
-        jar = create(:jar, :with_guests)
-        expect(jar.total_guests).to eq jar.guests.count
+        pot = create(:pot, :with_guests)
+        expect(pot.total_guests).to eq pot.guests.count
       end
     end
   end
@@ -185,37 +185,37 @@ describe Jar do
   # Class methods
   describe '.' do
     it 'policy_class' do
-      expect(Jar.policy_class).to be(JarPolicy)
+      expect(Pot.policy_class).to be(PotPolicy)
     end
     describe 'open' do
       it 'should return only open pots' do
-        create_list(:jar, 2, :open)
-        closed_jars = create_list(:jar, 2, :closed)
-        expect(Jar.open).not_to include closed_jars
+        create_list(:pot, 2, :open)
+        closed_pots = create_list(:pot, 2, :closed)
+        expect(Pot.open).not_to include closed_pots
       end
     end
 
     describe 'closed' do
       it 'should return only closed pots' do
-        open_jars = create_list(:jar, 2, :open)
-        create_list(:jar, 2, :closed)
-        expect(Jar.closed).not_to include open_jars
+        open_pots = create_list(:pot, 2, :open)
+        create_list(:pot, 2, :closed)
+        expect(Pot.closed).not_to include open_pots
       end
     end
 
     describe 'visible' do
       it 'should return only visible pots' do
-        visible_jars = create_list(:jar, 2, :visible)
-        create_list(:jar, 2)
-        expect(Jar.visible).to match_array(visible_jars)
+        visible_pots = create_list(:pot, 2, :visible)
+        create_list(:pot, 2)
+        expect(Pot.visible).to match_array(visible_pots)
       end
     end
 
     describe 'ended' do
       it 'should return only ended pots' do
-        ended_jar = create_list(:jar, 2, :ended)
-        create_list(:jar, 2)
-        expect(Jar.ended).to match_array(ended_jar)
+        ended_pot = create_list(:pot, 2, :ended)
+        create_list(:pot, 2)
+        expect(Pot.ended).to match_array(ended_pot)
       end
     end
   end

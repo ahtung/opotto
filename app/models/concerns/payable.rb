@@ -16,7 +16,7 @@ module Payable
 
   # returns the payment time
   def payment_time
-    jar.end_at - Time.zone.now
+    pot.end_at - Time.zone.now
   end
 
   # Complete preapproved payments to receivers
@@ -64,9 +64,9 @@ module Payable
 
   # Validates payment is inside bounds
   def amount_inside_the_pot_bounds
-    return if jar.nil?
-    return true if jar.upper_bound.nil?
-    return true if amount <= jar.upper_bound
+    return if pot.nil?
+    return true if pot.upper_bound.nil?
+    return true if amount <= pot.upper_bound
     errors.add(:amount, :amount_out_of_bounds)
     false
   end
@@ -87,7 +87,7 @@ module Payable
   # Set options for setting up preapproval payment
   def preapproval_payment_options
     {
-      ending_date: jar.end_at.utc,
+      ending_date: pot.end_at.utc,
       starting_date: Time.now.utc,
       senderEmail: user.email,
       currency_code: amount.currency.iso_code,
@@ -100,7 +100,7 @@ module Payable
   def payment_receivers
     [
       { email: ENV['PAYPAL_EMAIL'], amount: (amount.to_f * ENV['WIN'].to_f) },
-      { email: jar.receiver.email, amount: amount.to_f, primary: true }
+      { email: pot.receiver.email, amount: amount.to_f, primary: true }
     ]
   end
 

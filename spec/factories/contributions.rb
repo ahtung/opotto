@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :contribution do
     amount { Faker::Commerce.price }
-    association :jar, strategy: :build
+    association :pot, strategy: :build
     association :user, strategy: :build
     anonymous { [true, false].sample }
     state 'initiated'

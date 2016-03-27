@@ -1,22 +1,22 @@
 .col.s12
-  - unless @user.jars.empty?
+  - unless @user.pots.empty?
     ul.collection.with-header
       li.collection-header
         h4 You're creations
-      = render collection: @user.jars, partial: 'jars/jar_li', as: :jar
+      = render collection: @user.pots, partial: 'pots/pot_li', as: :pot
   - else
-    = link_to 'Get going', new_jar_path, class: 'btn'
+    = link_to 'Get going', new_pot_path, class: 'btn'
 
 .col.s12
-  - unless @user.contributed_jars.empty?
+  - unless @user.contributed_pots.empty?
     ul.collection.with-header
       li.collection-header
         h4 You're contributions
-      = render collection: @user.contributed_jars, partial: 'jars/jar_li', as: :jar
+      = render collection: @user.contributed_pots, partial: 'pots/pot_li', as: :pot
 
 .col.s12
-  - unless @user.invited_jars.empty?
+  - unless @user.invited_pots.empty?
     ul.collection.with-header
       li.collection-header
         h4 You're invitations
-      = render collection: @user.invited_jars, partial: 'jars/jar_li', as: :jar
+      = render collection: @user.invited_pots, partial: 'pots/pot_li', as: :pot

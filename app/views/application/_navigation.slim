@@ -5,7 +5,7 @@ nav
       ul#nav-mobile.right.hide-on-med-and-down
         - if user_signed_in?
           li= link_to t('site.me'), authenticated_root_path
-          li= link_to t('jar.new'), new_jar_path
+          li= link_to t('pot.new'), new_pot_path
         - if user_signed_in?
           li= link_to(t('user.logout'), destroy_user_session_path, method: :delete)
         - else

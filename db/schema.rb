@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327082732) do
+ActiveRecord::Schema.define(version: 20160327171248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160327082732) do
 
   create_table "contributions", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "jar_id"
+    t.integer  "pot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anonymous"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160327082732) do
     t.string   "payment_key"
   end
 
-  add_index "contributions", ["jar_id"], name: "index_contributions_on_jar_id", using: :btree
+  add_index "contributions", ["pot_id"], name: "index_contributions_on_pot_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
@@ -55,15 +55,15 @@ ActiveRecord::Schema.define(version: 20160327082732) do
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "jar_id"
+    t.integer  "pot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "invitations", ["jar_id"], name: "index_invitations_on_jar_id", using: :btree
+  add_index "invitations", ["pot_id"], name: "index_invitations_on_pot_id", using: :btree
   add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
-  create_table "jars", force: :cascade do |t|
+  create_table "pots", force: :cascade do |t|
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20160327082732) do
     t.string   "upper_bound_currency", default: "USD", null: false
   end
 
-  add_index "jars", ["owner_id"], name: "index_jars_on_owner_id", using: :btree
-  add_index "jars", ["receiver_id"], name: "index_jars_on_receiver_id", using: :btree
+  add_index "pots", ["owner_id"], name: "index_pots_on_owner_id", using: :btree
+  add_index "pots", ["receiver_id"], name: "index_pots_on_receiver_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
