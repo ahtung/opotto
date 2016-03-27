@@ -6,7 +6,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     confirmed { false }
     resource_id 1
-    resource_type 'Jar'
+    resource_type 'Pot'
     created_at { Time.zone.now }
   end
 end

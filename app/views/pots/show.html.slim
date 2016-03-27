@@ -1,0 +1,45 @@
+- set_meta_tags site: 'opotto', title: @pot.name, og: { title: @pot.name, type: 'product' }
+
+h1= @pot.name
+h3.subheader
+  = t('pot.owned_by', email: @pot.owner.email)
+
+p
+  strong = "#{t('pot.receiver')}:"
+  = @pot.receiver.name ? @pot.receiver.name : @pot.receiver.email
+
+p
+  strong = "#{t('pot.description')}:"
+  = @pot.description
+
+p
+  ul.collection.with-header
+    li.collection-header
+      h4= "#{@pot.guests.count} #{t('pot.guests')}"
+    - @pot.guests.each do |guest|
+      li.collection-item= guest.name ? guest.name : guest.email
+p
+  ul.collection.with-header
+    li.collection-header
+      h4= "#{@pot.total_contributors} #{t('pot.contributors')}"
+    - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
+      li.collection-item = "#{humanized_money_with_symbol(contribution.amount)} from #{contribution.owner_name} is #{contribution.state}"
+p
+  strong = "#{t('pot.total')}:"
+  = humanized_money_with_symbol(@pot.total_contribution)
+p
+  strong = "#{t('helpers.label.pot.ends_at')}:"
+  = @pot.end_at.strftime('%d %b %y')
+
+p
+  = link_to 'Report abuse', report_pot_path(@pot)
+.row
+  .col.s12
+    .row
+      .col.s4.m2
+        = link_to t('site.navigation.back'), root_path, class: 'btn'
+      .col.s6.m4
+        = link_to t('pot.contribute'), new_pot_contribution_path(@pot), class: 'btn'
+      - if policy(@pot).update?
+        .col.s12
+          p = link_to t('pot.edit'), edit_pot_path(@pot), class: 'btn'

@@ -3,13 +3,13 @@ class ContributionsController < ApplicationController
   include ActionView::Helpers::NumberHelper
 
   before_action :authenticate_user!
-  before_action :set_jar, only: [:new, :create]
-  before_action :authorize_jar
+  before_action :set_pot, only: [:new, :create]
+  before_action :authorize_pot
   after_action :verify_authorized
 
   # GET /contributions/new
   def new
-    @contribution = @jar.contributions.build
+    @contribution = @pot.contributions.build
   end
 
   # POST /contributions
@@ -25,18 +25,18 @@ class ContributionsController < ApplicationController
 
   private
 
-  # authorize user from contributing to a jar
-  def authorize_jar
-    authorize @jar, :contribute?
+  # authorize user from contributing to a pot
+  def authorize_pot
+    authorize @pot, :contribute?
   end
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_jar
-    @jar = Jar.find(params[:jar_id])
+  def set_pot
+    @pot = Pot.find(params[:pot_id])
   end
 
   # Strong params
   def contribution_params
-    params.require(:contribution).permit(:jar_id, :amount, :anonymous)
+    params.require(:contribution).permit(:pot_id, :amount, :anonymous)
   end
 end

@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: jars_development
+  database: opotto_development
 
 test: &test
   <<: *default
-  database: jars_test
+  database: opotto_test
 
 cucumber:
   <<: *test

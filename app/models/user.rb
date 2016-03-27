@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_many :jars, -> { includes(:contributors) }, dependent: :destroy, foreign_key: :owner_id
+  has_many :pots, -> { includes(:contributors) }, dependent: :destroy, foreign_key: :owner_id
   has_many :contributions, dependent: :destroy
-  has_many :contributed_jars, -> { uniq.includes(:contributors) }, through: :contributions, source: :jar
+  has_many :contributed_pots, -> { uniq.includes(:contributors) }, through: :contributions, source: :pot
   has_many :invitations, dependent: :destroy
-  has_many :invited_jars, -> { uniq.includes(:contributors) }, through: :invitations, source: :jar
+  has_many :invited_pots, -> { uniq.includes(:contributors) }, through: :invitations, source: :pot
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
@@ -25,14 +25,14 @@ class User < ActiveRecord::Base
     email
   end
 
-  # returns jars that the user have not created
-  def discoverable_jars
-    Jar.visible - jars - invited_jars
+  # returns pots that the user have not created
+  def discoverable_pots
+    Pot.visible - pots - invited_pots
   end
 
-  # returns jars that the user have not yet contributed to
-  def uncontributed_jars
-    jars - contributed_jars
+  # returns pots that the user have not yet contributed to
+  def uncontributed_pots
+    pots - contributed_pots
   end
 
   # A method nedeed by omniauth-google-oauth2 gem

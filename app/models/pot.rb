@@ -1,5 +1,5 @@
-# Jar
-class Jar < ActiveRecord::Base
+# Pot
+class Pot < ActiveRecord::Base
   include DateTimeAttribute
   include Abusable
 
@@ -42,7 +42,7 @@ class Jar < ActiveRecord::Base
   # Validates owner's pot count
   def owners_pot_count
     pot_per_person = ENV['POT_PER_USER'] ? ENV['POT_PER_USER'].to_i : 2
-    return unless owner.jars.open.count > pot_per_person
+    return unless owner.pots.open.count > pot_per_person
     errors.add(:base, "Can't have more than #{pot_per_person} pots")
   end
 
@@ -55,8 +55,8 @@ class Jar < ActiveRecord::Base
   # Validates owner's pot's in this year
   def yearly_pot_limit
     yearly_limit = ENV['POT_LIMIT_PER_YEAR'] ? ENV['POT_LIMIT_PER_YEAR'].to_i : 4
-    jar_count_since_new_year = owner.jars.where('created_at > ?', Time.zone.today.beginning_of_year).count
-    return unless jar_count_since_new_year > yearly_limit
+    pot_count_since_new_year = owner.pots.where('created_at > ?', Time.zone.today.beginning_of_year).count
+    return unless pot_count_since_new_year > yearly_limit
     errors.add(:base, "Can't have more than #{yearly_limit} pots in a year")
   end
 
@@ -81,28 +81,28 @@ class Jar < ActiveRecord::Base
 
   # Class methods
   class << self
-    # scope for all visible jars
+    # scope for all visible pots
     def visible
       where(visible: true)
     end
 
-    # scope for all open jars
+    # scope for all open pots
     def open
       where('end_at >= ?', Time.zone.now)
     end
 
-    # scope for all closed jars
+    # scope for all closed pots
     def closed
       where('end_at < ?', Time.zone.now)
     end
 
-    # scope for all ended jars
+    # scope for all ended pots
     def ended
       where('end_at <= ?', 7.days.ago)
     end
 
     def policy_class
-      JarPolicy
+      PotPolicy
     end
   end
 
