@@ -7,7 +7,7 @@ if Rails.env.development?
 
   onur = FactoryGirl.create(:user, :admin, email: 'onurkucukkece@gmail.com', password: '123QwETR')
   dunya = FactoryGirl.create(:user, :admin, email: 'dunyakirkali@gmail.com', password: '123QwETR')
-  ilana = FactoryGirl.create(:user, :admin, email: 'ilana@madco.nl', password: '123QwETR')
+  ilana = FactoryGirl.create(:user, :admin, email: 'contact@madco.nl', password: '123QwETR')
   us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 
   onur.friends << [dunya, us, ilana]
@@ -20,7 +20,7 @@ elsif Rails.env.production?
   Jar.where(name: 'PayPal test Jar').destroy_all
   onur = User.where(email: 'onurkucukkece@gmail.com').first_or_create
   dunya = User.where(email: 'dunyakirkali@gmail.com').first_or_create
-  ilana = User.where(email: 'ilana@madco.nl').first_or_create
+  ilana = User.where(email: 'contact@madco.nl').first_or_create
   paypal = User.where(email: 'paypal@opotto.com').first_or_create
   FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal, ilana], visible: true)
 end
