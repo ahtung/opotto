@@ -77,7 +77,8 @@ module Payable
       currency_code:  amount.currency.iso_code,
       receivers: payment_receivers,
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id)
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
+      fees_payer: ENV['PAYPAL_FEESPAYER']
     }
   end
 
@@ -89,8 +90,7 @@ module Payable
       senderEmail: user.email,
       currency_code: amount.currency.iso_code,
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
-      feesPayer: 'PRIMARYRECEIVER'
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id)
     }
   end
 
