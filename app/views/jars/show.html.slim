@@ -22,8 +22,8 @@ p
   ul.collection.with-header
     li.collection-header
       h4= "#{@jar.total_contributors} #{t('jar.contributors')}"
-    - @jar.contributions.complete.each do |contribution|
-      li.collection-item = "#{contribution.owner_name} with #{humanized_money_with_symbol(contribution.amount)}"
+    - @jar.contributions.with_state(:scheduled, :completed).each do |contribution|
+      li.collection-item = "#{humanized_money_with_symbol(contribution.amount)} from #{contribution.owner_name} is #{contribution.state}"
 p
   strong = "#{t('jar.total')}:"
   = humanized_money_with_symbol(@jar.total_contribution)
