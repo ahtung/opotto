@@ -119,10 +119,10 @@ describe Jar do
     end
 
     describe 'should validate immutable' do
-      let(:mock) { build(:jar, :with_description, :with_upper_bound) }
+      let(:mock) { create(:jar, :with_guests, :with_description, :with_upper_bound) }
 
       Jar::IMMUTABLE.each do |immutable_attr|
-        fit "#{immutable_attr}" do
+        it "#{immutable_attr}" do
           jar = create(:jar)
           jar.send("#{immutable_attr}=", mock.send(immutable_attr))
           expect(jar.valid?).to eq false

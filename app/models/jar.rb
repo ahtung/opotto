@@ -4,7 +4,7 @@ class Jar < ActiveRecord::Base
   include Abusable
 
   # Constant
-  IMMUTABLE = %w(name receiver_id guests description end_at upper_bound)
+  IMMUTABLE = %w(name receiver_id description end_at).freeze
 
   # Relations
   belongs_to :owner, class_name: 'User'
