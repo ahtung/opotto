@@ -9,6 +9,14 @@ FactoryGirl.define do
     state 'initiated'
     preapproval_key 'GOOD_KEY'
 
+    trait :scheduled do
+      state 'scheduled'
+    end
+
+    trait :completed do
+      state 'completed'
+    end
+
     trait :anonymous do
       anonymous { true }
     end
