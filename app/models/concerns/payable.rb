@@ -76,6 +76,9 @@ module Payable
       action_type:    'PAY',
       currency_code:  amount.currency.iso_code,
       receivers: payment_receivers
+      receivers: payment_receivers,
+      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
     }
   end
 
