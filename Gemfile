@@ -77,7 +77,7 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
-  gem 'rspec-sidekiq', github: 'wpolicarpo/rspec-sidekiq', branch: 'perform-in-composable-matcher'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'rspec-its'
