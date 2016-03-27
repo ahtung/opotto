@@ -22,11 +22,18 @@ RSpec.describe PaymentsWorker, type: :worker do
     expect(contribution).not_to receive(:complete_payment)
   end
 
-  it 'should trigger complete_payment on a scheduled contribution' do
+  it 'should trigger complete_payment on a scheduled contribution to update payment_key' do
     contribution = create(:contribution, :scheduled)
     PaymentsWorker.perform_async([contribution.id])
     contribution.reload
     expect(contribution.payment_key).not_to be_nil
+  end
+
+  it 'should trigger complete_payment on a scheduled contribution to update state' do
+    contribution = create(:contribution, :scheduled)
+    PaymentsWorker.perform_async([contribution.id])
+    contribution.reload
+    expect(contribution.state).to eq('completed')
   end
 
   it 'should function' do
