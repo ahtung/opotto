@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_country
+    return if controller_name == 'pages' && action_name == 'show' && params[:id] == 'unsupported'
     request_country = request.headers['HTTP_CF_IPCOUNTRY'] || ''
     redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
   end
