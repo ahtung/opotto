@@ -24,7 +24,7 @@ module Payable
     payment = api.execute :Pay, payment_options
     Rails.logger.info "Payment log |  Payment action for #{payment.inspect}"
     update_column(:payment_key, payment.pay_key)
-    payment_info
+    payment_info(payment.pay_key)
   end
 
   private
@@ -44,8 +44,8 @@ module Payable
   end
 
   # Retrieve Data about the Payment
-  def payment_info
-    response = api.execute(:PaymentDetails, pay_key: payment_key)
+  def payment_info(pay_key)
+    response = api.execute(:PaymentDetails, pay_key: pay_key)
     Rails.logger.info "Payment log |  Payment details for #{response.inspect}"
     parse_payment_info(response)
   end
