@@ -8,10 +8,10 @@ en:
       success: Successfully authenticated from Google account.
   helpers:
     label:
-      jar:
+      pot:
         ends_at: Ends at
         optional: Optional
-  jar:
+  pot:
     contribute: Contribute
     contributors: Contributors
     created: Pot successfully created!

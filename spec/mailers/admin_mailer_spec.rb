@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AdminMailer, type: :mailer do
   let!(:user) { create(:user, :admin) }
-  let!(:jar) { create(:jar, :with_description) }
+  let!(:pot) { create(:pot, :with_description) }
 
   before(:each) do
     ActionMailer::Base.deliveries = []
@@ -22,7 +22,7 @@ RSpec.describe AdminMailer, type: :mailer do
   end
 
   it 'should have a message in its content' do
-    expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(jar.description)
+    expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(pot.description)
   end
 
   it 'renders the sender email' do

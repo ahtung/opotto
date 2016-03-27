@@ -1,4 +1,4 @@
-= form_for [jar, contribution], html: { class: 'col s12' } do |f|
+= form_for [pot, contribution], html: { class: 'col s12' } do |f|
   - if contribution.errors.any?
     .alert-box data-alert=true class="alert"
       = contribution.errors.full_messages.join(',')
@@ -11,16 +11,16 @@
       = f.label :anonymous
   .row
     .input-field.col.s12
-      = f.hidden_field :jar_id, value: jar.id
+      = f.hidden_field :pot_id, value: pot.id
   .row
     .col.s12.m6.offset-m6
       .row
         .input-field.col.s6
           = link_to t('site.navigation.back'), root_path, class: 'btn'
         .input-field.col.s6
-          = f.submit t('jar.save'), class: 'btn'
+          = f.submit t('pot.save'), class: 'btn'
 .col.s12
   h3 = t('contribution.previous')
   ul.collection
-    - current_user.contributions.where(jar: jar).each do |contribution|
+    - current_user.contributions.where(pot: pot).with_state(:scheduled, :completed).each do |contribution|
       li.collection-item= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"

@@ -6,13 +6,13 @@ class @SelectGuest
     guest_elem = create_elem(guest_id, 'not-invited-list')
     guest_elem.append($('<i>', {class: 'material-icons remove-from-guests', text: 'close' }))
     $('.invited-list').append(guest_elem)
-    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', true)
+    $("#pot_guest_ids option[value='#{guest_id}']").attr('selected', true)
 
   remove_guest: (guest_id) ->
     guest_elem = create_elem(guest_id, 'invited-list')
     guest_elem.append($('<i>', {class: 'material-icons add-to-guests', text: 'add' }))
     $('.not-invited-list').append(guest_elem)
-    $("#jar_guest_ids option[value='#{guest_id}']").attr('selected', false)
+    $("#pot_guest_ids option[value='#{guest_id}']").attr('selected', false)
 
   create_elem = (guest_id, list) ->
     guest_elem = $('<div>', { class: 'chip' })

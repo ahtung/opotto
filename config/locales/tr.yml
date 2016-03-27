@@ -8,10 +8,10 @@ tr:
       success: Basari
   helpers:
     label:
-      jar:
+      pot:
         ends_at: Bitiş tarihi
         optional: "İsteğe bağlı"
-  jar:
+  pot:
     contribute: Katkı Yap
     contributors: Katılımcı
     created: Kumbara başarıyla kaydedildi.

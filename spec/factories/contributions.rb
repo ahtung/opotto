@@ -3,10 +3,19 @@
 FactoryGirl.define do
   factory :contribution do
     amount { Faker::Commerce.price }
-    association :jar, strategy: :build
+    association :pot, strategy: :build
     association :user, strategy: :build
     anonymous { [true, false].sample }
     state 'initiated'
+    preapproval_key 'GOOD_KEY'
+
+    trait :scheduled do
+      state 'scheduled'
+    end
+
+    trait :completed do
+      state 'completed'
+    end
 
     trait :anonymous do
       anonymous { true }

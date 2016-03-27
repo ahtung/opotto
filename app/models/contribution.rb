@@ -6,29 +6,37 @@ class Contribution < ActiveRecord::Base
 
   # Relations
   belongs_to :user
-  belongs_to :jar
+  belongs_to :pot
 
   # Validations
   validate :amount_inside_the_pot_bounds
   validate :limit_per_user_per_pot, if: -> { user }
-  validates :jar, presence: true
+  validates :pot, presence: true
   validates :user, presence: true
   validates :amount_cents, numericality: { greater_than: 100 }
   validate :users_contribution_limit, if: -> { user }
+  validate :users_paypal_country, if: -> { user }
 
   # Attributes
   attr_accessor :authorization_url
 
   # Scopes
   scope :complete, -> { with_state([:completed, :scheduled]) }
+  scope :payable, -> { joins(:pot).where('pots.end_at <= ?', Time.zone.now) }
 
   # Money
   monetize :amount_cents
 
-  # Checks user's previous contribution total
+  # Validates user's paypal country
+  def users_paypal_country
+    return unless DISALLOWED_COUNTRIES.include?(user.paypal_country)
+    errors.add(:base, 'Fundraising is prohibited in your country')
+  end
+
+  # Validates user's previous contribution total
   def users_contribution_limit
     contribution_limit = ENV['DONATION_PER_USER_PER_PROJECT'] ? ENV['DONATION_PER_USER_PER_PROJECT'].to_i : 200_000
-    contributions_so_far = user.contributions.where(jar: jar).sum(:amount_cents)
+    contributions_so_far = user.contributions.where(pot: pot).sum(:amount_cents)
     return unless contributions_so_far + amount_cents >= contribution_limit
     errors.add(:base, "Contribution limit of #{contribution_limit} reached")
   end
@@ -36,15 +44,14 @@ class Contribution < ActiveRecord::Base
   # States
   state_machine initial: :initiated do
     after_transition initiated: :scheduled do |contribution, _|
-      JarMailer.scheduled_email(contribution).deliver_later
-      PaymentsWorker.perform_in(contribution.payment_time, contribution.id)
+      PotMailer.scheduled_email(contribution).deliver_later
     end
     after_transition scheduled: :completed do |contribution, _|
-      JarMailer.completed_email(contribution).deliver_later
-      contribution.jar.update_attribute :paid_at, Time.zone.now
+      PotMailer.completed_email(contribution).deliver_later
+      contribution.pot.update_attribute :paid_at, Time.zone.now
     end
     after_transition scheduled: :failed do |contribution, _|
-      JarMailer.failed_payment_email(contribution).deliver_later
+      PotMailer.failed_payment_email(contribution).deliver_later
     end
     event :success do
       transition scheduled: :completed, initiated: :scheduled
@@ -72,7 +79,7 @@ class Contribution < ActiveRecord::Base
 
   # Checks if contribution amount is less then the limit
   def limit_per_user_per_pot
-    contribution_count = user.contributions.where(jar: jar).count
+    contribution_count = user.contributions.where(pot: pot).count
     contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'] ? ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i : 4
     errors.add(:base, "Can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
   end

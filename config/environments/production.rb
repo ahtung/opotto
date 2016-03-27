@@ -89,16 +89,17 @@ Rails.application.configure do
     authentication: :plain,
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
     password: ENV['MAILGUN_SMTP_PASSWORD'],
-    domain: 'opotto.com'
+    domain: ENV['HOST']
   }
 
-  config.action_mailer.default_url_options = { host: 'opotto.com' }
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
 
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.rollbar = true
+    Bullet.enable = ENV['ROLLBAR_ENABLED'] == 'true'
+    Bullet.rollbar = ENV['ROLLBAR_ENABLED'] == 'true'
   end
 end
+Rails.application.routes.default_url_options[:host] = ENV['HOST']

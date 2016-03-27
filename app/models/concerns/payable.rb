@@ -9,110 +9,109 @@ module Payable
 
   # start the paypal payment
   def pay
-    response = initiate_payment
+    response = setup_preapproval
     return unless response
     update_payment_details(response)
-    payment_info
   end
 
   # returns the payment time
   def payment_time
-    jar.end_at - Time.zone.now
+    pot.end_at - Time.zone.now
   end
 
-  # Completes payment (pay secondary receiver)
+  # Complete preapproved payments to receivers
   def complete_payment
-    api.execute :ExecutePayment, secondary_payment_options do |response|
-      if response.success?
-        success! if scheduled?
-        Rails.logger.info "Payment log |  Payment completed for #{secondary_payment_options}"
-      else
-        error! if scheduled?
-        Rails.logger.error "Payment log |  Payment completed for #{secondary_payment_options}"
-      end
-    end
+    payment = api.execute :Pay, payment_options
+    Rails.logger.info "Payment log |  Payment action for #{payment.inspect}"
+    update_column(:payment_key, payment.pay_key)
+    payment_info(payment.pay_key)
   end
 
   private
 
-  # Initiates a payment
-  def initiate_payment
-    api.execute :Pay, payment_options do |response|
-      if response.success?
-        Rails.logger.info "Payment log |  Payment initiated for #{payment_options}"
-      else
-        Rails.logger.error "Payment log |  Payment initiated for #{payment_options}"
-      end
-    end
+  # Setup the Payment and return pay object
+  def setup_preapproval
+    api.execute :Preapproval, preapproval_payment_options
   end
 
   # describe
   def update_payment_details(payment)
-    self.authorization_url = api.payment_url(payment)
-    update_column(:payment_key, payment.pay_key)
-    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.pay_key} in #{payment_time / 60} minutes")
+    if payment.success?
+      self.authorization_url = api.preapproval_url(payment)
+      update_column(:preapproval_key, payment.preapproval_key)
+    end
+    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.preapproval_key} in #{payment_time / 60} minutes")
   end
 
-  # describe
-  def payment_info
-    response = api.execute(:PaymentDetails, pay_key: payment_key)
+  # Retrieve Data about the Payment
+  def payment_info(pay_key)
+    response = api.execute(:PaymentDetails, pay_key: pay_key)
+    Rails.logger.info "Payment log |  Payment details for #{response.inspect}"
     parse_payment_info(response)
   end
 
+  # Pare payment info
   def parse_payment_info(response)
-    if response.success?
-      self.user = User.find_by(email: response.sender.email)
-      Rails.logger.info "Payment log |  Payment got info #{response.sender.email}"
+    if response.success? && response.status == 'COMPLETED'
+      self.user = Contribution.find_by(payment_key: response.pay_key).user
+      success! if scheduled?
+      Rails.logger.info "Payment log |  Payment completed for #{payment_options}"
     else
-      Rails.logger.error "Payment log |  Payment failed getting info #{response.ack_code}: #{response.error_message}"
+      error! if scheduled?
+      Rails.logger.error "Payment log |  Payment failed for #{payment_options}"
     end
   end
 
   # Validates payment is inside bounds
   def amount_inside_the_pot_bounds
-    return if jar.nil?
-    return true if jar.upper_bound.nil?
-    return true if amount <= jar.upper_bound
+    return if pot.nil?
+    return true if pot.upper_bound.nil?
+    return true if amount <= pot.upper_bound
     errors.add(:amount, :amount_out_of_bounds)
     false
   end
 
-  # payment options for initial paypal payment
+  # Set payment options when payment triggered
   def payment_options
     {
-      action_type: 'PAY_PRIMARY',
-      currency_code: amount.currency.iso_code,
-      fees_payer: ENV['PAYPAL_FEESPAYER'],
+      preapproval_key: preapproval_key,
+      action_type:    'PAY',
+      currency_code:  amount.currency.iso_code,
+      receivers: payment_receivers,
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
-      receivers: payment_receivers
+      fees_payer: ENV['PAYPAL_FEESPAYER']
+    }
+  end
+
+  # Set options for setting up preapproval payment
+  def preapproval_payment_options
+    {
+      ending_date: pot.end_at.utc,
+      starting_date: Time.now.utc,
+      senderEmail: user.email,
+      currency_code: amount.currency.iso_code,
+      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
+      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id)
     }
   end
 
   # list of receivers for initial paypal payment
   def payment_receivers
     [
-      { email: ENV['PAYPAL_EMAIL'], amount: amount.to_f, primary: true },
-      { email: jar.receiver.email, amount: amount.to_f - (amount.to_f * ENV['WIN'].to_f) }
+      { email: ENV['PAYPAL_EMAIL'], amount: (amount.to_f * ENV['WIN'].to_f) },
+      { email: pot.receiver.email, amount: amount.to_f, primary: true }
     ]
   end
 
   # paypal api
   def api
     @api ||= AdaptivePayments::Client.new(
-      sandbox: !Rails.env.production?,
+      sandbox: ENV['PAYPAL_SANDBOX'].nil?,
       app_id: ENV['PAYPAL_APP_ID'],
       user_id: ENV['PAYPAL_USER'],
       password: ENV['PAYPAL_PASSWORD'],
       signature: ENV['PAYPAL_SIGNATURE']
     )
-  end
-
-  # payment options for secondary paypal payment
-  def secondary_payment_options
-    {
-      action_type: 'PAY',
-      pay_key: payment_key
-    }
   end
 end

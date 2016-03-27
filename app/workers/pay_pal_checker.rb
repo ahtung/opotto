@@ -6,8 +6,8 @@ class PayPalChecker
   sidekiq_options queue: 'paypal_checker'
 
   # perform worker
-  def perform(user_id)
-    user = User.find(user_id)
-    user.check_paypal
+  def perform(users_ids)
+    users = User.where(id: users_ids)
+    users.each(&:check_paypal)
   end
 end

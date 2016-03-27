@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/wpolicarpo/rspec-sidekiq.git
-  revision: 38a4c32f6bb6203993bb2ed94793d70119ca01af
-  branch: perform-in-composable-matcher
-  specs:
-    rspec-sidekiq (2.2.0)
-      rspec (~> 3.0, >= 3.0.0)
-      sidekiq (>= 2.4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,7 +143,6 @@ GEM
     formatador (0.2.5)
     gaffe (1.1.0)
       rails (>= 4.0.0)
-    geoip_rails (0.0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google_contacts_api (0.7.1)
@@ -169,9 +159,6 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_accept_language (2.0.5)
-    httparty (0.13.7)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n-tasks (0.9.5)
       activesupport (>= 4.0.2)
@@ -320,7 +307,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.1.0)
+    rake (11.1.1)
     rdoc (4.2.2)
       json (~> 1.4)
     recaptcha (1.1.0)
@@ -360,6 +347,9 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-sidekiq (2.2.0)
+      rspec (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.4.1)
     rspec_junit_formatter (0.2.3)
       builder (< 4)
@@ -404,8 +394,6 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
-    sidekiq-limit_fetch (3.1.0)
-      sidekiq (>= 4)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -442,6 +430,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.11)
+    squasher (0.1.7)
     state_machine (1.2.0)
     state_machine_rspec (0.2.0)
       activesupport
@@ -521,11 +510,9 @@ DEPENDENCIES
   fog-aws (~> 0.9.1)
   foreman (~> 0.78.0)
   gaffe (~> 1.1.0)
-  geoip_rails
   google_contacts_api (~> 0.7.0)
   high_voltage (~> 2.4.0)
   http_accept_language (~> 2.0.5)
-  httparty
   i18n-tasks (~> 0.9.4)
   jbuilder
   jquery-rails (~> 4.0.4)
@@ -554,7 +541,7 @@ DEPENDENCIES
   rollbar (~> 2.8.3)
   rspec-its
   rspec-rails
-  rspec-sidekiq!
+  rspec-sidekiq
   rspec_junit_formatter (~> 0.2.3)
   rubocop
   sass-rails (~> 5.0.1)
@@ -563,13 +550,13 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq (~> 4.1.1)
-  sidekiq-limit_fetch
   simplecov
   sinatra
   sitemap_generator
   skylight (~> 0.10.0)
   slim-rails (~> 3.0.1)
   spring
+  squasher
   state_machine_rspec
   state_machines-activerecord (~> 0.3.0)
   test_after_commit

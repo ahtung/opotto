@@ -9,7 +9,3 @@ production:
   - paypal_checker
   - friend_sync
   - payments
-:limits:
-  paypal_checker: 10
-  friend_sync: 2
-  payments: 5

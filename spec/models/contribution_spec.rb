@@ -3,28 +3,49 @@ require 'rails_helper'
 RSpec.describe Contribution, type: :model do
   # Relations
   it { should belong_to(:user) }
-  it { should belong_to(:jar) }
+  it { should belong_to(:pot) }
 
   # Validations
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:jar) }
+  it { should validate_presence_of(:pot) }
 
   # Attributes
   it { is_expected.to monetize(:amount) }
 
+  # DB indexes
+  it { should have_db_index(:user_id) }
+  it { should have_db_index(:pot_id) }
+
   # Validations
   it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
+
   describe 'should be' do
     let!(:user) { create(:user) }
-    let!(:jar) { create(:jar, guests: [user]) }
-    let(:contribution) { build(:contribution, user: user, amount: 200, jar: jar) }
+    let!(:pot) { create(:pot, guests: [user]) }
+    let(:contribution) { build(:contribution, user: user, amount: 200, pot: pot) }
 
     it "valid if owner's total donations to this pot < 2000$" do
-      user.contributions << create_list(:contribution, 2, amount: 100, jar: jar)
+      user.contributions << create_list(:contribution, 2, amount: 100, pot: pot)
       expect(contribution).to be_valid
     end
     it "invalid if owner's total donations to this pot >= 2000$" do
-      user.contributions << create_list(:contribution, 2, amount: 900, jar: jar)
+      user.contributions << create_list(:contribution, 2, amount: 900, pot: pot)
+      expect(contribution).not_to be_valid
+    end
+  end
+
+  describe "should validate that the user's PayPal account's country allows opotto" do
+    it 'and allow if from NL' do
+      user = create(:user, paypal_country: 'NL')
+      pot = create(:pot, guests: [user])
+      contribution = build(:contribution, user: user, amount: 200, pot: pot)
+      expect(contribution).to be_valid
+    end
+
+    it 'and deny if from JP' do
+      user = create(:user, paypal_country: 'JP')
+      pot = create(:pot, guests: [user])
+      contribution = build(:contribution, user: user, amount: 200, pot: pot)
       expect(contribution).not_to be_valid
     end
   end
@@ -41,14 +62,14 @@ RSpec.describe Contribution, type: :model do
 
   # DB
   it { should have_db_index(:user_id) }
-  it { should have_db_index(:jar_id) }
+  it { should have_db_index(:pot_id) }
 
   describe '#' do
     describe 'payment_time' do
-      it 'should return time dif to jar ent_at' do
+      it 'should return time dif to pot ent_at' do
         contribution = FactoryGirl.create(:contribution, :anonymous)
         Timecop.freeze(Time.zone.now) do
-          expect(contribution.payment_time).to eq(contribution.jar.end_at - Time.zone.now)
+          expect(contribution.payment_time).to eq(contribution.pot.end_at - Time.zone.now)
         end
       end
     end
@@ -92,8 +113,8 @@ RSpec.describe Contribution, type: :model do
           expect(contribution.state).to eq('completed')
         end
 
-        it 'updates paid_at column of jar if payment completes' do
-          expect(contribution.jar.paid_at).not_to eq(nil)
+        it 'updates paid_at column of pot if payment completes' do
+          expect(contribution.pot.paid_at).not_to eq(nil)
         end
       end
     end
@@ -117,56 +138,42 @@ RSpec.describe Contribution, type: :model do
         end
       end
     end
-
-    describe 'pay' do
-      let(:contribution) { create(:contribution) }
-
-      it 'updates payment_key column' do
-        contribution.pay
-        expect(contribution.payment_key).not_to eq(nil)
-      end
-
-      it 'updates authorization_url attr_accessor' do
-        contribution.pay
-        expect(contribution.authorization_url).not_to eq(nil)
-      end
-    end
   end
 
   # Validations
   describe 'validations' do
     describe 'amount_inside_the_pot_bounds' do
-      it 'should return true if jar has no upper bound' do
-        jar = create(:jar)
-        contribution = build(:contribution, jar: jar)
+      it 'should return true if pot has no upper bound' do
+        pot = create(:pot)
+        contribution = build(:contribution, pot: pot)
         expect(contribution.valid?).to eq true
       end
 
       it 'should return true if amount is below upper bound' do
-        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
-        contribution = build(:contribution, jar: jar, amount: Money.new(900, 'USD'))
+        pot = create(:pot, upper_bound: Money.new(1_000, 'USD'))
+        contribution = build(:contribution, pot: pot, amount: Money.new(900, 'USD'))
         expect(contribution.valid?).to eq true
       end
 
       it 'should return fale if amount is above upper bound' do
-        jar = create(:jar, upper_bound: Money.new(1_000, 'USD'))
-        contribution = build(:contribution, jar: jar, amount: Money.new(1_100, 'USD'))
+        pot = create(:pot, upper_bound: Money.new(1_000, 'USD'))
+        contribution = build(:contribution, pot: pot, amount: Money.new(1_100, 'USD'))
         expect(contribution.valid?).to eq false
       end
     end
 
     describe 'limit_per_user_per_pot' do
       let!(:user) { create(:user) }
-      let!(:jar) { create(:jar, guests: [user]) }
+      let!(:pot) { create(:pot, guests: [user]) }
 
       it 'should return error if user contributed more than 4 for a pot' do
-        create_list(:contribution, 4, user: user, jar: jar, amount: Money.new(1000, 'USD'))
-        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        create_list(:contribution, 4, user: user, pot: pot, amount: Money.new(1000, 'USD'))
+        contribution = create(:contribution, user: user, pot: pot, amount: Money.new(1000, 'USD'))
         expect(contribution.valid?).to eq false
       end
 
       it 'should validate contribution if user contributed less than 4 for a pot' do
-        contribution = create(:contribution, user: user, jar: jar, amount: Money.new(1000, 'USD'))
+        contribution = create(:contribution, user: user, pot: pot, amount: Money.new(1000, 'USD'))
         expect(contribution.valid?).to eq true
       end
     end

@@ -20,7 +20,6 @@ gem 'google_contacts_api', '~> 0.7.0'
 gem 'omniauth-google-oauth2', '~> 0.4.0'
 gem 'rack-google-analytics', '~> 1.2.0'
 gem 'sidekiq', '~> 4.1.1'
-gem 'sidekiq-limit_fetch'
 gem 'sinatra'
 gem 'date_time_attribute', '~> 0.1.2'
 gem 'validates_timeliness', '~> 4.0.2'
@@ -49,14 +48,13 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'geoip_rails'
-gem 'httparty'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
+  gem 'squasher'
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
@@ -79,7 +77,7 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
-  gem 'rspec-sidekiq', github: 'wpolicarpo/rspec-sidekiq', branch: 'perform-in-composable-matcher'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'rspec-its'

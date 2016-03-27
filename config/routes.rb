@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: :show
 
-  # Jars
-  resources :jars, except: [:index, :destroy] do
+  # Pots
+  resources :pots, except: [:index, :destroy] do
     member do
       get 'report'
     end
@@ -23,10 +23,13 @@ Rails.application.routes.draw do
   end
 
   # Authenticated
-  authenticated :user, -> (u) { u.admin? } do
-    # Sidekiq
-    mount Sidekiq::Web => '/sidekiq'
+  authenticated :user do
     root to: 'users#show', as: :authenticated_root
+  end
+
+  # Sidekiq
+  authenticated :user, -> (u) { u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   # Non-Authenticated
