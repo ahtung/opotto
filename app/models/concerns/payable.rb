@@ -51,7 +51,7 @@ module Payable
   # Pare payment info
   def parse_payment_info(response)
     if response.success?
-      self.user = User.find_by(email: response.sender.email)
+      self.user = Contribution.find_by(payment_key: response.pay_key).user
       success! if scheduled?
       Rails.logger.info "Payment log |  Payment completed for #{payment_options}"
     else
