@@ -22,5 +22,6 @@ elsif Rails.env.production?
   dunya = User.where(email: 'dunyakirkali@gmail.com').first_or_create
   ilana = User.where(email: 'contact@madco.nl').first_or_create
   paypal = User.where(email: 'paypal@opotto.com').first_or_create
-  FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal, ilana], visible: true)
+  receiver = User.where(email: 'opotto-p-receiver@gmail.com').first_or_create
+  FactoryGirl.create(:jar, name: 'PayPal test Jar',  owner: dunya, guests: [dunya, onur, paypal, ilana], visible: true, receiver: receiver)
 end
