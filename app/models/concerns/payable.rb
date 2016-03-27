@@ -56,7 +56,7 @@ module Payable
       Rails.logger.info "Payment log |  Payment completed for #{payment_options(preapproval_key)}"
     else
       error! if scheduled?
-      Rails.logger.error "Payment log |  Payment completed for #{payment_options(preapproval_key)}"
+      Rails.logger.error "Payment log |  Payment failed for #{payment_options(preapproval_key)}"
     end
   end
 
