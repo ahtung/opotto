@@ -21,7 +21,7 @@ module Payable
 
   # Complete preapproved payments to receivers
   def complete_payment
-    payment = api.execute :Pay, payment_options(preapproval_key)
+    payment = api.execute :Pay, payment_options
     update_column(:payment_key, payment.pay_key)
     payment_info
   end
@@ -53,10 +53,10 @@ module Payable
     if response.success?
       self.user = User.find_by(email: response.sender.email)
       success! if scheduled?
-      Rails.logger.info "Payment log |  Payment completed for #{payment_options(preapproval_key)}"
+      Rails.logger.info "Payment log |  Payment completed for #{payment_options}"
     else
       error! if scheduled?
-      Rails.logger.error "Payment log |  Payment failed for #{payment_options(preapproval_key)}"
+      Rails.logger.error "Payment log |  Payment failed for #{payment_options}"
     end
   end
 
@@ -70,12 +70,11 @@ module Payable
   end
 
   # Set payment options when payment triggered
-  def payment_options(preapproval_key)
+  def payment_options
     {
       preapproval_key: preapproval_key,
       action_type:    'PAY',
       currency_code:  amount.currency.iso_code,
-      receivers: payment_receivers
       receivers: payment_receivers,
       return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
       cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
