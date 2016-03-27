@@ -3,6 +3,9 @@ class Jar < ActiveRecord::Base
   include DateTimeAttribute
   include Abusable
 
+  # Constant
+  IMMUTABLE = %w(name receiver_id description end_at).freeze
+
   # Relations
   belongs_to :owner, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
@@ -21,6 +24,7 @@ class Jar < ActiveRecord::Base
   validate :owners_pot_count, if: -> { owner }
   validate :yearly_pot_limit, if: -> { owner }
   validate :owners_paypal_country, if: -> { owner }
+  validate :force_immutable
 
   date_time_attribute :end_at
 
@@ -132,5 +136,10 @@ class Jar < ActiveRecord::Base
   # Scales the ascii number to 100
   def scaled_coordinate(coordinate)
     coordinate * 100 / 255
+  end
+
+  def force_immutable
+    return unless persisted?
+    IMMUTABLE.any? { |attr| changed.include?(attr) && errors.add(attr, :immutable) }
   end
 end
