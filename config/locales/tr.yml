@@ -54,6 +54,9 @@ tr:
       title: Güvenlik
     sign_in_with_google: Google'la giris
     title: opotto
+    unsupported:
+      title: Desteklenmeyen Ülke
+      content: 'Üzgünüz! Bu uygulama ülkenizde desteklenmemektedir.'
   user:
     login: Giriş yap
     logout: "Çıkış yap"

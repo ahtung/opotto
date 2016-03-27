@@ -18,24 +18,12 @@
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
 #= require select_guest
-#= require mapbox
 
 window.BrowserTZone ||= {}
 BrowserTZone.setCookie = ->
   $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
 
 $ ->
-  # Map
-  if $('#map').length > 0
-    map = L.mapbox.map('map', 'examples.map-y7l23tes', zoomControl: false).setView([41.046952, 28.973507], 12)
-    map.dragging.disable()
-    map.touchZoom.disable()
-    map.doubleClickZoom.disable()
-    map.scrollWheelZoom.disable()
-    # Disable tap handler, if present.
-    if map.tap
-      map.tap.disable()
-
   BrowserTZone.setCookie()
   $('select').material_select()
   $('.datepicker').pickadate({

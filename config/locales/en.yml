@@ -54,6 +54,9 @@ en:
       title: Security
     sign_in_with_google: Sign in with Google
     title: opotto
+    unsupported:
+      title: Unsupported Country
+      content: 'Sorry, Crowdfunding is not allowed in your country.'
   user:
     login: Login
     logout: Logout

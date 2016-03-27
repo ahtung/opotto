@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :contribution do
-    amount { Faker::Commerce.price }
+    amount { '200' }
     association :pot, strategy: :build
     association :user, strategy: :build
     anonymous { [true, false].sample }
