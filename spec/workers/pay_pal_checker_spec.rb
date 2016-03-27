@@ -4,16 +4,32 @@ RSpec.describe PayPalChecker, type: :worker do
   it { expect(PayPalChecker).to be_processed_in :paypal_checker }
   it { expect(PayPalChecker).to be_retryable false }
 
-  xit 'should trigger check_paypal on user' do
+  before :all do
+    Sidekiq::Testing.inline!
+  end
+
+  it 'should trigger check_paypal on user and update paypal_member' do
     user = create(:user)
-    Sidekiq::Testing.inline! do
-      expect(user).to receive(:check_paypal)
-      PayPalChecker.perform_async(user.id)
-    end
+    PayPalChecker.perform_async(user.id)
+    user.reload
+    expect(user.paypal_member).not_to be_nil
+  end
+
+  it 'should trigger check_paypal on user and update paypal_country' do
+    user = create(:user)
+    PayPalChecker.perform_async(user.id)
+    user.reload
+    expect(user.paypal_country).not_to be_nil
   end
 
   it 'should function' do
     user = create(:user)
-    expect { PayPalChecker.perform_async(user.id) }.to change(PayPalChecker.jobs, :size).by(1)
+    Sidekiq::Testing.fake! do
+      expect { PayPalChecker.perform_async(user.id) }.to change(PayPalChecker.jobs, :size).by(1)
+    end
+  end
+
+  after :all do
+    Sidekiq::Testing.fake!
   end
 end
