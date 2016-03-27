@@ -60,11 +60,6 @@ class Jar < ActiveRecord::Base
     errors.add(:base, "Can't have more than #{yearly_limit} pots in a year")
   end
 
-  # retuns the fullness value
-  def fullness
-    total_contribution.to_f / 1000
-  end
-
   # returns the total contribution
   def total_contribution
     contributions.complete.map(&:amount).inject { |a, e| a + e } || 0
