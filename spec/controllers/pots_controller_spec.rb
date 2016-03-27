@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe JarsController, type: :controller do
+RSpec.describe PotsController, type: :controller do
   let(:user) { create(:user) }
 
   before :each do
@@ -12,23 +12,23 @@ RSpec.describe JarsController, type: :controller do
   xit { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:update) }
 
   describe 'GET show' do
-    let(:jar) { create(:jar, owner: user) }
+    let(:pot) { create(:pot, owner: user) }
 
-    it 'assigns @jar' do
-      get :show, id: jar.id
-      expect(assigns(:jar)).to eq(jar)
+    it 'assigns @pot' do
+      get :show, id: pot.id
+      expect(assigns(:pot)).to eq(pot)
     end
 
     it 'renders the show template' do
-      get :show, id: jar.id
+      get :show, id: pot.id
       expect(response).to render_template('show')
     end
   end
 
   describe 'GET new' do
-    it 'assigns @jar' do
+    it 'assigns @pot' do
       get :new
-      expect(assigns(:jar)).to be_a_new(Jar)
+      expect(assigns(:pot)).to be_a_new(Pot)
     end
 
     it 'renders the new template' do

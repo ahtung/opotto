@@ -5,10 +5,10 @@ RSpec.describe UserMailer, type: :mailer do
     before(:each) do
       ActionMailer::Base.deliveries = []
       users = create_list(:user, 3, :with_name)
-      @jar = create(:jar, :with_description)
+      @pot = create(:pot, :with_description)
       @user = users.first
       users.each do |user|
-        UserMailer.invitation_email(user, @jar).deliver_now
+        UserMailer.invitation_email(user, @pot).deliver_now
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(@jar.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(@pot.description)
     end
 
     it 'renders the sender email' do
@@ -49,10 +49,10 @@ RSpec.describe UserMailer, type: :mailer do
     before(:each) do
       ActionMailer::Base.deliveries = []
       users = create_list(:user, 3)
-      @jar = create(:jar, :with_description)
+      @pot = create(:pot, :with_description)
       @user = users.first
       users.each do |user|
-        UserMailer.invitation_email(user, @jar).deliver_now
+        UserMailer.invitation_email(user, @pot).deliver_now
       end
     end
 
@@ -69,10 +69,10 @@ RSpec.describe UserMailer, type: :mailer do
     before(:each) do
       ActionMailer::Base.deliveries = []
       users = create_list(:user, 3, :registered)
-      @jar = create(:jar, :with_description)
+      @pot = create(:pot, :with_description)
       @user = users.first
       users.each do |user|
-        UserMailer.invitation_email(user, @jar).deliver_now
+        UserMailer.invitation_email(user, @pot).deliver_now
       end
     end
 

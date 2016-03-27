@@ -6,12 +6,12 @@ FactoryGirl.define do
     password { Faker::Number.number(8) }
     admin 'false'
 
-    trait :with_jars do
-      jars { create_list(:jar, 2, :open) }
+    trait :with_pots do
+      pots { create_list(:pot, 2, :open) }
     end
 
-    trait :with_closed_jars do
-      jars { create_list(:jar, 2, :closed) }
+    trait :with_closed_pots do
+      pots { create_list(:pot, 2, :closed) }
     end
 
     trait :with_invitations do

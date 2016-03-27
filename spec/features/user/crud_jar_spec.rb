@@ -4,7 +4,7 @@ RSpec.describe 'User', type: :feature, js: true do
   let!(:user) { create(:user, :with_paypal) }
   let!(:onur) { create(:user, email: 'onurkucukkece@gmail.com', password: '123QwETR') }
 
-  let(:jar) { build(:jar) }
+  let(:pot) { build(:pot) }
 
   before :each do
     user.friends << onur
@@ -14,9 +14,9 @@ RSpec.describe 'User', type: :feature, js: true do
     click_on 'Log in'
   end
 
-  xit 'should be able to create a jar' do
+  xit 'should be able to create a pot' do
     click_on 'Get going'
-    fill_in 'jar_name', with: jar.name
+    fill_in 'pot_name', with: pot.name
 
     first('.receiver-select .select-dropdown').click
     first('.receiver-select .select-dropdown').first('li').click
@@ -24,13 +24,13 @@ RSpec.describe 'User', type: :feature, js: true do
     first('.guests-select .select-dropdown').click
     first('.guests-select .select-dropdown').first('li').click
 
-    fill_in 'jar_description', with: jar.description
-    fill_in 'jar_end_at', with: Time.zone.now + 10.days
-    check 'jar_visible'
-    fill_in 'jar_upper_bound', with: jar.upper_bound
-    click_on t('jar.save')
+    fill_in 'pot_description', with: pot.description
+    fill_in 'pot_end_at', with: Time.zone.now + 10.days
+    check 'pot_visible'
+    fill_in 'pot_upper_bound', with: pot.upper_bound
+    click_on t('pot.save')
     within '.creations' do
-      expect(page).to have_selector '.jar', count: user.jars.count
+      expect(page).to have_selector '.pot', count: user.pots.count
     end
   end
 end

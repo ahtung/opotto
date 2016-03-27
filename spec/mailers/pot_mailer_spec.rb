@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe JarMailer, type: :mailer do
+RSpec.describe PotMailer, type: :mailer do
   let(:contribution) { create(:contribution) }
 
   describe 'scheduled_email' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      JarMailer.scheduled_email(contribution).deliver_now
+      PotMailer.scheduled_email(contribution).deliver_now
     end
 
     it 'should send an email' do
@@ -22,7 +22,7 @@ RSpec.describe JarMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.jar.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
     end
 
     it 'renders the sender email' do
@@ -33,8 +33,8 @@ RSpec.describe JarMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{contribution.user.name}")
     end
 
-    it 'should have link to jar' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
+    it 'should have link to pot' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.pot.name, href: pot_url(contribution.pot))
     end
 
     it 'should have a header' do
@@ -49,7 +49,7 @@ RSpec.describe JarMailer, type: :mailer do
   describe 'completed_email' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      JarMailer.completed_email(contribution).deliver_now
+      PotMailer.completed_email(contribution).deliver_now
     end
 
     it 'should send an email' do
@@ -65,7 +65,7 @@ RSpec.describe JarMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.jar.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
     end
 
     it 'renders the sender email' do
@@ -80,8 +80,8 @@ RSpec.describe JarMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('h1')
     end
 
-    it 'should have link to jar' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
+    it 'should have link to pot' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.pot.name, href: pot_url(contribution.pot))
     end
 
     after(:each) do
@@ -92,7 +92,7 @@ RSpec.describe JarMailer, type: :mailer do
   describe 'failed_payment_email' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      JarMailer.failed_payment_email(contribution).deliver_now
+      PotMailer.failed_payment_email(contribution).deliver_now
     end
 
     it 'should send an email' do
@@ -103,8 +103,8 @@ RSpec.describe JarMailer, type: :mailer do
       ActionMailer::Base.deliveries.first.to match_array contribution.user.email
     end
 
-    it 'should have link to jar' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.jar.name, href: jar_url(contribution.jar))
+    it 'should have link to pot' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_link(contribution.pot.name, href: pot_url(contribution.pot))
     end
 
     it 'should set the subject to the correct subject' do
@@ -112,7 +112,7 @@ RSpec.describe JarMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.jar.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
     end
 
     it 'renders the sender email' do

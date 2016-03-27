@@ -1,0 +1,12 @@
+i.material-icons.circle class=[('blue' if pot.owner == current_user), ('green' if pot.contributors.include?(current_user))]
+  | insert_chart
+span.title= link_to pot.name, pot_path(pot)
+p
+  = humanized_money_with_symbol(pot.total_contribution)
+  br
+  = "#{pot.total_guests} #{t('pot.guest')}"
+  br
+  = "#{pot.total_contributors} #{t('pot.contributors')}"
+  br
+  = distance_of_time_in_words(Time.now, pot.end_at)
+= link_to_if !@user.contributed_pots.include?(pot),  t('pot.contribute'), new_pot_contribution_path(pot), class: 'secondary-content btn'

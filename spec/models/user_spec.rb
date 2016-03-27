@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe User do
-  it { should have_many(:jars).dependent(:destroy) }
+  it { should have_many(:pots).dependent(:destroy) }
   it { should have_many(:contributions).dependent(:destroy) }
-  it { should have_many(:contributed_jars).through(:contributions).class_name('Jar') }
+  it { should have_many(:contributed_pots).through(:contributions).class_name('Pot') }
   it { should have_many(:invitations).dependent(:destroy) }
-  it { should have_many(:invited_jars).through(:invitations).class_name('Jar') }
+  it { should have_many(:invited_pots).through(:invitations).class_name('Pot') }
   it { should have_many(:friendships) }
   it { should have_many(:friends).through(:friendships) }
   it { should have_many(:inverse_friendships).class_name('Friendship') }
@@ -77,17 +77,17 @@ describe User do
       end
     end
 
-    describe 'uncontributed_jars' do
-      it 'should return user.jars - user.contributed_jars' do
-        user = create(:user, :with_jars)
-        expect(user.uncontributed_jars).to eq(user.jars - user.contributed_jars)
+    describe 'uncontributed_pots' do
+      it 'should return user.pots - user.contributed_pots' do
+        user = create(:user, :with_pots)
+        expect(user.uncontributed_pots).to eq(user.pots - user.contributed_pots)
       end
     end
 
-    describe 'iscoverable_jars' do
-      it 'should return user.jars - user.contributed_jars' do
-        user = create(:user, :with_jars)
-        expect(user.discoverable_jars).to eq(Jar.visible - user.jars - user.invited_jars)
+    describe 'iscoverable_pots' do
+      it 'should return user.pots - user.contributed_pots' do
+        user = create(:user, :with_pots)
+        expect(user.discoverable_pots).to eq(Pot.visible - user.pots - user.invited_pots)
       end
     end
   end
