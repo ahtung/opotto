@@ -22,6 +22,7 @@ module Payable
   # Complete preapproved payments to receivers
   def complete_payment
     payment = api.execute :Pay, payment_options
+    Rails.logger.info "Payment log |  Payment action for #{payment.inspect}"
     update_column(:payment_key, payment.pay_key)
     payment_info
   end
@@ -45,6 +46,7 @@ module Payable
   # Retrieve Data about the Payment
   def payment_info
     response = api.execute(:PaymentDetails, pay_key: payment_key)
+    Rails.logger.info "Payment log |  Payment details for #{response.inspect}"
     parse_payment_info(response)
   end
 
