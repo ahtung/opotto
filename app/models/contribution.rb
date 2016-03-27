@@ -22,6 +22,7 @@ class Contribution < ActiveRecord::Base
 
   # Scopes
   scope :complete, -> { with_state([:completed, :scheduled]) }
+  scope :payable, -> { joins(:jar).where('jars.end_at <= ?', Time.zone.now) }
 
   # Money
   monetize :amount_cents
