@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   after_commit :schedule_import_contacts, on: :update
-  after_commit :schedule_check_paypal
 
   scope :admin, -> { where(admin: true) }
   scope :with_paypal_account, -> { where(paypal_member: true) }
@@ -106,9 +105,5 @@ class User < ActiveRecord::Base
   # Scehdule an import of the user's contact list after it is committed
   def schedule_import_contacts
     FriendSyncWorker.perform_async(id) # if last_contact_sync_at.nil?
-  end
-
-  def schedule_check_paypal
-    PayPalChecker.perform_in(10.seconds, id)
   end
 end
