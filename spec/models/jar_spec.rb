@@ -153,7 +153,7 @@ describe Jar do
 
       it 'should return the sum of contributions if contributions' do
         jar = create(:jar, :with_contributions)
-        expect(jar.total_contribution).to eq jar.contributions.map(&:amount).inject { |a, e| a + e }
+        expect(jar.total_contribution).to eq jar.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
       end
     end
 
