@@ -21,7 +21,8 @@ module Payable
 
   # Complete preapproved payments to receivers
   def complete_payment
-    api.execute :Pay, payment_options(preapproval_key)
+    payment = api.execute :Pay, payment_options(preapproval_key)
+    update_column(:payment_key, payment.pay_key)
     payment_info
   end
 
@@ -43,7 +44,7 @@ module Payable
 
   # Retrieve Data about the Payment
   def payment_info
-    response = api.execute(:PaymentDetails, pay_key: preapproval_key)
+    response = api.execute(:PaymentDetails, pay_key: payment_key)
     parse_payment_info(response)
   end
 
