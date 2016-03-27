@@ -10,4 +10,9 @@ namespace :paypal do
     contributions_ids = Contribution.with_state(:scheduled).payable.limit(100).pluck(:id)
     PaymentsWorker.perform_async(contributions_ids)
   end
+
+  desc 'Pays a contribution by id'
+  task :manual, [:id] => :environment do |task, args|
+    PaymentsWorker.perform_async(args[:id])
+  end
 end
