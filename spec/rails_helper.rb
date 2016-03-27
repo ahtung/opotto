@@ -66,7 +66,7 @@ RSpec.configure do |config|
       .to_return(status: 200, body: { payKey: 'ABC', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
-      .to_return(status: 200, body: { payKey: 'ABC', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(status: 200, body: { payKey: 'ABC', status: 'COMPLETED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
       .to_return(status: 200, body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
