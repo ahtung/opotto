@@ -140,8 +140,6 @@ class Jar < ActiveRecord::Base
 
   def force_immutable
     return unless persisted?
-    IMMUTABLE.any? do |attr|
-      changed.include?(attr) && errors.add(attr, :immutable)
-    end
+    IMMUTABLE.any? { |attr| changed.include?(attr) && errors.add(attr, :immutable) }
   end
 end

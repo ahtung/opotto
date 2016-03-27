@@ -122,7 +122,7 @@ describe Jar do
       let(:mock) { create(:jar, :with_guests, :with_description, :with_upper_bound) }
 
       Jar::IMMUTABLE.each do |immutable_attr|
-        it "#{immutable_attr}" do
+        it immutable_attr.to_s do
           jar = create(:jar)
           jar.send("#{immutable_attr}=", mock.send(immutable_attr))
           expect(jar.valid?).to eq false
