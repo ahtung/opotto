@@ -8,8 +8,6 @@ class PayPalChecker
   # perform worker
   def perform(users_ids)
     users = User.where(id: users_ids)
-    users.each do |user|
-      user.check_paypal
-    end
+    users.each(&:check_paypal)
   end
 end
