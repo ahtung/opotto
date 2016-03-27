@@ -15,7 +15,7 @@ class JarPolicy
 
   # contribute?
   def contribute?
-    if jar.visible?
+    if jar.visible
       jar.open?
     else
       jar.guests.include?(user)
