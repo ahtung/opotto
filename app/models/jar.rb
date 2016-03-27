@@ -105,15 +105,6 @@ class Jar < ActiveRecord::Base
       JarPolicy
     end
   end
-  # Gives an array of 12 points coordinates
-  def pot_points
-    key = Digest::SHA1.hexdigest name
-    coordinates = convert_to_ascii(key)
-    reversed_coordinates = coordinates.reverse.map do |point|
-      { x: 200 - point[:x], y: point[:y] }
-    end
-    coordinates + reversed_coordinates
-  end
 
   private
 

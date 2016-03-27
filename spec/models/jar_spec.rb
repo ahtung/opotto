@@ -180,24 +180,6 @@ describe Jar do
         expect(jar.total_guests).to eq jar.guests.count
       end
     end
-
-    describe 'pot_points' do
-      let(:jar) { create(:jar, :with_contributions) }
-
-      it 'should return a array of length 12' do
-        expect(jar.pot_points.count).to eq(12)
-      end
-
-      describe 'should return a array of where item is a hash' do
-        let(:points) { jar.pot_points }
-        it 'with key x' do
-          expect(points.first.key?(:x)).to be(true)
-        end
-        it 'with key y' do
-          expect(points.first.key?(:y)).to be(true)
-        end
-      end
-    end
   end
 
   # Class methods
