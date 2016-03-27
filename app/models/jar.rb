@@ -12,7 +12,7 @@ class Jar < ActiveRecord::Base
   has_many :contributions, dependent: :destroy
   has_many :contributors, -> { uniq }, through: :contributions, source: :user
   has_many :invitations, dependent: :destroy
-  has_many :guests, -> { uniq }, through: :invitations, source: :user
+  has_many :guests, through: :invitations, source: :user
 
   # Validations
   validates :owner, presence: true
