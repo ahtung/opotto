@@ -9,3 +9,4 @@ production:
   - paypal_checker
   - friend_sync
   - payments
+  - mailers
