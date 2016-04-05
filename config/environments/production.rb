@@ -84,11 +84,11 @@ Rails.application.configure do
   config.middleware.use Rack::GoogleAnalytics, tracker: ENV['GOOGLE_ANALYTICS'] if ENV['GOOGLE_ANALYTICS'].present?
 
   config.action_mailer.smtp_settings = {
-    address: ENV['MAILGUN_SMTP_SERVER'],
-    port: ENV['MAILGUN_SMTP_PORT'],
+    address: ENV['SMTP_SERVER'],
+    port: ENV['SMTP_PORT'],
     authentication: :plain,
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    user_name: ENV['SMTP_LOGIN'],
+    password: ENV['SMTP_PASSWORD'],
     domain: ENV['HOST']
   }
 
