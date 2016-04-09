@@ -1,8 +1,15 @@
 tr:
   activerecord:
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              invalid_currency: "Kur hatalı"
     attributes:
       contribution:
         amount_cents: "Katkı miktarı"
+        amount: "Katkı miktarı"
   errors:
     messages:
       amount_less_than_minimum: en az $1,00 olmalı
