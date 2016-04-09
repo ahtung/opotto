@@ -5,6 +5,10 @@ RSpec.describe 'User', type: :feature, js: true do
   let(:pot) { create(:pot, guests: [user]) }
   let(:contribution) { build(:contribution) }
 
+  before :each do
+    login user
+  end
+
   xit 'should be able to contribute to a pot' do
     visit new_user_session_path
     fill_in 'user_email', with: user.email
