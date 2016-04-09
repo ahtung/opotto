@@ -1,4 +1,10 @@
 tr:
+  number:
+    currency:
+      format:
+        delimiter: " "
+        precision: 2
+        separator: ","
   activerecord:
     errors:
       models:
