@@ -86,7 +86,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['SMTP_SERVER'],
     port: ENV['SMTP_PORT'],
-    authentication: :plain,
+    authentication: :login,
+    enable_starttls_auto: true
     user_name: ENV['SMTP_LOGIN'],
     password: ENV['SMTP_PASSWORD'],
     domain: ENV['HOST']
