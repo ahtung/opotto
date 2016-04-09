@@ -36,10 +36,11 @@ p
 .row
   .col.s12
     .row
-      .col.s4.m2
+      .col.s12
         = link_to t('site.navigation.back'), root_path, class: 'btn'
-      .col.s6.m4
-        = link_to t('pot.contribute'), new_pot_contribution_path(@pot), class: 'btn'
+      - if policy(@pot).contribute?
+        .col.s12
+          = link_to t('pot.contribute'), new_pot_contribution_path(@pot), class: 'btn'
       - if policy(@pot).update?
         .col.s12
           p = link_to t('pot.edit'), edit_pot_path(@pot), class: 'btn'

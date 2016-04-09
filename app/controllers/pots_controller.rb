@@ -5,6 +5,8 @@ class PotsController < ApplicationController
   before_action :authorize_pot, except: [:new, :create, :report]
   after_action :verify_authorized, except: [:new, :create, :report]
 
+  decorates_assigned :pot
+
   # GET /pots/1
   def show
   end
@@ -57,7 +59,7 @@ class PotsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_pot
-    @pot = Pot.find(params[:id])
+    @pot = Pot.includes(contributions: :user).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
