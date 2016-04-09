@@ -28,7 +28,7 @@ RSpec.describe PotPolicy, focus: true do
       expect(subject).not_to permit(stranger, pot)
     end
 
-    it 'denies access to guests' do
+    it 'denies access to nil user' do
       pot = create(:pot)
       expect(subject).not_to permit(nil, pot)
     end
@@ -50,9 +50,14 @@ RSpec.describe PotPolicy, focus: true do
       expect(subject).not_to permit(stranger, pot)
     end
 
-    it 'denies access to guests' do
+    it 'denies access to nil user' do
       pot = create(:pot)
       expect(subject).not_to permit(nil, pot)
+    end
+
+    it 'denies access when created' do
+      pot = create(:pot)
+      expect(subject).not_to permit(user, pot)
     end
   end
 
@@ -72,9 +77,14 @@ RSpec.describe PotPolicy, focus: true do
       expect(subject).not_to permit(stranger, pot)
     end
 
-    it 'denies access to guests' do
+    it 'denies access to nil user' do
       pot = create(:pot)
       expect(subject).not_to permit(nil, pot)
+    end
+
+    it 'denies access when created' do
+      pot = create(:pot)
+      expect(subject).not_to permit(user, pot)
     end
   end
 
@@ -99,9 +109,19 @@ RSpec.describe PotPolicy, focus: true do
       expect(subject).not_to permit(stranger, pot)
     end
 
-    it 'denies access to guests' do
+    it 'denies access to nil user' do
       pot = create(:pot)
       expect(subject).not_to permit(nil, pot)
+    end
+
+    it 'denies access to owner when closed' do
+      pot = create(:pot, :closed)
+      expect(subject).not_to permit(user, pot)
+    end
+
+    it 'denies access to owner when closed' do
+      pot = create(:pot, :ended)
+      expect(subject).not_to permit(user, pot)
     end
   end
 end
