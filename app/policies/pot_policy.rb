@@ -28,6 +28,7 @@ class PotPolicy
   # edit?
   def edit?
     return false if user.nil?
+    return false unless pot.new_record?
     return true if pot.owner == user
     false
   end
@@ -35,6 +36,7 @@ class PotPolicy
   # update?
   def update?
     return false if user.nil?
+    return false unless pot.new_record?
     return true if pot.owner == user
     false
   end

@@ -35,9 +35,14 @@ RSpec.describe PotPolicy do
   end
 
   permissions :edit? do
-    it 'allows access to owner' do
-      pot = create(:pot, owner: user)
+    it 'allows access to owner if new_record' do
+      pot = build(:pot, owner: user)
       expect(subject).to permit(user, pot)
+    end
+
+    it 'denies access to owner if new_record' do
+      pot = create(:pot, owner: user)
+      expect(subject).not_to permit(user, pot)
     end
 
     it "denies access to pot's guest" do
@@ -62,9 +67,14 @@ RSpec.describe PotPolicy do
   end
 
   permissions :update? do
-    it 'allows access to owner' do
-      pot = create(:pot, owner: user)
+    it 'allows access to owner if new_record' do
+      pot = build(:pot, owner: user)
       expect(subject).to permit(user, pot)
+    end
+
+    it 'denies access to owner if new_record' do
+      pot = create(:pot, owner: user)
+      expect(subject).not_to permit(user, pot)
     end
 
     it "denies access to pot's guest" do
