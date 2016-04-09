@@ -6,3 +6,4 @@ tr:
   errors:
     messages:
       amount_less_than_minimum: en az $1,00 olmalı
+      amount_out_of_bounds: katılım sınırlarını aşıyor
