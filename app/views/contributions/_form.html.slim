@@ -4,7 +4,7 @@
       = contribution.errors.full_messages.join(',')
   .row
     .input-field.col.s12.m8
-      = f.number_field :amount, step: 'any'
+      = f.number_field :amount, step: 'any', placeholder: '99,99'
       = f.label :amount
     .input-field.col.s12.m4
       = f.check_box :anonymous
