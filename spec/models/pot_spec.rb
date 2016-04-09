@@ -230,7 +230,7 @@ RSpec.describe Pot, type: :model do
     describe 'visible' do
       it 'should return only visible pots' do
         visible_pots = create_list(:pot, 2, :visible)
-        create_list(:pot, 2)
+        create_list(:pot, 2, visible: false)
         expect(Pot.visible).to match_array(visible_pots)
       end
     end
