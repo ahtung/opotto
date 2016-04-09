@@ -5,9 +5,9 @@ if Rails.env.development?
   Invitation.delete_all
   Contribution.delete_all
 
-  onur = FactoryGirl.create(:user, :admin, email: 'onurkucukkece@gmail.com', password: '123QwETR')
-  dunya = FactoryGirl.create(:user, :admin, email: 'dunyakirkali@gmail.com', password: '123QwETR')
-  ilana = FactoryGirl.create(:user, :admin, email: 'contact@madco.nl', password: '123QwETR')
+  onur = FactoryGirl.create(:user, :admin, email: 'onurkucukkece@gmail.com', password: '123QwETR', paypal_member: true)
+  dunya = FactoryGirl.create(:user, :admin, email: 'dunyakirkali@gmail.com', password: '123QwETR', paypal_member: true)
+  ilana = FactoryGirl.create(:user, :admin, email: 'contact@madco.nl', password: '123QwETR', paypal_member: true)
   us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 
   onur.friends << [dunya, us, ilana]
