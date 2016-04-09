@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PotPolicy, focus: true do
+RSpec.describe PotPolicy do
   subject { described_class }
 
   let(:user) { create(:user) }
