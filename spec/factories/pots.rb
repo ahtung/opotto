@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :pot do
-    name     { Faker::Name.name }
-    end_at   { 10.days.from_now }
+    name { Faker::Name.name }
+    end_at { 10.days.from_now }
+    visible true
     association :owner, factory: :user
     association :receiver, factory: :user
 

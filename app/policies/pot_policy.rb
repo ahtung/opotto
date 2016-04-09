@@ -10,21 +10,32 @@ class PotPolicy
 
   # show?
   def show?
-    user && (pot.visible? || pot.guests.include?(user) || pot.owner == user)
+    return false if user.nil?
+    return true if pot.owner == user
+    return true if pot.guests.include?(user)
+    pot.visible?
   end
 
   # contribute?
   def contribute?
-    user && pot.open?
+    return false if user.nil?
+    return pot.open? if pot.owner == user
+    return pot.open? if pot.guests.include?(user)
+    return pot.open? if pot.visible?
+    false
   end
 
   # edit?
   def edit?
-    pot.owner == user
+    return false if user.nil?
+    return true if pot.owner == user
+    false
   end
 
   # update?
   def update?
-    pot.owner == user
+    return false if user.nil?
+    return true if pot.owner == user
+    false
   end
 end
