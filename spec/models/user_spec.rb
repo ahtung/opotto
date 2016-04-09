@@ -12,24 +12,6 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
-    describe 'schedule_import_contacts' do
-      let(:user) { create(:user) }
-
-      xit 'returns nil unless last_contact_sync_at.nil?' do
-        user.update_attribute(:last_contact_sync_at, Time.zone.now)
-        expect(user.schedule_import_contacts).to eq(nil)
-      end
-
-      xit 'should schedule import contacts on update' do
-        user.save
-        expect(FriendSyncWorker).to have_enqueued_job('FriendSyncWorker').at(10.seconds)
-      end
-
-      xit 'should not schedule import contacts on create' do
-        expect(FriendSyncWorker).not_to have_enqueued_job('FriendSyncWorker')
-      end
-    end
-
     describe 'access_token' do
       let(:user) { create(:user) }
 
