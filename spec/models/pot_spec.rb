@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Pot do
+RSpec.describe Pot, type: :model do
   it_behaves_like 'abusable'
 
   # Relations
@@ -135,13 +135,37 @@ describe Pot do
   describe '#' do
     describe 'open?' do
       it 'returns true if end_at in future' do
-        pot = build(:pot, end_at: 10.days.from_now)
+        pot = create(:pot, :open)
         expect(pot.open?).to eq true
       end
 
-      it 'returns false if end_at in past' do
-        pot = build(:pot, end_at: 10.days.ago)
+      it 'returns false if ended' do
+        pot = create(:pot, :ended)
         expect(pot.open?).to eq false
+      end
+    end
+
+    describe 'ended?' do
+      it 'returns true if ended' do
+        pot = create(:pot, :ended)
+        expect(pot.ended?).to eq true
+      end
+
+      it 'returns false if closed' do
+        pot = create(:pot, :closed)
+        expect(pot.ended?).to eq false
+      end
+    end
+
+    describe 'closed?' do
+      it 'returns false if open' do
+        pot = create(:pot, :open)
+        expect(pot.closed?).to eq false
+      end
+
+      it 'returns true if closed' do
+        pot = create(:pot, :closed)
+        expect(pot.closed?).to eq true
       end
     end
 

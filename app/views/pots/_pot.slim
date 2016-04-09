@@ -1,4 +1,5 @@
-i.material-icons.circle class=[('blue' if pot.owner == current_user), ('green' if pot.contributors.include?(current_user))]
+= pot.status
+i.material-icons.circle
   | insert_chart
 span.title= link_to pot.name, pot_path(pot)
 p
