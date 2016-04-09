@@ -8,16 +8,16 @@
       = f.label :name
   .row
     .input-field.col.s12.m6.receiver-select
-      = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, {}, disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted?
+      = f.select :receiver_id, current_user.friends.with_paypal_account.uniq.collect { |x| [x.email, x.id] }, {}, disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted?
       = f.label :receiver_id
   .row
     .col.s12.guest-select
       = f.label :guest_ids
-      = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, { multiple: true, class: 'browser-default', disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted? }
+      = f.select :guest_ids, current_user.friends.with_paypal_account.uniq.collect { |x| [x.email, x.id] }, { }, { multiple: true, class: 'browser-default', disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted? }
       .invited-list
       hr
       .not-invited-list
-        - current_user.friends.with_paypal_account.collect { |x| [x.name, x.email, x.id] }.each do |friend|
+        - current_user.friends.with_paypal_account.uniq.collect { |x| [x.name, x.email, x.id] }.each do |friend|
           .chip data-guest="#{friend[2]}"
             i.material-icons.add-to-guests add
             span.guest-name = "#{friend[0]} "
