@@ -1,3 +1,4 @@
+# app/decorators/pot_decorator.rb
 class PotDecorator < Draper::Decorator
   delegate_all
 

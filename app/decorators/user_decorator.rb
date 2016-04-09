@@ -1,3 +1,4 @@
+# app/decorators/user_decorator.rb
 class UserDecorator < Draper::Decorator
   delegate_all
 
