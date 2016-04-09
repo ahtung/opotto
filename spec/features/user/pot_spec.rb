@@ -8,13 +8,11 @@ RSpec.describe 'User', type: :feature, js: true do
 
   before :each do
     user.friends << onur
-    visit new_user_session_path
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_on 'Log in'
+    login user
   end
 
   xit 'should be able to create a pot' do
+    visit root_path
     click_on 'Get going'
     fill_in 'pot_name', with: pot.name
 

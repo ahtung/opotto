@@ -13,7 +13,7 @@ class Contribution < ActiveRecord::Base
   validate :limit_per_user_per_pot, if: -> { user }
   validates :pot, presence: true
   validates :user, presence: true
-  validates :amount_cents, numericality: { greater_than: 100 }
+  validate :minimum_amount
   validate :users_contribution_limit, if: -> { user }
   validate :users_paypal_country, if: -> { user }
 
@@ -82,5 +82,9 @@ class Contribution < ActiveRecord::Base
     contribution_count = user.contributions.where(pot: pot).count
     contribution_limit = ENV['CONTRIBUTION_LIMIT_PER_POT'] ? ENV['CONTRIBUTION_LIMIT_PER_POT'].to_i : 4
     errors.add(:base, "Can't contribute more than #{contribution_limit} times for a pot") if contribution_count > contribution_limit
+  end
+
+  def minimum_amount
+    errors.add(:amount_cents, :amount_less_than_minimum) if amount_cents < 100
   end
 end

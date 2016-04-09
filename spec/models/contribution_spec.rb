@@ -16,9 +16,6 @@ RSpec.describe Contribution, type: :model do
   it { should have_db_index(:user_id) }
   it { should have_db_index(:pot_id) }
 
-  # Validations
-  it { should validate_numericality_of(:amount_cents).is_greater_than(100) }
-
   describe 'should be' do
     let!(:user) { create(:user) }
     let!(:pot) { create(:pot, guests: [user]) }
@@ -158,6 +155,14 @@ RSpec.describe Contribution, type: :model do
       it 'should return fale if amount is above upper bound' do
         pot = create(:pot, upper_bound: Money.new(1_000, 'USD'))
         contribution = build(:contribution, pot: pot, amount: Money.new(1_100, 'USD'))
+        expect(contribution.valid?).to eq false
+      end
+    end
+
+    describe 'minimum_amount' do
+      it 'should validate the minimum amount for a contribution' do
+        pot = create(:pot)
+        contribution = build(:contribution, pot: pot, amount: Money.new(99, 'USD'))
         expect(contribution.valid?).to eq false
       end
     end

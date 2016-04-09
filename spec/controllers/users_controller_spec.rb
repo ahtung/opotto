@@ -8,14 +8,20 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET show' do
-    it 'assigns @user' do
+    before :each do
       get :show, id: user.id
+    end
+
+    it 'assigns @user' do
       expect(assigns(:user)).to eq(user)
     end
 
     it 'renders the show template' do
-      get :show, id: user.id
       expect(response).to render_template('show')
+    end
+
+    it 'should decorate @user' do
+      expect(assigns(:user)).to be_decorated
     end
   end
 end

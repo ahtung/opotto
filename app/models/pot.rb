@@ -31,7 +31,7 @@ class Pot < ActiveRecord::Base
   monetize :upper_bound_cents, allow_nil: true
 
   default_scope { includes(:owner) }
-  scope :this_week, -> { where('created_at >= ?', 1.week.ago).where('created_at <= ?', Time.zone.now) }
+  scope :this_week, -> { where('created_at >= ?', 1.week.ago.in_time_zone).where('created_at <= ?', Time.zone.now) }
 
   # Validates whether the owner is from an Crowdfunding allowing country
   def owners_paypal_country
@@ -79,6 +79,14 @@ class Pot < ActiveRecord::Base
     end_at >= Time.zone.now
   end
 
+  def closed?
+    end_at < Time.zone.now && end_at >= 1.week.ago.in_time_zone
+  end
+
+  def ended?
+    end_at < 1.week.ago.in_time_zone
+  end
+
   # Class methods
   class << self
     # scope for all visible pots
@@ -93,12 +101,12 @@ class Pot < ActiveRecord::Base
 
     # scope for all closed pots
     def closed
-      where('end_at < ?', Time.zone.now)
+      where('end_at < ? AND end_at > ?', Time.zone.now, 1.week.ago.in_time_zone)
     end
 
     # scope for all ended pots
     def ended
-      where('end_at <= ?', 7.days.ago)
+      where('end_at <= ?', 1.week.ago.in_time_zone)
     end
 
     def policy_class

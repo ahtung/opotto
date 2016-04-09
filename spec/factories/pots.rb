@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :pot do
-    name     { Faker::Name.name }
-    end_at   { 10.days.from_now }
+    name { Faker::Name.name }
+    end_at { 10.days.from_now }
+    visible true
     association :owner, factory: :user
     association :receiver, factory: :user
 
@@ -46,13 +47,13 @@ FactoryGirl.define do
 
     trait :closed do
       after :create do |model|
-        model.update_columns(end_at: 3.days.ago, created_at: 10.days.ago)
+        model.update_columns(end_at: 3.days.ago.in_time_zone, created_at: 10.days.ago.in_time_zone)
       end
     end
 
     trait :ended do
       after :create do |model|
-        model.update_column(:end_at, 8.days.ago)
+        model.update_column(:end_at, 10.days.ago.in_time_zone)
       end
     end
 

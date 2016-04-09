@@ -1,0 +1,22 @@
+tr:
+  number:
+    currency:
+      format:
+        delimiter: " "
+        precision: 2
+        separator: ","
+  activerecord:
+    errors:
+      models:
+        contribution:
+          attributes:
+            amount:
+              invalid_currency: "Kur hatalı"
+    attributes:
+      contribution:
+        amount_cents: "Katkı miktarı"
+        amount: "Katkı miktarı"
+  errors:
+    messages:
+      amount_less_than_minimum: en az $1,00 olmalı
+      amount_out_of_bounds: katılım sınırlarını aşıyor

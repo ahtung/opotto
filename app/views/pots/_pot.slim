@@ -1,4 +1,5 @@
-i.material-icons.circle class=[('blue' if pot.owner == current_user), ('green' if pot.contributors.include?(current_user))]
+= pot.status
+i.material-icons.circle
   | insert_chart
 span.title= link_to pot.name, pot_path(pot)
 p
@@ -9,4 +10,5 @@ p
   = "#{pot.total_contributors} #{t('pot.contributors')}"
   br
   = distance_of_time_in_words(Time.now, pot.end_at)
-= link_to_if !@user.contributed_pots.include?(pot),  t('pot.contribute'), new_pot_contribution_path(pot), class: 'secondary-content btn'
+
+= link_to_if policy(pot).contribute?,  t('pot.contribute'), new_pot_contribution_path(pot), class: 'secondary-content btn'

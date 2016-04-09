@@ -47,6 +47,7 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'draper', '~> 1.3'
 
 group :production do
   gem 'rails_12factor'
