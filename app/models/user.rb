@@ -14,10 +14,9 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  after_commit :schedule_import_contacts, on: :update
-
   scope :admin, -> { where(admin: true) }
   scope :with_paypal_account, -> { where(paypal_member: true) }
+  scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
   # returns user's handle
   def handle
@@ -100,10 +99,5 @@ class User < ActiveRecord::Base
     account_status = get_verified_status_response.accountStatus == 'VERIFIED'
     account_country = get_verified_status_response.countryCode
     [account_status, account_country]
-  end
-
-  # Scehdule an import of the user's contact list after it is committed
-  def schedule_import_contacts
-    FriendSyncWorker.perform_async(id) # if last_contact_sync_at.nil?
   end
 end

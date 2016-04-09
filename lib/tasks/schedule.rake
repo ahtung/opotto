@@ -8,4 +8,10 @@ namespace :schedule do
   task notify_admins: :environment do
     AdminMailer.update_email.deliver_later
   end
+
+  desc "Sync google contacts"
+  task contacts: :environment do
+    user_ids = User.unsynced_for_a_while.limit(100).pluck(:id)
+    FriendSyncWorker.perform_async(user_ids)
+  end
 end

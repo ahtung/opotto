@@ -7,7 +7,7 @@ class FriendSyncWorker
 
   # perform worker
   def perform(user_id)
-    user = User.find(user_id)
-    user.import_contacts
+    users = User.find(user_id)
+    users.map(&:import_contacts)
   end
 end
