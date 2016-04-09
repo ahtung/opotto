@@ -1,18 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Guest', type: :feature, js: true do
-  it 'should be able to browse about page' do
-    visit page_path('about')
-    expect(page).to have_content t('pages.about.content')
-  end
-
-  it 'should be able to browse contact page' do
-    visit page_path('contact')
-    expect(page).to have_content t('pages.contact.content')
-  end
-
-  it 'should be able to browse contact page' do
-    visit page_path('security')
-    expect(page).to have_content t('pages.security.content')
+RSpec.describe 'Guest', type: :feature do
+  describe "should be able to browse" do
+    %w(about contact security).each do |current_page|
+      it "#{ current_page } page" do
+        visit page_path(current_page)
+        expect(page).to have_content t("pages.#{ current_page }.content")
+      end
+    end
   end
 end
