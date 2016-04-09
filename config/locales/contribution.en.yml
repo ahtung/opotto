@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    attributes:
+      contribution:
+        amount_cents: "Contribution amount"
+  errors:
+    messages:
+      amount_less_than_minimum: must be $1,00 at least

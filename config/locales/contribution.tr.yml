@@ -1,0 +1,8 @@
+tr:
+  activerecord:
+    attributes:
+      contribution:
+        amount_cents: "Katkı miktarı"
+  errors:
+    messages:
+      amount_less_than_minimum: en az $1,00 olmalı
