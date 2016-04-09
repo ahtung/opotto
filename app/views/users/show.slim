@@ -2,6 +2,8 @@
   ul.collection.with-header
     li.collection-item= "12 Friends"
     li.collection-item= "Firends Last Synced At: #{@user.last_contact_sync_at.strftime('%d-%M-%Y %H-%m')}"
+    li.collection-item= "Paypal country: #{@user.paypal_country}"
+    li.collection-item= "Paypal member: #{@user.paypal_member}"
 .col.s12
   - unless @user.pots.empty?
     ul.collection.with-header
