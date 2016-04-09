@@ -12,13 +12,4 @@ RSpec.describe 'User', type: :feature, js: true do
     visit '/sidekiq'
     expect(page).not_to have_content('Dashboard')
   end
-
-  xit 'should be able to access sidekiq page if admin' do
-    visit new_user_session_path
-    fill_in 'user_email', with: admin.email
-    fill_in 'user_password', with: admin.password
-    click_on 'Sign in'
-    visit sidekiq_web_path
-    expect(page).to have_content('Dashboard')
-  end
 end
