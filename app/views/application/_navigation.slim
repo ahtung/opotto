@@ -10,6 +10,6 @@
       - %w(about contact security rules).each do |page|
         = nav_link_to page.capitalize, page_path(page), class: 'item'
       - if user_signed_in?
-        = nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'item'
+        .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
       - else
-        = nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'item'
+        .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'
