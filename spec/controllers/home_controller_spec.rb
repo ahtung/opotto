@@ -11,7 +11,7 @@ RSpec.describe HomeController, type: :controller do
     end
 
     describe 'from JP' do
-      xit 'renders the index template' do
+      it 'renders the index template' do
         @request.env['HTTP_CF_IPCOUNTRY'] = 'JP'
         get :index
         expect(response).to redirect_to(page_path('unsupported'))
