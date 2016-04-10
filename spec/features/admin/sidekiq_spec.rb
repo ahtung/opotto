@@ -8,7 +8,7 @@ RSpec.describe 'Admin', type: :feature do
     visit new_user_session_path
     fill_in 'user_email', with: admin.email
     fill_in 'user_password', with: admin.password
-    click_on 'Sign in'
+    click_on 'Log in'
     visit sidekiq_web_path
     expect(page).to have_content('Dashboard')
   end
