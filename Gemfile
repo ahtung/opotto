@@ -45,7 +45,7 @@ gem 'rubocop'
 gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'draper', '~> 1.3'
+gem 'draper', '~> 2.1.0'
 gem 'semantic-ui-sass', github: 'ahtung/semantic-ui-sass'
 
 group :production do
