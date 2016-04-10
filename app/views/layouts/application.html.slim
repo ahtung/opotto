@@ -11,8 +11,8 @@ html lang='en'
     = csrf_meta_tag
 
   body
-    header
-      = render 'notices', flash: flash
+    = render 'notices', flash: flash
     = render 'navigation'
-    == yield
+    = yield
+    = render 'footer'
     = javascript_include_tag 'application'
