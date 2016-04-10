@@ -1,7 +1,7 @@
-= form_for jar, html: { class: 'col s12' } do |f|
-  - if jar.errors.any?
+= form_for pot, html: { class: 'col s12' } do |f|
+  - if pot.errors.any?
     .alert-box data-alert=true class="alert"
-      = jar.errors.full_messages.join(',')
+      = pot.errors.full_messages.join(',')
 
   .ui.form
     .fields
@@ -17,7 +17,7 @@
     .fields
       .six.wide.field
         = f.label :description
-        = f.text_area :description, placeholder: t('helpers.label.jar.optional')
+        = f.text_area :description, placeholder: t('helpers.label.pot.optional')
       .four.wide.field
         = f.label :guest_ids
         = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
@@ -29,10 +29,10 @@
       .eight.wide.field
         = link_to t('site.navigation.back'), root_path, class: 'ui button'
       .eight.wide.field
-        = f.submit t('jar.save'), class: 'ui button primary'
+        = f.submit t('pot.save'), class: 'ui button primary'
     .fields
       .eight.wide.field
-        = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound ? jar.upper_bound.to_f : ''
+        = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.pot.optional'), value: pot.upper_bound ? pot.upper_bound.to_f : ''
         = f.label :upper_bound
     .fields
       = recaptcha_tags
