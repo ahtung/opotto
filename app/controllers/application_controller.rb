@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-#  before_action :authorize_country
+  # before_action :authorize_country
   around_action :set_time_zone
 
   private
