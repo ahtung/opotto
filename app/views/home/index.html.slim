@@ -1,17 +1,10 @@
-.container
-  .row
-    .tvelve.columns.blue-light#welcome-header.gift-wrapped
-.ui.stackable.very.relaxed.center.aligned.grid.container style="margin-top: -27vh"
-  .row
-    .twelve.wide.column
-      = image_tag 'OPOTTO-profile.png'
-      h1.upcase= t('site.hello')
-      h2= t('site.motto')
+.full.height
+  = image_tag 'OPOTTO-profile.png'
 
-  .row
-    .twelve.wide.column
-      = render 'icons'
-  .row
-    .six.wide.column
-      p= t('pages.home.introduction')
-      = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button'
+.ui.container
+  h1.upcase= t('site.hello')
+  h2= t('site.motto')
+
+  = render 'icons'
+  = t('pages.home.introduction')
+  = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button'
