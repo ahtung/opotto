@@ -47,6 +47,7 @@ gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'draper', '~> 2.1.0'
 gem 'semantic-ui-sass', github: 'ahtung/semantic-ui-sass'
+gem 'nav_lynx'
 
 group :production do
   gem 'rails_12factor'
