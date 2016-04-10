@@ -1,8 +1,9 @@
-.row
-  .column.six.wide
-    - flash.each do |type, message|
-      - real_type = 'info' if type == 'notice'
-      .ui.message class="#{real_type}"
-        i.close.icon
-        .header
-          = message
+.ui.one.column.center.aligned.grid#a
+  .row
+    .column.six.wide
+      - flash.each do |type, message|
+        - real_type = 'info' if type == 'notice'
+        .ui.message class="#{real_type}"
+          i.close.icon
+          .header
+            = message

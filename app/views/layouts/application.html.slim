@@ -15,8 +15,7 @@ html lang='en'
       = render 'navigation'
     main
       = render 'notices', flash: flash
-      .ui.one.column.middle.aligned.grid
-         = yield
+      = yield
     footer
       = render 'footer'
     = javascript_include_tag 'application'
