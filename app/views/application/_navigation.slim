@@ -4,7 +4,8 @@
       .ui.logo.shape
         .sides
           .active.ui.side
-            = link_to t('site.title'), root_path, class: 'brand-logo'
+            = link_to root_path, class: 'brand-logo' do
+              .ui.image = image_tag 'logo.png'
     .right.menu
       - %w(about contact security rules).each do |page|
         = nav_link_to page.capitalize, page_path(page), class: 'item'
