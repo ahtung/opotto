@@ -10,9 +10,11 @@ html lang='en'
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
 
-  body
-    = render 'notices', flash: flash
-    = render 'navigation'
-    = yield
-    = render 'footer'
+  body.pushable
+    .pusher.transparent-background
+      .full.height
+        = render 'navigation'
+        = render 'notices', flash: flash
+        = yield
+      = render 'footer'
     = javascript_include_tag 'application'
