@@ -18,3 +18,6 @@ en:
       title: Rules
       content: what are the rules for opotto?
       description: Some countries are not allowed to join
+    unsupported:
+      title: unsupported
+      content: You're country is unsupported
