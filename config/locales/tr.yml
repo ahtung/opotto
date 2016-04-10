@@ -38,12 +38,6 @@ tr:
     user_not_authorized: Yassak gardesim, hadi..
   site:
     motto: Saving . Collecting . Sharing
-    about:
-      content: opotto nedir?
-      title: Hakkımızda
-    contact:
-      content: opotto nerede?
-      title: Bize ulaşın
     copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
     hello: Merhaba
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.

@@ -38,12 +38,6 @@ en:
     user_not_authorized: You are not authorized to perform this action.
   site:
     motto: Save . Collect . Share
-    about:
-      content: what is opotto?
-      title: About
-    contact:
-      content: where is opotto?
-      title: Contact
     copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
     hello: Opotto
     introduction: opotto is a beautiful way of giving a present to your friends

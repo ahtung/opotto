@@ -14,3 +14,7 @@ tr:
       decription: the hague istanbul contact
       title: Iletisim
       content: opotto nerede?
+    rules:
+      title: Kurallar
+      content: opotto'nun kurallari nelerdir?
+      description: Malesef bazi ulkelerin katilimina izin veremiyoruz
