@@ -69,13 +69,13 @@ ActiveRecord::Schema.define(version: 20160327171248) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "end_at"
-    t.datetime "paid_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "receiver_id"
     t.string   "currency"
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
+    t.datetime "paid_at"
   end
 
   add_index "pots", ["owner_id"], name: "index_pots_on_owner_id", using: :btree

@@ -1,47 +1,43 @@
-= form_for pot, html: { class: 'col s12' } do |f|
-  - if pot.errors.any?
+= form_for jar, html: { class: 'col s12' } do |f|
+  - if jar.errors.any?
     .alert-box data-alert=true class="alert"
-      = pot.errors.full_messages.join(',')
-  .row
-    .input-field.col.s12
-      = f.text_field :name, readonly: Pot::IMMUTABLE.include?('name') && pot.persisted?
-      = f.label :name
-  .row
-    .input-field.col.s12.m6.receiver-select
-      = f.select :receiver_id, current_user.friends.with_paypal_account.uniq.collect { |x| [x.email, x.id] }, {}, disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted?
-      = f.label :receiver_id
-  .row
-    .col.s12.guest-select
-      = f.label :guest_ids
-      = f.select :guest_ids, current_user.friends.with_paypal_account.uniq.collect { |x| [x.email, x.id] }, { }, { multiple: true, class: 'browser-default', disabled: Pot::IMMUTABLE.include?('receiver_id') && pot.persisted? }
-      .invited-list
-      hr
-      .not-invited-list
-        - current_user.friends.with_paypal_account.uniq.collect { |x| [x.name, x.email, x.id] }.each do |friend|
-          .chip data-guest="#{friend[2]}"
-            i.material-icons.add-to-guests add
-            span.guest-name = "#{friend[0]} "
-            span.guest-email = "<#{friend[1]}>"
-  .row
-    .input-field.col.s12
-      = f.text_area :description, placeholder: t('helpers.label.pot.optional'), disabled: Pot::IMMUTABLE.include?('description') && pot.persisted?, class: 'materialize-textarea'
-      = f.label :description
-  .row
-    .input-field.col.s12.m6
-      = f.date_field :end_at, class: 'datepicker', disabled: Pot::IMMUTABLE.include?('end_at') && pot.persisted?
-      = f.label :end_at
-    .input-field.col.s12.m6
-      = f.check_box :visible, disabled: Pot::IMMUTABLE.include?('visible') && pot.persisted?
-      = f.label :visible
-  .row
-    .input-field.col.s12.m6
-      = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.pot.optional'), value: pot.upper_bound ? pot.upper_bound.to_f : '', disabled: Pot::IMMUTABLE.include?('upper_bound') && pot.persisted?
-      = f.label :upper_bound
-  .row
-    .col.s12.m6
+      = jar.errors.full_messages.join(',')
+
+  .ui.form
+    .fields
+      .six.wide.field
+        = f.label :name
+        = f.text_field :name
+      .four.wide.field
+        = f.label :receiver_id
+        = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
+      .six.wide.field
+        = f.label :end_at
+        = f.date_field :end_at, class: 'datepicker'
+    .fields
+      .six.wide.field
+        = f.label :description
+        = f.text_area :description, placeholder: t('helpers.label.jar.optional')
+      .four.wide.field
+        = f.label :guest_ids
+        = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default'
+      .six.wide.field
+        .ui.toggle.checkbox
+          = f.check_box :visible, class: 'hidden'
+          = f.label :visible
+    .fields
+      .eight.wide.field
+        = link_to t('site.navigation.back'), root_path, class: 'ui button'
+      .eight.wide.field
+        = f.submit t('jar.save'), class: 'ui button primary'
+    .fields
+      .eight.wide.field
+        = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.jar.optional'), value: jar.upper_bound ? jar.upper_bound.to_f : ''
+        = f.label :upper_bound
+    .fields
       = recaptcha_tags
-  .row
-    .input-field.col.s6
-      = link_to t('site.navigation.back'), root_path, class: 'btn'
-    .input-field.col.s6
-      = f.submit t('pot.save'), class: 'btn'
+
+javascript:
+  $(function() {
+    $('select.dropdown').dropdown();
+  });

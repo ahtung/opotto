@@ -6,10 +6,17 @@ class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  before_action :authorize_country
+
+#  before_action :authorize_country
   around_action :set_time_zone
 
   private
+
+  def authorize_country
+    result = GeoipRails.geolocate(request.remote_ip)
+    request_country = result['country_code']
+    redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
+  end
 
   # Redirect visitor to root_path in not authorized
   def user_not_authorized
@@ -29,12 +36,6 @@ class ApplicationController < ActionController::Base
   # Gets the time zone from browser cookie
   def browser_timezone
     cookies['browser.timezone']
-  end
-
-  def authorize_country
-    return if controller_name == 'pages' && action_name == 'show' && params[:id] == 'unsupported'
-    request_country = request.headers['HTTP_CF_IPCOUNTRY'] || ''
-    redirect_to page_path('unsupported') if unsupported_countries.include?(request_country)
   end
 
   def unsupported_countries

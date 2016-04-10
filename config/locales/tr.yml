@@ -37,6 +37,7 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
+    motto: Saving . Collecting . Sharing
     about:
       content: opotto nedir?
       title: Hakkımızda
