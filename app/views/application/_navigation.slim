@@ -1,15 +1,16 @@
-.ui.container
-  .ui.large.secondary.network.menu
-    .item
-      .ui.logo.shape
-        .sides
-          .active.ui.side
-            = link_to root_path, class: 'brand-logo' do
-              .ui.image = image_tag 'logo.png'
-    .right.menu
-      - %w(about contact security rules).each do |page|
-        = nav_link_to page.capitalize, page_path(page), class: 'item'
-      - if user_signed_in?
-        .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
-      - else
-        .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'
+.following.bar.white-background
+  .ui.container
+    .ui.large.secondary.network.menu
+      .item
+        .ui.logo.shape
+          .sides
+            .active.ui.side
+              = link_to root_path, class: 'brand-logo' do
+                .ui.image = image_tag 'logo.png'
+      .right.menu
+        - %w(about contact security rules).each do |page|
+          = nav_link_to page.capitalize, page_path(page), class: 'item'
+        - if user_signed_in?
+          .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
+        - else
+          .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'

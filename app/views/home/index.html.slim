@@ -1,11 +1,9 @@
-.ui.one.column.center.aligned.grid
-  .column.ten.wide
-    .ui.image= image_tag 'OPOTTO-profile.png'
+.ui.one.column.center.aligned.grid style='margin-top:25vh;'
+  .column.four.wide.white-background
+    .ui.image= image_tag 'opotto.png'
     h1.upcase= t('site.hello')
     h2= t('site.motto')
 
     = render 'icons'
-    br
     = t('pages.home.introduction')
-    br
-    = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button large'
+    = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button large fluid'
