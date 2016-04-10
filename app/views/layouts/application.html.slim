@@ -13,5 +13,6 @@ html lang='en'
   body
     header
       = render 'notices', flash: flash
+    = render 'navigation'
     == yield
     = javascript_include_tag 'application'
