@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'opotto';
-  src: font-url('opotto.eot?70517096');
-  src: font-url('opotto.eot?70517096#iefix') format('embedded-opentype'),
-       font-url('opotto.woff2?70517096') format('woff2'),
-       font-url('opotto.woff?70517096') format('woff'),
-       font-url('opotto.ttf?70517096') format('truetype'),
-       font-url('opotto.svg?70517096#opotto') format('svg');
+  src: font-url('opotto.eot?99813127');
+  src: font-url('opotto.eot?99813127#iefix') format('embedded-opentype'),
+       font-url('opotto.woff2?99813127') format('woff2'),
+       font-url('opotto.woff?99813127') format('woff'),
+       font-url('opotto.ttf?99813127') format('truetype'),
+       font-url('opotto.svg?99813127#opotto') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'opotto';
-    src: font-url('opotto.svg?70517096#opotto') format('svg');
+    src: font-url('opotto.svg?99813127#opotto') format('svg');
   }
 }
 */
@@ -55,22 +55,26 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-%icon-warehouse:before { @extend %icon-base; content: '\e800'; } /* '' */
-%icon-graduation-cap:before { @extend %icon-base; content: '\e801'; } /* '' */
-%icon-gift:before { @extend %icon-base; content: '\e802'; } /* '' */
-%icon-diamond:before { @extend %icon-base; content: '\e803'; } /* '' */
-%icon-heart-empty:before { @extend %icon-base; content: '\e804'; } /* '' */
-%icon-cup:before { @extend %icon-base; content: '\e805'; } /* '' */
-%icon-flight:before { @extend %icon-base; content: '\e806'; } /* '' */
-%icon-truck:before { @extend %icon-base; content: '\e807'; } /* '' */
+%icon-heart-empty:before { @extend %icon-base; content: '\e800'; } /* '' */
+%icon-flight:before { @extend %icon-base; content: '\e801'; } /* '' */
+%icon-truck:before { @extend %icon-base; content: '\e802'; } /* '' */
+%icon-graduation-cap:before { @extend %icon-base; content: '\e803'; } /* '' */
+%icon-diamond:before { @extend %icon-base; content: '\e804'; } /* '' */
+%icon-warehouse:before { @extend %icon-base; content: '\e805'; } /* '' */
+%icon-gift:before { @extend %icon-base; content: '\e806'; } /* '' */
+%icon-cup:before { @extend %icon-base; content: '\e807'; } /* '' */
 %icon-folder-open-empty:before { @extend %icon-base; content: '\e808'; } /* '' */
+%icon-wrench:before { @extend %icon-base; content: '\e809'; } /* '' */
+%icon-lock:before { @extend %icon-base; content: '\e80a'; } /* '' */
 
-.icon-warehouse { @extend %icon-warehouse; }
-.icon-graduation-cap { @extend %icon-graduation-cap; }
-.icon-gift { @extend %icon-gift; }
-.icon-diamond { @extend %icon-diamond; }
 .icon-heart-empty { @extend %icon-heart-empty; }
-.icon-cup { @extend %icon-cup; }
 .icon-flight { @extend %icon-flight; }
 .icon-truck { @extend %icon-truck; }
+.icon-graduation-cap { @extend %icon-graduation-cap; }
+.icon-diamond { @extend %icon-diamond; }
+.icon-warehouse { @extend %icon-warehouse; }
+.icon-gift { @extend %icon-gift; }
+.icon-cup { @extend %icon-cup; }
 .icon-folder-open-empty { @extend %icon-folder-open-empty; }
+.icon-wrench { @extend %icon-wrench; }
+.icon-lock { @extend %icon-lock; }
