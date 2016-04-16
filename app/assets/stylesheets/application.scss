@@ -14,9 +14,12 @@
  */
 
 // Settings
+@import 'semantic-ui/globals/reset';
+@import 'semantic-ui/globals/colors';
 @import 'settings/colors';
 @import 'settings/global';
-@import 'semantic-ui/globals/all';
+@import 'semantic-ui/globals/site';
+
 // Tools
 @import 'tools/mixins';
 // Generic
