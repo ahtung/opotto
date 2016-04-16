@@ -30,6 +30,13 @@ describe User do
         user = create(:user)
         expect(user.import_contacts).to be_nil
       end
+
+      xit 'should return true if contacts are imported' do
+        mash = Hashie::Mash.new(mock_auth_hash)
+        google_user = User.find_for_google_oauth2(mash)
+        puts google_user.inspect
+        expect(google_user.import_contacts).not_to be_nil
+      end
     end
 
     describe 'check_paypal' do
