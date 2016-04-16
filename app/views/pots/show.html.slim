@@ -34,11 +34,11 @@ p
 p
   = link_to 'Report abuse', report_pot_path(@pot)
 p
-  = link_to share_on('facebook', @pot.name, request.original_url), target: '_blank' do
+  = link_to share_on('facebook', @pot.name, request.original_url), target: '_blank', onclick: social_window do
     i.icon-facebook-squared
-  = link_to share_on('twitter', @pot.name, request.original_url), target: '_blank' do
+  = link_to share_on('twitter', @pot.name, request.original_url), target: '_blank', onclick: social_window do
     i.icon-twitter-squared
-  = link_to share_on('google', nil, request.original_url), target: '_blank' do
+  = link_to share_on('google', nil, request.original_url), target: '_blank', onclick: social_window do
     i.icon-gplus-squared
 .row
   .col.s12
