@@ -4,8 +4,11 @@
 .row.middle.aligned
   .ui.one.column.center.aligned.grid
     .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
-      i.icon-folder-open-empty
-      h2 404
-      h3 Oops!
-      p We are really sorry but the page you're looking for cannot be found
-      = link_to 'Take me back to the homepage', root_path, class: 'ui button teal'
+      .ui.grid
+        .column.five.wide.middle.aligned
+          i.icon-folder-open-empty style='font-size:75px;'
+        .column.eleven.wide.left.aligned
+          h2= t('errors.not_found.code')
+          h3= t('errors.not_found.cry')
+          p= t('errors.not_found.content')
+          = link_to t('errors.not_found.button'), root_path, class: 'ui button teal'
