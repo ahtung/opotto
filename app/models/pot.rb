@@ -4,7 +4,7 @@ class Pot < ActiveRecord::Base
   include Abusable
 
   # Constant
-  IMMUTABLE = %w(name receiver_id description end_at).freeze
+  IMMUTABLE = %w(receiver_id end_at).freeze
 
   # Relations
   belongs_to :owner, class_name: 'User'
@@ -115,22 +115,6 @@ class Pot < ActiveRecord::Base
   end
 
   private
-
-  # Converts key's each character to ascii, creates an array with 6 points
-  def convert_to_ascii(key)
-    coords = []
-    byte_counter = 0
-    key.first(6).each_byte do |c, _|
-      coords << { x: scaled_coordinate(c.to_i), y: byte_counter * 40 }
-      byte_counter += 1
-    end
-    coords
-  end
-
-  # Scales the ascii number to 100
-  def scaled_coordinate(coordinate)
-    coordinate * 100 / 255
-  end
 
   def force_immutable
     return unless persisted?

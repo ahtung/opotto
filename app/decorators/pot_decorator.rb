@@ -12,13 +12,11 @@ class PotDecorator < Draper::Decorator
     return 'yellow' if object.open?
     return 'green' if object.closed?
     return 'orange' if object.ended?
-    'N/A'
   end
 
   def status_text
     return 'Open' if object.open?
     return 'Closed' if object.closed?
     return 'Ended' if object.ended?
-    'N/A'
   end
 end

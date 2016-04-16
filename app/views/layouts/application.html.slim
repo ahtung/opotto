@@ -9,15 +9,13 @@ html lang='en'
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
-
+    = render 'favicon'
   body
     header
       = render 'navigation'
+    main class=(yield(:main_class))
       = render 'notices', flash: flash
-    main
-      .container
-        .row
-          .col.s12
-            == yield
-    = render 'footer'
+      = yield
+    footer
+      = render 'footer'
     = javascript_include_tag 'application'

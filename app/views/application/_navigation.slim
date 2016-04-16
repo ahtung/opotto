@@ -1,12 +1,16 @@
-nav
-  .container
-    .nav-wrapper
-      = link_to t('site.title'), root_path, class: 'brand-logo'
-      ul#nav-mobile.right.hide-on-med-and-down
+.following.bar.white-background.light.fixed
+  .ui.container
+    .ui.large.secondary.network.menu
+      .item
+        .ui.logo.shape
+          .sides
+            .active.ui.side
+              = link_to root_path, class: 'brand-logo' do
+                .ui.image = image_tag 'logo.png'
+      .right.menu
+        - %w(about contact security rules).each do |page|
+          = nav_link_to page.capitalize, page_path(page), class: 'item'
         - if user_signed_in?
-          li= link_to t('site.me'), authenticated_root_path
-          li= link_to t('pot.new'), new_pot_path
-        - if user_signed_in?
-          li= link_to(t('user.logout'), destroy_user_session_path, method: :delete)
+          .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
         - else
-          li= link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2)
+          .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'

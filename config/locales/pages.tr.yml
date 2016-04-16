@@ -1,5 +1,7 @@
 tr:
   pages:
+    home:
+      introduction: Use jars to collect money individually or with your friends. You can save it for a dream or give it away as a gift!
     about:
       title: Hakkimizda
       description: opotto makes crowd-gifting fun
@@ -12,3 +14,10 @@ tr:
       decription: the hague istanbul contact
       title: Iletisim
       content: opotto nerede?
+    rules:
+      title: Kurallar
+      content: opotto'nun kurallari nelerdir?
+      description: Malesef bazi ulkelerin katilimina izin veremiyoruz
+    unsupported:
+      title: unsupported
+      content: You're country is unsupported

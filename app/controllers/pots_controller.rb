@@ -2,8 +2,8 @@
 class PotsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_pot, only: [:show, :edit, :update, :destroy, :report]
-  before_action :authorize_pot, except: [:new, :create, :report]
-  after_action :verify_authorized, except: [:new, :create, :report]
+  before_action :authorize_pot, except: [:new, :create, :report, :update]
+  after_action :verify_authorized, except: [:new, :create, :report, :update]
 
   decorates_assigned :pot
 
@@ -22,12 +22,8 @@ class PotsController < ApplicationController
 
   # GET /pots/1/report
   def report
-    @abuse = @pot.reported_abuses.new
-    if @abuse.save
-      redirect_to @pot, notice: t('pot.reported')
-    else
-      redirect_to @pot, notice: t('pot.not_reported')
-    end
+    @abuse = @pot.reported_abuses.create
+    redirect_to @pot, notice: t('pot.reported')
   end
 
   # POST /pots
@@ -43,7 +39,7 @@ class PotsController < ApplicationController
 
   # PATCH/PUT /pots/1
   def update
-    if @pot.update(pot_params)
+    if @pot.update(pot_params_on_update)
       redirect_to @pot, notice: t('pot.updated')
     else
       render :edit
@@ -65,5 +61,9 @@ class PotsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def pot_params
     params.require(:pot).permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
+  end
+
+  def pot_params_on_update
+    params.require(:pot).permit(:name, :description, :visible)
   end
 end

@@ -50,7 +50,7 @@ class Contribution < ActiveRecord::Base
       PotMailer.completed_email(contribution).deliver_later
       contribution.pot.update_attribute :paid_at, Time.zone.now
     end
-    after_transition scheduled: :failed do |contribution, _|
+    after_transition scheduled: :schedule_failed do |contribution, _|
       PotMailer.failed_payment_email(contribution).deliver_later
     end
     event :success do

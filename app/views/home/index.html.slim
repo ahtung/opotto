@@ -1,4 +1,14 @@
-.center-align
-  h2= t('site.hello')
-  = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'btn'
-  p = "Hi, You are visiting from #{request.headers['HTTP_CF_IPCOUNTRY']}"
+- content_for :main_class do
+  | image
+  
+.row.middle.aligned
+  .ui.one.column.center.aligned.grid
+    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
+      .ui.image= image_tag 'opotto.png', size: '60x120'
+      h1.upcase= t('site.hello')
+      h2= t('site.motto')
+
+      = render 'icons'
+      br
+      = t('pages.home.introduction')
+      = link_to t('site.sign_in_with_google'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button large fluid'

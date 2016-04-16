@@ -5,7 +5,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -33,9 +33,6 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
-  config.logger = Logger.new(STDOUT)
-  config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG')
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.bullet_logger = true
@@ -43,6 +40,10 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = true
   end
+
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get('INFO')
+  config.log_level = :info
 end
 Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

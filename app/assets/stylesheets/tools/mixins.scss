@@ -1,0 +1,88 @@
+
+@mixin font-brand() {
+  font-family: 'Futura';
+  font-wieght: 400;
+}
+
+.gift-wrapped {
+  background: image-url('new_year_background.png');
+  background-repeat: repeat;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.downcase {
+  text-transformation: uppercase;
+}
+
+.blue-text{
+  color:$blue;
+}
+
+.blue-background{
+  background-color:$blue;
+}
+
+.yellow-text{
+  color:$yellow;
+}
+
+.purple-text{
+  color:$purple;
+}
+
+.green-text{
+  color:$green;
+}
+
+.red-text{
+  color:$red;
+}
+
+.grey-light{
+  background-color:$grey-light;
+}
+
+.grey-light-text{
+  color:$grey-light;
+}
+
+.color-brand{
+  background-color:$color-brand;
+}
+
+.color-brand-text{
+  color:$color-brand;
+}
+
+.white-text {
+  color:$white;
+}
+
+.white-background {
+  background-color:$white;
+}
+
+.teal {
+  &.text {
+    color:$teal;
+  }
+  &.background {
+    background-color:$teal;
+  }
+}
+
+.blue {
+  &.text {
+    color:$blue;
+  }
+  &.background {
+    background-color:$blue;
+  }
+}
+
+.transparent-background {
+  background-color:transparent !important;
+}

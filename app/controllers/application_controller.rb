@@ -5,17 +5,10 @@ class ApplicationController < ActionController::Base
 
   include HttpAcceptLanguage::AutoLocale
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :authorize_country
   around_action :set_time_zone
 
   private
-
-  # Redirect visitor to root_path in not authorized
-  def user_not_authorized
-    flash[:alert] = I18n.t('pundit.user_not_authorized')
-    redirect_to(request.referrer || root_path)
-  end
 
   # Set the application time zone based on the browser cookie
   def set_time_zone

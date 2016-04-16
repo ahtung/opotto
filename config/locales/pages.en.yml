@@ -1,5 +1,7 @@
 en:
   pages:
+    home:
+      introduction: Use jars to collect money individually or with your friends. You can save it for a dream or give it away as a gift!
     about:
       title: About
       description: opotto makes crowd-gifting fun
@@ -12,3 +14,10 @@ en:
       title: Secuirty
       content: how secure is opotto?
       description: secure ssl oauth2
+    rules:
+      title: Rules
+      content: what are the rules for opotto?
+      description: Some countries are not allowed to join
+    unsupported:
+      title: unsupported
+      content: You're country is unsupported
