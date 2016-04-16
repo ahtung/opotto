@@ -1,0 +1,5 @@
+.ui.container.center.aligned
+  h2 403
+  h3 Forbidden.
+  p You don't have permission to access this page. You'll have to sign in to see this page.
+  = link_to 'Ok. Let me sign in', user_omniauth_authorize_path(:google_oauth2), class: 'ui red button large fluid'
