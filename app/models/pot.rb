@@ -116,17 +116,6 @@ class Pot < ActiveRecord::Base
 
   private
 
-  # Converts key's each character to ascii, creates an array with 6 points
-  def convert_to_ascii(key)
-    coords = []
-    byte_counter = 0
-    key.first(6).each_byte do |c, _|
-      coords << { x: scaled_coordinate(c.to_i), y: byte_counter * 40 }
-      byte_counter += 1
-    end
-    coords
-  end
-
   # Scales the ascii number to 100
   def scaled_coordinate(coordinate)
     coordinate * 100 / 255
