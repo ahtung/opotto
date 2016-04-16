@@ -12,7 +12,7 @@ RSpec.describe PotsController, type: :controller do
 
   # Params
   it { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:create) }
-  xit { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:update) }
+  xit { should permit(:name, :description, :visible).for(:update) }
 
   describe 'GET show' do
     let(:pot) { create(:pot, owner: user) }
@@ -30,13 +30,13 @@ RSpec.describe PotsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { attributes_for(:pot) }
+      let(:new_attributes) { attributes_for(:pot, description: 'New') }
 
       it 'updates the requested pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: new_attributes }, valid_session
+        put :update, { id: pot.id, pot: new_attributes }, valid_session
         pot.reload
-        skip('Add assertions for updated state')
+        expect(pot.description).to eq('New')
       end
 
       it 'assigns the requested pot as @pot' do
@@ -45,10 +45,10 @@ RSpec.describe PotsController, type: :controller do
         expect(assigns(:pot)).to eq(pot)
       end
 
-      xit 'redirects to the pot' do
+      it 'redirects to the pot' do
         pot = create(:pot, valid_attributes)
         put :update, { id: pot.to_param, pot: valid_attributes }, valid_session
-        expect(response).to redirect_to(pot_url(Pot.first))
+        expect(response).to redirect_to(pot_url(Pot.last))
       end
     end
 

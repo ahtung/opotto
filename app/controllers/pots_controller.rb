@@ -39,7 +39,7 @@ class PotsController < ApplicationController
 
   # PATCH/PUT /pots/1
   def update
-    if @pot.update(pot_params)
+    if @pot.update(pot_params_on_update)
       redirect_to @pot, notice: t('pot.updated')
     else
       render :edit
@@ -61,5 +61,9 @@ class PotsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def pot_params
     params.require(:pot).permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
+  end
+
+  def pot_params_on_update
+    params.require(:pot).permit(:name, :description, :visible)
   end
 end

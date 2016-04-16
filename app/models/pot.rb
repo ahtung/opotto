@@ -4,7 +4,7 @@ class Pot < ActiveRecord::Base
   include Abusable
 
   # Constant
-  IMMUTABLE = %w(name receiver_id description end_at).freeze
+  IMMUTABLE = %w(receiver_id end_at).freeze
 
   # Relations
   belongs_to :owner, class_name: 'User'
