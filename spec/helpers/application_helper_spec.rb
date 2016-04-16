@@ -18,15 +18,21 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#share_on' do
     it 'should return facebook sharer link if the service is set to facebook' do
-      expect(helper.share_on('facebook', 'title', 'http://www.facebook.com')).to eq('http://www.facebook.com/share.php?u=www.facebook.com&title=title')
+      expect(helper.share_on('facebook', 'title', 'http://www.facebook.com')).to eq('http://www.facebook.com/share.php?u=http://www.facebook.com&title=title')
     end
 
     it 'should return twitter sharer link if the service is set to twitter' do
-      expect(helper.share_on('twitter', 'title', 'http://www.twitter.com')).to eq('http://twitter.com/home?status=title+www.twitter.com')
+      expect(helper.share_on('twitter', 'title', 'http://www.twitter.com')).to eq('http://twitter.com/home?status=title+http://www.twitter.com')
     end
 
     it 'should return google sharer link if the service is set to google' do
       expect(helper.share_on('google', nil, 'http://www.google.com')).to eq('https://plus.google.com/share?url=www.google.com')
+    end
+  end
+
+  describe '#social_window' do
+    it 'should return onClick attribute value for social links' do
+      expect(helper.social_window).to eq('window.open(this.href, \'social\', \'left=20,top=20,width=500,height=500,toolbar=1,resizable=0\'); return false;')
     end
   end
 end
