@@ -1,4 +1,6 @@
 # spec/lib/tasks/schedule_rake_spec.rb
+require 'rails_helper'
+
 RSpec.describe 'schedule' do
   include_context 'rake'
 
@@ -19,11 +21,13 @@ RSpec.describe 'schedule' do
   end
 
   describe 'notify_admins' do
+    let!(:admin) {create(:user, :admin) }
     let(:task_name) { 'schedule:notify_admins' }
 
     its(:prerequisites) { should include('environment') }
 
     it 'it enqueues an update_email for admins' do
+      expect { subject.invoke }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 
@@ -33,6 +37,7 @@ RSpec.describe 'schedule' do
     its(:prerequisites) { should include('environment') }
 
     it 'it enqueues a FriendSyncWorker for 100 unsynced users' do
+      expect { subject.invoke }.to change(FriendSyncWorker.jobs, :size).by(1)
     end
   end
 end
