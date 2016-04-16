@@ -15,4 +15,18 @@ RSpec.describe ApplicationHelper, type: :helper do
         .to eq('<a class="facebook_link" target="_blank" href="https://www.facebook.com/pages/Ahtung/1640658482879986"></a>')
     end
   end
+
+  describe '#share_on' do
+    it 'should return facebook sharer link if the service is set to facebook' do
+      expect(helper.share_on('facebook', 'title', 'www.facebook.com')).to eq('http://www.facebook.com/share.php?u=www.facebook.com&title=title')
+    end
+
+    it 'should return twitter sharer link if the service is set to twitter' do
+      expect(helper.share_on('twitter', 'title', 'www.twitter.com')).to eq('http://twitter.com/home?status=title+www.twitter.com')
+    end
+
+    it 'should return google sharer link if the service is set to google' do
+      expect(helper.share_on('google', nil, 'www.google.com')).to eq('https://plus.google.com/share?url=www.google.com')
+    end
+  end
 end
