@@ -116,11 +116,6 @@ class Pot < ActiveRecord::Base
 
   private
 
-  # Scales the ascii number to 100
-  def scaled_coordinate(coordinate)
-    coordinate * 100 / 255
-  end
-
   def force_immutable
     return unless persisted?
     IMMUTABLE.any? { |attr| changed.include?(attr) && errors.add(attr, :immutable) }
