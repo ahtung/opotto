@@ -26,9 +26,8 @@ describe User do
     end
 
     describe 'import_contacts' do
-      let(:user) { create(:user) }
-
       it 'should return nil if no access_token' do
+        user = create(:user)
         expect(user.import_contacts).to be_nil
       end
     end
