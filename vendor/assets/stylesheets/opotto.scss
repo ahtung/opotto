@@ -1,10 +1,11 @@
 @font-face {
   font-family: 'opotto';
-  src: font-url('opotto.eot?70570195');
-  src: font-url('opotto.eot?70570195#iefix') format('embedded-opentype'),
-       font-url('opotto.woff?70570195') format('woff'),
-       font-url('opotto.ttf?70570195') format('truetype'),
-       font-url('opotto.svg?70570195#opotto') format('svg');
+  src: font-url('opotto.eot?8175840');
+  src: font-url('opotto.eot?8175840#iefix') format('embedded-opentype'),
+       font-url('opotto.woff2?8175840') format('woff2'),
+       font-url('opotto.woff?8175840') format('woff'),
+       font-url('opotto.ttf?8175840') format('truetype'),
+       font-url('opotto.svg?8175840#opotto') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'opotto';
-    src: font-url('opotto.svg?70570195#opotto') format('svg');
+    src: font-url('opotto.svg?8175840#opotto') format('svg');
   }
 }
 */
@@ -62,6 +63,9 @@
 %icon-cup:before { @extend %icon-base; content: '\e805'; } /* '' */
 %icon-flight:before { @extend %icon-base; content: '\e806'; } /* '' */
 %icon-truck:before { @extend %icon-base; content: '\e807'; } /* '' */
+%icon-facebook-squared:before { @extend %icon-base; content: '\e808'; } /* '' */
+%icon-twitter-squared:before { @extend %icon-base; content: '\e809'; } /* '' */
+%icon-gplus-squared:before { @extend %icon-base; content: '\e80a'; } /* '' */
 
 .icon-warehouse { @extend %icon-warehouse; }
 .icon-graduation-cap { @extend %icon-graduation-cap; }
@@ -71,3 +75,6 @@
 .icon-cup { @extend %icon-cup; }
 .icon-flight { @extend %icon-flight; }
 .icon-truck { @extend %icon-truck; }
+.icon-facebook-squared { @extend %icon-facebook-squared; }
+.icon-twitter-squared { @extend %icon-twitter-squared; }
+.icon-gplus-squared { @extend %icon-gplus-squared; }
