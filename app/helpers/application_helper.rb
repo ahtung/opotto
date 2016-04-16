@@ -11,4 +11,10 @@ module ApplicationHelper
   def facebook_link(page_path)
     link_to '', "https://www.facebook.com/#{page_path}", class: 'facebook_link', target: '_blank'
   end
+
+  def share_on(service, title, url)
+    return "http://www.facebook.com/share.php?u=#{url}&title=#{title}" if service == 'facebook'
+    return "http://twitter.com/home?status=#{title}+#{url}" if service == 'twitter'
+    return "https://plus.google.com/share?url=#{url}" if service == 'google'
+  end
 end
