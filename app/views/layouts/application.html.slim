@@ -13,7 +13,7 @@ html lang='en'
   body
     header
       = render 'navigation'
-    main
+    main class=(yield(:main_class))
       = render 'notices', flash: flash
       = yield
     footer

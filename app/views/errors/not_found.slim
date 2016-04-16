@@ -1,5 +1,11 @@
-.ui.container.center.aligned
-  h2 404
-  h3 Oops!
-  p We are really sorry but the page you're looking for cannot be found
-  = link_to 'Take me back to the homepage', root_path
+- content_for :main_class do
+  'teal'
+
+.row.middle.aligned
+  .ui.one.column.center.aligned.grid
+    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
+    i.icon-folder-open-empty
+      h2 404
+      h3 Oops!
+      p We are really sorry but the page you're looking for cannot be found
+      = link_to 'Take me back to the homepage', root_path, class: 'ui button teal'
