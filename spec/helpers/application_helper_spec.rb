@@ -32,7 +32,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#social_window' do
     it 'should return onClick attribute value for social links' do
-      expect(helper.social_window).to eq('window.open(this.href, \'social\', \'left=20,top=20,width=500,height=500,toolbar=1,resizable=0\'); return false;')
+      expect(helper.social_window).to eq('window.open(this.href, "social", "left=20,top=20,width=500,height=500,toolbar=1");return false;')
     end
   end
 end
