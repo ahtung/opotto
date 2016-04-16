@@ -49,10 +49,20 @@ RSpec.describe Contribution, type: :model do
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
+  ## Initiated
   it { should handle_events :success, :error, when: :initiated }
+  it { should reject_events :retry, when: :initiated }
+  ## Scheduled
   it { should handle_events :success, :error, when: :scheduled }
-  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :retry, when: :scheduled }
+  ## Failed
+  it { should reject_events :success, :error, when: :failed }
   it { should handle_events :retry, when: :failed }
+  ## Completed
+  it { should reject_events :success, :error, :retry, when: :completed }
+  ## Schedule Failed
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :success, :error, when: :schedule_failed }
 
   # Concerns
   it_behaves_like 'payable'

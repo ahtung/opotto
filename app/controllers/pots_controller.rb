@@ -2,8 +2,8 @@
 class PotsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_pot, only: [:show, :edit, :update, :destroy, :report]
-  before_action :authorize_pot, except: [:new, :create, :report]
-  after_action :verify_authorized, except: [:new, :create, :report]
+  before_action :authorize_pot, except: [:new, :create, :report, :update]
+  after_action :verify_authorized, except: [:new, :create, :report, :update]
 
   decorates_assigned :pot
 
