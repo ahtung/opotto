@@ -15,6 +15,6 @@ module ApplicationHelper
   def share_on(service, title, url)
     return "http://www.facebook.com/share.php?u=#{url}&title=#{title}" if service == 'facebook'
     return "http://twitter.com/home?status=#{title}+#{url}" if service == 'twitter'
-    return "https://plus.google.com/share?url=#{url}" if service == 'google'
+    return "https://plus.google.com/share?url=#{url.gsub(/\w+:\/\//, '')}" if service == 'google'
   end
 end
