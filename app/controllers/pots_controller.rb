@@ -22,12 +22,8 @@ class PotsController < ApplicationController
 
   # GET /pots/1/report
   def report
-    @abuse = @pot.reported_abuses.new
-    if @abuse.save
-      redirect_to @pot, notice: t('pot.reported')
-    else
-      redirect_to @pot, notice: t('pot.not_reported')
-    end
+    @abuse = @pot.reported_abuses.create
+    redirect_to @pot, notice: t('pot.reported')
   end
 
   # POST /pots

@@ -83,7 +83,7 @@ RSpec.describe PotsController, type: :controller do
 
       it 'redirects to the created pot' do
         post :create, { pot: valid_attributes }, valid_session
-        expect(response).to redirect_to(pot_url(Pot.first))
+        expect(response).to redirect_to(pot_url(Pot.last))
       end
     end
 
@@ -127,7 +127,7 @@ RSpec.describe PotsController, type: :controller do
 
     it 'renders the show template' do
       get :report, id: pot.id
-      expect(response).to redirect_to(pot_url(Pot.first))
+      expect(response).to redirect_to(pot_url(Pot.last))
     end
   end
 end

@@ -27,7 +27,6 @@ en:
     guest: Guests
     guests: Guests
     new: New
-    not_reported: Not reported
     owned_by: By %{email}
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.

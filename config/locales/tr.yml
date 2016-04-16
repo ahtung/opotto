@@ -27,7 +27,6 @@ tr:
     guest: Davetli
     guests: Davetliler
     new: Basla
-    not_reported: Not reported
     owned_by: "%{email} tarafından"
     receiver: Alıcı
     reported: Bizi ayik tuttugunuz icin tesekkur ederiz. Bir an evvel arastirmaya basliyacagiz.
