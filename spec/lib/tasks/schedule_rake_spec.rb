@@ -21,7 +21,7 @@ RSpec.describe 'schedule' do
   end
 
   describe 'notify_admins' do
-    let!(:admin) {create(:user, :admin) }
+    let!(:admin) { create(:user, :admin) }
     let(:task_name) { 'schedule:notify_admins' }
 
     its(:prerequisites) { should include('environment') }
