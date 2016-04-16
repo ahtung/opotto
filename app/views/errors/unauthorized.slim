@@ -1,13 +1,1 @@
-- content_for :main_class do
-  | red
-.row.middle.aligned
-  .ui.one.column.center.aligned.grid
-    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
-      .ui.grid
-        .column.five.wide.middle.aligned
-          i.icon-lock style='font-size:75px;'
-        .column.eleven.wide.left.aligned
-          h2= t('errors.unauthorized.code')
-          h3= t('errors.unauthorized.cry')
-          p= t('errors.unauthorized.content')
-          = link_to t('errors.unauthorized.button'), user_omniauth_authorize_path(:google_oauth2), class: 'ui red button large fluid'
+= render 'error', color: 'red', action: 'unauthorized', link: user_omniauth_authorize_path(:google_oauth2)

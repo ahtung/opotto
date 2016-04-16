@@ -1,0 +1,17 @@
+tr:
+  errors:
+    not_found:
+      code: 404
+      cry: Ay ay!
+      content: Kusura bakmayın ama su an
+      button: Anasayfaya
+    unauthorized:
+      code: 403
+      cry: Yasak.
+      content: Sizin buralarda ne işiniz var. Önce login olsanız ya
+      button: Öyle yapalım o zaman
+    internal_server_error:
+      code: 500
+      cry: Ay ay!
+      content: Off, dev sıçtık. E şunun şurasında biz de insanız
+      button: Anasayfaya

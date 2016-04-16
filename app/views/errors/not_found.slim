@@ -1,14 +1,1 @@
-- content_for :main_class do
-  | teal
-
-.row.middle.aligned
-  .ui.one.column.center.aligned.grid
-    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
-      .ui.grid
-        .column.five.wide.middle.aligned
-          i.icon-folder-open-empty style='font-size:75px;'
-        .column.eleven.wide.left.aligned
-          h2= t('errors.not_found.code')
-          h3= t('errors.not_found.cry')
-          p= t('errors.not_found.content')
-          = link_to t('errors.not_found.button'), root_path, class: 'ui button teal'
+= render 'error', color: 'teal', action: 'not_found', link: root_path
