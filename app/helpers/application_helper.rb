@@ -17,4 +17,8 @@ module ApplicationHelper
     return "http://twitter.com/home?status=#{title}+#{url}" if service == 'twitter'
     return "https://plus.google.com/share?url=#{url.gsub(/\w+:\/\//, '')}" if service == 'google'
   end
+
+  def social_window
+    'window.open(this.href, \'social\', \'left=20,top=20,width=500,height=500,toolbar=1,resizable=0\'); return false;'
+  end
 end
