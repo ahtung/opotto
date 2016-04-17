@@ -1,17 +1,15 @@
-.following.bar.white-background.light.fixed
+.ui.fixed.white.menu
   .ui.container
-    .ui.large.secondary.network.menu
-      .item
-        .ui.logo.shape
-          .sides
-            .active.ui.side
-              = link_to root_path, class: 'brand-logo blue-text' do
-                i.icon-wrench
-                span style='text-transform:uppercase;font-weight: bold;' Opotto
-      .right.menu
-        - %w(about contact security rules).each do |page|
-          = nav_link_to page.capitalize, page_path(page), class: 'item'
-        - if user_signed_in?
-          .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
-        - else
-          .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'
+    = link_to root_path, class: 'header item' do
+      i.icon-wrench
+      span.screen.tablet.only= 'Opotto'
+    span.item= yield(:nav_title)
+    = link_to new_pot_path, class: 'header item right' do
+      i.icon-wrench
+      / .right.menu
+      /     - %w(about contact security rules).each do |page|
+      /       = nav_link_to page.capitalize, page_path(page), class: 'item'
+    - if user_signed_in?
+      .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
+    - else
+      .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'

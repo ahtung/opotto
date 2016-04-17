@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   scope :with_paypal_account, -> { where(paypal_member: true) }
   scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
+  def email_hash
+    Digest::MD5.hexdigest(email)
+  end
+
   # returns user's handle
   def handle
     return name if name

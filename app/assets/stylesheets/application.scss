@@ -33,33 +33,29 @@
 // Components
 @import 'components/boxes';
 // Trumps
-@import 'trumps/home';
+
 
 #pot_guest_ids{
   display: none;
 }
 
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  // display: flex;
+  // min-height: 100vh;
+  // flex-direction: column;
 
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  .main {
+    // flex: 1;
+    // display: flex;
+    // flex-direction: column;
+    //
+    // #a {
+    //   flex: 0.4;
+    // }
 
-    #a {
-      flex: 0.4;
-    }
-
-    &.image {
+    &.imaged {
       background: url('https://ununsplash.imgix.net/uploads/141362941583982a7e0fc/abcfbca1?q=75&fm=jpg&s=5266baf09e0e878b72b2e34adf2f54a0') fixed !important;
       background-size: cover !important;
-    }
-
-    &.teal {
-      background-color: $teal !important;
     }
   }
 }

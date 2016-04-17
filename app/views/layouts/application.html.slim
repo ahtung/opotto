@@ -11,11 +11,10 @@ html lang='en'
     = csrf_meta_tag
     = render 'favicon'
   body
-    header
-      = render 'navigation'
-    main class=(yield(:main_class))
-      = render 'notices', flash: flash
-      = yield
-    footer
-      = render 'footer'
+    = render 'navigation'
+    .ui.main class=(yield(:main_class))
+      .ui.container
+        = render 'notices', flash: flash
+        = yield
+    = render 'footer'
     = javascript_include_tag 'application'
