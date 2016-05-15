@@ -1,9 +1,10 @@
-.ui.inverted.vertical.masthead.center.aligned.segment 
-  .ui.container
-    .ui.large.secondary.inverted.pointing.menu
+.ui.vertical.masthead.center.aligned.segment
+  .ui.stackable.grid.container
+    .ui.large.secondary.pointing.menu
       = link_to '#', id: 'show-menu', class: 'item' do
         = semantic_icon('sidebar')
       span.item= yield(:nav_title)
-  .ui.text.container
-    h1.ui.inverted.header TODO
-    h2 0
+  .ui.stackable.grid.center.aligned.container.light-grey
+    .sixteen.wide.column
+      h1.ui.center.aligned.header TODO
+      h2.ui.center.aligned.header 0
