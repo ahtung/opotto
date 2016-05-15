@@ -10,11 +10,11 @@ html lang='en'
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
     = render 'favicon'
-  body
+  body.pushable
     = render 'navigation'
-    .ui.main class=(yield(:main_class))
-      .ui.container
-        = render 'notices', flash: flash
-        = yield
-    = render 'footer'
-    = javascript_include_tag 'application'
+    / .ui.main class=(yield(:main_class))
+    /   .ui.container
+    /     = render 'notices', flash: flash
+    /     = yield
+    / = render 'footer'
+    / = javascript_include_tag 'application'
