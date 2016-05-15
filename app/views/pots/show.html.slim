@@ -15,7 +15,7 @@
       .eight.wide.column
         h3 To
       .eight.wide.column
-        = image_tag 'test.jpg'
+        = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui avatar image'
       .eight.wide.column
         p Dunya Kirkali
 .ui.text.container
@@ -31,14 +31,14 @@
       = t('pot.edit')
 .ui.text.container
   h3 Total money collected
-  p $ 120.00
+  p= humanized_money_with_symbol(@pot.total_contribution)
 .ui.container
   .relaxed.list
     - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
       .item
         .ui.two.column.grid
           .four.wide.column
-            img class="ui avatar image" src="/images/avatar/small/daniel.jpg"
+            = image_tag contribution.user.avatar.url(:thumb), class: 'ui avatar image'
           .eight.wide.column
             = contribution.owner_name
           .four.wide.column
