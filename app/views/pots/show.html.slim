@@ -2,6 +2,16 @@
 - content_for :nav_title do
   = @pot.name
 
+- content_for :masthead do
+  .ui.grid.center.aligned.light-grey
+    .sixteen.wide.column
+      i.huge.plane.icon.green
+      h1.ui.header
+        span.upcase.blue-text= @pot.decorate.type
+      h2.ui.header
+        span.blue-text= humanized_money_with_symbol(@pot.total_contribution)
+
+
 .ui.vertical.stripe.segment
   .ui.two.column.grid
     .six.wide.column
