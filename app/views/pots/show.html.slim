@@ -36,10 +36,14 @@
   .relaxed.list
     - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
       .item
-        img class="ui avatar image" src="/images/avatar/small/daniel.jpg"
-        .content
-          a.header Daniel Louise
-          .description= "#{humanized_money_with_symbol(contribution.amount)} from #{contribution.owner_name} is #{contribution.state}"
+        .ui.two.column.grid
+          .four.wide.column
+            img class="ui avatar image" src="/images/avatar/small/daniel.jpg"
+          .eight.wide.column
+            = contribution.owner_name
+          .four.wide.column
+            = humanized_money_with_symbol(contribution.amount)
+
   
   
 
