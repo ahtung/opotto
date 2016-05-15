@@ -8,8 +8,9 @@
       span.grey-text End date
     .ui.two.column.grid
       .eight.wide.column
-        h3.ui.huge.header
-          span.green-text= @pot.end_at.strftime('%e')
+        ui.sizer.vertical.segment style='font-size: 25px;'
+          h3.ui.huge.center.aligned.header
+            span.green-text= @pot.end_at.strftime('%e')
       .eight.wide.column
         span.upcase= @pot.end_at.strftime('%b')
         br
