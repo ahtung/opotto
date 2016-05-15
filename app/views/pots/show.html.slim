@@ -34,12 +34,12 @@
     span= @pot.owner.decorate.handle
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacus dolor, eleifend vitae enim eleifend, porttitor interdum sem. Morbi consectetur turpis orci, et eleifend nibh congue vitae. Sed molestie nibh lacus, sit amet eleifend sapien porta a. Praesent interdum tortor vel massa suscipit, id sodales mauris dignissim. Proin luctus nisl quis dui consectetur scelerisque. Etiam vitae erat maximus, varius libero in, porttitor augue. Sed vitae quam laoreet, elementum neque ac, congue leo. Phasellus sed auctor orci. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla vehicula tincidunt neque. Donec ut eleifend dolor. Sed et posuere mauris. Fusce rutrum ullamcorper nunc, quis maximus orci dapibus commodo. Morbi id augue vitae libero pretium condimentum ut ac ligula.
 
-.ui.two.column.grid
-  .eight.wide.column
+.ui.two.column.padded.grid
+  .green.column
     = link_to new_pot_contribution_path(@pot), class: 'big ui green button', style: 'width:100%;' do
       i.icon-money
       span.upcase= t('pot.contribute')
-  .eight.wide.column
+  .grey.column
     = link_to edit_pot_path(@pot), class: 'big ui grey button', style: 'width:100%;' do
       i.icon-pencil
       span.upcase= t('pot.edit')
