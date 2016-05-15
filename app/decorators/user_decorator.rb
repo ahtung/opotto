@@ -14,7 +14,7 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  def username
+  def handle
     if object.name
       object.name
     else

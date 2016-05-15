@@ -24,12 +24,6 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(email)
   end
 
-  # returns user's handle
-  def handle
-    return name if name
-    email
-  end
-
   # returns pots that the user have not created
   def discoverable_pots
     Pot.visible - pots - invited_pots

@@ -19,13 +19,13 @@
       .four.wide.column
         = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui avatar image'
       .twelve.wide.column
-        p= @pot.receiver.decorate.username
+        p= @pot.receiver.decorate.handle
 
 .ui.text.container
   p.upcase
     = "From "
-    span= @pot.owner.decorate.username
-    span= @pot.owner.decorate.username
+    span= @pot.owner.decorate.handle
+    span= @pot.owner.decorate.handle
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacus dolor, eleifend vitae enim eleifend, porttitor interdum sem. Morbi consectetur turpis orci, et eleifend nibh congue vitae. Sed molestie nibh lacus, sit amet eleifend sapien porta a. Praesent interdum tortor vel massa suscipit, id sodales mauris dignissim. Proin luctus nisl quis dui consectetur scelerisque. Etiam vitae erat maximus, varius libero in, porttitor augue. Sed vitae quam laoreet, elementum neque ac, congue leo. Phasellus sed auctor orci. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla vehicula tincidunt neque. Donec ut eleifend dolor. Sed et posuere mauris. Fusce rutrum ullamcorper nunc, quis maximus orci dapibus commodo. Morbi id augue vitae libero pretium condimentum ut ac ligula.
 
 .ui.two.column.grid
@@ -38,7 +38,7 @@
       i.icon-pencil
       span.upcase= t('pot.edit')
 
-.ui.text.container
+.ui.text.container.center.aligned
   h3 Total money collected
   p= humanized_money_with_symbol(@pot.total_contribution)
 
@@ -57,56 +57,13 @@
 .ui.container
   .ui.two.column.grid
     .eight.wide.column
-      h2 Invitations
-    .eight.wide.column
-      = @pot.invitations.count
+      h3 Invitations
+    .eight.wide.column.right.aligned
+      h3= @pot.invitations.count
   
   .relaxed.vertical.list
     - @pot.invitations.each do |invitation|
       .item
         i.icon-mail
         .content
-          span= invitation.user.decorate.username
-/ p
-/   strong = "#{t('pot.description')}:"
-/   = @pot.description
-/ 
-/ p
-/   ul.collection.with-header
-/     li.collection-header
-/       h4= "#{@pot.guests.count} #{t('pot.guests')}"
-/     - @pot.guests.each do |guest|
-/       li.collection-item= guest.name ? guest.name : guest.email
-/ p
-/   ul.collection.with-header
-/     li.collection-header
-/       h4= "#{@pot.total_contributors} #{t('pot.contributors')}"
-/     - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
-/       li.collection-item = "#{humanized_money_with_symbol(contribution.amount)} from #{contribution.owner_name} is #{contribution.state}"
-/ p
-/   strong = "#{t('pot.total')}:"
-/   = humanized_money_with_symbol(@pot.total_contribution)
-/ p
-/   strong = "#{t('helpers.label.pot.ends_at')}:"
-/   = @pot.end_at.strftime('%d %b %y')
-/ 
-/ p
-/   = link_to 'Report abuse', report_pot_path(@pot)
-/ p
-/   = link_to share_on('facebook', @pot.name, request.original_url), target: '_blank', onclick: social_window do
-/     i.icon-facebook-squared
-/   = link_to share_on('twitter', @pot.name, request.original_url), target: '_blank', onclick: social_window do
-/     i.icon-twitter-squared
-/   = link_to share_on('google', nil, request.original_url), target: '_blank', onclick: social_window do
-/     i.icon-gplus-squared
-/ .row
-/   .col.s12
-/     .row
-/       .col.s12
-/         = link_to t('site.navigation.back'), root_path, class: 'btn'
-/       - if policy(@pot).contribute?
-/         .col.s12
-/           = link_to t('pot.contribute'), new_pot_contribution_path(@pot), class: 'btn'
-/       - if policy(@pot).update?
-/         .col.s12
-/           p = link_to t('pot.edit'), edit_pot_path(@pot), class: 'btn'
+          span= invitation.user.decorate.handle
