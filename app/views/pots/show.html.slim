@@ -2,32 +2,31 @@
 - content_for :nav_title do
   = @pot.name
 
-.ui.two.column.grid
-  .six.wide.column
-    h3.ui.upcase.center.aligned.header
-      span.grey-text End date
-    .ui.two.column.grid
-      .eight.wide.column
-        ui.sizer.vertical.segment style='font-size: 25px;'
-          h3.ui.huge.center.aligned.header
-            span.green-text= @pot.end_at.strftime('%e')
-      .eight.wide.column
-        span.upcase.grey-text= @pot.end_at.strftime('%b')
-        br
-        span.grey-text= @pot.end_at.strftime('%Y')
-  .ui.vertical.divider
-  .ten.wide.column
-    .ui.two.column.grid
-      .four.wide.column
-      .twelve.wide.column
-        h3.ui.upcase.left.aligned.header
-          span.grey-text To
-      .four.wide.center.aligned.column
-        = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
-      .twelve.wide.column
-        p.green-text= @pot.receiver.decorate.handle
-
-.ui.divider
+.ui.vertical.stripe.segment
+  .ui.two.column.grid
+    .six.wide.column
+      h3.ui.upcase.center.aligned.header
+        span.grey-text End date
+      .ui.two.column.grid
+        .eight.wide.column
+          ui.sizer.vertical.segment style='font-size: 25px;'
+            h3.ui.huge.center.aligned.header
+              span.green-text= @pot.end_at.strftime('%e')
+        .eight.wide.column
+          span.upcase.grey-text= @pot.end_at.strftime('%b')
+          br
+          span.grey-text= @pot.end_at.strftime('%Y')
+    .ui.vertical.divider
+    .ten.wide.column
+      .ui.two.column.grid
+        .four.wide.column
+        .twelve.wide.column
+          h3.ui.upcase.left.aligned.header
+            span.grey-text To
+        .four.wide.center.aligned.column
+          = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
+        .twelve.wide.column
+          p.green-text= @pot.receiver.decorate.handle
 
 .ui.text.container
   p.upcase
