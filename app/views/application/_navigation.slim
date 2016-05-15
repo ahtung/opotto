@@ -1,9 +1,11 @@
 .ui.vertical.masthead.center.aligned.segment
   .ui.stackable.grid.container
-    .ui.large.secondary.pointing.menu
+    .ui.large.secondary.menu
       = link_to '#', id: 'show-menu', class: 'item' do
         = semantic_icon('sidebar')
-      span.item= yield(:nav_title)
+      .right.item
+        .item= yield(:nav_title)
+
   .ui.stackable.grid.center.aligned.container.light-grey
     .sixteen.wide.column
       i.icon-cake
