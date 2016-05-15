@@ -1,7 +1,7 @@
 .ui.inverted.vertical.masthead.center.aligned.segment 
   .ui.container
     .ui.large.secondary.inverted.pointing.menu
-      = link_to '#', class: 'toc item' do
+      = link_to '#', id: 'show-menu', class: 'item' do
         = semantic_icon('sidebar')
       span.item= yield(:nav_title)
   .ui.text.container
