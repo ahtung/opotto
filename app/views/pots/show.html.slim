@@ -1,37 +1,47 @@
 - set_meta_tags site: 'opotto', title: @pot.name, og: { title: @pot.name, type: 'product' }
+- content_tag :nav_title do
+  = @pot.name
 
 .ui.two.column.grid
-  .six.wide.column.center.aligned
-    h3 End date
+  .six.wide.column
+    h3.upcase End date
     .ui.two.column.grid
       .eight.wide.column
         span= @pot.end_at.strftime('%e')
       .eight.wide.column
-        span= @pot.end_at.strftime('%b')
+        span.upcase= @pot.end_at.strftime('%b')
         span= @pot.end_at.strftime('%C')
   .ten.wide.column
     .ui.two.column.grid
-      .eight.wide.column
-      .eight.wide.column
-        h3 To
-      .eight.wide.column
+      .four.wide.column
+      .twelve.wide.column
+        h3.upcase To
+      .four.wide.column
         = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui avatar image'
-      .eight.wide.column
-        p Dunya Kirkali
+      .twelve.wide.column
+        p= @pot.receiver.decorate.username
+
 .ui.text.container
+  p.upcase
+    = "From "
+    span= @pot.owner.decorate.username
+    span= @pot.owner.decorate.username
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacus dolor, eleifend vitae enim eleifend, porttitor interdum sem. Morbi consectetur turpis orci, et eleifend nibh congue vitae. Sed molestie nibh lacus, sit amet eleifend sapien porta a. Praesent interdum tortor vel massa suscipit, id sodales mauris dignissim. Proin luctus nisl quis dui consectetur scelerisque. Etiam vitae erat maximus, varius libero in, porttitor augue. Sed vitae quam laoreet, elementum neque ac, congue leo. Phasellus sed auctor orci. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla vehicula tincidunt neque. Donec ut eleifend dolor. Sed et posuere mauris. Fusce rutrum ullamcorper nunc, quis maximus orci dapibus commodo. Morbi id augue vitae libero pretium condimentum ut ac ligula.
+
 .ui.two.column.grid
   .eight.wide.column
     = link_to new_pot_contribution_path(@pot), class: 'big ui green button', style: 'width:100%;' do
       i.icon-money
-      = t('pot.contribute')
+      span.upcase= t('pot.contribute')
   .eight.wide.column
     = link_to edit_pot_path(@pot), class: 'big ui grey button', style: 'width:100%;' do
       i.icon-pencil
-      = t('pot.edit')
+      span.upcase= t('pot.edit')
+
 .ui.text.container
   h3 Total money collected
   p= humanized_money_with_symbol(@pot.total_contribution)
+
 .ui.container
   .relaxed.list
     - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
@@ -44,17 +54,20 @@
           .four.wide.column
             = humanized_money_with_symbol(contribution.amount)
 
+.ui.container
+  .ui.two.column.grid
+    .eight.wide.column
+      h2 Invitations
+    .eight.wide.column
+      = @pot.invitations.count
   
-  
-
-/ h1= @pot.name
-/ h3.subheader
-/   = t('pot.owned_by', email: @pot.owner.email)
-/ 
-/ p
-/   strong = "#{t('pot.receiver')}:"
-/   = @pot.receiver.name ? @pot.receiver.name : @pot.receiver.email
-/ 
+  .relaxed.vertical.list
+    - @pot.invitations.each do |invitation|
+      .item
+        i.icon-mail
+        .content
+          span= invitation.user.decorate.username
+          span= invitation.user.decorate.username
 / p
 /   strong = "#{t('pot.description')}:"
 /   = @pot.description

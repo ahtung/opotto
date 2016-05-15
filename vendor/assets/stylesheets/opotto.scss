@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'opotto';
-  src: font-url('opotto.eot?91766535');
-  src: font-url('opotto.eot?91766535#iefix') format('embedded-opentype'),
-       font-url('opotto.woff2?91766535') format('woff2'),
-       font-url('opotto.woff?91766535') format('woff'),
-       font-url('opotto.ttf?91766535') format('truetype'),
-       font-url('opotto.svg?91766535#opotto') format('svg');
+  src: font-url('opotto.eot?80673199');
+  src: font-url('opotto.eot?80673199#iefix') format('embedded-opentype'),
+       font-url('opotto.woff2?80673199') format('woff2'),
+       font-url('opotto.woff?80673199') format('woff'),
+       font-url('opotto.ttf?80673199') format('truetype'),
+       font-url('opotto.svg?80673199#opotto') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'opotto';
-    src: font-url('opotto.svg?91766535#opotto') format('svg');
+    src: font-url('opotto.svg?80673199#opotto') format('svg');
   }
 }
 */
@@ -71,6 +71,7 @@
 %icon-gplus-squared:before { @extend %icon-base; content: '\e80d'; } /* '' */
 %icon-money:before { @extend %icon-base; content: '\e80e'; } /* '' */
 %icon-pencil:before { @extend %icon-base; content: '\e80f'; } /* '' */
+%icon-mail:before { @extend %icon-base; content: '\e810'; } /* '' */
 
 .icon-heart-empty { @extend %icon-heart-empty; }
 .icon-flight { @extend %icon-flight; }
@@ -88,3 +89,4 @@
 .icon-gplus-squared { @extend %icon-gplus-squared; }
 .icon-money { @extend %icon-money; }
 .icon-pencil { @extend %icon-pencil; }
+.icon-mail { @extend %icon-mail; }

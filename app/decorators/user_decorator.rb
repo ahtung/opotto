@@ -13,4 +13,8 @@ class UserDecorator < Draper::Decorator
       h.concat h.content_tag :span, object.name
     end
   end
+
+  def username
+    object.name ? object.name : object.email
+  end
 end
