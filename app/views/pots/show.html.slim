@@ -36,13 +36,13 @@
 
 .ui.two.column.padded.grid
   .green.column
-    = link_to new_pot_contribution_path(@pot), class: 'big ui green button', style: 'width:100%;' do
-      i.icon-money
-      span.upcase= t('pot.contribute')
+    = link_to new_pot_contribution_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+      i.white-text.icon-money
+      span.upcase.white-text= t('pot.contribute')
   .grey.column
-    = link_to edit_pot_path(@pot), class: 'big ui grey button', style: 'width:100%;' do
-      i.icon-pencil
-      span.upcase= t('pot.edit')
+    = link_to edit_pot_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+      i.white-text.icon-pencil
+      span.upcase.white-text= t('pot.edit')
 
 .ui.text.container.center.aligned
   h3.medium-grey-text Total money collected
