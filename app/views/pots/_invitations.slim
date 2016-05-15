@@ -1,13 +1,12 @@
 .ui.two.column.grid.light-grey
   .eight.wide.column
-    h3 Invitations
+    h3.ui.blue.header Invitations
   .eight.wide.column.right.aligned
-    h3= pot.invitations.count
+    h3.ui.blue.header= pot.invitations.count
 
   .relaxed.vertical.list
     - pot.invitations.each do |invitation|
       .item
         i.icon-mail
-        .content
-          span.green-text= invitation.user.decorate.handle
+        span.green-text= invitation.user.decorate.handle
       .ui.divider
