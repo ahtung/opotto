@@ -1,5 +1,14 @@
+.ui.vertical.inverted.sidebar.menu.left
+  .active.item Home
+  .item Work
+  .item Company
+  .item Careers
+  .item Login
+  .item Signup
 .ui.fixed.white.menu
   .ui.container
+    = link_to '#', class: 'toc item' do
+      i.sidebar.icon
     = link_to root_path, class: 'header item' do
       i.icon-wrench
       span.screen.tablet.only= 'Opotto'
