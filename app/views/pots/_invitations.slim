@@ -1,9 +1,8 @@
-.ui.stackable.grid.container.light-grey
-  .ui.two.column.grid
-    .eight.wide.column
-      h3 Invitations
-    .eight.wide.column.right.aligned
-      h3= pot.invitations.count
+.ui.two.column.grid.container.light-grey
+  .eight.wide.column
+    h3 Invitations
+  .eight.wide.column.right.aligned
+    h3= pot.invitations.count
 
   .relaxed.vertical.list
     - pot.invitations.each do |invitation|
