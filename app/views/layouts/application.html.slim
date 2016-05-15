@@ -13,9 +13,5 @@ html lang='en'
   body.pushable
     = render 'sidebar'
     = render 'navigation'
-    / .ui.main class=(yield(:main_class))
-    /   .ui.container
-    /     = render 'notices', flash: flash
-    /     = yield
-    / = render 'footer'
-    / = javascript_include_tag 'application'
+    .pusher
+      = yield
