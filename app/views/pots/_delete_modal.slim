@@ -1,0 +1,17 @@
+.ui.large.test.modal
+  .header= "Delete '#{pot.name}'"
+  .content
+    p Are you sure you'd like to delete your pot?
+  .actions
+    .ui.negative.button No
+    .ui.positive.right.labeled.icon.button Yes
+
+javascript:
+  $('#delete-pot').on('click', function() {
+    $('.ui.modal').modal({
+      inverted: true,
+      onApprove : function() {
+        window.alert('Approved!');
+      }
+    }).modal('show');
+  });
