@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   scope :with_paypal_account, -> { where(paypal_member: true) }
   scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
+  # Atachment
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   def email_hash
     Digest::MD5.hexdigest(email)
   end

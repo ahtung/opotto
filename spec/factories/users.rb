@@ -5,6 +5,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Number.number(8) }
     admin 'false'
+    avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/avatar.jpg'), 'image/jpg') }
 
     trait :with_pots do
       pots { create_list(:pot, 2, :open) }
