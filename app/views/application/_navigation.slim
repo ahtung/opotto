@@ -5,8 +5,5 @@
         = semantic_icon('sidebar')
       .right.menu
         .ui.item.upcase= yield(:nav_title)
-      - if @pot
-        .ui.right.menu.item
-          = link_to '#', id: 'delete-pot', class: 'ui red label' do
-            = semantic_icon('close')
+        = yield(:nav_right)
   = yield(:masthead)

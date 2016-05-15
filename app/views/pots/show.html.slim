@@ -2,6 +2,10 @@
 - content_for :nav_title do
   = @pot.name
 
+- content_for :nav_right do
+  .ui.item
+    = semantic_icon('close red', id: 'delete-pot')
+
 - content_for :masthead do
   .ui.grid.center.aligned.light-grey
     .sixteen.wide.column

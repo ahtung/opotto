@@ -1,2 +1,4 @@
-h2= t('pot.new')
+- content_for :nav_title do
+  = t('pot.new')
+      
 == render 'form', pot: @pot
