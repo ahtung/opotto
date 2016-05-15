@@ -12,9 +12,9 @@
           h3.ui.huge.center.aligned.header
             span.green-text= @pot.end_at.strftime('%e')
       .eight.wide.column
-        span.upcase= @pot.end_at.strftime('%b')
+        span.upcase.grey-text= @pot.end_at.strftime('%b')
         br
-        span= @pot.end_at.strftime('%Y')
+        span.grey-text= @pot.end_at.strftime('%Y')
   .ui.vertical.divider
   .ten.wide.column
     .ui.two.column.grid
@@ -46,7 +46,7 @@
       span.upcase= t('pot.edit')
 
 .ui.text.container.center.aligned
-  h3 Total money collected
+  h3.medium-grey-text Total money collected
   p.green-text= humanized_money_with_symbol(@pot.total_contribution)
 
 .ui.container
