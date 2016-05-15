@@ -46,7 +46,8 @@
 
 .ui.text.container.center.aligned
   h3.medium-grey-text Total money collected
-  p.green-text= humanized_money_with_symbol(@pot.total_contribution)
+  h3.ui.huge.header
+    span.green-text= humanized_money_with_symbol(@pot.total_contribution)
 
 = render 'contributions', pot: @pot
 = render 'invitations', pot: @pot
