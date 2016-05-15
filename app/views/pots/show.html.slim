@@ -48,17 +48,5 @@
   h3.medium-grey-text Total money collected
   p.green-text= humanized_money_with_symbol(@pot.total_contribution)
 
-.ui.container
-  .relaxed.list
-    - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
-      .item
-        .ui.divider
-        .ui.two.column.grid
-          .four.wide.column
-            = image_tag contribution.user.avatar.url(:thumb), class: 'ui avatar image'
-          .eight.wide.column
-            = contribution.owner_name
-          .four.wide.column
-            = humanized_money_with_symbol(contribution.amount)
-
+= render 'contributions', pot: @pot
 = render 'invitations', pot: @pot
