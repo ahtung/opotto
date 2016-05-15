@@ -1,7 +1,11 @@
 .ui.left.inverted.vertical.menu.sidebar
-  .active.item Home
-  .item Work
-  .item Company
-  .item Careers
-  .item Login
-  .item Signup
+  = link_to root_path, class: 'item' do
+    i.icon-wrench
+    span My Pots
+  = link_to new_pot_path, class: 'item' do
+    i.icon-wrench
+    span New Pot
+  - if user_signed_in?
+    .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
+  - else
+    .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'
