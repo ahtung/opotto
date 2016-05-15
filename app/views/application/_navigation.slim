@@ -2,7 +2,7 @@
   .ui.container
     .ui.large.secondary.inverted.pointing.menu
       = link_to '#', class: 'toc item' do
-        i.sidebar.icon
+        = semantic_icon('sidebar')
       span.item= yield(:nav_title)
   .ui.text.container
     h1.ui.inverted.header Birthday
