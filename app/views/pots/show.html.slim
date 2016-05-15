@@ -37,11 +37,11 @@
 .ui.two.column.padded.grid
   .green.column
     = link_to new_pot_contribution_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
-      i.white-text.icon-money
+      i.white-text.money.icon
       span.upcase.white-text= t('pot.contribute')
   .grey.column
     = link_to edit_pot_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
-      i.white-text.icon-pencil
+      i.white-text.edit.icon
       span.upcase.white-text= t('pot.edit')
 
 .ui.text.container.center.aligned
