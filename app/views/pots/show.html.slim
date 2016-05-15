@@ -1,14 +1,14 @@
 - set_meta_tags site: 'opotto', title: @pot.name, og: { title: @pot.name, type: 'product' }
 
 .ui.two.column.grid
-  .six.wide.column
+  .six.wide.column.center.aligned
     h3 End date
     .ui.two.column.grid
       .eight.wide.column
-        span 23
+        span= @pot.end_at.strftime('%e')
       .eight.wide.column
-        span Sep
-        span 2016
+        span= @pot.end_at.strftime('%b')
+        span= @pot.end_at.strftime('%C')
   .ten.wide.column
     .ui.two.column.grid
       .eight.wide.column
