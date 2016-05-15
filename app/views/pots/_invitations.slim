@@ -1,0 +1,13 @@
+.ui.inverted.segment.grey
+  .ui.two.column.grid
+    .eight.wide.column
+      h3 Invitations
+    .eight.wide.column.right.aligned
+      h3= pot.invitations.count
+
+  .relaxed.vertical.list
+    - pot.invitations.each do |invitation|
+      .item
+        i.icon-mail
+        .content
+          span= invitation.user.decorate.handle
