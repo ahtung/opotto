@@ -36,7 +36,7 @@ en:
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:
-    copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
+    copyright: "© %{year} Ahtung Technology Limited. All rights reserved."
     hello: Opotto
     introduction: opotto is a beautiful way of giving a present to your friends
     motto: Save . Collect . Share
