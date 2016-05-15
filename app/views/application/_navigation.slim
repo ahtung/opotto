@@ -1,5 +1,5 @@
 .ui.vertical.masthead.center.aligned.segment
-  .ui.stackable.grid.container
+  .ui.grid
     .ui.large.secondary.menu
       = link_to '#', id: 'show-menu', class: 'item' do
         = semantic_icon('sidebar')
@@ -7,7 +7,7 @@
         .item= yield(:nav_title)
 
   - if @pot
-    .ui.stackable.grid.center.aligned.container.light-grey
+    .ui.grid.center.aligned.light-grey
       .sixteen.wide.column
         i.icon-cake
         h1.ui.header
