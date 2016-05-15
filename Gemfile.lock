@@ -157,7 +157,7 @@ GEM
       json
     hashdiff (0.3.0)
     hashie (3.4.4)
-    high_voltage (2.4.0)
+    high_voltage (3.0.0)
     highline (1.7.8)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -508,7 +508,7 @@ DEPENDENCIES
   foreman (~> 0.81.0)
   gaffe (~> 1.1.0)
   google_contacts_api (~> 0.7.0)
-  high_voltage (~> 2.4.0)
+  high_voltage (~> 3.0.0)
   http_accept_language (~> 2.0.5)
   i18n-tasks (~> 0.9.4)
   jbuilder
