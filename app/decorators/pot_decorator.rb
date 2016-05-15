@@ -19,4 +19,8 @@ class PotDecorator < Draper::Decorator
     return 'Closed' if object.closed?
     return 'Ended' if object.ended?
   end
+
+  def type
+    'Birthday'
+  end
 end
