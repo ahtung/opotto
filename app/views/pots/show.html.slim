@@ -3,11 +3,12 @@
   = @pot.name
 
 .ui.two.column.grid
-  .six.wide.column
-    h3.upcase End date
+  .six.wide.column.center.aligned
+    h3.ui.center.aligned.header.grey-text End date
     .ui.two.column.grid
       .eight.wide.column
-        span= @pot.end_at.strftime('%e')
+        h3.ui.huge.header
+          span.green-text= @pot.end_at.strftime('%e')
       .eight.wide.column
         span.upcase= @pot.end_at.strftime('%b')
         span= @pot.end_at.strftime('%C')
@@ -15,12 +16,11 @@
     .ui.two.column.grid
       .four.wide.column
       .twelve.wide.column
-        h3.upcase To
-      .four.wide.column
-        = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui avatar image'
+        h3.ui.upcase.center.aligned.header.grey-text To
+      .four.wide.center.aligned.column
+        = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
       .twelve.wide.column
         p= @pot.receiver.decorate.handle
-
 .ui.text.container
   p.upcase
     = "From "
@@ -60,7 +60,7 @@
       h3 Invitations
     .eight.wide.column.right.aligned
       h3= @pot.invitations.count
-  
+
   .relaxed.vertical.list
     - @pot.invitations.each do |invitation|
       .item
