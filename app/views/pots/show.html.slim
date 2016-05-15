@@ -11,7 +11,6 @@
       h2.ui.header
         span.blue-text= humanized_money_with_symbol(@pot.total_contribution)
 
-
 .ui.vertical.stripe.segment
   .ui.two.column.grid
     .six.wide.column
@@ -42,7 +41,7 @@
   p.upcase
     span.medium-grey-text= "From "
     span= @pot.owner.decorate.handle
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacus dolor, eleifend vitae enim eleifend, porttitor interdum sem. Morbi consectetur turpis orci, et eleifend nibh congue vitae. Sed molestie nibh lacus, sit amet eleifend sapien porta a. Praesent interdum tortor vel massa suscipit, id sodales mauris dignissim. Proin luctus nisl quis dui consectetur scelerisque. Etiam vitae erat maximus, varius libero in, porttitor augue. Sed vitae quam laoreet, elementum neque ac, congue leo. Phasellus sed auctor orci. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla vehicula tincidunt neque. Donec ut eleifend dolor. Sed et posuere mauris. Fusce rutrum ullamcorper nunc, quis maximus orci dapibus commodo. Morbi id augue vitae libero pretium condimentum ut ac ligula.
+  p= @pot.description
 
 .ui.two.column.padded.grid.pot-menu
   .green.column

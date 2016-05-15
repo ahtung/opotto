@@ -3,6 +3,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     end_at { 10.days.from_now }
     visible true
+    description { Faker::Lorem.paragraph(2) }
     association :owner, factory: :user
     association :receiver, factory: :user
 
