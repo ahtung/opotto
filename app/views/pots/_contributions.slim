@@ -7,6 +7,8 @@
           .four.wide.column
             = image_tag contribution.user.avatar.url(:thumb), class: 'ui avatar image'
           .eight.wide.column
-            = contribution.owner_name
+            span.upcase.green-text= contribution.owner_name
+            span.upcase.grey-text= contribution.owner_name
           .four.wide.column
-            = humanized_money_with_symbol(contribution.amount)
+            span.grey-text
+              = humanized_money_with_symbol(contribution.amount)
