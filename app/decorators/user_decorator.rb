@@ -15,6 +15,10 @@ class UserDecorator < Draper::Decorator
   end
 
   def username
-    object.name ? object.name : object.email
+    if object.name
+      object.name
+    else
+      object.email.match(/^(.*)@.*$/)[1]
+    end
   end
 end
