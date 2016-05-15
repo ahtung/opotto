@@ -3,8 +3,8 @@
     .ui.large.secondary.menu
       = link_to '#', id: 'show-menu', class: 'item' do
         = semantic_icon('sidebar')
-      .right.item
-        .item= yield(:nav_title)
+      .right.menu
+        .ui.item.upcase= yield(:nav_title)
 
   - if @pot
     .ui.grid.center.aligned.light-grey
