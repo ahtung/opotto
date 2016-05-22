@@ -1,5 +1,5 @@
 - content_for :nav_title do
-  | My Pots
+  = @title
 
 - content_for :nav_right do
   .ui.item
@@ -7,4 +7,4 @@
       = semantic_icon("plus green")
       
 = render 'avatar'
-= render partial: 'pots/timeline', locals: { pots: @user.pots }
+= render partial: 'pots/timeline', locals: { pots: pots }

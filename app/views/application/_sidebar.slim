@@ -2,10 +2,10 @@
   = link_to root_path, class: 'item' do
     i.leaf.icon
     span My Pots
-  = link_to new_pot_path, class: 'item' do
+  = link_to root_path(by: 'invited'), class: 'item' do
     i.mail.icon
     span My invitations
-  = link_to new_pot_path, class: 'item' do
+  = link_to root_path(by: 'contributed'), class: 'item' do
     i.money.icon
     span My contributions
   - if user_signed_in?
