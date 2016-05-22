@@ -5,6 +5,7 @@ en:
     previous: You're previous contributions
     collected: Collected
     contributions: My Contributions
+    total: Total money collected
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
@@ -33,11 +34,11 @@ en:
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
     save: Save
-    total: Total contribution
     updated: Pot successfully updated!
     to: To
     invitations: My Invitations
     from: From
+    end_date: End Date
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:

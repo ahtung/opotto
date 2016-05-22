@@ -60,7 +60,7 @@
       span.upcase.white.text= t('pot.edit')
 
 .ui.text.container.center.aligned
-  h3.grey.text Total money collected
+  h3.grey.text = t('contribution.total')
   h3.ui.huge.header
     span.text class="#{pot.category_color}"= humanized_money_with_symbol(pot.total_contribution)
 

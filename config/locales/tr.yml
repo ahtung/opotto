@@ -5,6 +5,7 @@ tr:
     previous: "Önceki katkılar"
     collected: Toplanan
     contributions: Katkılarım
+    total: Toplanan miktar
   devise:
     omniauth_callbacks:
       success: Basari
@@ -33,7 +34,6 @@ tr:
     receiver: Alıcı
     reported: Bizi ayik tuttugunuz icin tesekkur ederiz. Bir an evvel arastirmaya basliyacagiz.
     save: Kaydet
-    total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
     to: Alıcı
     invitations: Davetlerim
