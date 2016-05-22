@@ -6,7 +6,7 @@ class UserDecorator < Draper::Decorator
   decorates_association :invited_pots
   decorates_association :pots
 
-  def highlighted_name(separator, icon = false)
+  def highlighted_name(separator = false, icon = false)
     h.content_tag :p do
       h.concat h.content_tag :i, '', class: "icon #{icon}" if icon
       h.concat h.content_tag :span, object.first_name.upcase, class: 'green-text'
@@ -15,11 +15,18 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  def handle
-    if object.name
-      object.name
+  def highlighted_email(icon = false)
+    h.content_tag :p do
+      h.concat h.content_tag :i, '', class: "icon #{icon}" if icon
+      h.concat h.content_tag :span, object.email.match(/^(.*)@.*$/)[1], class: 'green-text'
+    end
+  end
+
+  def handle(seperator = false, icon = false)
+    if object.name?
+      highlighted_name(seperator, icon)
     else
-      object.email.match(/^(.*)@.*$/)[1]
+      highlighted_email(icon)
     end
   end
 end
