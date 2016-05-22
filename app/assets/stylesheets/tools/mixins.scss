@@ -17,22 +17,6 @@
   text-transformation: uppercase;
 }
 
-.medium-grey{
-  background-color:$medium-grey;
-}
-
-.medium-grey-text{
-  color:$medium-grey;
-}
-
-.light-grey{
-  background-color:$light-grey;
-}
-
-.light-grey-text{
-  color:$light-grey;
-}
-
 .teal {
   &.text {
     color:$teal;
@@ -84,6 +68,15 @@
   }
   &.background {
     background-color:$green;
+  }
+}
+
+.white {
+  &.text {
+    color:$white;
+  }
+  &.background {
+    background-color:$white;
   }
 }
 
