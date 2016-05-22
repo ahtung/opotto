@@ -24,7 +24,7 @@ class PotDecorator < Draper::Decorator
     return 'Ended' if object.ended?
   end
 
-  def category_icon
-    h.content_tag :i, '', class: "big #{object.category_color} icon #{object.category}"
+  def category_icon(size)
+    h.content_tag :i, '', class: "#{size} #{object.category_color} icon #{object.category}"
   end
 end
