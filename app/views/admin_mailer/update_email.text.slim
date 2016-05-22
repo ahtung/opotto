@@ -1,4 +1,4 @@
-= "Hello #{@admins.map(:name).join(',') }"
+= "Hello #{@admins.map(&:name).join(',') }"
 
 This weeks creations are:
 - @pots.each do |pot|

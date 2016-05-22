@@ -71,7 +71,7 @@ class Contribution < ActiveRecord::Base
     if anonymous? || user.nil?
       'N/A'
     else
-      user.decorate.handle
+      user.name
     end
   end
 

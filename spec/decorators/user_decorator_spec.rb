@@ -21,7 +21,7 @@ RSpec.describe UserDecorator, type: :decorator do
 
     context 'with color' do
       it 'should return email without icon with color' do
-        expect(user.highlighted_email(false, 'yellow')).to eq("<p><span class=\"yellow-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
+        expect(user.highlighted_email(false, 'yellow')).to eq("<p><i class=\"icon yellow\"></i><span class=\"false-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
       end
     end
 
@@ -50,12 +50,12 @@ RSpec.describe UserDecorator, type: :decorator do
 
     it 'returns email if user has no name' do
       user = create(:user, first_name: nil, last_name: nil).decorate
-      expect(user.handle).to eq(user.highlighted_email(false, 'green'))
+      expect(user.handle).to eq("<p><span class=\"green-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
     end
 
     it 'returns email with icon if user has no name' do
       user = create(:user, first_name: nil, last_name: nil).decorate
-      expect(user.handle(false, 'mail outline')).to eq(user.highlighted_email('mail outline', 'green'))
+      expect(user.handle(false, 'mail outline')).to eq("<p><i class=\"icon mail outline\"></i><span class=\"green-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
     end
   end
 end
