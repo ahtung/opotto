@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe PotDecorator, type: :decorator do
   let(:pot) { nil }
@@ -78,6 +78,14 @@ RSpec.describe PotDecorator, type: :decorator do
       it 'should return Ended' do
         expect(pot.status_text).to eq('Ended')
       end
+    end
+  end
+
+  describe 'humanized_total_contribution' do
+    let(:pot) { create(:pot).decorate }
+
+    it 'should return amount with currency' do
+      expect(pot.humanized_total_contribution).to eq('$0.00')
     end
   end
 end
