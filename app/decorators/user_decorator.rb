@@ -6,8 +6,9 @@ class UserDecorator < Draper::Decorator
   decorates_association :invited_pots
   decorates_association :pots
 
-  def highlighted_name(separator)
+  def highlighted_name(separator, icon = false)
     h.content_tag :p do
+      h.concat h.content_tag :i, '', class: "icon #{icon}" if icon
       h.concat h.content_tag :span, object.first_name.upcase, class: 'green-text'
       h.concat separator
       h.concat h.content_tag :span, object.last_name, class: 'grey-text'
