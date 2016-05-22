@@ -1,4 +1,4 @@
-- %w(57 60 72 76).map(&:to_i).each do |size|
+- %w(57 60 72 76 120).map(&:to_i).each do |size|
   = favicon_link_tag "apple-touch-icon-#{size}x#{size}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size}x#{size}"
   = favicon_link_tag "apple-touch-icon-#{size}x#{size}@2x.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size * 2}x#{size * 2}"
 
