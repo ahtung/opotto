@@ -107,6 +107,33 @@
   }
 }
 
+.grey {
+  &.text {
+    color:$grey;
+  }
+  &.background {
+    background-color:$grey;
+  }
+}
+
+.light-grey {
+  &.text {
+    color:$light-grey;
+  }
+  &.background {
+    background-color:$light-grey;
+  }
+}
+
+.medium-grey {
+  &.text {
+    color:$medium-grey;
+  }
+  &.background {
+    background-color:$medium-grey;
+  }
+}
+
 .transparent-background {
   background-color:transparent !important;
 }
