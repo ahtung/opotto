@@ -9,6 +9,12 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
 
+    trait :with_pot do
+      after :create do |instance|
+        instance.pots << create(:pot, :open, owner: instance)
+      end
+    end
+
     trait :with_pots do
       after :create do |instance|
         instance.pots = create_list(:pot, 2, :open, owner: instance)
