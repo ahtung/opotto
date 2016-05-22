@@ -1,12 +1,13 @@
-.ui.two.column.grid.light-grey
-  .eight.wide.column
-    h3.ui.blue.header Invitations
-  .eight.wide.column.right.aligned
-    h3.ui.blue.header= pot.invitations.count
+- if pot.invitations.present?
+  .ui.two.column.grid.light-grey
+    .eight.wide.column
+      h3.ui.blue.header Invitations
+    .eight.wide.column.right.aligned
+      h3.ui.blue.header= pot.invitations.count
 
-  .relaxed.vertical.list
-    - pot.invitations.each do |invitation|
-      .item
-        i.mail.outline.icon
-        span.green-text= invitation.user.decorate.handle
-      .ui.divider
+    .relaxed.vertical.list
+      - pot.invitations.each do |invitation|
+        .item
+          i.mail.outline.icon
+          span.green-text= invitation.user.decorate.handle
+        .ui.divider
