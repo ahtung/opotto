@@ -10,7 +10,7 @@ FactoryGirl.define do
     last_name { Faker::Name.last_name }
 
     trait :with_pot do
-      pots { create_list(:pot, 1, :open) }
+      pots { create(:pot, :open) }
     end
 
     trait :with_closed_pots do
