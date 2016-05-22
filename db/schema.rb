@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522091339) do
+ActiveRecord::Schema.define(version: 20160522110601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160522091339) do
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
     t.datetime "paid_at"
+    t.integer  "category",             default: 0
   end
 
   add_index "pots", ["owner_id"], name: "index_pots_on_owner_id", using: :btree

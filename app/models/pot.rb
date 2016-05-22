@@ -5,6 +5,10 @@ class Pot < ActiveRecord::Base
 
   # Constant
   IMMUTABLE = %w(receiver_id end_at).freeze
+  CATEGORIES = %w(home student gift plane diamond truck trophy heart).freeze
+
+  # Enums
+  enum category: CATEGORIES
 
   # Relations
   belongs_to :owner, class_name: 'User'

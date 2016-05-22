@@ -23,4 +23,8 @@ class PotDecorator < Draper::Decorator
   def type
     'Birthday'
   end
+
+  def category_icon
+    h.content_tag :i, '', class: "huge green icon #{object.category}"
+  end
 end

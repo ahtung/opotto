@@ -1,6 +1,6 @@
-- set_meta_tags site: 'opotto', title: @pot.name, og: { title: @pot.name, type: 'product' }
+- set_meta_tags site: 'opotto', title: pot.name, og: { title: pot.name, type: 'product' }
 - content_for :nav_title do
-  = @pot.name
+  = pot.name
 
 - content_for :nav_right do
   .ui.item
@@ -9,11 +9,11 @@
 - content_for :masthead do
   .ui.grid.center.aligned.light-grey
     .sixteen.wide.column
-      i.huge.plane.icon.green
+      = pot.category_icon
       h1.ui.header
-        span.upcase.blue-text= @pot.decorate.type
+        span.upcase.blue-text= pot.category.capitalize
       h2.ui.header
-        span.blue-text= humanized_money_with_symbol(@pot.total_contribution)
+        span.blue-text= humanized_money_with_symbol(pot.total_contribution)
 
 .ui.vertical.stripe.segment
   .ui.two.column.grid
@@ -24,11 +24,11 @@
         .eight.wide.column
           ui.sizer.vertical.segment style='font-size: 25px;'
             h3.ui.huge.center.aligned.header
-              span.green-text= @pot.end_at.strftime('%e')
+              span.green-text= pot.end_at.strftime('%e')
         .eight.wide.column
-          span.upcase.grey-text= @pot.end_at.strftime('%b')
+          span.upcase.grey-text= pot.end_at.strftime('%b')
           br
-          span.grey-text= @pot.end_at.strftime('%Y')
+          span.grey-text= pot.end_at.strftime('%Y')
     .ui.vertical.divider
     .ten.wide.column
       .ui.two.column.grid
@@ -37,32 +37,32 @@
           h3.ui.upcase.left.aligned.header
             span.grey-text To
         .four.wide.center.aligned.column
-          = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
+          = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
         .twelve.wide.column
-          = @pot.receiver.decorate.highlighted_name(tag(:br))
+          = pot.receiver.decorate.highlighted_name(tag(:br))
 
 .ui.text.container
   p.upcase
     span.medium-grey-text= "From "
-    span= @pot.owner.decorate.handle
-  p= @pot.description
+    span= pot.owner.decorate.handle
+  p= pot.description
   p= ' '
 .ui.two.column.padded.grid.pot-menu
   .green.column
-    = link_to new_pot_contribution_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+    = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
       i.white-text.money.icon
       span.upcase.white-text= t('pot.contribute')
   .grey.column
-    = link_to edit_pot_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+    = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
       i.white-text.edit.icon
       span.upcase.white-text= t('pot.edit')
 
 .ui.text.container.center.aligned
   h3.medium-grey-text Total money collected
   h3.ui.huge.header
-    span.green-text= humanized_money_with_symbol(@pot.total_contribution)
+    span.green-text= humanized_money_with_symbol(pot.total_contribution)
 
-= render 'contributions', pot: @pot
-= render 'invitations', pot: @pot
+= render 'contributions', pot: pot
+= render 'invitations', pot: pot
 
 = render 'delete_modal'
