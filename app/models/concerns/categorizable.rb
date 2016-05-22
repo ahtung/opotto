@@ -5,6 +5,7 @@ module Categorizable
   included do
     # Constants
     CATEGORIES = %w(home student gift plane diamond truck trophy heart).freeze
+    CATEGORY_COLORS = %w(red orange yellow olive green teal blue violet).freeze
 
     # Enums
     enum category: CATEGORIES
@@ -13,16 +14,15 @@ module Categorizable
     validates :category, presence: true
   end
 
-  def category_color
-    case category
-    when 'home' then 'red'
-    when 'student' then 'orange'
-    when 'gift' then 'yellow'
-    when 'plane' then 'olive'
-    when 'diamond' then 'green'
-    when 'truck' then 'teal'
-    when 'trophy' then 'blue'
-    when 'heart' then 'violet'
+  class_methods do
+    def category_color_mapping
+      h = {}
+      const_get(:CATEGORIES).zip(const_get(:CATEGORY_COLORS)) { |a, b| h[a.to_sym] = b }
+      h
     end
+  end
+
+  def category_color
+    self.class.category_color_mapping[category.to_sym]
   end
 end

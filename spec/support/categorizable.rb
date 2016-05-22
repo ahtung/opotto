@@ -4,7 +4,22 @@ shared_examples 'categorizable' do
   it { should validate_presence_of(:category) }
 
   describe '#' do
-    describe 'category_color' do
+    describe 'category_color_mapping' do
+      fit 'should return zipped CATEGORIES and CATEGORY_COLORS' do
+        expect(Pot.category_color_mapping).to eq(
+          home: 'red',
+          student: 'orange',
+          gift: 'yellow',
+          plane: 'olive',
+          diamond: 'green',
+          truck: 'teal',
+          trophy: 'blue',
+          heart: 'violet'
+        )
+      end
+    end
+
+    describe 'category_color', focus: true do
       it 'should return red for home category' do
         pot = build(:pot, category: 'home')
         expect(pot.category_color).to eq('red')
