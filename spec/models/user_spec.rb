@@ -54,13 +54,13 @@ describe User do
     end
 
     describe 'handle' do
-      it 'returns name if user has name' do
-        user = create(:user, name: 'DUN')
+      it 'returns name if user has first and last name' do
+        user = create(:user, first_name: 'Dunya', last_name: 'Kirkali').decorate
         expect(user.handle).to eq(user.name)
       end
 
       it 'returns email if user has no name' do
-        user = create(:user)
+        user = create(:user).decorate
         expect(user.handle).to eq(user.email)
       end
     end

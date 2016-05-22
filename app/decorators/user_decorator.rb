@@ -8,9 +8,9 @@ class UserDecorator < Draper::Decorator
 
   def highlighted_name
     h.content_tag :h2 do
-      h.concat h.content_tag :span, object.name
+      h.concat h.content_tag :span, object.first_name
       h.concat " "
-      h.concat h.content_tag :span, object.name
+      h.concat h.content_tag :span, object.last_name
     end
   end
 
