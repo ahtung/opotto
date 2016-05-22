@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ContributionsController, type: :controller do
-  let(:user) { create(:user, :with_contribution) }
+  let(:user) { create(:user, :with_contributions) }
   let(:valid_attributes) { build(:contribution).attributes }
   let(:invalid_attributes) { attributes_for(:contribution, amount: nil) }
   let(:valid_session) { {} }

@@ -5,9 +5,9 @@ if Rails.env.development?
   Invitation.delete_all
   Contribution.delete_all
 
-  onur = FactoryGirl.create(:user, :admin, :with_pot, :with_contribution, email: 'onurkucukkece@gmail.com', password: '123QwETR', paypal_member: true)
-  dunya = FactoryGirl.create(:user, :admin, :with_pot, :with_contribution, email: 'dunyakirkali@gmail.com', password: '123QwETR', paypal_member: true)
-  ilana = FactoryGirl.create(:user, :admin, :with_pot, :with_contribution, email: 'contact@madco.nl', password: '123QwETR', paypal_member: true)
+  onur = FactoryGirl.create(:user, :admin, :with_pot, :with_contributions, email: 'onurkucukkece@gmail.com', password: '123QwETR', paypal_member: true)
+  dunya = FactoryGirl.create(:user, :admin, :with_pot, :with_contributions, email: 'dunyakirkali@gmail.com', password: '123QwETR', paypal_member: true)
+  ilana = FactoryGirl.create(:user, :admin, :with_pot, :with_contributions, email: 'contact@madco.nl', password: '123QwETR', paypal_member: true)
   us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
 
   onur.friends << [dunya, us, ilana]
@@ -15,9 +15,9 @@ if Rails.env.development?
   ilana.friends << [dunya, onur, us]
 
   # Random Pots
-  FactoryGirl.create_list(:pot, 2, :with_contribution, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
-  FactoryGirl.create_list(:pot, 2, :closed, :with_contribution, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
-  FactoryGirl.create_list(:pot, 2, :ended, :with_contribution, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
+  FactoryGirl.create_list(:pot, 2, :with_contributions, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
+  FactoryGirl.create_list(:pot, 2, :closed, :with_contributions, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
+  FactoryGirl.create_list(:pot, 2, :ended, :with_contributions, guests: [dunya, onur] + FactoryGirl.create_list(:user, 2))
 elsif Rails.env.production?
   Pot.where(name: 'PayPal test Pot').destroy_all
   onur = User.where(email: 'onurkucukkece@gmail.com').first_or_create

@@ -177,7 +177,7 @@ RSpec.describe Pot, type: :model do
       end
 
       it 'should return the sum of contributions if contributions' do
-        pot = create(:pot, :with_contribution)
+        pot = create(:pot, :with_contributions)
         expect(pot.total_contribution).to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
       end
     end
@@ -189,7 +189,7 @@ RSpec.describe Pot, type: :model do
       end
 
       it 'should return the number of contributors if contributors' do
-        pot = create(:pot, :with_contribution)
+        pot = create(:pot, :with_contributions)
         expect(pot.total_contributors).to eq pot.contributors.count
       end
     end
