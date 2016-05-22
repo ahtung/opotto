@@ -5,7 +5,7 @@ shared_examples 'categorizable' do
 
   describe '#' do
     describe 'category_color_mapping' do
-      fit 'should return zipped CATEGORIES and CATEGORY_COLORS' do
+      it 'should return zipped CATEGORIES and CATEGORY_COLORS' do
         expect(Pot.category_color_mapping).to eq(
           home: 'red',
           student: 'orange',
@@ -19,7 +19,7 @@ shared_examples 'categorizable' do
       end
     end
 
-    describe 'category_color', focus: true do
+    describe 'category_color' do
       it 'should return red for home category' do
         pot = build(:pot, category: 'home')
         expect(pot.category_color).to eq('red')
