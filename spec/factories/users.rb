@@ -22,7 +22,8 @@ FactoryGirl.define do
     end
 
     trait :with_name do
-      name { Faker::Name.name }
+      first_name { Faker::Name.first_name }
+      last_name { Faker::Name.last_name }
     end
 
     trait :registered do
