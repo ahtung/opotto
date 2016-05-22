@@ -25,9 +25,11 @@ class UserDecorator < Draper::Decorator
   end
 
   def decorated_name(seperator, color)
-    h.concat h.content_tag :span, object.first_name.upcase, class: "#{color}-text"
-    h.concat seperator
-    h.concat h.content_tag :span, object.last_name, class: 'grey-text'
+    h.capture do
+      h.concat h.content_tag :span, object.first_name.upcase, class: "#{color}-text"
+      h.concat seperator
+      h.concat  h.content_tag :span, object.last_name, class: 'grey-text'
+    end
   end
 
   def handle(seperator = ' ', icon = false, color = 'green')
