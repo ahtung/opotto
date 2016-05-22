@@ -7,5 +7,5 @@
     .relaxed.vertical.list
       - pot.invitations.each do |invitation|
         .item
-          = invitation.user.decorate.handle(' ', 'mail outline grey-text')
+          = invitation.user.decorate.handle(' ', 'mail outline grey-text', pot.category_color)
         .ui.divider

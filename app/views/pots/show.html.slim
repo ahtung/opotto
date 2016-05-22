@@ -24,7 +24,7 @@
         .eight.wide.column
           ui.sizer.vertical.segment style='font-size: 25px;'
             h3.ui.huge.center.aligned.header
-              span.green-text= pot.end_at.strftime('%e')
+              span class="#{pot.category_color}-text" = pot.end_at.strftime('%e')
         .eight.wide.column
           span.upcase.grey-text= pot.end_at.strftime('%b')
           br
@@ -39,20 +39,20 @@
         .four.wide.center.aligned.column
           = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
         .twelve.wide.column
-          = pot.receiver.decorate.handle(tag(:br))
+          = pot.receiver.decorate.handle(tag(:br), false, pot.category_color)
 
 .ui.text.container
   p.upcase
     span.medium-grey-text= "From "
-    span= pot.owner.decorate.handle
+    span= pot.owner.decorate.handle(false, false, pot.category_color)
   p= pot.description
   p= ' '
 .ui.two.column.padded.grid.pot-menu
-  .green.column
+  #contribute-button.column class=pot.category_color
     = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
       i.white-text.money.icon
       span.upcase.white-text= t('pot.contribute')
-  .grey.column
+  #edit-button.grey.column
     = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
       i.white-text.edit.icon
       span.upcase.white-text= t('pot.edit')
@@ -60,7 +60,7 @@
 .ui.text.container.center.aligned
   h3.medium-grey-text Total money collected
   h3.ui.huge.header
-    span.green-text= humanized_money_with_symbol(pot.total_contribution)
+    span class="#{pot.category_color}-text"= humanized_money_with_symbol(pot.total_contribution)
 
 = render 'contributions', pot: pot
 = render 'invitations', pot: pot

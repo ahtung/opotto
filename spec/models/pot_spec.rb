@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Pot, type: :model do
   it_behaves_like 'abusable'
+  it_behaves_like 'categorizable'
 
   # Relations
   describe 'relations' do

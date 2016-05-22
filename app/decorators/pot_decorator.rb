@@ -29,6 +29,6 @@ class PotDecorator < Draper::Decorator
   end
 
   def category_icon
-    h.content_tag :i, '', class: "huge green icon #{object.category}"
+    h.content_tag :i, '', class: "huge #{object.category_color} icon #{object.category}"
   end
 end

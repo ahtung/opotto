@@ -4,7 +4,7 @@
 - content_for :nav_right do
   .ui.item
     = link_to new_pot_path do
-      = semantic_icon('plus green')
+      = semantic_icon("plus green")
       
 = render 'avatar'
 = render partial: 'pots/timeline', locals: { pots: @user.pots }

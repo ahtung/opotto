@@ -5,16 +5,15 @@
         = 'From'
       .six.wide.column
         = 'Collected'
-    .row
-      - pots.each do |pot|
-        .two.wide.center.aligned.column
-          = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
-        .two.wide.center.aligned.column
-          = pot.category_icon
-        .five.wide.column
-          = pot.category
-        .five.wide.column.green-text
-          = pot.humanized_total_contribution
-        .two.wide.column
-          = '>'
+  .ui.relaxed.divided.list
+    - pots.each do |pot|
+      .item
+        = link_to pot_path(pot), class: 'ui tiny circular image' do
+          = image_tag pot.receiver.avatar.url(:thumb)
+        .middle.aligned.content
+          = link_to pot_path(pot) do
+            = pot.category_icon
+            = pot.category
+            = pot.humanized_total_contribution
+            = '>'
           
