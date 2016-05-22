@@ -1,11 +1,13 @@
 - if pot.invitations.present?
-  .ui.two.column.grid.light-grey.padded
+  .ui.two.column.grid.grey.padded
     .eight.wide.column
       h3.ui.blue.header Invitations
     .eight.wide.column.right.aligned
       h3.ui.blue.header= pot.invitations.count
-    .relaxed.vertical.list
+  .ui.segment
+    .ui.relaxed.divided.vertical.list
       - pot.invitations.each do |invitation|
         .item
-          = invitation.user.decorate.handle(' ', 'mail outline grey.text', pot.category_color)
-        .ui.divider
+          i.icon.mail.outline.grey.text
+          .content
+            = invitation.user.decorate.handle(' ', false, pot.category_color)
