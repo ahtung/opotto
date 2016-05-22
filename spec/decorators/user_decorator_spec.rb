@@ -52,14 +52,14 @@ RSpec.describe UserDecorator, type: :decorator do
     context 'with icon' do
       it 'should return email with icon' do
         @options[:icon] = 'mail outline'
-        output = "<p><i class=\"icon mail outline\"></i><span class=\"green-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>"
+        output = "<p><i class=\"icon mail outline\"></i><span class=\"green.text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>"
         expect(user.highlighted_email(@options)).to eq(output)
       end
     end
 
     context 'without icon' do
       it 'should return email without icon' do
-        expect(user.highlighted_email(@options)).to eq("<p><span class=\"green-text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
+        expect(user.highlighted_email(@options)).to eq("<p><span class=\"green.text\">#{user.email.match(/^(.*)@.*$/)[1]}</span></p>")
       end
     end
   end
