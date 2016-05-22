@@ -88,4 +88,12 @@ RSpec.describe PotDecorator, type: :decorator do
       expect(pot.humanized_total_contribution).to eq('$0.00')
     end
   end
+
+  describe 'category_icon' do
+    let(:pot) { create(:pot, category: 'gift').decorate }
+
+    it 'should return amount with currency' do
+      expect(pot.category_icon).to eq('<i class="huge yellow icon gift"></i>')
+    end
+  end
 end

@@ -24,10 +24,6 @@ class PotDecorator < Draper::Decorator
     return 'Ended' if object.ended?
   end
 
-  def type
-    'Birthday'
-  end
-
   def category_icon
     h.content_tag :i, '', class: "huge #{object.category_color} icon #{object.category}"
   end
