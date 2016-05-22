@@ -39,7 +39,7 @@
         .four.wide.center.aligned.column
           = image_tag @pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
         .twelve.wide.column
-          = @pot.receiver.decorate.highlighted_name(content_tag(:br))
+          = @pot.receiver.decorate.highlighted_name(tag(:br))
 
 .ui.text.container
   p.upcase
