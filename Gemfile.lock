@@ -544,7 +544,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-i18n (~> 4.0.8)
   rails_12factor
-  recaptcha
+  recaptcha (~> 2.1.0)
   roboto (~> 0.2.0)
   rollbar (~> 2.11.0)
   rspec-its
