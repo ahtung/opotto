@@ -1,19 +1,23 @@
 - if pots.present?
-  .ui.one.column.grid
-    .row
+  .ui.attached.segment
+    .ui.one.column.grid
       .ten.wide.column
-        = 'From'
+        = 'To'
       .six.wide.column
         = 'Collected'
-  .ui.relaxed.divided.list
-    - pots.each do |pot|
-      .item
-        = link_to pot_path(pot), class: 'ui tiny circular image' do
-          = image_tag pot.receiver.avatar.url(:thumb)
-        .middle.aligned.content
-          = link_to pot_path(pot) do
-            = pot.category_icon
-            = pot.category
-            = pot.humanized_total_contribution
-            = '>'
-          
+    .ui.relaxed.divided.list
+      - pots.each do |pot|
+        .item
+          .ui.grid.middle.aligned
+            .ten.wide.column
+              .ui.medium.header
+                = link_to pot_path(pot), class: 'ui tiny circular image' do
+                  = image_tag pot.receiver.avatar.url(:thumb)
+                = link_to pot_path(pot) do
+                  = pot.category_icon
+                  = pot.category
+            .six.wide.column
+              .ui.medium.header
+                = link_to pot_path(pot), class: 'green text' do
+                  = pot.humanized_total_contribution
+
