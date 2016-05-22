@@ -112,7 +112,7 @@
     color:$grey;
   }
   &.background {
-    background-color:$grey;
+    background-color:$grey !important;
   }
 }
 
@@ -121,7 +121,7 @@
     color:$light-grey;
   }
   &.background {
-    background-color:$light-grey;
+    background-color:$light-grey !important;
   }
 }
 
@@ -130,7 +130,7 @@
     color:$medium-grey;
   }
   &.background {
-    background-color:$medium-grey;
+    background-color:$medium-grey !important;
   }
 }
 
