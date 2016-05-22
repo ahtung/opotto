@@ -10,7 +10,7 @@ class UserDecorator < Draper::Decorator
     h.content_tag :p do
       h.concat h.content_tag :i, '', class: "icon #{icon}" if icon
       h.concat h.content_tag :span, object.first_name.upcase, class: 'green-text'
-      h.concat separator
+      h.concat (separator ? separator : ' ')
       h.concat h.content_tag :span, object.last_name, class: 'grey-text'
     end
   end
