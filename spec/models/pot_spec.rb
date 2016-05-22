@@ -49,6 +49,7 @@ RSpec.describe Pot, type: :model do
       end
       it 'invalid if owner\'s pot count > 2' do
         @user = create(:user, :with_pots)
+        create(:pot, owner: @user)
         last_pot = create(:pot, owner: @user)
         expect(last_pot).not_to be_valid
       end
