@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PaymentsController, type: :controller do
-  let(:user) { create(:user, :with_contributions) }
+  let(:user) { create(:user, :with_contribution) }
   let(:contribution) { user.contributions.first }
 
   before :each do

@@ -8,7 +8,7 @@ FactoryGirl.define do
     association :owner, factory: :user
     association :receiver, factory: :user
 
-    trait :with_contributions do
+    trait :with_contribution do
       after :create do |instance|
         2.times do
           instance.contributions << create(:contribution, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
