@@ -13,12 +13,15 @@ RSpec.describe UserDecorator, type: :decorator do
     let(:user) { create(:user).decorate }
 
     it 'should return user name without an icon' do
-      expect(user.highlighted_name(@options)).to eq("<p><span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span></p>")
+      output = "<p><span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span></p>"
+      expect(user.highlighted_name(@options)).to eq(output)
     end
 
     it 'should return user name with an icon' do
       @options[:icon] = 'mail outline'
-      expect(user.highlighted_name(@options)).to eq("<p><i class=\"icon mail outline\"></i><span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span></p>")
+      output = '<p><i class="icon mail outline"></i><span class="green-text">'
+      output += "#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span></p>"
+      expect(user.highlighted_name(@options)).to eq(output)
     end
   end
 
@@ -38,7 +41,8 @@ RSpec.describe UserDecorator, type: :decorator do
     let(:user) { create(:user).decorate }
 
     it 'should only return decorated name & surname' do
-      expect(user.decorated_name(' ', 'green')).to eq("<span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span>")
+      output = "<span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span>"
+      expect(user.decorated_name(' ', 'green')).to eq(output)
     end
   end
 

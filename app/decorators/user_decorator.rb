@@ -28,7 +28,7 @@ class UserDecorator < Draper::Decorator
     h.capture do
       h.concat h.content_tag :span, object.first_name.upcase, class: "#{color}-text"
       h.concat seperator
-      h.concat  h.content_tag :span, object.last_name, class: 'grey-text'
+      h.concat h.content_tag :span, object.last_name, class: 'grey-text'
     end
   end
 
