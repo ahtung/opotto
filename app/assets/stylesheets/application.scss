@@ -39,19 +39,7 @@
 }
 
 body {
-  // display: flex;
-  // min-height: 100vh;
-  // flex-direction: column;
-
   .main {
-    // flex: 1;
-    // display: flex;
-    // flex-direction: column;
-    //
-    // #a {
-    //   flex: 0.4;
-    // }
-
     &.imaged {
       background: url('https://ununsplash.imgix.net/uploads/141362941583982a7e0fc/abcfbca1?q=75&fm=jpg&s=5266baf09e0e878b72b2e34adf2f54a0') fixed !important;
       background-size: cover !important;
