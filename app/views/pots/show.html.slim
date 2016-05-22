@@ -46,7 +46,7 @@
     span.medium-grey-text= "From "
     span= @pot.owner.decorate.handle
   p= @pot.description
-
+  p= ' '
 .ui.two.column.padded.grid.pot-menu
   .green.column
     = link_to new_pot_contribution_path(@pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
