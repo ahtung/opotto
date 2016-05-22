@@ -80,6 +80,33 @@
   }
 }
 
+.yellow {
+  &.text {
+    color:$yellow;
+  }
+  &.background {
+    background-color:$yellow;
+  }
+}
+
+.red {
+  &.text {
+    color:$red;
+  }
+  &.background {
+    background-color:$red;
+  }
+}
+
+.purple {
+  &.text {
+    color:$purple;
+  }
+  &.background {
+    background-color:$purple;
+  }
+}
+
 .transparent-background {
   background-color:transparent !important;
 }
