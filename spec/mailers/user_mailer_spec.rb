@@ -50,8 +50,8 @@ RSpec.describe UserMailer, type: :mailer do
       UserMailer.invitation_email(@user, @pot).deliver_now
     end
 
-    it 'should have user\'s email in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.decorate.handle}")
+    it 'should have user\'s name in the body' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
     end
 
     after(:each) do
