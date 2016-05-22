@@ -9,7 +9,7 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
 
-    trait :with_pots do
+    trait :with_pot do
       pots { create_list(:pot, 1, :open) }
     end
 

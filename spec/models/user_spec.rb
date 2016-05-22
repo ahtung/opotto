@@ -67,14 +67,14 @@ describe User do
 
     describe 'uncontributed_pots' do
       it 'should return user.pots - user.contributed_pots' do
-        user = create(:user, :with_pots)
+        user = create(:user, :with_pot)
         expect(user.uncontributed_pots).to eq(user.pots - user.contributed_pots)
       end
     end
 
     describe 'iscoverable_pots' do
       it 'should return user.pots - user.contributed_pots' do
-        user = create(:user, :with_pots)
+        user = create(:user, :with_pot)
         expect(user.discoverable_pots).to eq(Pot.visible - user.pots - user.invited_pots)
       end
     end
