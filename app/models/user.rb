@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+  def name
+    [first_name, last_name].join(' ')
+  end
+
   def email_hash
     Digest::MD5.hexdigest(email)
   end
@@ -39,7 +43,8 @@ class User < ActiveRecord::Base
   def self.find_for_google_oauth2(access_token, _ = nil)
     data = access_token.info
     User.where(email: data['email']).first_or_create(
-      name: data['name'],
+      first_name: data['first_name'],
+      last_name: data['last_name'],
       refresh_token: access_token.credentials ? access_token.credentials.refresh_token : nil,
       admin: false
     )
