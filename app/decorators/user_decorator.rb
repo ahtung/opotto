@@ -6,11 +6,11 @@ class UserDecorator < Draper::Decorator
   decorates_association :invited_pots
   decorates_association :pots
 
-  def highlighted_name
+  def highlighted_name(separator)
     h.content_tag :p do
       h.concat h.content_tag :span, object.first_name.upcase, class: 'green-text'
-      h.concat h.content_tag :br
-      h.concat h.content_tag :span, object.last_name, class: 'blue-text'
+      h.concat separator
+      h.concat h.content_tag :span, object.last_name, class: 'grey-text'
     end
   end
 

@@ -9,5 +9,5 @@
       - pot.invitations.each do |invitation|
         .item
           i.mail.outline.icon
-          span.green-text= invitation.user.decorate.handle
+          = invitation.user.decorate.highlighted_name(' ')
         .ui.divider
