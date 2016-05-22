@@ -1,10 +1,13 @@
 .ui.left.inverted.vertical.menu.top.sidebar
   = link_to root_path, class: 'item' do
-    i.icon-wrench
+    i.leaf.icon
     span My Pots
   = link_to new_pot_path, class: 'item' do
-    i.icon-wrench
-    span New Pot
+    i.mail.icon
+    span My invitations
+  = link_to new_pot_path, class: 'item' do
+    i.money.icon
+    span My contributions
   - if user_signed_in?
     .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
   - else
