@@ -1,9 +1,8 @@
+.ui.large.secondary.menu
+  = link_to '#', id: 'show-menu', class: 'header item' do
+    = semantic_icon('sidebar')
+  .right.menu
+    .ui.item.upcase= yield(:nav_title)
+    = yield(:nav_right)
 .ui.vertical.masthead.center.aligned.segment
-  .ui.centered.grid
-    .ui.large.secondary.menu
-      = link_to '#', id: 'show-menu', class: 'item' do
-        = semantic_icon('sidebar')
-      .right.menu
-        .ui.item.upcase= yield(:nav_title)
-        = yield(:nav_right)
   = yield(:masthead)
