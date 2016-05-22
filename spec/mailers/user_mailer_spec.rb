@@ -4,7 +4,7 @@ RSpec.describe UserMailer, type: :mailer do
   describe 'user with name' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      @user = create(:user, :with_name)
+      @user = create(:user)
       @pot = create(:pot, :with_description)
       UserMailer.invitation_email(@user, @pot).deliver_now
     end

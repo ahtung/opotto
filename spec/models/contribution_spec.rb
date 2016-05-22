@@ -93,7 +93,7 @@ RSpec.describe Contribution, type: :model do
       end
 
       it 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_with_name, anonymous: false)
+        contribution = FactoryGirl.create(:contribution, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
     end

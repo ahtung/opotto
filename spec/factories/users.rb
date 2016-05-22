@@ -6,7 +6,9 @@ FactoryGirl.define do
     password { Faker::Number.number(8) }
     admin 'false'
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/avatar.jpg'), 'image/jpg') }
-
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    
     trait :with_pots do
       pots { create_list(:pot, 2, :open) }
     end
@@ -19,11 +21,6 @@ FactoryGirl.define do
       after :create do |instance|
         instance.invitations = create_list(:invitation, 2)
       end
-    end
-
-    trait :with_name do
-      first_name { Faker::Name.first_name }
-      last_name { Faker::Name.last_name }
     end
 
     trait :registered do
