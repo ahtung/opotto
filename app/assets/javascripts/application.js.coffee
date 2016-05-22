@@ -24,8 +24,10 @@ BrowserTZone.setCookie = ->
 
 $ ->
   BrowserTZone.setCookie()
-  $('#show-menu').on 'click', () ->
-    $('.ui.sidebar').sidebar('toggle')
+  $('#show-menu').on 'click', (event) ->
+    event.preventDefault();
+    $('.ui.sidebar')
+      .sidebar('toggle')
 
 $('.message .close').on 'click', () ->
   $(@).closest('.message').transition('fade')
