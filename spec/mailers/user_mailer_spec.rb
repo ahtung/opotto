@@ -51,7 +51,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should have user\'s email in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.email}")
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.decorate.handle}")
     end
 
     after(:each) do
