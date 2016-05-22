@@ -91,6 +91,42 @@
   }
 }
 
+.orange {
+  &.text {
+    color:$orange;
+  }
+  &.background {
+    background-color:$orange;
+  }
+}
+
+.olive {
+  &.text {
+    color:$olive;
+  }
+  &.background {
+    background-color:$olive;
+  }
+}
+
+.violet {
+  &.text {
+    color:$violet;
+  }
+  &.background {
+    background-color:$violet;
+  }
+}
+
+.green {
+  &.text {
+    color:$green;
+  }
+  &.background {
+    background-color:$green;
+  }
+}
+
 .transparent-background {
   background-color:transparent !important;
 }
