@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def show_pots
     @pots = current_user.pots
-    @title = 'My Pots'
+    @title = t('site.navigation.mypots')
   end
 
   def show_invitations

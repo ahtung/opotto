@@ -42,6 +42,8 @@ en:
     motto: Save . Collect . Share
     navigation:
       back: Back
+      mypots: My Pots
+      newpot: New Pot
     sign_in_with_google: Sign in with Google
   user:
     login: Login

@@ -42,6 +42,8 @@ tr:
     motto: Saving . Collecting . Sharing
     navigation:
       back: Geri
+      mypots: Kumbaralarım
+      newpot: Yeni Kumbara
     sign_in_with_google: Google'la giris
   user:
     login: Giriş yap

@@ -1,7 +1,7 @@
 .ui.left.inverted.vertical.menu.top.sidebar
   = link_to root_path, class: 'item' do
     i.leaf.icon
-    span My Pots
+    span = t('site.navigation.mypots')
   = link_to root_path(by: 'invited'), class: 'item' do
     i.mail.icon
     span My invitations
