@@ -56,7 +56,7 @@ RSpec.describe UserDecorator, type: :decorator do
     it 'returns email with icon if user has no name' do
       user = create(:user, first_name: nil, last_name: nil).decorate
       @options[:icon] = 'mail outline'
-      expect(user.handle(false, 'mail outline')).to eq(user.highlighted_email(@options))
+      expect(user.handle(' ', 'mail outline')).to eq(user.highlighted_email(@options))
     end
   end
 end
