@@ -134,6 +134,15 @@
   }
 }
 
+.dark-grey {
+  &.text {
+    color:$dark-grey;
+  }
+  &.background {
+    background-color:$dark-grey !important;
+  }
+}
+
 .transparent-background {
   background-color:transparent !important;
 }
