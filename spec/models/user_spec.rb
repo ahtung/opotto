@@ -12,6 +12,16 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
+    describe 'batch_import_contacts' do
+      it 'should batch import_contacts' do
+        user = create(:user)
+        contact_details = attributes_for(:user)
+        user.batch_import_contacts([contact_details])
+        user.reload
+        expect(user.friends.count).to eq(1)
+      end
+    end
+
     describe 'name?' do
       it 'should return true if user has both name and surname' do
         user = create(:user)
