@@ -14,7 +14,7 @@ FactoryGirl.define do
     end
 
     trait :with_closed_pots do
-      pots { create_list(:pot, 1, :closed) }
+      pots { create_list(:pot, 2, :closed) }
     end
 
     trait :with_invitations do
