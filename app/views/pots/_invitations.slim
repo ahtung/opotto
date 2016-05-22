@@ -1,10 +1,9 @@
 - if pot.invitations.present?
-  .ui.two.column.grid.light-grey
+  .ui.two.column.grid.light-grey.container
     .eight.wide.column
       h3.ui.blue.header Invitations
     .eight.wide.column.right.aligned
       h3.ui.blue.header= pot.invitations.count
-
     .relaxed.vertical.list
       - pot.invitations.each do |invitation|
         .item
