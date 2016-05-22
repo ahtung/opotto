@@ -14,12 +14,12 @@ describe User do
   describe '#' do
     describe 'name?' do
       it 'should return true if user has both name and surname' do
-        user = create(:user, first_name: 'Dunya', last_name: 'Kirkali')
+        user = create(:user)
         expect(user.name?).to eq(true)
       end
 
       it 'should return false if user has no name or surname' do
-        user = create(:user, first_name: nil, last_name: 'Kirkali')
+        user = create(:user, first_name: nil)
         expect(user.name?).to eq(false)
       end
     end
