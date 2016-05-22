@@ -4,6 +4,7 @@ tr:
     new: Yeni katkı
     previous: "Önceki katkılar"
     collected: Toplanan
+    contributions: Katkılarım
   devise:
     omniauth_callbacks:
       success: Basari
@@ -35,6 +36,7 @@ tr:
     total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
     to: Alıcı
+    invitations: Davetlerim
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:

@@ -4,6 +4,7 @@ en:
     new: New contribution
     previous: You're previous contributions
     collected: Collected
+    contributions: My Contributions
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
@@ -35,6 +36,7 @@ en:
     total: Total contribution
     updated: Pot successfully updated!
     to: To
+    invitations: My Invitations
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:

@@ -27,12 +27,12 @@ class UsersController < ApplicationController
 
   def show_invitations
     @pots = current_user.invited_pots
-    @title = 'My Invitations'
+    @title = t('pot.invitations')
   end
 
   def show_contributions
     @pots = current_user.contributed_pots
-    @title = 'My Contributions'
+    @title = t('contribution.contributions')
   end
 
   def set_user

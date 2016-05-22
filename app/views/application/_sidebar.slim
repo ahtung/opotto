@@ -4,10 +4,10 @@
     span = t('site.navigation.mypots')
   = link_to root_path(by: 'invited'), class: 'item' do
     i.mail.icon
-    span My invitations
+    span = t('pot.invitations')
   = link_to root_path(by: 'contributed'), class: 'item' do
     i.money.icon
-    span My contributions
+    span = t('contribution.contributions')
   - if user_signed_in?
     .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
   - else
