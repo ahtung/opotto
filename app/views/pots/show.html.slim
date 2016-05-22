@@ -17,10 +17,11 @@
 
 .ui.vertical.stripe.segment
   .ui.two.column.grid
-    .six.wide.column
-      h3.ui.upcase.center.aligned.header
-        span.grey.text End date
+    .eight.wide.column
       .ui.two.column.grid
+        .sixteen.wide.column
+          h3.ui.upcase.center.aligned.header
+            span.grey.text End date
         .eight.wide.column
           ui.sizer.vertical.segment style='font-size: 25px;'
             h3.ui.huge.center.aligned.header
@@ -30,23 +31,25 @@
           br
           span.grey.text= pot.end_at.strftime('%Y')
     .ui.vertical.divider
-    .ten.wide.column
+    .eight.wide.column
       .ui.two.column.grid
-        .four.wide.column
-        .twelve.wide.column
+        .six.wide.column
+        .ten.wide.column
           h3.ui.upcase.left.aligned.header
             span.grey.text To
-        .four.wide.center.aligned.column
+        .six.wide.center.aligned.column
           = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
-        .twelve.wide.column
+        .ten.wide.column
           = pot.receiver.decorate.handle(tag(:br), false, pot.category_color)
 
-.ui.text.container
-  p.upcase
-    span.grey.text= "From "
-    span= pot.owner.decorate.handle(' ', false, pot.category_color)
-  p= pot.description
-  p= ' '
+.ui.attached.segment
+  .ui.text.container
+    p.upcase
+      span.grey.text= "From "
+      span= pot.owner.decorate.handle(' ', false, pot.category_color)
+    p= pot.description
+    p= ' '
+
 .ui.two.column.padded.grid.pot-menu
   #contribute-button.column class=pot.category_color
     = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
