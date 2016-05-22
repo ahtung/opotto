@@ -12,6 +12,7 @@ module Users
 
     private
 
+    # TODO Improve below
     def update_user
       if request.env['omniauth.auth'].credentials
         @user.update_attribute(:refresh_token, request.env['omniauth.auth'].credentials.refresh_token)
