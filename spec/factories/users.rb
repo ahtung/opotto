@@ -9,8 +9,10 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
 
-    trait :with_pot do
-      pots { create_list(:pot, 1, :open) }
+    trait :with_pots do
+      after :create do |instance|
+        instance.pots = create_list(:pot, 2, :open, owner: instance)
+      end
     end
 
     trait :with_closed_pots do
@@ -29,7 +31,7 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 2, amount: Faker::Commerce.price)
+        instance.contributions = create_list(:contribution, 2, amount: Faker::Commerce.price, user: instance)
       end
     end
 
