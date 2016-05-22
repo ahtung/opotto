@@ -15,22 +15,14 @@ module Categorizable
 
   def category_color
     case category
-    when 'home'
-      'red'
-    when 'student'
-      'orange'
-    when 'gift'
-      'yellow'
-    when 'plane'
-      'olive'
-    when 'diamond'
-      'green'
-    when 'truck'
-      'teal'
-    when 'trophy'
-      'blue'
-    when 'heart'
-      'violet'
+    when 'home' then 'red'
+    when 'student' then 'orange'
+    when 'gift' then 'yellow'
+    when 'plane' then 'olive'
+    when 'diamond' then 'green'
+    when 'truck' then 'teal'
+    when 'trophy' then 'blue'
+    when 'heart' then 'violet'
     end
   end
 end
