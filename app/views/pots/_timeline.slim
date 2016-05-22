@@ -1,0 +1,20 @@
+- if pots.present?
+  .ui.one.column.grid
+    .row
+      .ten.wide.column
+        = 'From'
+      .six.wide.column
+        = 'Collected'
+    .row
+      - pots.each do |pot|
+        .two.wide.center.aligned.column
+          = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
+        .two.wide.center.aligned.column
+          = pot.category_icon
+        .five.wide.column
+          = pot.category
+        .five.wide.column.green-text
+          = pot.humanized_total_contribution
+        .two.wide.column
+          = '>'
+          

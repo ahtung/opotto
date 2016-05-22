@@ -8,6 +8,10 @@ class PotDecorator < Draper::Decorator
     end
   end
 
+  def humanized_total_contribution
+    h.humanized_money_with_symbol(object.total_contribution)
+  end
+
   def status_color
     return 'yellow' if object.open?
     return 'green' if object.closed?
