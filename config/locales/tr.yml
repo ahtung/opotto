@@ -37,6 +37,8 @@ tr:
     updated: Kumbara bilgileri başarıyla güncellendi.
     to: Alıcı
     invitations: Davetlerim
+    from: Gönderen
+    end_date: Bitiş Tarihi
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:

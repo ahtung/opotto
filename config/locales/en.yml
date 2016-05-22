@@ -37,6 +37,7 @@ en:
     updated: Pot successfully updated!
     to: To
     invitations: My Invitations
+    from: From
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:

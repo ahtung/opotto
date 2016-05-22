@@ -21,7 +21,7 @@
       .ui.two.column.grid
         .sixteen.wide.column
           h3.ui.upcase.center.aligned.header
-            span.grey.text End date
+            span.grey.text = t('pot.end_date')
         .eight.wide.column
           ui.sizer.vertical.segment style='font-size: 25px;'
             h3.ui.huge.center.aligned.header
@@ -36,7 +36,7 @@
         .six.wide.column
         .ten.wide.column
           h3.ui.upcase.left.aligned.header
-            span.grey.text To
+            span.grey.text = t('pot.to')
         .six.wide.center.aligned.column
           = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
         .ten.wide.column
@@ -44,7 +44,7 @@
 
 .ui.attached.segment
   .ui.text.container
-    span.upcase.grey.text= "From "
+    span.upcase.grey.text= t('pot.from')
     = pot.owner.decorate.handle(' ', false, pot.category_color)
     p= pot.description
     p= ' '
