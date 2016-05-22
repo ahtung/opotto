@@ -3,6 +3,7 @@ en:
   contribution:
     new: New contribution
     previous: You're previous contributions
+    collected: Collected
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
@@ -33,6 +34,7 @@ en:
     save: Save
     total: Total contribution
     updated: Pot successfully updated!
+    to: To
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:

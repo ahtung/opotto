@@ -3,6 +3,7 @@ tr:
   contribution:
     new: Yeni katkı
     previous: "Önceki katkılar"
+    collected: Toplanan
   devise:
     omniauth_callbacks:
       success: Basari
@@ -33,6 +34,7 @@ tr:
     save: Kaydet
     total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
+    to: Alıcı
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
