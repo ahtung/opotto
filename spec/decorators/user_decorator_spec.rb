@@ -12,6 +12,26 @@ RSpec.describe UserDecorator, type: :decorator do
   describe 'highlighted_name' do
   end
 
+  describe 'put_icon' do
+    let(:user) { create(:user).decorate }
+
+    it 'should return an icon if it is set' do
+      expect(user.put_icon('mail outline')).to eq('<i class="icon mail outline"></i>')
+    end
+
+    it 'should return nothing unless icon is set' do
+      expect(user.put_icon(false)).to eq(nil)
+    end
+  end
+
+  describe 'decorated_name' do
+    let(:user) { create(:user).decorate }
+
+    it 'should only return decorated name & surname' do
+      expect(user.decorated_name(' ', 'green')).to eq("<span class=\"green-text\">#{user.first_name.upcase}</span> <span class=\"grey-text\">#{user.last_name}</span>")
+    end
+  end
+
   describe 'highlighted_email' do
     let(:user) { create(:user).decorate }
 
