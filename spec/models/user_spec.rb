@@ -12,6 +12,18 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
+    describe 'name?' do
+      it 'should return true if user has both name and surname' do
+        user = create(:user, first_name: 'Dunya', last_name: 'Kirkali')
+        expect(user.name?).to eq(true)
+      end
+
+      it 'should return false if user has no name or surname' do
+        user = create(:user, first_name: nil, last_name: 'Kirkali')
+        expect(user.name?).to eq(false)
+      end
+    end
+
     describe 'access_token' do
       let(:user) { create(:user) }
 
