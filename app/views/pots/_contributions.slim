@@ -1,12 +1,11 @@
 .ui.attached.segment
-  .relaxed.list
+  .ui.relaxed.divided.vertical.list
     - pot.contributions.with_state(:scheduled, :completed).each do |contribution|
       .item
-        .ui.divider
         .ui.two.column.grid
-          .four.wide.column
+          .three.wide.column
             = image_tag contribution.user.avatar.url(:thumb), class: 'ui avatar image'
-          .eight.wide.column
+          .nine.wide.column
             = contribution.user.decorate.handle(' ', false, pot.category_color)
           .four.wide.column
             span.grey.text

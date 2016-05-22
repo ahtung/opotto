@@ -8,7 +8,7 @@
 
 - content_for :masthead do
   .ui.grid.center.aligned.light-grey
-    .sixteen.wide.column
+    .sixteen.wide.column.grey
       = pot.category_icon
       h1.ui.header
         span.upcase.blue.text= pot.category.capitalize
@@ -44,9 +44,8 @@
 
 .ui.attached.segment
   .ui.text.container
-    p.upcase
-      span.grey.text= "From "
-      span= pot.owner.decorate.handle(' ', false, pot.category_color)
+    span.upcase.grey.text= "From "
+    = pot.owner.decorate.handle(' ', false, pot.category_color)
     p= pot.description
     p= ' '
 
