@@ -8,13 +8,13 @@ FactoryGirl.define do
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/avatar.jpg'), 'image/jpg') }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    
+
     trait :with_pots do
-      pots { create_list(:pot, 2, :open) }
+      pots { create_list(:pot, 1, :open) }
     end
 
     trait :with_closed_pots do
-      pots { create_list(:pot, 2, :closed) }
+      pots { create_list(:pot, 1, :closed) }
     end
 
     trait :with_invitations do
