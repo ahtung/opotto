@@ -1,3 +1,4 @@
+# app/models/concerns/categorizable.rb
 module Categorizable
   extend ActiveSupport::Concern
 
