@@ -23,4 +23,8 @@ module ApplicationHelper
     uri.query_values = { left: 20, top: 20, width: 500, height: 500, toolbar: 1 }
     "window.open(this.href, 'social', '#{uri.query.tr('&', ',')}');return false;"
   end
+
+  def mobile?
+    browser.device.mobile?
+  end
 end
