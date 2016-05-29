@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   # Pots
-  resources :pots, except: [:index, :destroy] do
+  resources :pots, except: :index do
     member do
       get 'report'
     end

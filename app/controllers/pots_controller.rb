@@ -46,6 +46,11 @@ class PotsController < ApplicationController
     end
   end
 
+  def destroy
+    @pot.destroy
+    redirect_to root_path, notice: 'Pot was successfully destroyed.'
+  end
+
   private
 
   # authorize_pot
