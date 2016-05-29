@@ -50,6 +50,7 @@ gem 'draper', '~> 2.1.0'
 gem 'semantic-ui-sass', github: 'ahtung/semantic-ui-sass'
 gem 'nav_lynx'
 gem 'browser', '~> 2.1.0'
+gem 'compass-rails', github: 'Compass/compass-rails'
 
 group :production do
   gem 'rails_12factor'

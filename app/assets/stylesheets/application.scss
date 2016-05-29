@@ -19,9 +19,9 @@
 @import 'settings/colors';
 @import 'settings/global';
 @import 'semantic-ui/globals/site';
-
 // Tools
 @import 'tools/mixins';
+@import 'compass';
 // Generic
 @import 'opotto';
 @import 'semantic-ui/elements/all';
@@ -50,14 +50,10 @@ body {
 .curly {
   &.top {
     &.left {
-      border-radius: 20px 0px 0px 0px;
-      -moz-border-radius: 20px 0px 0px 0px;
-      -webkit-border-radius: 20px 0px 0px 0px;
+      @include border-radius(20px 0px 0px 0px);
     }
     &.right {
-      border-radius: 0px 20px 0px 0px;
-      -moz-border-radius: 0px 20px 0px 0px;
-      -webkit-border-radius: 0px 20px 0px 0px;
+      @include border-radius(0px 20px 0px 0px);
     }
   }
 }
