@@ -17,8 +17,11 @@
                 = link_to pot_path(pot), class: 'medium-grey text' do
                   = pot.category_icon('big')
                   = pot.category
-            .six.wide.column
+            .four.wide.column
               .ui.medium.header
                 = link_to pot_path(pot), class: 'green text' do
                   = pot.humanized_total_contribution
+            .ui.two.wide.column.sizer style='font-size: 21px;'
+              .ui.large.header.left-aligned
+                = link_to semantic_icon('angle right'), pot_path(pot), class: 'grey text'
 
