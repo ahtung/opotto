@@ -23,7 +23,8 @@ class PotsController < ApplicationController
   # GET /pots/1/report
   def report
     @abuse = @pot.reported_abuses.create
-    redirect_to @pot, notice: t('pot.reported')
+    flash[:success] = t('pot.reported')
+    redirect_to @pot
   end
 
   # POST /pots
