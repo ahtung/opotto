@@ -1,5 +1,6 @@
 ---
 en:
+  welcome: Welcome
   contribution:
     new: New contribution
     previous: You're previous contributions
@@ -29,7 +30,7 @@ en:
     edit: Edit
     guest: Guests
     guests: Guests
-    new: New POt
+    new: New Pot
     owned_by: By %{email}
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.

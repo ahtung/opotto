@@ -1,5 +1,6 @@
 ---
 tr:
+  welcome: Selam
   contribution:
     new: Yeni katkı
     previous: "Önceki katkılar"
