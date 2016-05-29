@@ -22,4 +22,3 @@ javascript:
 - contribution.errors.each do |key, value|
   javascript:
     $("#contribution_#{ key }").after('<div class="ui pointing red basic label">#{ value }</div>');
-    $(".ui.pointing.red.basic.label").delay(3000).queue(function() { $(this).remove(); });
