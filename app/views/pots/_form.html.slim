@@ -9,17 +9,17 @@
   .ui.attached.segment
     .field
       .ui.medium.header.grey.text.upcase
-        = f.label :guest_ids, 'Who Do You Invite to contribute to this pot?'
+        = f.label :guest_ids, 'Who Do You Invite to contribute to this pot?', class: 'grey text'
       = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default light-grey background', style: "width: 100%"
     .field
-      = f.label :end_at
+      = f.label :end_at, 'END DATE', class: 'grey text'
       .ui.calendar
         .ui.input.left.icon
           i.calendar.icon
           = f.text_field :end_at, class: 'light-grey background white text', placeholder: '16-09-2016'
 
     .field
-      = f.label :upper_bound, 'MAX TO GIVE'
+      = f.label :upper_bound, 'MAX TO GIVE', class: 'grey text'
       = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.pot.optional'), value: pot.upper_bound ? pot.upper_bound.to_f : '', class: 'light-grey background white text'
     .field
       .ui.toggle.checkbox
