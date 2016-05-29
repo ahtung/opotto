@@ -6,7 +6,7 @@
         span.green.text Choose
         .menu
           - opotto_icons.each do |icon, color|
-            .item
+            .item data-value="#{Pot::CATEGORIES.index(icon)}"
               i.item.icon.large class="#{icon} #{color}"
               = icon
     .field
