@@ -3,6 +3,9 @@ en:
   contribution:
     new: New contribution
     previous: You're previous contributions
+    collected: Collected
+    contributions: My Contributions
+    total: Total money collected
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
@@ -26,22 +29,27 @@ en:
     edit: Edit
     guest: Guests
     guests: Guests
-    new: New
+    new: New POt
     owned_by: By %{email}
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
     save: Save
-    total: Total contribution
     updated: Pot successfully updated!
+    to: To
+    invitations: My Invitations
+    from: From
+    end_date: End Date
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:
-    copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
+    copyright: "© %{year} Ahtung Tech. Ltd. All rights reserved."
     hello: Opotto
     introduction: opotto is a beautiful way of giving a present to your friends
     motto: Save . Collect . Share
     navigation:
       back: Back
+      mypots: My Pots
+      newpot: New Pot
     sign_in_with_google: Sign in with Google
   user:
     login: Login

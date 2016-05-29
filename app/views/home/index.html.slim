@@ -1,9 +1,12 @@
 - content_for :main_class do
-  | image
+  | imaged
+
+- content_for :nav_title do
+  = 'Opotto'
   
-.row.middle.aligned
+.row.middle.aligned.main.imaged
   .ui.one.column.center.aligned.grid
-    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white-background
+    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background
       .ui.image= image_tag 'opotto.png', size: '60x120'
       h1.upcase= t('site.hello')
       h2= t('site.motto')

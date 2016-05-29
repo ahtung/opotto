@@ -1,2 +1,37 @@
-h2= t('contribution.new')
-== render 'form', { pot: @pot, contribution: @contribution }
+- content_for :nav_title do
+  = 'New contribution'
+
+- content_for :masthead do
+  = render partial: 'pots/masthead', locals: { pot: pot }
+
+.ui.attached.segment.main
+  h2= t('contribution.new')
+
+  = form_for [pot, @contribution], html: { class: 'ui form' } do |f|
+
+    .field
+      .ui.right.labeled.input
+        .ui.label $
+        = f.number_field :amount, step: 'any', placeholder: '999'
+        .ui.basic.label .00
+      
+    .field
+      .ui.inverted.checkbox
+        = f.check_box :anonymous
+        = f.label :anonymous
+
+    .field
+      = f.hidden_field :pot_id, value: pot.id
+
+    .field
+      .ui.buttons style='width:100%;'
+        = link_to t('site.navigation.back'), pot, class: 'ui button'
+        .or
+        = f.submit t('pot.save'), class: 'ui button primary'
+
+javascript:
+  $('.ui.checkbox').checkbox();
+
+- @contribution.errors.each do |key, value|
+  javascript:
+    $("#contribution_#{ key }").after('<div class="ui pointing red basic label">#{ value }</div>');

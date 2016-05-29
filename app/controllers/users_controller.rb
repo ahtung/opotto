@@ -5,11 +5,36 @@ class UsersController < ApplicationController
   before_action :authorize_user
   after_action :verify_authorized
 
+  decorates_assigned :pots
+  decorates_assigned :user
+
   # GET /:id
   def show
+    if params[:by] == 'invited'
+      show_invitations
+    elsif params[:by] == 'contributed'
+      show_contributions
+    else
+      show_pots
+    end
   end
 
   private
+
+  def show_pots
+    @pots = current_user.pots
+    @title = t('site.navigation.mypots')
+  end
+
+  def show_invitations
+    @pots = current_user.invited_pots
+    @title = t('pot.invitations')
+  end
+
+  def show_contributions
+    @pots = current_user.contributed_pots
+    @title = t('contribution.contributions')
+  end
 
   def set_user
     @user = current_user.decorate

@@ -19,6 +19,25 @@ module ApplicationHelper
   end
 
   def social_window
-    'window.open(this.href, "social", "left=20,top=20,width=500,height=500,toolbar=1");return false;'
+    uri = Addressable::URI.new
+    uri.query_values = { left: 20, top: 20, width: 500, height: 500, toolbar: 1 }
+    "window.open(this.href, 'social', '#{uri.query.tr('&', ',')}');return false;"
+  end
+
+  def mobile?
+    browser.device.mobile?
+  end
+
+  def opotto_icons
+    {
+      home: 'red',
+      student: 'orange',
+      gift: 'yellow',
+      plane: 'olive',
+      diamond: 'green',
+      truck: 'teal',
+      trophy: 'blue',
+      empty_heart: 'violet'
+    }
   end
 end

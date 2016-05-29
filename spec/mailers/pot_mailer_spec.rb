@@ -22,7 +22,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.name)
     end
 
     it 'renders the sender email' do
@@ -65,7 +65,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.name)
     end
 
     it 'renders the sender email' do
@@ -112,7 +112,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.description)
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(contribution.pot.name)
     end
 
     it 'renders the sender email' do

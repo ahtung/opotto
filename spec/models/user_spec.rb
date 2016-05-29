@@ -12,6 +12,28 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
 
   describe '#' do
+    describe 'batch_import_contacts' do
+      it 'should batch import_contacts' do
+        user = create(:user)
+        contact_details = attributes_for(:user)
+        user.batch_import_contacts([contact_details])
+        user.reload
+        expect(user.friends.count).to eq(1)
+      end
+    end
+
+    describe 'name?' do
+      it 'should return true if user has both name and surname' do
+        user = create(:user)
+        expect(user.name?).to eq(true)
+      end
+
+      it 'should return false if user has no name or surname' do
+        user = create(:user, first_name: nil)
+        expect(user.name?).to eq(false)
+      end
+    end
+
     describe 'access_token' do
       let(:user) { create(:user) }
 
@@ -50,18 +72,6 @@ describe User do
         user = create(:user, paypal_country: nil)
         user.check_paypal
         expect(user.paypal_country).not_to eq(nil)
-      end
-    end
-
-    describe 'handle' do
-      it 'returns name if user has name' do
-        user = create(:user, name: 'DUN')
-        expect(user.handle).to eq(user.name)
-      end
-
-      it 'returns email if user has no name' do
-        user = create(:user)
-        expect(user.handle).to eq(user.email)
       end
     end
 
@@ -110,7 +120,9 @@ describe User do
     describe 'find_for_google_oauth2' do
       it 'should create a new user if does not exist' do
         user = build(:user)
-        expect { User.find_for_google_oauth2(omniauth_hash(user.email), nil) }.to change { User.count }.by(1)
+        expect do
+          User.find_for_google_oauth2(omniauth_hash(user.email), nil)
+        end.to change { User.count }.by(1)
       end
 
       it 'should return user if exists' do

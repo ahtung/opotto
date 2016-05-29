@@ -10,59 +10,11 @@
 }
 
 .upcase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .downcase {
   text-transformation: uppercase;
-}
-
-.blue-text{
-  color:$blue;
-}
-
-.blue-background{
-  background-color:$blue;
-}
-
-.yellow-text{
-  color:$yellow;
-}
-
-.purple-text{
-  color:$purple;
-}
-
-.green-text{
-  color:$green;
-}
-
-.red-text{
-  color:$red;
-}
-
-.grey-light{
-  background-color:$grey-light;
-}
-
-.grey-light-text{
-  color:$grey-light;
-}
-
-.color-brand{
-  background-color:$color-brand;
-}
-
-.color-brand-text{
-  color:$color-brand;
-}
-
-.white-text {
-  color:$white;
-}
-
-.white-background {
-  background-color:$white;
 }
 
 .teal {
@@ -83,6 +35,115 @@
   }
 }
 
-.transparent-background {
-  background-color:transparent !important;
+.orange {
+  &.text {
+    color:$orange;
+  }
+  &.background {
+    background-color:$orange;
+  }
+}
+
+.olive {
+  &.text {
+    color:$olive;
+  }
+  &.background {
+    background-color:$olive;
+  }
+}
+
+.violet {
+  &.text {
+    color:$violet;
+  }
+  &.background {
+    background-color:$violet;
+  }
+}
+
+.green {
+  &.text {
+    color:$green;
+  }
+  &.background {
+    background-color:$green;
+  }
+}
+
+.white {
+  &.text {
+    color:$white;
+  }
+  &.background {
+    background-color:$white;
+  }
+}
+
+.yellow {
+  &.text {
+    color:$yellow;
+  }
+  &.background {
+    background-color:$yellow;
+  }
+}
+
+.red {
+  &.text {
+    color:$red;
+  }
+  &.background {
+    background-color:$red;
+  }
+}
+
+.purple {
+  &.text {
+    color:$purple;
+  }
+  &.background {
+    background-color:$purple;
+  }
+}
+
+.grey {
+  &.text {
+    color:$grey;
+  }
+  &.background {
+    background-color:$grey !important;
+  }
+}
+
+.light-grey {
+  &.text {
+    color:$light-grey;
+  }
+  &.background {
+    background-color:$light-grey !important;
+  }
+}
+
+.medium-grey {
+  &.text {
+    color:$medium-grey;
+  }
+  &.background {
+    background-color:$medium-grey !important;
+  }
+}
+
+.dark-grey {
+  &.text {
+    color:$dark-grey;
+  }
+  &.background {
+    background-color:$dark-grey !important;
+  }
+}
+
+.clickable{
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(52, 74, 95, 0.3);
 }

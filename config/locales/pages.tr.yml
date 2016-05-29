@@ -5,7 +5,13 @@ tr:
     about:
       title: Hakkimizda
       description: opotto makes crowd-gifting fun
-      content: opotto nedir?
+      content_1_html: |
+        <p>Opotto is a web services that helps communities support each other by transferring a crowdfunded amount of money on a given date to a recipients PayPal account. It's meant to be used as a form of gifting a present.</p>
+        <p>The name Opotto is inspired by the idea of a money collecting jar / pot (Actually Opotto literally means 'Jar' in Japanese) where an initiator assigns a jar for a certain cause and collects money from other people so that the jar can be given to the recipient on a certain occasion.</p>
+      content_2_html: |
+        <p>Furthermore, Opotto could be used for saving money (by having yourself as the recipient), getting someone a birthday or a wedding gift, donating to charity or supporting a relative through though times.</p>
+      content_3_html: |
+        <p>At Opotto, we want to help our customers understand that with Opotto, they are safe. Opotto strives or security and simplicity.</p>
     security:
       title: Guvenlik
       description: secure ssl oauth2

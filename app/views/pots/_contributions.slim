@@ -1,0 +1,13 @@
+- if pot.contributions.present?
+  .ui.attached.segment
+    .ui.relaxed.divided.vertical.list
+      - pot.contributions.with_state(:scheduled, :completed).each do |contribution|
+        .item
+          .ui.two.column.grid
+            .three.wide.column
+              = image_tag contribution.user.avatar.url(:thumb), class: 'ui avatar image'
+            .nine.wide.column
+              = contribution.user.decorate.handle(' ', false, pot.category_color, 'grey')
+            .four.wide.column
+              span.grey.text
+                = humanized_money_with_symbol(contribution.amount)

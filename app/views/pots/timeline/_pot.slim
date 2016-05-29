@@ -1,0 +1,20 @@
+- if pot_counter != 0
+  .ui.divider style='margin:0;border-bottom:0;width:100%'
+.sixteen.wide.column
+  .ui.grid.middle.aligned class=(mobile? ? 'clickable' : '') data-link=(mobile? ?  pot_path(pot) : '')
+    .three.wide.center.aligned.column style='padding-right:0;'
+      = link_to pot_path(pot), class: 'ui circular image' do
+        = image_tag pot.receiver.avatar.url(:thumb)
+    .two.wide.column
+      = link_to pot_path(pot) do
+        = pot.category_icon('big')
+    .five.wide.column
+      .ui.medium.header style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:#94A4A5 !important;"
+        span.medium-grey.text= pot.name
+    .three.wide.column
+      .ui.medium.header
+        = link_to pot.humanized_total_contribution, pot_path(pot), class: "#{pot.category_color} text"
+    .three.wide.center.aligned.column
+      .ui.huge.header
+        = link_to pot_path(pot), class: 'medium-grey text' do
+          = semantic_icon('angle right grey text')

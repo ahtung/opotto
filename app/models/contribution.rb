@@ -71,7 +71,7 @@ class Contribution < ActiveRecord::Base
     if anonymous? || user.nil?
       'N/A'
     else
-      user.handle
+      user.name
     end
   end
 
@@ -85,6 +85,6 @@ class Contribution < ActiveRecord::Base
   end
 
   def minimum_amount
-    errors.add(:amount_cents, :amount_less_than_minimum) if amount_cents < 100
+    errors.add(:amount, :amount_less_than_minimum) if amount_cents < 100
   end
 end

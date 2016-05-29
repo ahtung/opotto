@@ -8,14 +8,19 @@ html lang='en'
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
     = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
     = csrf_meta_tag
     = render 'favicon'
-  body
-    header
-      = render 'navigation'
-    main class=(yield(:main_class))
-      = render 'notices', flash: flash
+  body.pushable
+    = render 'sidebar'
+    .pusher
+      .ui.centered.grid
+        .tablet.computer.only.row
+          = render partial: 'application/navigation/desktop'
+        .mobile.only.row
+          = render partial: 'application/navigation/mobile'
+      - if content_for?(:masthead)
+        .ui.vertical.masthead.center.aligned.segment.inverted.light-grey.background
+          = yield(:masthead)
       = yield
-    footer
       = render 'footer'
-    = javascript_include_tag 'application'

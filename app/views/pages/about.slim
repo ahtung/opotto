@@ -1,4 +1,18 @@
-.ui.container
-  = content_for :title, "opotto - #{ t('pages.about.title') }"
-  h2= t('pages.about.title')
-  = t('pages.about.content')
+= content_for :title, "opotto - #{ t('pages.about.title') }"
+
+.ui.vertical.stripe.intro.segment.main
+  .ui.stackable.very.relaxed.center.aligned.grid.container
+    .row
+      .twelve.wide.column
+        = image_tag 'devices.png', class: "ui fluid image"
+        h1.ui.header= t('pages.about.title')
+        p Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.
+  .ui.stackable.very.relaxed.grid.container
+    .row
+      = t('pages.about.content_1_html')
+    .ui.divider
+    .row
+      = t('pages.about.content_2_html')
+    .ui.divider
+    .row
+      = t('pages.about.content_3_html')

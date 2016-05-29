@@ -3,13 +3,15 @@ FactoryGirl.define do
     name { Faker::Name.name }
     end_at { 10.days.from_now }
     visible true
+    description { Faker::Lorem.paragraph(2) }
+    category { Pot::CATEGORIES.sample }
     association :owner, factory: :user
     association :receiver, factory: :user
 
     trait :with_contributions do
       after :create do |instance|
         2.times do
-          instance.contributions << create(:contribution, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
+          instance.contributions << create(:contribution, :completed, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
         end
       end
     end

@@ -11,4 +11,8 @@ SitemapGenerator::Sitemap.create do
   add '/pages/about', changefreq: 'daily', priority: 0.9
   add '/pages/contact', changefreq: 'daily', priority: 0.9
   add '/pages/security', changefreq: 'daily', priority: 0.9
+  add '/pages/rules', changefreq: 'daily', priority: 0.9
+
+  # Pots
+  # TODO: (dunyakirkali) implement
 end

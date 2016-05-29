@@ -3,6 +3,9 @@ tr:
   contribution:
     new: Yeni katkı
     previous: "Önceki katkılar"
+    collected: Toplanan
+    contributions: Katkılarım
+    total: Toplanan miktar
   devise:
     omniauth_callbacks:
       success: Basari
@@ -26,22 +29,27 @@ tr:
     edit: Düzenle
     guest: Davetli
     guests: Davetliler
-    new: Basla
+    new: Yeni Kumbara
     owned_by: "%{email} tarafından"
     receiver: Alıcı
     reported: Bizi ayik tuttugunuz icin tesekkur ederiz. Bir an evvel arastirmaya basliyacagiz.
     save: Kaydet
-    total: Toplam katkı
     updated: Kumbara bilgileri başarıyla güncellendi.
+    to: Alıcı
+    invitations: Davetlerim
+    from: Gönderen
+    end_date: Bitiş Tarihi
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: "© 2015‐%{year} DKDH, Ltd. Sti. Tum haklari saklidir."
+    copyright: "© %{year} Ahtung Teknoloji Ltd. Sti. Tum haklari saklidir."
     hello: Merhaba
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
     motto: Saving . Collecting . Sharing
     navigation:
       back: Geri
+      mypots: Kumbaralarım
+      newpot: Yeni Kumbara
     sign_in_with_google: Google'la giris
   user:
     login: Giriş yap
