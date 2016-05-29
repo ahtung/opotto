@@ -8,7 +8,7 @@
         = t('contribution.collected')
     .ui.relaxed.divided.list
       - pots.each do |pot|
-        .item
+        .item.clickable data-link="#{pot_path(pot)}"
           .ui.grid.middle.aligned
             .ten.wide.column
               .ui.medium.header
