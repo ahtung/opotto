@@ -5,4 +5,10 @@
 input.select2-search__field{
   background: $light-grey !important;
   color:$medium-grey !important;
+  border:0 !important;
+}
+
+ul.select2-selection__rendered{
+  background: $light-grey !important;
+  padding:0 !important;
 }
