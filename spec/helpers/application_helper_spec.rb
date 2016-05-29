@@ -57,7 +57,7 @@ RSpec.describe ApplicationHelper, type: :helper do
         diamond: 'green',
         truck: 'teal',
         trophy: 'blue',
-        'empty heart': 'violet'
+        empty_heart: 'violet'
       }
       expect(helper.opotto_icons).to eq(icons)
     end

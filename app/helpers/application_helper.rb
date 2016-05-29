@@ -29,14 +29,15 @@ module ApplicationHelper
   end
 
   def opotto_icons
-    { home: 'red',
+    {
+      home: 'red',
       student: 'orange',
       gift: 'yellow',
       plane: 'olive',
       diamond: 'green',
       truck: 'teal',
       trophy: 'blue',
-      'empty heart': 'violet'
+      empty_heart: 'violet'
     }
   end
 end
