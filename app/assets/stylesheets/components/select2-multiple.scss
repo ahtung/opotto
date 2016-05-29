@@ -1,3 +1,8 @@
 .select2-selection--multiple{
   border:none !important;
 }
+
+input.select2-search__field{
+  background: $light-grey !important;
+  color:$medium-grey !important;
+}
