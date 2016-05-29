@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ahtung/semantic-ui-sass.git
-  revision: 6aaf53c2b2c395b2ade332fbce7e19893c71cd2e
+  revision: 8441c46c0509a0303cfffbc84e4300ff4814fe63
   specs:
     semantic-ui-sass (2.1.8.0)
       sass (>= 3.2)

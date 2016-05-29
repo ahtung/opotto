@@ -41,14 +41,14 @@
         .six.wide.center.aligned.column
           = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
         .ten.wide.column
-          = pot.receiver.decorate.handle(tag(:br), false, pot.category_color)
+          = pot.receiver.decorate.handle(tag(:br), false, pot.category_color, 'grey')
 
 .ui.divider
 
 .ui.attached.segment
   .ui.text.container
     span.upcase.grey.text= t('pot.from')
-    = pot.owner.decorate.handle(' ', false, pot.category_color)
+    = pot.owner.decorate.handle(' ', false, pot.category_color, 'blue')
     p= pot.description
     p= ' '
 
