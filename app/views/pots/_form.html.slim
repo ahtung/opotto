@@ -20,7 +20,11 @@
 
     .field
       = f.label :upper_bound, 'MAX TO GIVE', class: 'grey text'
-      = f.number_field :upper_bound, step: 'any', placeholder: t('helpers.label.pot.optional'), value: pot.upper_bound ? pot.upper_bound.to_f : '', class: 'light-grey background white text'
+      .ui.right.labeled.input
+        .ui.label $
+        = f.number_field :upper_bound, step: 'any', placeholder: '1000', value: pot.upper_bound ? pot.upper_bound.to_f : '', class: 'light-grey background white text'
+        .ui.basic.label .00
+
     .field
       .ui.toggle.checkbox
         = f.check_box :visible, class: 'hidden'
