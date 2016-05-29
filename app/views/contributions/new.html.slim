@@ -1,3 +1,6 @@
+- content_for :nav_title do
+  = 'New contribution'
+
 .ui.attached.segment.main
   h2= t('contribution.new')
   == render 'form', { pot: pot, contribution: @contribution }

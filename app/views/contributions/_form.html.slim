@@ -3,7 +3,11 @@
 
 = form_for [pot, contribution], html: { class: 'ui form' } do |f|
   .field
-    = f.number_field :amount, step: 'any', placeholder: '99,99'
+    .ui.right.labeled.input
+      .ui.label $
+      = f.number_field :amount, step: 'any', placeholder: '999'
+      .ui.basic.label .00
+    
   .field
     .ui.inverted.checkbox
       = f.check_box :anonymous
