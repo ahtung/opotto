@@ -1,26 +1,28 @@
-= form_for [pot, contribution], html: { class: 'col s12' } do |f|
+- content_for :masthead do
+  = render partial: 'pots/masthead', locals: { pot: pot }
+
+= form_for [pot, contribution], html: { class: 'ui form' } do |f|
   - if contribution.errors.any?
     .alert-box data-alert=true class="alert"
       = contribution.errors.full_messages.join(',')
-  .row
-    .input-field.col.s12.m8
-      = f.number_field :amount, step: 'any', placeholder: '99,99'
-      = f.label :amount
-    .input-field.col.s12.m4
+  .field
+    = f.number_field :amount, step: 'any', placeholder: '99,99'
+  .field
+    .ui.inverted.checkbox
       = f.check_box :anonymous
       = f.label :anonymous
-  .row
-    .input-field.col.s12
-      = f.hidden_field :pot_id, value: pot.id
-  .row
-    .col.s12.m6.offset-m6
-      .row
-        .input-field.col.s6
-          = link_to t('site.navigation.back'), root_path, class: 'btn'
-        .input-field.col.s6
-          = f.submit t('pot.save'), class: 'btn'
+  .field
+    = f.hidden_field :pot_id, value: pot.id
+  .field
+    = link_to t('site.navigation.back'), root_path, class: 'ui button'
+  .field
+    = f.submit t('pot.save'), class: 'ui button primary'
+
 .col.s12
   h3 = t('contribution.previous')
   ul.collection
     - current_user.contributions.where(pot: pot).with_state(:scheduled, :completed).each do |contribution|
       li.collection-item= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"
+
+javascript:
+  $('.ui.checkbox').checkbox();
