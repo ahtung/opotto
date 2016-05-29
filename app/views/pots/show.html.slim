@@ -5,7 +5,8 @@
 - content_for :nav_right do
   - if policy(pot).destroy?
     .ui.item
-      = semantic_icon('close red', id: 'delete-pot')
+      = link_to pot_path(pot), method: :delete, data: { confirm: "Are you sure?" } do
+        = semantic_icon('close red', id: 'delete-pot')
 
 - content_for :masthead do
   .ui.grid.center.aligned

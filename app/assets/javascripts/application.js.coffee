@@ -15,6 +15,7 @@
 #= require jquery.transit.min
 #= require jquery.cookie
 #= require jstz
+#= require confirm
 #= require browser_timezone_rails/set_time_zone
 #= require semantic-ui
 
