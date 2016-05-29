@@ -9,9 +9,9 @@ RSpec.describe 'Guest', type: :feature do
       end
     end
 
-    xit "about page" do
+    xit 'about page' do
       visit page_path('about')
-      expect(page).to have_content t("pages.about.content_1_html")
+      expect(page).to have_content t('pages.about.content_1_html')
     end
   end
 end
