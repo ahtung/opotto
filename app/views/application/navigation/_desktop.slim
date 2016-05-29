@@ -9,7 +9,7 @@
                 .ui.image = image_tag 'logo.png'
       .right.menu
         a class="browse item"
-          span Browse
+          span Pots
           i class="dropdown icon"
         div class="ui fluid popup bottom left transition hidden"
           div class="ui one column relaxed equal height divided grid"
@@ -21,6 +21,8 @@
                   span = t('pot.invitations')
                 = link_to root_path(by: 'contributed'), class: 'item' do
                   span = t('contribution.contributions')
+                = link_to new_pot_path, class: 'item' do
+                  span = t('pot.new')
         - %w(about contact security rules).each do |page|
           = nav_link_to page.capitalize, page_path(page), class: 'item'
         - if user_signed_in?
