@@ -35,7 +35,7 @@ class PotPolicy
   # update?
   def update?
     return false if user.nil?
-    return true if pot.persisted?
+    return false if pot.persisted?
     pot.owner == user
   end
 

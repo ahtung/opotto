@@ -130,4 +130,19 @@ RSpec.describe PotsController, type: :controller do
       expect(response).to redirect_to(pot_url(Pot.last))
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:pot) { create(:pot, owner: user) }
+
+    it 'deletes a Pot' do
+      expect do
+        delete :destroy, { id: pot.to_param }, valid_session
+      end.to change(Pot, :count).by(-1)
+    end
+
+    it 'redirects to the root_path' do
+      delete :destroy, { id: pot.to_param }, valid_session
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end
