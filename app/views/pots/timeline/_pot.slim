@@ -1,6 +1,6 @@
 .item
   div class="ui grid middle aligned #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
-    .three.wide.center.aligned.column
+    .three.wide.center.aligned.column style='padding-right:0;'
       = link_to pot_path(pot), class: 'ui circular image' do
         = image_tag pot.receiver.avatar.url(:thumb)
     .two.wide.column
