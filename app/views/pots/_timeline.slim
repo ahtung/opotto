@@ -1,11 +1,10 @@
 - if pots.present?
   .ui.attached.segment.pot-list
     .ui.one.column.grid
-      .ten.wide.column.medium-grey.upcase.text
-        | &nbsp;&nbsp;&nbsp;
+      .two.wide.center.aligned.column.medium-grey.upcase.text
         = t('pot.to')
-      .three.wide.center.aligned.column.medium-grey.upcase.text
+      .nine.wide.column
+      .five.wide.column.medium-grey.upcase.text
         = t('contribution.collected')
-      .three.wide.column
     .ui.relaxed.divided.list
       = render partial: 'pots/timeline/pot', collection: pots

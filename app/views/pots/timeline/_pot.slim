@@ -1,16 +1,18 @@
 .item
   div class="ui grid middle aligned #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
-    .ten.wide.column
-      .ui.medium.header
-        = link_to pot_path(pot), class: 'ui circular image' do
-          = image_tag pot.receiver.avatar.url(:thumb)
-        = link_to pot_path(pot), class: 'medium-grey text' do
-          = pot.category_icon('big')
-          = pot.category
-    .three.wide.center.aligned.column
+    .two.wide.center.aligned.column
+      = link_to pot_path(pot), class: 'ui circular image' do
+        = image_tag pot.receiver.avatar.url(:thumb)
+    .two.wide.column
+      = link_to pot_path(pot) do
+        = pot.category_icon('big')
+    .seven.wide.column
+      .ui.medium.header style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:#94A4A5 !important;"
+        span.medium-grey.text= pot.name
+    .three.wide.column
       .ui.medium.header
         = link_to pot.humanized_total_contribution, pot_path(pot), class: "#{pot.category_color} text"
-    .three.wide.center.aligned.column
+    .one.wide.center.aligned.column
       .ui.huge.header
         = link_to pot_path(pot), class: 'medium-grey text' do
           = semantic_icon('angle right grey text')
