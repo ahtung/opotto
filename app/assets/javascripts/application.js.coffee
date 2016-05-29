@@ -34,5 +34,9 @@ $ ->
   $('.clickable').on 'click', () ->
     window.location = $(@).data('link')
 
+  $( "#pot_receiver_id" ).select2({
+    placeholder: 'Email address of the receiver'
+  })
+
 $('.message .close').on 'click', () ->
   $(@).closest('.message').transition('fade')
