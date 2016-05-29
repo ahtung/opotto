@@ -47,17 +47,18 @@ body {
   }
 }
 
-.pot-menu{
-  #contribute-button {
-    border-radius: 0px 20px 0px 0px;
-    -moz-border-radius: 0px 20px 0px 0px;
-    -webkit-border-radius: 0px 20px 0px 0px;
-  }
-
-  #edit-button {
-    border-radius: 20px 0px 0px 0px;
-    -moz-border-radius: 20px 0px 0px 0px;
-    -webkit-border-radius: 20px 0px 0px 0px;
+.curly {
+  &.top {
+    &.left {
+      border-radius: 20px 0px 0px 0px;
+      -moz-border-radius: 20px 0px 0px 0px;
+      -webkit-border-radius: 20px 0px 0px 0px;
+    }
+    &.right {
+      border-radius: 0px 20px 0px 0px;
+      -moz-border-radius: 0px 20px 0px 0px;
+      -webkit-border-radius: 0px 20px 0px 0px;
+    }
   }
 }
 

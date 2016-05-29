@@ -60,14 +60,15 @@
     p= ' '
 
 - if policy(pot).contribute? || policy(pot).edit?
-  .ui.two.column.padded.grid.pot-menu
-    #contribute-button.column class=pot.category_color
-      - if policy(pot).contribute?
+  - col_count = [policy(pot).contribute?, policy(pot).edit?].all? ? 'two' : 'one'
+  .ui.column.padded.grid class=col_count
+    - if policy(pot).contribute?
+      .column class=[pot.category_color, (col_count == 'two' ? 'curly top rigt' : '')]
         = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
           i.white.text.money.icon
           span.upcase.white.text= t('pot.contribute')
-    #edit-button.grey.column
-      - if policy(pot).edit?
+    - if policy(pot).edit?
+      .grey.column class=(col_count == 'two' ? 'curly top left' : '')
         = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
           i.white.text.edit.icon
           span.upcase.white.text= t('pot.edit')
