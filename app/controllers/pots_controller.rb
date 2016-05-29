@@ -65,7 +65,9 @@ class PotsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def pot_params
-    params.require(:pot).permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: [])
+    params.require(:pot).permit(
+      :name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []
+    )
   end
 
   def pot_params_on_update

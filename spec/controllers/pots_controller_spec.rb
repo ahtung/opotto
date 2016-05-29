@@ -135,9 +135,8 @@ RSpec.describe PotsController, type: :controller do
     let(:pot) { create(:pot, owner: user) }
 
     it 'deletes a Pot' do
-      expect do
-        delete :destroy, { id: pot.to_param }, valid_session
-      end.to change(Pot, :count).by(-1)
+      delete :destroy, { id: pot.to_param }, valid_session
+      expect(assigns(:pot).destroyed?).to be true
     end
 
     it 'redirects to the root_path' do

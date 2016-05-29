@@ -30,11 +30,13 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should have user\'s name in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_content("Hello #{@user.name}")
     end
 
     xit 'should have an introduction message for opotto if not registered' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('div#introduction_to_opotto')
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_css('div#introduction_to_opotto')
     end
 
     after(:each) do
@@ -51,7 +53,8 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should have user\'s name in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_content("Hello #{@user.name}")
     end
 
     after(:each) do
@@ -68,7 +71,8 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should not have an introductin message for opotto in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).not_to have_css('div#introduction_to_opotto')
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .not_to have_css('div#introduction_to_opotto')
     end
 
     after(:each) do
