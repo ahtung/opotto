@@ -1,4 +1,9 @@
+= content_for :title, "opotto - #{ t('pages.about.title') }"
+
 .ui.container.main
-  = content_for :title, "opotto - #{ t('pages.about.title') }"
-  h2= t('pages.about.title')
-  = t('pages.about.content')
+  .ui.stackable.very.relaxed.center.aligned.grid.container
+    .row
+      .twelve.wide.column
+        = image_tag 'devices.png', class: "ui fluid image"
+        h1.ui.header= t('pages.about.title')
+        = t('pages.about.content_html')
