@@ -1,7 +1,4 @@
 = form_for pot, html: { class: 'ui form' } do |f|
-  - if pot.errors.any?
-    .alert-box data-alert=true class="alert"
-      = pot.errors.full_messages.join(',')
   .ui.attached.segment.light-grey.background
     .field
       = f.text_field :name, placeholder: 'Name your pot'
@@ -36,3 +33,10 @@ javascript:
   $(function() {
     $('select.dropdown').dropdown();
   });
+
+- pot.errors.each do |key, value|
+  javascript:
+    console.log("#pot_#{ key }")
+    console.log("#pot_#{ value}")
+    $("#pot_#{ key }").after('<div class="ui pointing red basic label">#{ value }</div>');
+    $(".ui.pointing.red.basic.label").delay(3000).queue(function() { $(this).remove(); });
