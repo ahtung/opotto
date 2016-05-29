@@ -66,6 +66,11 @@ class Pot < ActiveRecord::Base
     contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e } || 0
   end
 
+  # returns the total contribution by user
+  def total_contribution_by(user)
+    contributions.where(user: user).with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e } || 0
+  end
+
   # returns the contributor count
   def total_contributors
     contributors.count

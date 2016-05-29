@@ -16,6 +16,12 @@
       h2.ui.header
         span.blue.text= humanized_money_with_symbol(pot.total_contribution)
 
+- if current_user && current_user.contributed_pots.include?(pot)
+  .ui.inverted.blue.attached.center.aligned.segment
+    .ui.text.container
+      span.upcase= 'You contributed '
+      span.green.text= humanized_money_with_symbol(pot.total_contribution_by(current_user))
+
 .ui.vertical.stripe.segment
   .ui.two.column.grid
     .eight.wide.column

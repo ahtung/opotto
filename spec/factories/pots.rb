@@ -11,7 +11,7 @@ FactoryGirl.define do
     trait :with_contributions do
       after :create do |instance|
         2.times do
-          instance.contributions << create(:contribution, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
+          instance.contributions << create(:contribution, :completed, amount: Faker::Commerce.price, pot_id: instance.id, state: 'completed')
         end
       end
     end

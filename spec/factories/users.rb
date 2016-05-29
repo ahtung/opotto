@@ -37,7 +37,7 @@ FactoryGirl.define do
 
     trait :with_contributions do
       after :create do |instance|
-        instance.contributions = create_list(:contribution, 2, amount: Faker::Commerce.price, user: instance)
+        instance.contributions = create_list(:contribution, 2, :completed, amount: Faker::Commerce.price, user: instance)
       end
     end
 

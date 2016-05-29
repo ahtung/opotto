@@ -179,7 +179,17 @@ RSpec.describe Pot, type: :model do
 
       it 'should return the sum of contributions if contributions' do
         pot = create(:pot, :with_contributions)
-        expect(pot.total_contribution).to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
+        expect(pot.total_contribution)
+          .to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
+      end
+    end
+
+    describe 'total_contribution_by' do
+      it 'should return given users contributions' do
+        user = create(:user)
+        pot = create(:pot)
+        create(:contribution, :completed, pot: pot, user: user, amount: '100')
+        expect(pot.total_contribution_by(user)).to eq(Money.new(10000, "USD"))
       end
     end
 
