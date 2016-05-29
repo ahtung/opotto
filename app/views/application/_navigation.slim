@@ -1,7 +1,7 @@
 .ui.large.secondary.attached.menu
   = link_to '#', id: 'show-menu', class: 'header item' do
     = semantic_icon('sidebar')
-  .item.upcase= yield(:nav_title)
+  #nav-title.item.upcase= yield(:nav_title)
   .right.menu
     = yield(:nav_right)
 .ui.vertical.masthead.center.aligned.segment.inverted.light-grey.background
