@@ -6,6 +6,5 @@
 
 - content_for :masthead do
   = render partial: 'users/masthead', locals: { user: current_user.decorate }
-    
-.ui.attached.segment.main
-  == render 'form', pot: pot
+
+== render 'form', pot: pot
