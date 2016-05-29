@@ -46,4 +46,19 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.mobile?).to eq(nil)
     end
   end
+
+  describe '#opotto_icons' do
+    it 'should return opotto icon color set' do
+      icons = { home: 'red',
+        student: 'orange',
+        gift: 'yellow',
+        plane: 'olive',
+        diamond: 'green',
+        truck: 'teal',
+        trophy: 'blue',
+        'empty heart': 'violet'
+      }
+      expect(helper.opotto_icons).to eq(icons)
+    end
+  end
 end
