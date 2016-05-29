@@ -8,13 +8,13 @@
     .two.wide.column
       = link_to pot_path(pot) do
         = pot.category_icon('big')
-    .six.wide.column
+    .five.wide.column
       .ui.medium.header style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:#94A4A5 !important;"
         span.medium-grey.text= pot.name
     .three.wide.column
       .ui.medium.header
         = link_to pot.humanized_total_contribution, pot_path(pot), class: "#{pot.category_color} text"
-    .one.wide.center.aligned.column
+    .three.wide.center.aligned.column
       .ui.huge.header
         = link_to pot_path(pot), class: 'medium-grey text' do
           = semantic_icon('angle right grey text')
