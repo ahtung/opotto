@@ -25,11 +25,12 @@
         = f.check_box :visible, class: 'hidden'
         = f.label :visible
     .field
-      = link_to t('site.navigation.back'), root_path, class: 'ui button'
-    .field
-      = f.submit t('pot.save'), class: 'ui button primary'
-    .field
         = recaptcha_tags
+    .field
+      .ui.buttons style='width:100%;'
+        = link_to t('site.navigation.back'), root_path, class: 'ui button'
+        .or
+        = f.submit t('pot.save'), class: 'ui button primary'
 
 javascript:
   $(function() {
