@@ -58,12 +58,12 @@
   .ui.attached.segment style='position:relative;min-height:64px;'
     .ui.column.padded.grid class=col_count style='width:100%;height: 100%;position: absolute;top: 0;left: 0;'
       - if policy(pot).contribute?
-        .column class=pot.category_color
+        .column class=[pot.category_color, (col_count == 'two' ? 'eight' : 'sixteen'), 'wide']
           = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
             i.white.text.money.icon
             span.upcase.white.text= t('pot.contribute')
       - if policy(pot).edit?
-        .grey.column
+        .grey.column class=[(col_count == 'two' ? 'eight' : 'sixteen'), 'wide']
           = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
             i.white.text.edit.icon
             span.upcase.white.text= t('pot.edit')
