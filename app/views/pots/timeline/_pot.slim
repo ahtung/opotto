@@ -1,4 +1,4 @@
-.item.clickable data-link="#{pot_path(pot)}"
+div class="item #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
   .ui.grid.middle.aligned
     .ten.wide.column
       .ui.medium.header
