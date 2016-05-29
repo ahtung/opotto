@@ -1,12 +1,12 @@
 .item
   div class="ui grid middle aligned #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
-    .two.wide.center.aligned.column
+    .three.wide.center.aligned.column
       = link_to pot_path(pot), class: 'ui circular image' do
         = image_tag pot.receiver.avatar.url(:thumb)
     .two.wide.column
       = link_to pot_path(pot) do
         = pot.category_icon('big')
-    .seven.wide.column
+    .six.wide.column
       .ui.medium.header style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:#94A4A5 !important;"
         span.medium-grey.text= pot.name
     .three.wide.column
