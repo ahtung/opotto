@@ -1,6 +1,15 @@
 = form_for pot, html: { class: 'ui form' } do |f|
   .ui.attached.segment.light-grey.background
     .field
+      .ui.floating.icon.dropdown.button.inverted.white.background
+        = f.hidden_field :category
+        span.green.text Choose
+        .menu
+          - opotto_icons.each do |icon, color|
+            .item
+              i.item.icon.large class="#{icon} #{color}"
+              = icon
+    .field
       = f.text_field :name, placeholder: 'Name your pot'
     .field
       = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, include_blank: true
