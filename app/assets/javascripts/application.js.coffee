@@ -42,5 +42,7 @@ $ ->
     placeholder: 'Email addresses of the guests'
   })
 
+  $('.ui.calendar').calendar();
+
 $('.message .close').on 'click', () ->
   $(@).closest('.message').transition('fade')
