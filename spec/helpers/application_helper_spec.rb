@@ -40,4 +40,10 @@ RSpec.describe ApplicationHelper, type: :helper do
         .to eq("window.open(this.href, 'social', 'height=500,left=20,toolbar=1,top=20,width=500');return false;")
     end
   end
+
+  describe '#mobile?' do
+    it 'should return nil if no headers' do
+      expect(helper.mobile?).to eq(nil)
+    end
+  end
 end
