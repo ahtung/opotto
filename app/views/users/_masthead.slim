@@ -1,0 +1,8 @@
+.ui.one.column.center.aligned.grid
+  .row
+    .six.wide.column
+      = image_tag "http://www.gravatar.com/avatar/#{user.email_hash}", class: 'ui small circular image centered'
+  .row
+    .ten.wide.column
+      .ui.large.header
+        = user.handle(' ', false, 'dark-grey', 'blue')
