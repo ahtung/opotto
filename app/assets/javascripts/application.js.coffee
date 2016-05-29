@@ -38,5 +38,9 @@ $ ->
     placeholder: 'Email address of the receiver'
   })
 
+  $('#pot_guest_ids').select2({
+    placeholder: 'Email addresses of the guests'
+  })
+
 $('.message .close').on 'click', () ->
   $(@).closest('.message').transition('fade')
