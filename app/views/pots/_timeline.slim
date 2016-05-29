@@ -1,9 +1,10 @@
 - if pots.present?
   .ui.attached.segment
     .ui.one.column.grid
-      .ten.wide.column
+      .ten.wide.column.medium-grey.upcase.text
+        | &nbsp;&nbsp;&nbsp;
         = t('pot.to')
-      .six.wide.column
+      .six.wide.column.medium-grey.upcase.text
         = t('contribution.collected')
     .ui.relaxed.divided.list
       - pots.each do |pot|
