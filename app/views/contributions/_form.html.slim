@@ -2,9 +2,6 @@
   = render partial: 'pots/masthead', locals: { pot: pot }
 
 = form_for [pot, contribution], html: { class: 'ui form' } do |f|
-  - if contribution.errors.any?
-    .alert-box data-alert=true class="alert"
-      = contribution.errors.full_messages.join(',')
   .field
     = f.number_field :amount, step: 'any', placeholder: '99,99'
   .field
@@ -21,3 +18,8 @@
 
 javascript:
   $('.ui.checkbox').checkbox();
+
+- contribution.errors.each do |key, value|
+  javascript:
+    $("#contribution_#{ key }").after('<div class="ui pointing red basic label">#{ value }</div>');
+    $(".ui.pointing.red.basic.label").delay(3000).queue(function() { $(this).remove(); });
