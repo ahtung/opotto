@@ -42,6 +42,8 @@
         .ten.wide.column
           = pot.receiver.decorate.handle(tag(:br), false, pot.category_color)
 
+.ui.divider
+
 .ui.attached.segment
   .ui.text.container
     span.upcase.grey.text= t('pot.from')
@@ -59,10 +61,14 @@
       i.white.text.edit.icon
       span.upcase.white.text= t('pot.edit')
 
-.ui.text.container.center.aligned
-  h3.grey.text = t('contribution.total')
-  h3.ui.huge.header
-    span.text class="#{pot.category_color}"= humanized_money_with_symbol(pot.total_contribution)
+.ui.attached.segment
+  .ui.text.container.center.aligned
+    h3.ui.header.grey.text.upcase = t('contribution.total')
+.ui.divider
+.ui.attached.segment
+  .ui.text.container.center.aligned
+    h3.ui.huge.header
+      span.text class="#{pot.category_color}"= humanized_money_with_symbol(pot.total_contribution)
 
 = render 'contributions', pot: pot
 = render 'invitations', pot: pot
