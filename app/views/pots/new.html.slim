@@ -1,4 +1,9 @@
 - content_for :nav_title do
   = t('pot.new')
-      
-== render 'form', pot: @pot
+
+- content_for :nav_right do
+  .ui.item
+
+.ui.grid.light-grey.background
+  .ui.container
+    == render 'form', pot: @pot
