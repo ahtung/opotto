@@ -7,20 +7,5 @@
       .six.wide.column.medium-grey.upcase.text
         = t('contribution.collected')
     .ui.relaxed.divided.list
-      - pots.each do |pot|
-        .item.clickable data-link="#{pot_path(pot)}"
-          .ui.grid.middle.aligned
-            .ten.wide.column
-              .ui.medium.header
-                = link_to pot_path(pot), class: 'ui tiny circular image' do
-                  = image_tag pot.receiver.avatar.url(:thumb)
-                = link_to pot_path(pot), class: 'medium-grey text' do
-                  = pot.category_icon('big')
-                  = pot.category
-            .four.wide.column
-              .ui.medium.header
-                = link_to pot_path(pot), class: 'green text' do
-                  = pot.humanized_total_contribution
-            .ui.two.wide.column.sizer style='font-size: 21px;'
-              .ui.large.header
-                = link_to semantic_icon('angle right'), pot_path(pot), class: 'grey text'
+      = render partial: 'pots/timeline/mobile', locals: { pots: pots } if mobile?
+      = render partial: 'pots/timeline/desktop', collection: pots unless mobile?
