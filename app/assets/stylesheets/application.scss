@@ -66,3 +66,13 @@ body {
     margin-left: auto;
   }
 }
+
+.pusher {
+  display: flex;
+  min-height: 100vh !important;
+  flex-direction: column;
+}
+
+.pot-list {
+  flex: 1;
+}
