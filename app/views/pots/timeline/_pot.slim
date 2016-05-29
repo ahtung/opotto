@@ -7,10 +7,10 @@
         = link_to pot_path(pot), class: 'medium-grey text' do
           = pot.category_icon('big')
           = pot.category
-    .three.wide.column
+    .three.wide.center.aligned.column
       .ui.medium.header
         = link_to pot.humanized_total_contribution, pot_path(pot), class: "#{pot.category_color} text"
-    .three.wide.column
+    .three.wide.center.aligned.column
       .ui.huge.header
         = link_to pot_path(pot), class: 'medium-grey text' do
           = semantic_icon('angle right grey text')
