@@ -49,7 +49,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#opotto_icons' do
     it 'should return opotto icon color set' do
-      icons = { home: 'red',
+      icons = {
+        home: 'red',
         student: 'orange',
         gift: 'yellow',
         plane: 'olive',
