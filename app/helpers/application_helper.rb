@@ -27,4 +27,16 @@ module ApplicationHelper
   def mobile?
     browser.device.mobile?
   end
+
+  def opotto_icons
+    { home: 'red',
+      student: 'orange',
+      gift: 'yellow',
+      plane: 'olive',
+      diamond: 'green',
+      truck: 'teal',
+      trophy: 'blue',
+      'empty heart': 'violet'
+    }
+  end
 end
