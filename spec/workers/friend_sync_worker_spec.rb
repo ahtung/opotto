@@ -17,9 +17,9 @@ RSpec.describe FriendSyncWorker, type: :worker do
   it 'should function' do
     user = create(:user)
     Sidekiq::Testing.fake! do
-      expect {
+      expect do
         FriendSyncWorker.perform_async(user.id)
-      }.to change(FriendSyncWorker.jobs, :size).by(1)
+      end.to change(FriendSyncWorker.jobs, :size).by(1)
     end
   end
 
