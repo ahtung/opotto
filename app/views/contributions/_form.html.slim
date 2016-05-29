@@ -15,7 +15,7 @@
     = f.hidden_field :pot_id, value: pot.id
   .field
     .ui.buttons style='width:100%;'
-      = link_to t('site.navigation.back'), root_path, class: 'ui button'
+      = link_to t('site.navigation.back'), pot, class: 'ui button'
       .or
       = f.submit t('pot.save'), class: 'ui button primary'
 
