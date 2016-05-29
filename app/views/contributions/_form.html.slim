@@ -18,11 +18,5 @@
   .field
     = f.submit t('pot.save'), class: 'ui button primary'
 
-.col.s12
-  h3 = t('contribution.previous')
-  ul.collection
-    - current_user.contributions.where(pot: pot).with_state(:scheduled, :completed).each do |contribution|
-      li.collection-item= "#{humanized_money_with_symbol(contribution.amount)} is #{contribution.state}"
-
 javascript:
   $('.ui.checkbox').checkbox();
