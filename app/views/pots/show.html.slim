@@ -70,6 +70,13 @@
     .arrow.down style='position: absolute;top: 0;margin: 0 auto;left: 0;right: 0;'
 
 .ui.attached.segment
+  .ui.one.column.grid
+    .grey.column.sixteen.wide
+      = link_to report_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+        i.white.text.delete.icon
+        span.upcase.white.text= 'Report'
+
+.ui.attached.segment
   .ui.text.container.center.aligned
     h3.ui.header.grey.text.upcase = t('contribution.total')
 .ui.divider
