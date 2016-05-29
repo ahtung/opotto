@@ -29,5 +29,8 @@ $ ->
     $('.ui.sidebar')
       .sidebar('toggle')
 
+  $('.clickable').on 'click', () ->
+    window.location = $(@).data('link')
+
 $('.message .close').on 'click', () ->
   $(@).closest('.message').transition('fade')
