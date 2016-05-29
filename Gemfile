@@ -49,6 +49,7 @@ gem 'recaptcha', '~> 2.1.0', require: 'recaptcha/rails'
 gem 'draper', '~> 2.1.0'
 gem 'semantic-ui-sass', github: 'ahtung/semantic-ui-sass'
 gem 'nav_lynx'
+gem 'browser', '~> 2.1.0'
 
 group :production do
   gem 'rails_12factor'
