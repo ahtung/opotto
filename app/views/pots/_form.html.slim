@@ -6,8 +6,7 @@
   .ui.form
     .fields
       .six.wide.field
-        = f.label :name
-        = f.text_field :name
+        = f.text_field :name, placeholder: 'Name your pot'
       .four.wide.field
         = f.label :receiver_id
         = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
@@ -16,7 +15,6 @@
         = f.date_field :end_at, class: 'datepicker'
     .fields
       .six.wide.field
-        = f.label :description
         = f.text_area :description, placeholder: t('helpers.label.pot.optional')
       .four.wide.field
         = f.label :guest_ids
