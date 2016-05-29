@@ -1,0 +1,16 @@
+.item.clickable data-link="#{pot_path(pot)}"
+  .ui.grid.middle.aligned
+    .ten.wide.column
+      .ui.medium.header
+        = link_to pot_path(pot), class: 'ui circular image four width' do
+          = image_tag pot.receiver.avatar.url(:thumb)
+        = link_to pot_path(pot), class: 'medium-grey text' do
+          = pot.category_icon('big')
+          = pot.category
+    .three.wide.column
+      .ui.medium.header.green.text
+        = link_to pot.humanized_total_contribution, pot_path(pot), class: 'green text'
+    .three.wide.column
+      .ui.huge.header
+        = link_to pot_path(pot), class: 'medium-grey text' do
+          = semantic_icon('angle right grey text')

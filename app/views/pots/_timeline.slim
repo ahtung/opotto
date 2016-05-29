@@ -7,5 +7,4 @@
       .six.wide.column.medium-grey.upcase.text
         = t('contribution.collected')
     .ui.relaxed.divided.list
-      = render partial: 'pots/timeline/mobile', locals: { pots: pots } if mobile?
-      = render partial: 'pots/timeline/desktop', collection: pots unless mobile?
+      = render partial: 'pots/timeline/pot', collection: pots
