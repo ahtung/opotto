@@ -13,7 +13,7 @@
               .ui.medium.header
                 = link_to pot_path(pot), class: 'ui tiny circular image' do
                   = image_tag pot.receiver.avatar.url(:thumb)
-                = link_to pot_path(pot) do
+                = link_to pot_path(pot), class: 'medium-grey text' do
                   = pot.category_icon('big')
                   = pot.category
             .six.wide.column
