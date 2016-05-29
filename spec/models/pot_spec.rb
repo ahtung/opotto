@@ -189,7 +189,7 @@ RSpec.describe Pot, type: :model do
         user = create(:user)
         pot = create(:pot)
         create(:contribution, :completed, pot: pot, user: user, amount: '100')
-        expect(pot.total_contribution_by(user)).to eq(Money.new(10000, "USD"))
+        expect(pot.total_contribution_by(user)).to eq(Money.new(10_000, 'USD'))
       end
     end
 
