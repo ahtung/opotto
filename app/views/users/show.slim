@@ -7,6 +7,6 @@
       = semantic_icon("plus green")
 
 - content_for :masthead do
-  = render 'masthead'
+  = render 'masthead', user: user
 
 = render partial: 'pots/timeline', locals: { pots: pots }

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   after_action :verify_authorized
 
   decorates_assigned :pots
+  decorates_assigned :user
 
   # GET /:id
   def show
