@@ -8,8 +8,7 @@
       .six.wide.field
         = f.text_field :name, placeholder: 'Name your pot'
       .four.wide.field
-        = f.label :receiver_id
-        = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }
+        = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, include_blank: true
       .six.wide.field
         = f.label :end_at
         = f.date_field :end_at, class: 'datepicker'
