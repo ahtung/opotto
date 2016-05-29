@@ -8,23 +8,28 @@
               = link_to root_path, class: 'brand-logo' do
                 .ui.image = image_tag 'logo.png'
       .right.menu
-        a class="browse item"
-          span Pots
-          i class="dropdown icon"
-        div class="ui fluid popup bottom left transition hidden"
-          div class="ui one column relaxed equal height divided grid"
-            div class="column"
-              .ui.link.list
-                = link_to root_path, class: 'item' do
-                  span = t('site.navigation.mypots')
-                = link_to root_path(by: 'invited'), class: 'item' do
-                  span = t('pot.invitations')
-                = link_to root_path(by: 'contributed'), class: 'item' do
-                  span = t('contribution.contributions')
-                = link_to new_pot_path, class: 'item' do
-                  span = t('pot.new')
-        - %w(about contact security rules).each do |page|
-          = nav_link_to page.capitalize, page_path(page), class: 'item'
+        - if user_signed_in?
+          .item
+            p
+              = "#{t('welcome')} "
+              span.blue.text= current_user.first_name.upcase
+          a class="browse item"
+            i class="dropdown icon"
+          div class="ui fluid popup bottom left transition hidden"
+            div class="ui one column relaxed equal height divided grid"
+              div class="column"
+                .ui.link.list
+                  = link_to root_path, class: 'item' do
+                    span = t('site.navigation.mypots')
+                  = link_to root_path(by: 'invited'), class: 'item' do
+                    span = t('pot.invitations')
+                  = link_to root_path(by: 'contributed'), class: 'item' do
+                    span = t('contribution.contributions')
+                  = link_to new_pot_path, class: 'item' do
+                    span = t('pot.new')
+        - else
+          - %w(about contact security rules).each do |page|
+            = nav_link_to page.capitalize, page_path(page), class: 'item'
         - if user_signed_in?
           .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
         - else
