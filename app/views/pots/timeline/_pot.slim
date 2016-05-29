@@ -8,8 +8,8 @@
           = pot.category_icon('big')
           = pot.category
     .three.wide.column
-      .ui.medium.header.green.text
-        = link_to pot.humanized_total_contribution, pot_path(pot), class: 'green text'
+      .ui.medium.header
+        = link_to pot.humanized_total_contribution, pot_path(pot), class: "#{pot.category_color} text"
     .three.wide.column
       .ui.huge.header
         = link_to pot_path(pot), class: 'medium-grey text' do
