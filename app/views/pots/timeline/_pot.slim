@@ -1,5 +1,7 @@
-.item
-  div class="ui grid middle aligned #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
+- if pot_counter != 0
+  .ui.divider style='margin:0;border-bottom:0'
+.row
+  .ui.grid.middle.aligned class=(mobile? ? 'clickable' : '') data-link=(mobile? ?  pot_path(pot) : '')
     .three.wide.center.aligned.column style='padding-right:0;'
       = link_to pot_path(pot), class: 'ui circular image' do
         = image_tag pot.receiver.avatar.url(:thumb)
