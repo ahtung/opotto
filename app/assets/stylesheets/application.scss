@@ -21,7 +21,6 @@
 @import 'semantic-ui/globals/site';
 // Tools
 @import 'tools/mixins';
-@import 'compass';
 // Generic
 @import 'opotto';
 @import 'semantic-ui/elements/all';
@@ -47,17 +46,6 @@ body {
   }
 }
 
-.curly {
-  &.top {
-    &.left {
-      @include border-radius(20px 0px 0px 0px);
-    }
-    &.right {
-      @include border-radius(0px 20px 0px 0px);
-    }
-  }
-}
-
 .ui.large.secondary.attached.menu {
   #nav-title {
     margin-left: auto;
@@ -72,4 +60,14 @@ body {
 
 .pot-list {
   flex: 1;
+}
+
+.arrow {
+  &.down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $white;
+  }
 }

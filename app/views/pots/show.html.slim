@@ -61,17 +61,19 @@
 
 - if policy(pot).contribute? || policy(pot).edit?
   - col_count = [policy(pot).contribute?, policy(pot).edit?].all? ? 'two' : 'one'
-  .ui.column.padded.grid class=col_count
-    - if policy(pot).contribute?
-      .column class=[pot.category_color, (col_count == 'two' ? 'curly top rigt' : '')]
-        = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
-          i.white.text.money.icon
-          span.upcase.white.text= t('pot.contribute')
-    - if policy(pot).edit?
-      .grey.column class=(col_count == 'two' ? 'curly top left' : '')
-        = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
-          i.white.text.edit.icon
-          span.upcase.white.text= t('pot.edit')
+  .ui.attached.segment style='position:relative;min-height:64px;'
+    .ui.column.padded.grid class=col_count style='width:100%;height: 100%;position: absolute;top: 0;left: 0;'
+      - if policy(pot).contribute?
+        .column class=pot.category_color
+          = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+            i.white.text.money.icon
+            span.upcase.white.text= t('pot.contribute')
+      - if policy(pot).edit?
+        .grey.column
+          = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+            i.white.text.edit.icon
+            span.upcase.white.text= t('pot.edit')
+    .arrow.down style='position: absolute;top: 0;margin: 0 auto;left: 0;right: 0;'
 
 .ui.attached.segment
   .ui.text.container.center.aligned

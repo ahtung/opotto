@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/Compass/compass-rails.git
-  revision: 86afb2c45ae329b3720be102c549612703e16402
-  specs:
-    compass-rails (3.0.2)
-      compass (~> 1.0.0)
-      sass-rails (< 5.1)
-      sprockets (< 4.0)
-
-GIT
   remote: git://github.com/ahtung/semantic-ui-sass.git
   revision: 8441c46c0509a0303cfffbc84e4300ff4814fe63
   specs:
@@ -80,7 +71,6 @@ GEM
       xpath (~> 2.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
-    chunky_png (1.3.5)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -97,18 +87,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    compass (1.0.3)
-      chunky_png (~> 1.2)
-      compass-core (~> 1.0.2)
-      compass-import-once (~> 1.0.5)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
-      sass (>= 3.3.13, < 3.5)
-    compass-core (1.0.3)
-      multi_json (~> 1.0)
-      sass (>= 3.3.0, < 3.5)
-    compass-import-once (1.0.5)
-      sass (>= 3.2, < 3.5)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     crack (0.4.3)
@@ -344,9 +322,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (11.1.2)
-    rb-fsevent (0.9.7)
-    rb-inotify (0.9.7)
-      ffi (>= 0.5.0)
     rdoc (4.2.2)
       json (~> 1.4)
     recaptcha (2.1.0)
@@ -535,7 +510,6 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter
   coffee-rails
-  compass-rails!
   database_cleaner
   date_time_attribute (~> 0.1.2)
   devise (~> 3.5.3)
