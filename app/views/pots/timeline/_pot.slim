@@ -2,7 +2,7 @@
   div class="ui grid middle aligned #{mobile? ? 'clickable' : ''}" data-link="#{mobile? ?  pot_path(pot) : ''}"
     .ten.wide.column
       .ui.medium.header
-        = link_to pot_path(pot), class: 'ui circular image four width' do
+        = link_to pot_path(pot), class: 'ui circular image' do
           = image_tag pot.receiver.avatar.url(:thumb)
         = link_to pot_path(pot), class: 'medium-grey text' do
           = pot.category_icon('big')
