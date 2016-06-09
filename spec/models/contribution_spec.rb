@@ -31,22 +31,6 @@ RSpec.describe Contribution, type: :model do
     end
   end
 
-  describe "should validate that the user's PayPal account's country allows opotto" do
-    it 'and allow if from NL' do
-      user = create(:user, paypal_country: 'NL')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).to be_valid
-    end
-
-    it 'and deny if from JP' do
-      user = create(:user, paypal_country: 'JP')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).not_to be_valid
-    end
-  end
-
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   it { should handle_events :success, :error, when: :initiated }
