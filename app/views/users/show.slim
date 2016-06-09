@@ -1,10 +1,7 @@
 .col.s12
   ul.collection.with-header
-    li.collection-item= "#{@user.friends.count} Friends where #{@user.friends.where(paypal_member: true).count} have a Paypal account and #{@user.friends.where(paypal_member: false).count} don't"
-    li.collection-item= "#{@user.friends.where(paypal_member: nil).count} friends have no paypal status"
+    li.collection-item= "#{@user.friends.count} Friends"
     li.collection-item= "Firends Last Synced At: #{@user.last_contact_sync_at.strftime('%d-%m-%Y %H:%M')}"
-    li.collection-item= "Paypal country: #{@user.paypal_country}"
-    li.collection-item= "Paypal: #{@user.paypal_member.nil? ? 'nil' : @user.paypal_member}"
 .col.s12
   - unless @user.pots.empty?
     ul.collection.with-header
