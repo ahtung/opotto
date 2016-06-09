@@ -34,11 +34,6 @@ FactoryGirl.define do
       end
     end
 
-    trait :with_paypal do
-      email 'us-personal@gmail.com'
-      paypal_member true
-    end
-
     trait :admin do
       admin 'true'
     end
