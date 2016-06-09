@@ -87,20 +87,6 @@ RSpec.describe Pot, type: :model do
       end
     end
 
-    describe "should validate that the receiver's PayPal account's country allows opotto" do
-      it 'and allow if from NL' do
-        user = create(:user, paypal_country: 'NL')
-        pot = build(:pot, owner: user)
-        expect(pot).to be_valid
-      end
-
-      it 'and deny if from JP' do
-        user = create(:user, paypal_country: 'JP')
-        pot = build(:pot, owner: user)
-        expect(pot).not_to be_valid
-      end
-    end
-
     describe 'should validate that end_at' do
       it 'is in the future' do
         pot = build(:pot, end_at: 10.days.ago)

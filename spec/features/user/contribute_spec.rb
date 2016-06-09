@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :feature, js: true do
-  let(:user) { create(:user, :with_paypal, password: '123QwETR') }
+  let(:user) { create(:user, password: '123QwETR') }
   let(:pot) { create(:pot, guests: [user]) }
   let(:contribution) { build(:contribution) }
 
