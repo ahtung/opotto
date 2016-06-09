@@ -23,7 +23,6 @@ class Pot < ActiveRecord::Base
   validate :receiver_not_a_guest, if: -> { receiver }
   validate :owners_pot_count, if: -> { owner }
   validate :yearly_pot_limit, if: -> { owner }
-  validate :owners_paypal_country, if: -> { owner }
   validate :force_immutable
 
   date_time_attribute :end_at
@@ -32,12 +31,6 @@ class Pot < ActiveRecord::Base
 
   default_scope { includes(:owner) }
   scope :this_week, -> { where('created_at >= ?', 1.week.ago.in_time_zone).where('created_at <= ?', Time.zone.now) }
-
-  # Validates whether the owner is from an Crowdfunding allowing country
-  def owners_paypal_country
-    return unless DISALLOWED_COUNTRIES.include?(owner.paypal_country)
-    errors.add(:base, 'Fundraising is prohibited in your country')
-  end
 
   # Validates owner's pot count
   def owners_pot_count
