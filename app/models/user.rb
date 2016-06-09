@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   scope :admin, -> { where(admin: true) }
-  scope :with_paypal_account, -> { where(paypal_member: true) }
   scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
   # returns user's handle
