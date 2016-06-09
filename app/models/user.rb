@@ -75,28 +75,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def check_paypal
-    details = self.class.paypal_details(email)
-    update_column(:paypal_member, details.first)
-    update_column(:paypal_country, details.second)
-  end
-
   def get_contact_details(google_contacts_user)
     contact_info = google_contacts_user.contacts.map do |contact|
       { email: contact.primary_email, name: contact.full_name }
     end
     contact_info.reject { |contact| contact[:email].nil? }
-  end
-
-  def self.paypal_details(email)
-    api = PayPal::SDK::AdaptiveAccounts::API.new
-    get_verified_status = api.build_get_verified_status(
-      emailAddress: email,
-      matchCriteria: 'NONE'
-    )
-    get_verified_status_response = api.get_verified_status(get_verified_status)
-    account_status = get_verified_status_response.accountStatus == 'VERIFIED'
-    account_country = get_verified_status_response.countryCode
-    [account_status, account_country]
   end
 end
