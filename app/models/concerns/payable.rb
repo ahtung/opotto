@@ -7,9 +7,13 @@ module Payable
     after_create :pay
   end
 
+  # completes payment
+  def complete_payment
+  end
+
   # start the payment
   def pay
-    response = setup_preapproval
+    response = nil
     return unless response
     update_payment_details(response)
   end
