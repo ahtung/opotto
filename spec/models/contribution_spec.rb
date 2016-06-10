@@ -48,6 +48,13 @@ RSpec.describe Contribution, type: :model do
   it { should handle_events :retry, when: :schedule_failed }
   it { should reject_events :success, :error, when: :schedule_failed }
 
+  ## Completed
+  it { should reject_events :success, :error, :retry, when: :completed }
+
+  ## Schedule Failed
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :success, :error, when: :schedule_failed }
+
   # Concerns
   it_behaves_like 'payable'
 
