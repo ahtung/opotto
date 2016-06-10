@@ -502,6 +502,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-i18n (~> 4.0.8)
   rails_12factor
+  rake (= 11.1.2)
   recaptcha
   roboto (~> 0.2.0)
   rollbar (~> 2.8.3)
