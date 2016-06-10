@@ -10,7 +10,7 @@ RSpec.describe FriendSyncWorker, type: :worker do
 
   xit 'should trigger import_contacts on user' do
     user = create(:user)
-    FriendSyncWorker.perform_async(user.id)
+    FriendSyncWorker.perform_async([user.id])
     user.reload
     expect(user.last_contact_sync_at).not_to be_nil
   end
