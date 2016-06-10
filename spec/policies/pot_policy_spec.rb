@@ -134,4 +134,21 @@ RSpec.describe PotPolicy do
       expect(subject).not_to permit(user, pot)
     end
   end
+
+  permissions :destroy? do
+    it 'allows access to owner' do
+      pot = create(:pot, owner: user)
+      expect(subject).to permit(user, pot)
+    end
+
+    it "deny access to pot's guest" do
+      pot = create(:pot, guests: [guest])
+      expect(subject).not_to permit(guest, pot)
+    end
+
+    it 'denies access to nil user' do
+      pot = create(:pot)
+      expect(subject).not_to permit(nil, pot)
+    end
+  end
 end
