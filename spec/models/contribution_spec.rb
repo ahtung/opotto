@@ -33,10 +33,20 @@ RSpec.describe Contribution, type: :model do
 
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
+  ## Initiated
   it { should handle_events :success, :error, when: :initiated }
+  it { should reject_events :retry, when: :initiated }
+  ## Scheduled
   it { should handle_events :success, :error, when: :scheduled }
-  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :retry, when: :scheduled }
+  ## Failed
+  it { should reject_events :success, :error, when: :failed }
   it { should handle_events :retry, when: :failed }
+  ## Completed
+  it { should reject_events :success, :error, :retry, when: :completed }
+  ## Schedule Failed
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :success, :error, when: :schedule_failed }
 
   # Concerns
   it_behaves_like 'payable'
@@ -63,11 +73,11 @@ RSpec.describe Contribution, type: :model do
 
       it 'should return user email if it didn\'t set' do
         contribution = FactoryGirl.create(:contribution, :with_user_noname, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.email)
+        expect(contribution.owner_name).to eq(contribution.user.name)
       end
 
       it 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_with_name, anonymous: false)
+        contribution = FactoryGirl.create(:contribution, anonymous: false)
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
     end
