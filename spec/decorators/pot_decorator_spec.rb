@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe PotDecorator, type: :decorator do
   let(:pot) { nil }
