@@ -1,8 +1,9 @@
-ENV['RAILS_ENV'] ||= 'test'
-
-# Coverage
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group 'Policies', 'app/policies'
+  add_group 'Decorators', 'app/decorators'
+end
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
