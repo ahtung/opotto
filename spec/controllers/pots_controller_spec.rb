@@ -118,17 +118,17 @@ RSpec.describe PotsController, type: :controller do
     let(:pot) { create(:pot, owner: user) }
 
     it 'assigns @pot' do
-      get :report, id: pot.id
+      process :report, method: :get, params: { id: pot.id }
       expect(assigns(:pot)).to eq(pot)
     end
 
     it 'assigns @abuse' do
-      get :report, id: pot.id
+      process :report, method: :get, params: { id: pot.id }
       expect(assigns(:abuse)).to eq(Abuse.first)
     end
 
     it 'renders the show template' do
-      get :report, id: pot.id
+      process :report, method: :get, params: { id: pot.id }
       expect(response).to redirect_to(pot_url(Pot.last))
     end
   end
