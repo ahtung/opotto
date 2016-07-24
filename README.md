@@ -3,6 +3,7 @@
 ![](https://img.shields.io/badge/Ruby-2.2.4-green.svg)
 ![](https://img.shields.io/badge/Rails-4.2.6-green.svg)
 [![Circle CI](https://circleci.com/gh/ahtung/opotto/tree/master.svg?style=shield&circle-token=917522f32c616b7c174960bc0fe3dbe95d510501)](https://circleci.com/gh/ahtung/opotto/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/ahtung/opotto/badge.svg?branch=master&t=VAscs6)](https://coveralls.io/github/ahtung/opotto?branch=master)
 
 
 ## Development
