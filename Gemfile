@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.4'
 
 gem 'rails', '5.0.0'
+gem 'iyzipay', '~> 1.0.34', require: false
 gem 'rake', '11.2.2'
 gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
@@ -45,7 +46,6 @@ gem 'rollbar', '~> 2.12.0'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'draper', '~> 3.0.0.pre1'
-# gem 'iyzipay', '~> 1.0.34'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
 group :production do
