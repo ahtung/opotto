@@ -9,7 +9,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET show' do
     before :each do
-      get :show, id: user.id
+      process :show, method: :get, params: { id: user.id }
     end
 
     it 'assigns @user' do
