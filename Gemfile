@@ -58,7 +58,6 @@ group :development do
   gem 'brakeman', require: false
   gem 'yard', require: false
   gem 'yard-rspec', require: false
-  gem 'mailcatcher'
   gem 'i18n-tasks', '~> 0.9.4'
 end
 
