@@ -36,20 +36,20 @@ RSpec.describe PotsController, type: :controller do
 
       xit 'updates the requested pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.id, pot: new_attributes }
+        process :update, method: :put, params: { id: pot.id, pot: new_attributes }
         pot.reload
         expect(pot.description).to eq('New')
       end
 
       it 'assigns the requested pot as @pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: valid_attributes }
+        process :update, method: :put, params: { id: pot.to_param, pot: valid_attributes }
         expect(assigns(:pot)).to eq(pot)
       end
 
       xit 'redirects to the pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: valid_attributes }
+        process :update, method: :put, params: { id: pot.to_param, pot: valid_attributes }
         expect(response).to redirect_to(pot_url(Pot.last))
       end
     end
@@ -57,13 +57,13 @@ RSpec.describe PotsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the pot as @pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: invalid_attributes }
+        process :update, method: :put, params: { id: pot.to_param, pot: invalid_attributes }
         expect(assigns(:pot)).to eq(pot)
       end
 
       it "re-renders the 'edit' template" do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: invalid_attributes }
+        process :update, method: :put, params: { id: pot.to_param, pot: invalid_attributes }
         expect(response).to render_template('edit')
       end
     end
@@ -73,30 +73,30 @@ RSpec.describe PotsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Pot' do
         expect do
-          post :create, { pot: valid_attributes }
+          process :create, method: :post, params: { pot: valid_attributes }
         end.to change(Pot, :count).by(1)
       end
 
       it 'assigns a newly created pot as @pot' do
-        post :create, { pot: valid_attributes }
+        process :create, method: :post, params:  { pot: valid_attributes }
         expect(assigns(:pot)).to be_a(Pot)
         expect(assigns(:pot)).to be_persisted
       end
 
       it 'redirects to the created pot' do
-        post :create, { pot: valid_attributes }
+        process :create, method: :post, params: { pot: valid_attributes }
         expect(response).to redirect_to(pot_url(Pot.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved pot as @pot' do
-        post :create, { pot: invalid_attributes }
+        process :create, method: :post, params: { pot: invalid_attributes }
         expect(assigns(:pot)).to be_a_new(Pot)
       end
 
       it "re-renders the 'new' template" do
-        post :create, { pot: invalid_attributes }
+        process :create, method: :post, params: { pot: invalid_attributes }
         expect(response).to render_template('new')
       end
     end
