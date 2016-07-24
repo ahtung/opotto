@@ -5,7 +5,7 @@ RSpec.describe PaymentsController, type: :controller do
   let(:contribution) { user.contributions.first }
 
   before :each do
-    sign_in :user, user
+    sign_in user, scope: :user
   end
 
   describe 'GET success' do

@@ -7,7 +7,7 @@ RSpec.describe PotsController, type: :controller do
   let(:user) { create(:user) }
 
   before :each do
-    sign_in :user, user
+    sign_in user, scope: :user
   end
 
   # Params
