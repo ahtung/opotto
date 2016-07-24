@@ -10,9 +10,9 @@ class Pot < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
   has_many :contributions, dependent: :destroy
-  has_many :contributors, -> { uniq }, through: :contributions, source: :user
+  has_many :contributors, -> { distinct }, through: :contributions, source: :user
   has_many :invitations, dependent: :destroy
-  has_many :guests, -> { uniq }, through: :invitations, source: :user
+  has_many :guests, -> { distinct }, through: :invitations, source: :user
 
   # Validations
   validates :owner, presence: true
