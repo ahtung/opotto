@@ -46,6 +46,7 @@ gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'draper', '~> 2.1.0'
 gem 'iyzipay', '~> 1.0.34'
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
 group :production do
   gem 'rails_12factor'

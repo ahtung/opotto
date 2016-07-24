@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/rails/activemodel-serializers-xml.git
+  revision: 570ee7ed33d60e44ca1f3ccbec3d1fbf61d52cbf
+  specs:
+    activemodel-serializers-xml (1.0.1)
+      activemodel (> 5.x)
+      activerecord (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
+
+GIT
   remote: git://github.com/sinatra/sinatra.git
   revision: 751f2a7a8f26a01f984cecbfe1385ecc0feda9e0
   specs:
@@ -478,6 +488,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel-serializers-xml!
   brakeman
   browser-timezone-rails (~> 1.0)
   bullet
