@@ -39,4 +39,12 @@ class PotPolicy
     return true if pot.owner == user
     false
   end
+
+  # destroy?
+  def destroy?
+    return false if user.nil?
+    return false if pot.new_record?
+    return true if pot.owner == user
+    false
+  end
 end
