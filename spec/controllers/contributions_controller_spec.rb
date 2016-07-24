@@ -13,7 +13,7 @@ RSpec.describe ContributionsController, type: :controller do
 
   describe 'GET new' do
     it 'renders the new template' do
-      get :new, pot_id: pot.id
+      process :new, method: :get, params: { pot_id: pot.id }
       expect(response).to render_template('new')
     end
   end

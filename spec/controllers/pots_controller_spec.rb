@@ -20,7 +20,7 @@ RSpec.describe PotsController, type: :controller do
     let(:pot) { create(:pot, owner: user) }
 
     it 'assigns @pot' do
-      get :show, id: pot.id
+      process :show, method: :get, params: { id: pot.id }
       expect(assigns(:pot)).to eq(pot)
     end
 
