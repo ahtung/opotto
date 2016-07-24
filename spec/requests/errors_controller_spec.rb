@@ -9,7 +9,7 @@ RSpec.describe ErrorsController, type: :request do
 
     it 'skips authenticate_user!' do
       get '404'
-      controller.should_not_receive(:authenticate_user!)
+      expect(controller).not_to receive(:authenticate_user!)
     end
   end
 end

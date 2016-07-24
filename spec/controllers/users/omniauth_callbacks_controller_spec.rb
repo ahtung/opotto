@@ -38,7 +38,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     end
 
     it { should be_user_signed_in }
-    it { response.should redirect_to root_path }
+    it { expect(response).to redirect_to root_path }
     it { flash[:notice].should == 'Successfully authenticated from Google account.' }
   end
 end
