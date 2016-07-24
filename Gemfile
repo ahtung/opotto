@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.4'
 
 gem 'rails', '4.2.6'
-gem 'rake', '11.1.2'
+gem 'rake', '11.2.2'
 gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.1'
 gem 'pg', '~> 0.18.4'
