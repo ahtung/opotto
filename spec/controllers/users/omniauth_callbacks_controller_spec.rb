@@ -11,9 +11,9 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         @user = User.find_by(email: user.email)
       end
 
-      it { @user.should_not be_nil }
+      it { expect(@user).not_to be(nil) }
       it { should be_user_signed_in }
-      it { response.should redirect_to root_path }
+      it { expect(response).to redirect_to root_path }
     end
 
     context 'when google_oauth2 email already exist in the system' do
@@ -24,8 +24,8 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         @user = User.find_by(email: user.email)
       end
 
-      it { flash[:notice].should == 'Successfully authenticated from Google account.' }
-      it { response.should redirect_to root_path }
+      it { expect(flash[:notice]).to eq 'Successfully authenticated from Google account.' }
+      it { expect(response).to redirect_to root_path }
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
     it { should be_user_signed_in }
     it { expect(response).to redirect_to root_path }
-    it { flash[:notice].should == 'Successfully authenticated from Google account.' }
+    it { expect(flash[:notice]).to eq 'Successfully authenticated from Google account.' }
   end
 end
 

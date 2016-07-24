@@ -13,7 +13,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should send an email' do
-      ActionMailer::Base.deliveries.count.should == 3
+      expect(ActionMailer::Base.deliveries.count).to eq 3
     end
 
     it 'renders the receiver email' do
@@ -21,7 +21,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should set the subject to the correct subject' do
-      ActionMailer::Base.deliveries.first.subject.should == "You're invited to contribute!"
+      expect(ActionMailer::Base.deliveries.first.subject).to eq "You're invited to contribute!"
     end
 
     xit 'should have a message in its content' do
