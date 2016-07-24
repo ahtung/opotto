@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -37,30 +36,27 @@ ActiveRecord::Schema.define(version: 20160610132144) do
     t.string   "amount_currency", default: "USD", null: false
     t.integer  "amount_cents",    default: 0,     null: false
     t.string   "payment_key"
+    t.index ["pot_id"], name: "index_contributions_on_pot_id", using: :btree
+    t.index ["user_id"], name: "index_contributions_on_user_id", using: :btree
   end
-
-  add_index "contributions", ["pot_id"], name: "index_contributions_on_pot_id", using: :btree
-  add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+    t.index ["user_id"], name: "index_friendships_on_user_id", using: :btree
   end
-
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
-  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "pot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pot_id"], name: "index_invitations_on_pot_id", using: :btree
+    t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
-
-  add_index "invitations", ["pot_id"], name: "index_invitations_on_pot_id", using: :btree
-  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "pots", force: :cascade do |t|
     t.integer  "owner_id"
@@ -68,17 +64,17 @@ ActiveRecord::Schema.define(version: 20160610132144) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "end_at"
-    t.datetime "paid_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "receiver_id"
     t.string   "currency"
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
+    t.datetime "paid_at"
+    t.integer  "category",             default: 0
+    t.index ["owner_id"], name: "index_pots_on_owner_id", using: :btree
+    t.index ["receiver_id"], name: "index_pots_on_receiver_id", using: :btree
   end
-
-  add_index "pots", ["owner_id"], name: "index_pots_on_owner_id", using: :btree
-  add_index "pots", ["receiver_id"], name: "index_pots_on_receiver_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -93,13 +89,17 @@ ActiveRecord::Schema.define(version: 20160610132144) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
     t.string   "refresh_token"
     t.datetime "last_contact_sync_at"
     t.boolean  "admin"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
