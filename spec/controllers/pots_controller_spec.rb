@@ -12,7 +12,10 @@ RSpec.describe PotsController, type: :controller do
 
   # Params
   it { should permit(:name, :end_at, :description, :visible, :upper_bound, :receiver_id, guest_ids: []).for(:create) }
-  xit { should permit(:name, :description, :visible).for(:update) }
+  it do
+    pot = create(:pot)
+    should permit(:name, :description, :visible).for(:update, params: { id: pot.id })
+  end
 
   describe 'GET show' do
     let(:pot) { create(:pot, owner: user) }
