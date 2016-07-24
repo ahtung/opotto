@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :pots, -> { includes(:contributors) }, dependent: :destroy, foreign_key: :owner_id
   has_many :contributions, dependent: :destroy
-  has_many :contributed_pots, -> { uniq.includes(:contributors) }, through: :contributions, source: :pot
+  has_many :contributed_pots, -> { distinct.includes(:contributors) }, through: :contributions, source: :pot
   has_many :invitations, dependent: :destroy
-  has_many :invited_pots, -> { uniq.includes(:contributors) }, through: :invitations, source: :pot
+  has_many :invited_pots, -> { distinct.includes(:contributors) }, through: :invitations, source: :pot
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
