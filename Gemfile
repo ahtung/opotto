@@ -44,8 +44,8 @@ gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.12.0'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'draper', '~> 2.1.0'
-gem 'iyzipay', '~> 1.0.34'
+gem 'draper', '~> 3.0.0.pre1'
+# gem 'iyzipay', '~> 1.0.34'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
 group :production do
