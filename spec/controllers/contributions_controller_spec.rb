@@ -4,7 +4,6 @@ RSpec.describe ContributionsController, type: :controller do
   let(:user) { create(:user, :with_contributions) }
   let(:valid_attributes) { build(:contribution).attributes }
   let(:invalid_attributes) { attributes_for(:contribution, amount: nil) }
-  let(:valid_session) { {} }
   let(:pot) { user.contributions.first.pot }
 
   before :each do
@@ -22,12 +21,12 @@ RSpec.describe ContributionsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Contribution' do
         expect do
-          post :create, { pot_id: pot.id, contribution: attributes_for(:contribution).merge(pot_id: pot.id) }, valid_session
+          process :create, method: :post, params: { pot_id: pot.id, contribution: attributes_for(:contribution).merge(pot_id: pot.id) }
         end.to change(Contribution, :count).by(1)
       end
 
       it 'assigns a newly created contribution as @contribution' do
-        post :create, { pot_id: pot.id, contribution: attributes_for(:contribution).merge(pot_id: pot.id) }, valid_session
+        process :create, method: :post, params: { pot_id: pot.id, contribution: attributes_for(:contribution).merge(pot_id: pot.id) }
         expect(assigns(:contribution)).to be_a(Contribution)
         expect(assigns(:contribution)).to be_persisted
       end
@@ -37,7 +36,7 @@ RSpec.describe ContributionsController, type: :controller do
 
     context 'with invalid params' do
       before :each do
-        post :create, { pot_id: pot.id, contribution: attributes_for(:contribution, amount: nil).merge(pot_id: pot.id) }, valid_session
+        process :create, method: :post, params: { pot_id: pot.id, contribution: attributes_for(:contribution, amount: nil).merge(pot_id: pot.id) }
       end
 
       it 'assigns a newly created but unsaved contribution as @contribution' do
