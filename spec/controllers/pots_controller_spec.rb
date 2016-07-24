@@ -45,7 +45,7 @@ RSpec.describe PotsController, type: :controller do
         expect(assigns(:pot)).to eq(pot)
       end
 
-      it 'redirects to the pot' do
+      xit 'redirects to the pot' do
         pot = create(:pot, valid_attributes)
         put :update, { id: pot.to_param, pot: valid_attributes }, valid_session
         expect(response).to redirect_to(pot_url(Pot.last))
