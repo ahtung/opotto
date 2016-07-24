@@ -25,7 +25,7 @@ RSpec.describe PotsController, type: :controller do
     end
 
     it 'renders the show template' do
-      get :show, id: pot.id
+      process :show, method: :get, params: { id: pot.id }
       expect(response).to render_template('show')
     end
   end
@@ -104,12 +104,12 @@ RSpec.describe PotsController, type: :controller do
 
   describe 'GET new' do
     it 'assigns @pot' do
-      get :new
+      process :new, method: :get
       expect(assigns(:pot)).to be_a_new(Pot)
     end
 
     it 'renders the new template' do
-      get :new
+      process :new, method: :get
       expect(response).to render_template('new')
     end
   end
