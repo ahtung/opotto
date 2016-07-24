@@ -44,7 +44,7 @@ gem 'skylight', '~> 0.10.0'
 gem 'rollbar', '~> 2.12.0'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'draper', '~> 1.3'
+gem 'draper', '~> 2.1.0'
 gem 'iyzipay', '~> 1.0.34'
 
 group :production do
