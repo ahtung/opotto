@@ -2,17 +2,12 @@
 #= require jquery_ujs
 #= require materialize-sprockets
 #= require jquery.transit.min
-#= require jquery.cookie
+#= require js.cookie
 #= require jstz
 #= require browser_timezone_rails/set_time_zone
 #= require select_guest
 
-window.BrowserTZone ||= {}
-BrowserTZone.setCookie = ->
-  $.cookie "browser.timezone", jstz.determine().name(), { expires: 365, path: '/' }
-
 $ ->
-  BrowserTZone.setCookie()
   $('select').material_select()
   $('.datepicker').pickadate({
     selectMonths: true,
