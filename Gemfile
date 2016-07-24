@@ -47,6 +47,7 @@ gem 'cane'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'draper', '~> 1.3'
+gem 'iyzipay', '~> 1.0.34'
 
 group :production do
   gem 'rails_12factor'
