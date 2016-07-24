@@ -4,7 +4,7 @@ module ApplicationHelper
     sets_of_numbers = text.scan(/[0-9]+/)
     number = "+#{sets_of_numbers.join('-')}"
     link_to "tel://#{number}" do
-      '<i class="material-icons">phone</i>'.html_safe
+      content_tag :i, phone, class: 'material-icons'
     end
   end
 
