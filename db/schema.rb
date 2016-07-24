@@ -64,14 +64,13 @@ ActiveRecord::Schema.define(version: 20160610132144) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "end_at"
+    t.datetime "paid_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "receiver_id"
     t.string   "currency"
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
-    t.datetime "paid_at"
-    t.integer  "category",             default: 0
     t.index ["owner_id"], name: "index_pots_on_owner_id", using: :btree
     t.index ["receiver_id"], name: "index_pots_on_receiver_id", using: :btree
   end
@@ -89,15 +88,10 @@ ActiveRecord::Schema.define(version: 20160610132144) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
     t.string   "refresh_token"
     t.datetime "last_contact_sync_at"
     t.boolean  "admin"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
