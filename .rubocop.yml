@@ -11,11 +11,11 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'log/**/*'
+Rails:
+  Enabled: true
 
-Style/LineLength:
-  Max: 150
 Metrics/AbcSize:
-  Max: 21
+  Max: 15
 Metrics/BlockNesting:
   Max: 3
 Metrics/ClassLength:
@@ -24,7 +24,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 6
 Metrics/LineLength:
-  Max: 80
+  Max: 150
   AllowURI: true
   URISchemes:
     - http
