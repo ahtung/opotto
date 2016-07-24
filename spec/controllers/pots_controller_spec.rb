@@ -137,7 +137,7 @@ RSpec.describe PotsController, type: :controller do
     let(:pot) { create(:pot, owner: user) }
 
     it 'deletes a Pot' do
-      delete :destroy, { id: pot.to_param }
+      process :destroy, method: :delete, params: { id: pot.to_param }
       expect(assigns(:pot).destroyed?).to be true
     end
 
