@@ -27,9 +27,7 @@ module Payable
 
   # describe
   def update_payment_details(payment)
-    if payment.success?
-      self.authorization_url = api.preapproval_url(payment)
-    end
+    self.authorization_url = api.preapproval_url(payment) if payment.success?
     Rails.logger.info("Payment log | Payment updated details in #{payment_time / 60} minutes")
   end
 
