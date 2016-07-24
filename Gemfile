@@ -78,7 +78,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'test_after_commit', require: false
   gem 'rspec-sidekiq'
-  gem 'simplecov', require: false
+  gem 'coveralls', require: false
   gem 'timecop'
   gem 'rspec-its'
   gem 'state_machine_rspec'
