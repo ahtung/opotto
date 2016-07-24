@@ -81,6 +81,7 @@ group :test do
   gem 'timecop'
   gem 'rspec-its'
   gem 'state_machine_rspec'
+  gem 'poltergeist'
   gem 'webmock'
   gem 'rspec_junit_formatter', '~> 0.2.3'
   gem 'rails-controller-testing'

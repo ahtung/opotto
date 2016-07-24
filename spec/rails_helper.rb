@@ -9,11 +9,12 @@ require 'money-rails/test_helpers'
 require 'pundit/rspec'
 require 'database_cleaner'
 require 'webmock/rspec'
+require 'capybara/poltergeist'
 
-# Enable Capyara
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
