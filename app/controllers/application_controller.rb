@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # Redirect visitor to root_path in not authorized
   def user_not_authorized
     flash[:alert] = I18n.t('pundit.user_not_authorized')
-    redirect_to(request.referrer || root_path)
+    redirect_to(request.referer || root_path)
   end
 
   # Set the application time zone based on the browser cookie
