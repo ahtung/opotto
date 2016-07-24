@@ -1,46 +1,97 @@
-- set_meta_tags site: 'opotto', title: @pot.name, og: { title: @pot.name, type: 'product' }
+- set_meta_tags site: 'opotto', title: pot.name, og: { title: pot.name, type: 'product' }
+- content_for :nav_title do
+  = pot.name
 
-h1= @pot.name
-h3.subheader
-  = t('pot.owned_by', email: @pot.owner.email)
+- content_for :nav_right do
+  - if policy(pot).destroy?
+    .ui.item
+      = link_to pot_path(pot), method: :delete, data: { confirm: "Are you sure?" } do
+        = semantic_icon('close red', id: 'delete-pot')
 
-p
-  strong = "#{t('pot.receiver')}:"
-  = @pot.receiver.name ? @pot.receiver.name : @pot.receiver.email
+- content_for :masthead do
+  = render 'masthead', pot: pot
+        
+- if current_user && current_user.contributed_pots.include?(pot)
+  .ui.inverted.blue.attached.center.aligned.segment
+    .ui.text.container
+      span.upcase= 'You contributed '
+      span.green.text= humanized_money_with_symbol(pot.total_contribution_by(current_user))
 
-p
-  strong = "#{t('pot.description')}:"
-  = @pot.description
+- if flash.present?
+  .ui.attached.center.aligned.segment
+    - flash.each do |type, message|
+      .alert
+        p= message
+              
+.ui.vertical.stripe.segment
+  .ui.two.column.grid
+    .eight.wide.column
+      .ui.two.column.grid
+        .sixteen.wide.column
+          h3.ui.upcase.center.aligned.header
+            span.grey.text = t('pot.end_date')
+        .eight.wide.column
+          ui.sizer.vertical.segment style='font-size: 25px;'
+            h3.ui.huge.center.aligned.header
+              span.text class="#{pot.category_color}" = pot.end_at.strftime('%e')
+        .eight.wide.column
+          span.upcase.grey.text= pot.end_at.strftime('%b')
+          br
+          span.grey.text= pot.end_at.strftime('%Y')
+    .ui.vertical.divider
+    .eight.wide.column
+      .ui.two.column.grid
+        .six.wide.column
+        .ten.wide.column
+          h3.ui.upcase.left.aligned.header
+            span.grey.text = t('pot.to')
+        .six.wide.center.aligned.column
+          = image_tag pot.receiver.avatar.url(:thumb), class: 'ui medium circular image'
+        .ten.wide.column
+          = pot.receiver.decorate.handle(tag(:br), false, pot.category_color, 'grey')
 
-p
-  ul.collection.with-header
-    li.collection-header
-      h4= "#{@pot.guests.count} #{t('pot.guests')}"
-    - @pot.guests.each do |guest|
-      li.collection-item= guest.name ? guest.name : guest.email
-p
-  ul.collection.with-header
-    li.collection-header
-      h4= "#{@pot.total_contributors} #{t('pot.contributors')}"
-    - @pot.contributions.with_state(:scheduled, :completed).each do |contribution|
-      li.collection-item = "#{humanized_money_with_symbol(contribution.amount)} from #{contribution.owner_name} is #{contribution.state}"
-p
-  strong = "#{t('pot.total')}:"
-  = humanized_money_with_symbol(@pot.total_contribution)
-p
-  strong = "#{t('helpers.label.pot.ends_at')}:"
-  = @pot.end_at.strftime('%d %b %y')
+.ui.divider
 
-p
-  = link_to 'Report abuse', report_pot_path(@pot)
-.row
-  .col.s12
-    .row
-      .col.s12
-        = link_to t('site.navigation.back'), root_path, class: 'btn'
-      - if policy(@pot).contribute?
-        .col.s12
-          = link_to t('pot.contribute'), new_pot_contribution_path(@pot), class: 'btn'
-      - if policy(@pot).update?
-        .col.s12
-          p = link_to t('pot.edit'), edit_pot_path(@pot), class: 'btn'
+.ui.attached.segment
+  .ui.text.container
+    span.upcase.grey.text= t('pot.from')
+    = pot.owner.decorate.handle(' ', false, pot.category_color, 'blue')
+    p= pot.description
+    p= ' '
+
+- if policy(pot).contribute? || policy(pot).edit?
+  - col_count = [policy(pot).contribute?, policy(pot).edit?].all? ? 'two' : 'one'
+  .ui.attached.segment style='position:relative;min-height:64px;'
+    .ui.column.padded.grid class=col_count style='width:100%;height: 100%;position: absolute;top: 0;left: 0;'
+      - if policy(pot).contribute?
+        .column class=[pot.category_color, (col_count == 'two' ? 'eight' : 'sixteen'), 'wide']
+          = link_to new_pot_contribution_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+            i.white.text.money.icon
+            span.upcase.white.text= t('pot.contribute')
+      - if policy(pot).edit?
+        .grey.column class=[(col_count == 'two' ? 'eight' : 'sixteen'), 'wide']
+          = link_to edit_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+            i.white.text.edit.icon
+            span.upcase.white.text= t('pot.edit')
+    .arrow.down style='position: absolute;top: 0;margin: 0 auto;left: 0;right: 0;'
+
+.ui.attached.segment
+  .ui.one.column.grid
+    .grey.column.sixteen.wide
+      = link_to report_pot_path(pot), class: 'ui button', style: 'width:100%;background-color:transparent;' do
+        i.white.text.delete.icon
+        span.upcase.white.text= 'Report'
+
+.ui.attached.segment
+  .ui.text.container.center.aligned
+    h3.ui.header.grey.text.upcase = t('contribution.total')
+.ui.divider
+.ui.attached.segment
+  .ui.text.container.center.aligned
+    h3.ui.huge.header
+      span.text class="#{pot.category_color}"= humanized_money_with_symbol(pot.total_contribution)
+
+= render 'contributions', pot: pot
+= render 'invitations', pot: pot
+
+= render 'delete_modal'

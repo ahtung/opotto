@@ -1,0 +1,7 @@
+.ui.grid.center.aligned
+  .sixteen.wide.column
+    = pot.category_icon('huge')
+    h1.ui.header
+      span.upcase.blue.text= pot.category
+    h2.ui.header
+      span.blue.text= humanized_money_with_symbol(pot.total_contribution)

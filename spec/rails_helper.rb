@@ -1,8 +1,10 @@
-ENV['RAILS_ENV'] ||= 'test'
-
 # Coverage
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group 'Policies', 'app/policies'
+  add_group 'Decorators', 'app/decorators'
+end
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
@@ -42,6 +44,7 @@ RSpec.configure do |config|
   config.include ActionView::Helpers::NumberHelper
   config.include ActionView::Helpers::DateHelper
   config.include StateMachineRspec::Matchers
+  config.include OmniauthMacros
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -63,20 +66,44 @@ RSpec.configure do |config|
       }.to_json, headers: {})
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
-      .to_return(status: 200, body: { payKey: 'ABC', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(
+        status: 200,
+        body: { payKey: 'ABC', responseEnvelope: { ack: 'Success' } }.to_json,
+        headers: {}
+      )
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
-      .to_return(status: 200, body: { payKey: 'ABC', status: 'COMPLETED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(
+        status: 200,
+        body: { payKey: 'ABC', status: 'COMPLETED', responseEnvelope: { ack: 'Success' } }.to_json,
+        headers: {}
+      )
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
-      .to_return(status: 200, body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(
+        status: 200,
+        body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json,
+        headers: {}
+      )
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
-      .to_return(status: 200, body: { countryCode: 'NL', accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(
+        status: 200,
+        body: { countryCode: 'NL', accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json,
+        headers: {}
+      )
 
     stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
       .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}')
-      .to_return(status: 200, body: { countryCode: 'NL', accountStatus: 'VERIFIED', responseEnvelope: { ack: 'Success' } }.to_json, headers: {})
+      .to_return(
+        status: 200,
+        body: {
+          countryCode: 'NL',
+          accountStatus: 'VERIFIED',
+          responseEnvelope: { ack: 'Success' }
+        }.to_json,
+        headers: {}
+      )
   end
 
   config.before(:suite) do

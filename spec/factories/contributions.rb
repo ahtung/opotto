@@ -24,9 +24,5 @@ FactoryGirl.define do
     trait :with_user_noname do
       user { create(:user) }
     end
-
-    trait :with_user_with_name do
-      user { create(:user, :with_name) }
-    end
   end
 end

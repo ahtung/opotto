@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Pot, type: :model do
   it_behaves_like 'abusable'
+  it_behaves_like 'categorizable'
 
   # Relations
   describe 'relations' do
@@ -48,7 +49,8 @@ RSpec.describe Pot, type: :model do
         expect(pot).to be_valid
       end
       it 'invalid if owner\'s pot count > 2' do
-        @user = create(:user, :with_pots)
+        @user = create(:user, :with_pot)
+        create(:pot, owner: @user)
         last_pot = create(:pot, owner: @user)
         expect(last_pot).not_to be_valid
       end
@@ -177,7 +179,17 @@ RSpec.describe Pot, type: :model do
 
       it 'should return the sum of contributions if contributions' do
         pot = create(:pot, :with_contributions)
-        expect(pot.total_contribution).to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
+        expect(pot.total_contribution)
+          .to eq pot.contributions.with_states(:scheduled, :completed).map(&:amount).inject { |a, e| a + e }
+      end
+    end
+
+    describe 'total_contribution_by' do
+      it 'should return given users contributions' do
+        user = create(:user)
+        pot = create(:pot)
+        create(:contribution, :completed, pot: pot, user: user, amount: '100')
+        expect(pot.total_contribution_by(user)).to eq(Money.new(10_000, 'USD'))
       end
     end
 

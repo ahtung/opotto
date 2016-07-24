@@ -1,0 +1,17 @@
+en:
+  errors:
+    not_found:
+      code: 404
+      cry: Oops!
+      content: We are really sorry but the page you're looking for cannot be found
+      button: Take me back to the homepage
+    unauthorized:
+      code: 403
+      cry: Forbidden.
+      content: You don't have permission to access this page. You'll have to sign in to see this page.
+      button: Ok. Let me sign in
+    internal_server_error:
+      code: 500
+      cry: Oops!
+      content: Sorry, something has gone wrong. We're going to fix it, thank you for noticing.
+      button: Take me back to the homepage

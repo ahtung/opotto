@@ -12,12 +12,13 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require materialize-sprockets
 #= require jquery.transit.min
 #= require jquery.cookie
 #= require jstz
+#= require confirm
 #= require browser_timezone_rails/set_time_zone
-#= require select_guest
+#= require semantic-ui
+#= require select2
 
 window.BrowserTZone ||= {}
 BrowserTZone.setCookie = ->
@@ -25,31 +26,24 @@ BrowserTZone.setCookie = ->
 
 $ ->
   BrowserTZone.setCookie()
-  $('select').material_select()
-  $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15
+  $('#show-menu').on 'click', (event) ->
+    event.preventDefault();
+    $('.ui.sidebar')
+      .sidebar('toggle')
+
+  $('.clickable').on 'click', () ->
+    window.location = $(@).data('link')
+
+  $( "#pot_receiver_id" ).select2({
+    placeholder: 'Email address of the receiver'
   })
 
-  # Initialize Select Guest Class
-  guests = new SelectGuest
+  $('#pot_guest_ids').select2({
+    placeholder: 'Email addresses of the guests'
+  })
 
-  # Add guest to invited list
-  $('.guest-select').on 'click', '.add-to-guests', ->
-    guest_id = $(this).parent().data('guest')
-    guests.add_guest(guest_id)
+  $('.ui.calendar').calendar();
+  $('.ui.dropdown').dropdown()
 
-  # Remove Guest from invited list
-  $('.guest-select').on 'click', '.remove-from-guests', ->
-    guest_id = $(this).parent().data('guest')
-    guests.remove_guest(guest_id)
-
-  # Show errors in toast
-  if $('.alert-box').length > 0
-    $toastContent = $('<span>', html: $('.alert-box').html())
-    $toastContent.append($('<i>', {class: 'material-icons close-alert', text: 'close' }))
-    Materialize.toast $toastContent, 5000
-    $('.alert-box').remove()
-    $('#toast-container').on 'click', '.close-alert', ->
-      $('#toast-container').fadeOut 'slow', ->
-        $(this).remove()
+$('.message .close').on 'click', () ->
+  $(@).closest('.message').transition('fade')

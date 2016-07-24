@@ -7,6 +7,8 @@ class ContributionsController < ApplicationController
   before_action :authorize_pot
   after_action :verify_authorized
 
+  decorates_assigned :pot
+
   # GET /contributions/new
   def new
     @contribution = @pot.contributions.build

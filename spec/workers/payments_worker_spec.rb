@@ -39,7 +39,9 @@ RSpec.describe PaymentsWorker, type: :worker do
   it 'should function' do
     contribution = create(:contribution)
     Sidekiq::Testing.fake! do
-      expect { PaymentsWorker.perform_async([contribution.id]) }.to change(PaymentsWorker.jobs, :size).by(1)
+      expect do
+        PaymentsWorker.perform_async([contribution.id])
+      end.to change(PaymentsWorker.jobs, :size).by(1)
     end
   end
 

@@ -1,0 +1,14 @@
+- content_for :main_class do
+  = color
+
+.row.middle.aligned
+  .ui.one.column.center.aligned.grid
+    .eight.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background
+      .ui.grid
+        .column.five.wide.middle.aligned
+          i.icon-folder-open-empty style='font-size:75px;'
+        .column.eleven.wide.left.aligned
+          h2.blue.text= t("errors.#{action}.code")
+          h3.text class="#{color}"= t("errors.#{action}.cry")
+          p= t("errors.#{action}.content")
+          = link_to t("errors.#{action}.button"), link, class: "ui #{color} button large fluid", style: 'text-transform:uppercase;'

@@ -1,7 +1,5 @@
 # User
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :pots, -> { includes(:contributors) }, dependent: :destroy, foreign_key: :owner_id
@@ -18,10 +16,21 @@ class User < ActiveRecord::Base
   scope :with_paypal_account, -> { where(paypal_member: true) }
   scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
-  # returns user's handle
-  def handle
-    return name if name
-    email
+  # Atachment
+  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
+
+  def name
+    [first_name, last_name].join(' ')
+  end
+
+  def name?
+    return true if first_name && last_name
+    false
+  end
+
+  def email_hash
+    Digest::MD5.hexdigest(email)
   end
 
   # returns pots that the user have not created
@@ -39,7 +48,8 @@ class User < ActiveRecord::Base
   def self.find_for_google_oauth2(access_token, _ = nil)
     data = access_token.info
     User.where(email: data['email']).first_or_create(
-      name: data['name'],
+      first_name: data['first_name'],
+      last_name: data['last_name'],
       refresh_token: access_token.credentials ? access_token.credentials.refresh_token : nil,
       admin: false
     )

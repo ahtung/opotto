@@ -28,16 +28,19 @@ class PotPolicy
   # edit?
   def edit?
     return false if user.nil?
-    return false unless pot.new_record?
-    return true if pot.owner == user
-    false
+    return false if pot.persisted?
+    pot.owner == user
   end
 
   # update?
   def update?
     return false if user.nil?
-    return false unless pot.new_record?
-    return true if pot.owner == user
-    false
+    return false if pot.persisted?
+    pot.owner == user
+  end
+
+  def destroy?
+    return false if user.nil?
+    pot.owner == user
   end
 end

@@ -23,6 +23,7 @@ module Opotto
     config.generators.javascripts = false
     config.i18n.available_locales = [:tr, :nl, :en]
     config.middleware.use Rack::Attack
+    config.nav_lynx.selected_class = 'active'
     # config.i18n.default_locale = :tr
   end
 end

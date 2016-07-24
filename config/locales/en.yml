@@ -1,8 +1,12 @@
 ---
 en:
+  welcome: Welcome
   contribution:
     new: New contribution
     previous: You're previous contributions
+    collected: Collected
+    contributions: My Contributions
+    total: Total money collected
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
@@ -11,6 +15,13 @@ en:
       pot:
         ends_at: Ends at
         optional: Optional
+  payments:
+    failure:
+      header: Payment failed
+      message: Your payment cannot be completed. Please try again later. If the problem persists, please contact us.
+    success:
+      header: Preapprovel payment approved.
+      message: Conguratulations. Your payment is saved. It will be sent to the recipient on the day the pot ends.
   pot:
     contribute: Contribute
     contributors: Contributors
@@ -19,44 +30,28 @@ en:
     edit: Edit
     guest: Guests
     guests: Guests
-    new: New
-    not_reported: Not reported
+    new: New Pot
     owned_by: By %{email}
     receiver: Receiver
     reported: Thank you for your cooperation. We will look into this pot A.S.A.P.
     save: Save
-    total: Total contribution
     updated: Pot successfully updated!
-  payments:
-    failure:
-      header: Payment failed
-      message: Your payment cannot be completed. Please try again later. If the problem persists, please contact us.
-    success:
-      header: Preapprovel payment approved.
-      message: Conguratulations. Your payment is saved. It will be sent to the recipient on the day the pot ends.
+    to: To
+    invitations: My Invitations
+    from: From
+    end_date: End Date
   pundit:
     user_not_authorized: You are not authorized to perform this action.
   site:
-    about:
-      content: what is opotto?
-      title: About
-    contact:
-      content: where is opotto?
-      title: Contact
-    copyright: "© 2015‐%{year} DKDH Limited. All rights reserved."
-    hello: Hello
+    copyright: "© %{year} Ahtung Tech. Ltd. All rights reserved."
+    hello: Opotto
     introduction: opotto is a beautiful way of giving a present to your friends
-    me: Me
+    motto: Save . Collect . Share
     navigation:
       back: Back
-    security:
-      content: how secure is opotto?
-      title: Security
+      mypots: My Pots
+      newpot: New Pot
     sign_in_with_google: Sign in with Google
-    title: opotto
-    unsupported:
-      title: Unsupported Country
-      content: 'Sorry, Crowdfunding is not allowed in your country.'
   user:
     login: Login
     logout: Logout

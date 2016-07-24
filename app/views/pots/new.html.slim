@@ -1,2 +1,10 @@
-h2= t('pot.new')
-== render 'form', pot: @pot
+- content_for :nav_title do
+  = t('pot.new')
+
+- content_for :nav_right do
+  .ui.item
+
+- content_for :masthead do
+  = render partial: 'users/masthead', locals: { user: current_user.decorate }
+
+== render 'form', pot: pot

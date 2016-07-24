@@ -4,16 +4,13 @@ RSpec.describe UserMailer, type: :mailer do
   describe 'user with name' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      users = create_list(:user, 3, :with_name)
+      @user = create(:user)
       @pot = create(:pot, :with_description)
-      @user = users.first
-      users.each do |user|
-        UserMailer.invitation_email(user, @pot).deliver_now
-      end
+      UserMailer.invitation_email(@user, @pot).deliver_now
     end
 
     it 'should send an email' do
-      ActionMailer::Base.deliveries.count.should == 3
+      ActionMailer::Base.deliveries.count.should == 1
     end
 
     it 'renders the receiver email' do
@@ -33,11 +30,13 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should have user\'s name in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_content("Hello #{@user.name}")
     end
 
     it 'should have an introduction message for opotto if not registered' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('div#introduction_to_opotto')
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_css('div#introduction_to_opotto')
     end
 
     after(:each) do
@@ -48,16 +47,14 @@ RSpec.describe UserMailer, type: :mailer do
   describe 'user without name' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      users = create_list(:user, 3)
+      @user = create(:user)
       @pot = create(:pot, :with_description)
-      @user = users.first
-      users.each do |user|
-        UserMailer.invitation_email(user, @pot).deliver_now
-      end
+      UserMailer.invitation_email(@user, @pot).deliver_now
     end
 
-    it 'should have user\'s email in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.email}")
+    it 'should have user\'s name in the body' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .to have_content("Hello #{@user.name}")
     end
 
     after(:each) do
@@ -68,16 +65,14 @@ RSpec.describe UserMailer, type: :mailer do
   describe 'a registered user' do
     before(:each) do
       ActionMailer::Base.deliveries = []
-      users = create_list(:user, 3, :registered)
+      @user = create(:user, :registered)
       @pot = create(:pot, :with_description)
-      @user = users.first
-      users.each do |user|
-        UserMailer.invitation_email(user, @pot).deliver_now
-      end
+      UserMailer.invitation_email(@user, @pot).deliver_now
     end
 
     it 'should not have an introductin message for opotto in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).not_to have_css('div#introduction_to_opotto')
+      expect(ActionMailer::Base.deliveries.first.body.encoded)
+        .not_to have_css('div#introduction_to_opotto')
     end
 
     after(:each) do

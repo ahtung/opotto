@@ -10,7 +10,7 @@ RSpec.describe 'Guest', type: :feature do
     fill_in 'user_password', with: user.password
     click_on 'Sign in'
     visit pot_path(pot)
-    click_on 'Report abuse'
+    click_on 'Report'
     expect(page).to have_content(t('pot.reported'))
   end
 end

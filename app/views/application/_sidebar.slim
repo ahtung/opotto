@@ -1,0 +1,22 @@
+.ui.left.inverted.vertical.menu.top.sidebar
+  .item
+    .header Pots
+    .menu
+      = link_to root_path, class: 'item' do
+        i.leaf.icon
+        span = t('site.navigation.mypots')
+      = link_to root_path(by: 'invited'), class: 'item' do
+        i.mail.icon
+        span = t('pot.invitations')
+      = link_to root_path(by: 'contributed'), class: 'item' do
+        i.money.icon
+        span = t('contribution.contributions')
+  .item
+    .header Pages
+    - %w(about contact security rules).each do |page|
+      .menu
+        = nav_link_to page.capitalize, page_path(page), class: 'item'
+  - if user_signed_in?
+    .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
+  - else
+    .item= nav_link_to t('user.login'), user_omniauth_authorize_path(:google_oauth2), class: 'ui button red'

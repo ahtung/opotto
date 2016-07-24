@@ -1,0 +1,10 @@
+.ui.attached.segment.main
+  - if pots.present?
+    .ui.one.column.grid
+      .three.wide.center.aligned.column.medium-grey.upcase.text
+        = t('pot.to')
+      .seven.wide.column
+      .six.wide.column.medium-grey.upcase.text
+        = t('contribution.collected')
+    .ui.grid
+      = render partial: 'pots/timeline/pot', collection: pots

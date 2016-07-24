@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327171248) do
+ActiveRecord::Schema.define(version: 20160522110601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,13 +69,14 @@ ActiveRecord::Schema.define(version: 20160327171248) do
     t.datetime "updated_at"
     t.string   "name"
     t.datetime "end_at"
-    t.datetime "paid_at"
     t.boolean  "visible"
     t.text     "description"
     t.integer  "receiver_id"
     t.string   "currency"
     t.integer  "upper_bound_cents"
     t.string   "upper_bound_currency", default: "USD", null: false
+    t.datetime "paid_at"
+    t.integer  "category",             default: 0
   end
 
   add_index "pots", ["owner_id"], name: "index_pots_on_owner_id", using: :btree
@@ -94,12 +95,17 @@ ActiveRecord::Schema.define(version: 20160327171248) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
     t.string   "refresh_token"
     t.boolean  "paypal_member"
     t.datetime "last_contact_sync_at"
     t.boolean  "admin"
     t.string   "paypal_country"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
