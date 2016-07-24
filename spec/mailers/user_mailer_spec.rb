@@ -24,8 +24,8 @@ RSpec.describe UserMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.first.subject).to eq "You're invited to contribute!"
     end
 
-    xit 'should have a message in its content' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(@pot.description)
+    it 'should have pots name in its content' do
+      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content(@pot.name)
     end
 
     it 'renders the sender email' do
@@ -34,14 +34,6 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'should have user\'s name in the body' do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.name}")
-    end
-
-    xit 'should have an introduction message for opotto if not registered' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).to have_css('div#introduction_to_opotto')
-    end
-
-    after(:each) do
-      ActionMailer::Base.deliveries.clear
     end
   end
 
@@ -59,10 +51,6 @@ RSpec.describe UserMailer, type: :mailer do
     it 'should have user\'s email in the body' do
       expect(ActionMailer::Base.deliveries.first.body.encoded).to have_content("Hello #{@user.email}")
     end
-
-    after(:each) do
-      ActionMailer::Base.deliveries.clear
-    end
   end
 
   describe 'a registered user' do
@@ -77,11 +65,31 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'should not have an introductin message for opotto in the body' do
-      expect(ActionMailer::Base.deliveries.first.body.encoded).not_to have_css('div#introduction_to_opotto')
+      expect(ActionMailer::Base.deliveries.first.body).not_to have_css('div#introduction_to_opotto')
     end
 
     after(:each) do
       ActionMailer::Base.deliveries.clear
     end
+  end
+
+  describe 'a non registered user' do
+    before(:each) do
+      ActionMailer::Base.deliveries = []
+      users = create_list(:user, 3, last_sign_in_at: nil)
+      @pot = create(:pot, :with_description)
+      @user = users.first
+      users.each do |user|
+        UserMailer.invitation_email(user, @pot).deliver_now
+      end
+    end
+
+    it 'should not have an introductin message for opotto in the body' do
+      expect(ActionMailer::Base.deliveries.last.body).to have_css('div#introduction_to_opotto')
+    end
+  end
+
+  after(:each) do
+    ActionMailer::Base.deliveries.clear
   end
 end
