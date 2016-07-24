@@ -1,6 +1,7 @@
 class @SelectGuest
   @options
   constructor: (options = {}) ->
+    $('#pot_guest_ids').hide()
 
   add_guest: (guest_id) ->
     guest_elem = create_elem(guest_id, 'not-invited-list')
