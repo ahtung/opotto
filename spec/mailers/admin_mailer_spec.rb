@@ -10,7 +10,7 @@ RSpec.describe AdminMailer, type: :mailer do
   end
 
   it 'should send an email' do
-    ActionMailer::Base.deliveries.count.should == 1
+    expect(ActionMailer::Base.deliveries.count).to eq 1
   end
 
   it 'renders the receiver email' do
@@ -18,7 +18,7 @@ RSpec.describe AdminMailer, type: :mailer do
   end
 
   it 'should set the subject to the correct subject' do
-    ActionMailer::Base.deliveries.first.subject.should == "This week's pots"
+    expect(ActionMailer::Base.deliveries.first.subject).to eq "This week's pots"
   end
 
   it 'should have a message in its content' do

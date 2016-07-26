@@ -14,11 +14,14 @@ class UserDecorator < Draper::Decorator
   end
 
   def highlighted_email(options = {})
-    color_class = options[:color] ? "#{options[:color]} text" : ''
     h.content_tag :p do
       h.concat put_icon(options[:icon])
-      h.concat h.content_tag :span, object.email.match(/^(.*)@.*$/)[1], class: color_class
+      h.concat h.content_tag :span, object.email.match(/^(.*)@.*$/)[1], class: highlighted_color(options[:color])
     end
+  end
+
+  def highlighted_color(color)
+    color ? "#{color} text" : ''
   end
 
   def put_icon(icon)
@@ -27,9 +30,7 @@ class UserDecorator < Draper::Decorator
 
   def decorated_name(seperator, color, second_color)
     h.capture do
-      h.concat h.content_tag :span, object.first_name.upcase, class: "#{color} text"
-      h.concat seperator
-      h.concat h.content_tag :span, object.last_name, class: "#{second_color} text"
+      h.concat h.content_tag :span, object.name.upcase, class: "#{color} text"
     end
   end
 

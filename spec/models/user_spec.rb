@@ -61,17 +61,15 @@ describe User do
       end
     end
 
-    describe 'check_paypal' do
-      it 'updates paypal_member' do
-        user = create(:user, paypal_member: nil)
-        user.check_paypal
-        expect(user.paypal_member).not_to eq(nil)
+    describe 'handle' do
+      it 'returns name if user has name' do
+        user = create(:user, first_name: 'DUN', last_name: 'KIR')
+        expect(user.decorate.handle).to eq('<p><span class="green text">DUN KIR</span></p>')
       end
 
-      it 'updates paypal_country' do
-        user = create(:user, paypal_country: nil)
-        user.check_paypal
-        expect(user.paypal_country).not_to eq(nil)
+      xit 'returns email if user has no name' do
+        user = create(:user)
+        expect(user.decorate.handle).to eq(user.email)
       end
     end
 
@@ -104,19 +102,6 @@ describe User do
       end
     end
 
-    describe 'with_paypal_account' do
-      let(:users_with) { create_list(:user, 2, paypal_member: true) }
-      let(:users_without) { create_list(:user, 2, paypal_member: false) }
-
-      it "returns user's w/ a paypal account" do
-        expect(User.with_paypal_account).to match_array(users_with)
-      end
-
-      it "does not return user's w/o a paypal account" do
-        expect(User.with_paypal_account).not_to match_array(users_without)
-      end
-    end
-
     describe 'find_for_google_oauth2' do
       it 'should create a new user if does not exist' do
         user = build(:user)
@@ -128,24 +113,6 @@ describe User do
       it 'should return user if exists' do
         user = create(:user)
         expect(User.find_for_google_oauth2(omniauth_hash(user.email), nil)).to eq(user)
-      end
-    end
-
-    describe 'paypal_details' do
-      describe 'for a user with paypal account' do
-        let(:user) { create(:user, :with_paypal) }
-
-        it 'should return true if email has paypal account' do
-          expect(User.paypal_details(user.email)).to match_array [true, 'NL']
-        end
-      end
-
-      describe 'for a user with no paypal account' do
-        let(:user) { create(:user) }
-
-        it 'should return false if email has no paypal account' do
-          expect(User.paypal_details(user.email)).to match_array [false, 'NL']
-        end
       end
     end
   end

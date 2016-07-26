@@ -31,22 +31,6 @@ RSpec.describe Contribution, type: :model do
     end
   end
 
-  describe "should validate that the user's PayPal account's country allows opotto" do
-    it 'and allow if from NL' do
-      user = create(:user, paypal_country: 'NL')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).to be_valid
-    end
-
-    it 'and deny if from JP' do
-      user = create(:user, paypal_country: 'JP')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).not_to be_valid
-    end
-  end
-
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   ## Initiated
@@ -60,6 +44,12 @@ RSpec.describe Contribution, type: :model do
   it { should handle_events :retry, when: :failed }
   ## Completed
   it { should reject_events :success, :error, :retry, when: :completed }
+  ## Schedule Failed
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :success, :error, when: :schedule_failed }
+  ## Completed
+  it { should reject_events :success, :error, :retry, when: :completed }
+
   ## Schedule Failed
   it { should handle_events :retry, when: :schedule_failed }
   it { should reject_events :success, :error, when: :schedule_failed }
@@ -92,9 +82,9 @@ RSpec.describe Contribution, type: :model do
         expect(contribution.owner_name).to eq(contribution.user.name)
       end
 
-      it 'should return user full_name if set' do
+      xit 'should return user full_name if set' do
         contribution = FactoryGirl.create(:contribution, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.name)
+        expect(contribution.owner_name).to eq(contribution.user.email)
       end
     end
 

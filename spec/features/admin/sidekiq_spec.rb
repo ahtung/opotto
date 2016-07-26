@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin', type: :feature do
-  let!(:user) { create(:user, :with_paypal) }
+  let!(:user) { create(:user) }
   let!(:admin) { create(:user, :admin, email: 'onurkucukkece@gmail.com', password: '123QwETR') }
 
   it 'should be able to access sidekiq page if admin' do

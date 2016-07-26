@@ -1,9 +1,6 @@
 # Coverage
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_group 'Policies', 'app/policies'
-  add_group 'Decorators', 'app/decorators'
-end
+require 'coveralls'
+Coveralls.wear!
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -13,11 +10,12 @@ require 'money-rails/test_helpers'
 require 'pundit/rspec'
 require 'database_cleaner'
 require 'webmock/rspec'
+require 'capybara/poltergeist'
 
-# Enable Capyara
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -39,7 +37,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include MoneyRails::TestHelpers
   config.include Warden::Test::Helpers
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include AbstractController::Translation
   config.include ActionView::Helpers::NumberHelper
   config.include ActionView::Helpers::DateHelper
@@ -64,46 +62,6 @@ RSpec.configure do |config|
         expires_in: 3600,
         refresh_token: '1/L7S-j2AOqJLQE3kYAsiFKVtykz3sAYhx2XOiuCjTce9IgOrJDtdun6zK6XiATCKT'
       }.to_json, headers: {})
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay')
-      .to_return(
-        status: 200,
-        body: { payKey: 'ABC', responseEnvelope: { ack: 'Success' } }.to_json,
-        headers: {}
-      )
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails')
-      .to_return(
-        status: 200,
-        body: { payKey: 'ABC', status: 'COMPLETED', responseEnvelope: { ack: 'Success' } }.to_json,
-        headers: {}
-      )
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptivePayments/Preapproval')
-      .to_return(
-        status: 200,
-        body: { preapprovalKey: '', responseEnvelope: { ack: 'Success' } }.to_json,
-        headers: {}
-      )
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
-      .to_return(
-        status: 200,
-        body: { countryCode: 'NL', accountStatus: 'UNVERIFIED', responseEnvelope: { ack: 'Success' } }.to_json,
-        headers: {}
-      )
-
-    stub_request(:post, 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus')
-      .with(body: '{"requestEnvelope":{"errorLanguage":"en_US"},"emailAddress":"us-personal@gmail.com","matchCriteria":"NONE"}')
-      .to_return(
-        status: 200,
-        body: {
-          countryCode: 'NL',
-          accountStatus: 'VERIFIED',
-          responseEnvelope: { ack: 'Success' }
-        }.to_json,
-        headers: {}
-      )
   end
 
   config.before(:suite) do

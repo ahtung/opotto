@@ -27,7 +27,7 @@ RSpec.describe 'schedule' do
     its(:prerequisites) { should include('environment') }
 
     it 'it enqueues an update_email for admins' do
-      expect { subject.invoke }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect { subject.invoke }.to have_enqueued_job.on_queue('mailers')
     end
   end
 

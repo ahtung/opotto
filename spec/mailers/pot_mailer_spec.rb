@@ -10,7 +10,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should send an email' do
-      ActionMailer::Base.deliveries.count.should == 1
+      expect(ActionMailer::Base.deliveries.count).to eq 1
     end
 
     it 'renders the receiver email' do
@@ -18,7 +18,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should set the subject to the correct subject' do
-      ActionMailer::Base.deliveries.first.subject.should == 'Your contribution sucessfully scheduled!'
+      expect(ActionMailer::Base.deliveries.first.subject).to eq 'Your contribution sucessfully scheduled!'
     end
 
     it 'should have a message in its content' do
@@ -53,7 +53,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should send an email' do
-      ActionMailer::Base.deliveries.count.should == 1
+      expect(ActionMailer::Base.deliveries.count).to eq 1
     end
 
     it 'renders the receiver email' do
@@ -61,7 +61,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should set the subject to the correct subject' do
-      ActionMailer::Base.deliveries.first.subject.should == 'You have sucessfully contributed!'
+      expect(ActionMailer::Base.deliveries.first.subject).to eq 'You have sucessfully contributed!'
     end
 
     it 'should have a message in its content' do
@@ -96,7 +96,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should send an email' do
-      ActionMailer::Base.deliveries.count.should == 1
+      expect(ActionMailer::Base.deliveries.count).to eq 1
     end
 
     it 'renders the receiver email' do
@@ -108,7 +108,7 @@ RSpec.describe PotMailer, type: :mailer do
     end
 
     it 'should set the subject to the correct subject' do
-      ActionMailer::Base.deliveries.first.subject.should == 'Your payment has failed'
+      expect(ActionMailer::Base.deliveries.first.subject).to eq 'Your payment has failed'
     end
 
     it 'should have a message in its content' do

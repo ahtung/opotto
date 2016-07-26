@@ -1,6 +1,5 @@
 Documentation:
   Enabled: true
-
 AllCops:
   Include:
     - '**/Rakefile'
@@ -11,11 +10,10 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'log/**/*'
-
-Style/LineLength:
-  Max: 143
+Rails:
+  Enabled: true
 Metrics/AbcSize:
-  Max: 21
+  Max: 17
 Metrics/BlockNesting:
   Max: 3
 Metrics/ClassLength:
@@ -24,19 +22,16 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 6
 Metrics/LineLength:
-  Max: 80
+  Max: 150
   AllowURI: true
   URISchemes:
     - http
     - https
-
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 13
-
 Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
-
 Metrics/PerceivedComplexity:
   Max: 7

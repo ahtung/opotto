@@ -4,13 +4,13 @@ RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
 
   before :each do
-    sign_in :user, user
+    sign_in user, scope: :user
   end
 
   describe 'GET show' do
     context 'pots' do
       before :each do
-        get :show, id: user.id
+        process :show, method: :get, params: { id: user.id }
       end
 
       it 'assigns @user' do
