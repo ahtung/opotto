@@ -43,7 +43,7 @@ RSpec.describe PotsController, type: :controller do
 
       it 'assigns the requested pot as @pot' do
         pot = create(:pot, valid_attributes)
-        put :update, { id: pot.to_param, pot: valid_attributes }
+        process :update, method: :put, params: { id: pot.to_param, pot: valid_attributes }
         expect(assigns(:pot)).to eq(pot)
       end
 
