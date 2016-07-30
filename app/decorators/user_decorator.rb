@@ -9,7 +9,7 @@ class UserDecorator < Draper::Decorator
   def highlighted_name(options = {})
     h.content_tag :p do
       h.concat put_icon(options[:icon])
-      h.concat decorated_name(options[:seperator], options[:color], options[:second_color])
+      h.concat decorated_name(options[:color])
     end
   end
 
@@ -28,7 +28,7 @@ class UserDecorator < Draper::Decorator
     h.content_tag :i, '', class: "icon #{icon}" if icon
   end
 
-  def decorated_name(seperator, color, second_color)
+  def decorated_name(color)
     h.capture do
       h.concat h.content_tag :span, object.name.upcase, class: "#{color} text"
     end

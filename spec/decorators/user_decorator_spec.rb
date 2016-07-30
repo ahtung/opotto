@@ -43,7 +43,7 @@ RSpec.describe UserDecorator, type: :decorator do
 
     it 'should only return decorated name & surname' do
       output = "<span class=\"green text\">#{user.name.upcase}</span>"
-      expect(user.decorated_name(' ', 'green', 'grey')).to eq(output)
+      expect(user.decorated_name('green')).to eq(output)
     end
   end
 
