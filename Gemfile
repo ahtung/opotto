@@ -73,6 +73,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry'
   gem 'pry-remote'
+  gem 'danger', '~> 2.0.1'
 end
 
 group :test do
