@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.4'
 
-gem 'rails', '5.0.0'
+gem 'rails', '5.0.0.1'
 gem 'iyzipay', '~> 1.0.34', require: false
 gem 'rake', '11.2.2'
 gem 'sass-rails', '~> 5.0.1'
