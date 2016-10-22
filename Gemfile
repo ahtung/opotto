@@ -67,6 +67,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'bundler-audit'
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda'
