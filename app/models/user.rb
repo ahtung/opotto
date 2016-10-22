@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
 
   def name
-    [first_name, last_name].join(' ')
+    return [first_name, last_name].join(' ') if first_name && last_name
+    email
   end
 
   def name?
