@@ -1,4 +1,15 @@
-.ui.container.main
-  = content_for :title, "Opotto - #{ t('pages.rules.title') }"
-  h2= t('pages.rules.title')
-  = t('pages.rules.content')
+= content_for :title, "Opotto - #{ t('pages.rules.title') }"
+
+.ui.vertical.stripe.intro.segment.main
+  .ui.stackable.very.relaxed.center.aligned.grid.container
+    .row
+      .twelve.wide.column
+        = image_tag 'rules.jpg', class: "ui fluid image"
+        h1.ui.header= t('pages.rules.title')
+  .ui.stackable.very.relaxed.grid.container
+    .row
+      p = ' '
+    .row
+      p = ' '
+    .row
+      p = ' '

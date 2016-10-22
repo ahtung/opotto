@@ -63,3 +63,14 @@ body {
 .right.menu {
   min-width: 63.47px;
 }
+
+.relative {
+  position: relative;
+}
+
+.vertical-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
+}

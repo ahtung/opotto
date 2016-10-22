@@ -4,9 +4,9 @@
 
 - content_for :nav_title, 'Opotto'
   
-.row.middle.aligned.main.imaged
-  .ui.one.column.center.aligned.grid
-    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background
+.row.main.imaged
+  .ui.one.column.grid.relative
+    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background.vertical-centered style='text-align:center;'
       .ui.image= image_tag 'opotto.png', size: '60x120'
       h1.upcase= t('site.hello')
       h2= t('site.motto')
