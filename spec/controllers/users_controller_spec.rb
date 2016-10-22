@@ -28,7 +28,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'invited_pots' do
       before :each do
-        get :show, id: user.id, by: 'invited'
+        get :show, params: { id: user.id }, by: 'invited'
       end
 
       it 'assigns @user' do
@@ -46,7 +46,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'contributed_pots' do
       before :each do
-        get :show, id: user.id, by: 'contributed'
+        get :show, params: { id: user.id }, by: 'contributed'
       end
 
       it 'assigns @user' do
