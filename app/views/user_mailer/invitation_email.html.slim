@@ -1,5 +1,5 @@
 h1 Opotto
-p = "Hello #{@user.name ? @user.name : @user.email}"
+p = "Hello #{@user.name}"
 h2
   = "You have been asked to contribute to "
   = link_to @pot.name, new_pot_contribution_url(@pot)
