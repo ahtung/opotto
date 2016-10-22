@@ -1,12 +1,12 @@
 = content_for :title, "Opotto - #{ t('pages.security.title') }"
 - content_for :masthead do
-  = image_tag 'rules.jpg', class: "ui fluid image"
+  .module.mid
+    .ui.text.center.aligned.container
+      h1.ui.inverted.header = t('pages.security.title')
+      h2.ui.inverted.header = t('pages.security.subtitle')
+
 
 .ui.vertical.stripe.intro.segment.main
-  .ui.stackable.very.relaxed.center.aligned.grid.container
-    .row
-      .twelve.wide.column
-        h1.ui.header= t('pages.security.title')
   .ui.stackable.very.relaxed.grid.container
     .row
       .twelve.wide.column
@@ -14,3 +14,13 @@
     .row
       .twelve.wide.column
         = t('pages.security.content_2_html')
+      
+css:
+  .module {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("#{image_path('devices.png')}");
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    position: relative;
+    float: left;
+  }

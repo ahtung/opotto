@@ -1,30 +1,35 @@
 - content_for :title, "Opotto - #{ t('pages.contact.title') }"
 - content_for :masthead do
-  = image_tag 'contact.jpeg', class: "ui fluid image"
+  .module.mid
+    .ui.text.center.aligned.container
+      h1.ui.inverted.header = t('pages.contact.title')
+      h2.ui.inverted.header = t('pages.contact.subtitle')
 
 .ui.vertical.stripe.intro.segment.main
-  .ui.stackable.very.relaxed.center.aligned.grid.container
-    .row
-      .twelve.wide.column
-        h1.ui.header = t('pages.contact.title')
   .ui.centered.grid.container
     .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
-      = mail_to "info@ahtung.co" do
-        i.ui.large.icon.mail.circular
-        br
-        = 'info@ahtung.co'
+      h2.ui.center.aligned.blue.icon.header
+        i.circular.mail.icon
+        = mail_to 'info@ahtung.co', 'info@ahtung.co'
     .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
-      = link_to "tel://+90-537-405-00-51" do
-        i.ui.large.icon.phone.circular
-        br
-        = '+90 537 405 00 51'
+      h2.ui.center.aligned.blue.icon.header
+        i.circular.phone.icon
+        = link_to '+90 537 405 00 51', 'tel://+90-537-405-00-51'
     .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
-      = link_to "https://www.facebook.com/pages/Ahtung/1640658482879986", class: 'facebook_link', target: '_blank' do
-        i.ui.large.icon.facebook.circular
-        br
-        = 'Facebook'
+      h2.ui.center.aligned.icon.header
+        i.circular.facebook.blue.icon
+        = link_to 'Facebook', 'https://www.facebook.com/pages/Ahtung/1640658482879986', target: '_blank'
     .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
-      = link_to "https://www.facebook.com/pages/Ahtung/1640658482879986", class: 'facebook_link', target: '_blank' do
-        i.ui.large.icon.twitter.circular
-        br
-        = 'Twitter'
+      h2.ui.center.aligned.icon.header
+        i.circular.twitter.blue.icon
+        = link_to 'Twitter', 'https://www.facebook.com/pages/Ahtung/1640658482879986', target: '_blank'
+
+css:
+  .module {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("#{image_path('contact.jpeg')}");
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    position: relative;
+    float: left;
+  }
