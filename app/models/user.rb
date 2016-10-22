@@ -88,7 +88,6 @@ class User < ActiveRecord::Base
   end
 
   def get_contact_details(google_contacts_user)
-    puts google_contacts_user.inspect
     contact_info = google_contacts_user.contacts.map do |contact|
       { email: contact.primary_email, first_name: contact.given_name, last_name: contact.family_name }
     end
