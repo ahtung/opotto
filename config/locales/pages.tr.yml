@@ -14,9 +14,10 @@ tr:
       content_3_html: |
         <p>Opotto ile siz kullanıcılarımızın güvende olduğunuzu bilmenizi isteriz. Opotto her zaman en güvenli ve basiti hedeflemektedir.</p>
     security:
-      title: Guvenlik
+      title: Gizlilik ve Guvenlik
       description: secure ssl oauth2
-      content: opotto ne kadar guvenli?
+      content_1_html: <h3>Gizlilik</h3><p>Opotto'da yapacağınız katkılar ancak siz isterseniz duyrulur. Dilerseniz kumbaralara anonim katkıda bulunabilirsiniz.</p><p>Opotto, kişisel bilgileriniz 3. kişiler ve kurumlar ile paylaşmaz.</p><p>Size ait hiçbir ödeme veya kart bilgisi sistemimizde saklanmaz. Bunun için yüksek güvenlik altyapısına sahip ödeme sistemlerinden faydalanılır.</p><p>Sitemizde bulunan SSL sertifikası ile sitemizedeki ziyaretinizin 3. şahıslar tarafından izlenmesi engellenmiş olur.</p>
+      content_2_html: <h3>Güvenlik</h3><p>Opotto'da yapacağınız katkılarda ödeme işlemi sadece siz, ödeme altyapısını sağlayıcı firma ve kumbara alıcısı arasında gerçekleşir. Bu şekilde aracılar döngüden çıkarılarak sizin ve kumbara alıcısının güvenliği sağlanmış olur.</p><p>Ödeme bilgileriniz ileri kalite ve güvenlik standartlarına sahip kurumlar aracılığyla saklanır. Bu şeilde ödeme bilgilerinizin güvenliği garanti altına alınmış olur.</p>
     contact:
       decription: the hague istanbul contact
       title: Opottoyla iletişime geç

@@ -27,6 +27,10 @@
                     span = t('contribution.contributions')
                   = link_to new_pot_path, class: 'item' do
                     span = t('pot.new')
+                  hr
+                  - %w(about contact security rules).each do |page|
+                    = link_to page_path(page), class: 'item' do
+                       = t("pages.#{page}.title")
         - else
           - %w(about contact security rules).each do |page|
             = nav_link_to t("pages.#{page}.title").capitalize, page_path(page), class: 'item'

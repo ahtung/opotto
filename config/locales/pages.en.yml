@@ -13,12 +13,13 @@ en:
       content_3_html: |
         <p>At Opotto, we want to help our customers understand that with Opotto, they are safe. Opotto strives for security and simplicity.</p>
     contact:
-      title: Contact 
+      title: Contact
       description: the hague istanbul contact
     security:
-      title: Security
-      content: how secure is opotto?
+      title: Privacy & Security
       description: secure ssl oauth2
+      content_1_html: <h3>Privacy</h3><p>Opotto'da yapacağınız katkılar ancak siz isterseniz duyrulur. Dilerseniz kumbaralara anonim katkıda bulunabilirsiniz.</p><p>Opotto, kişisel bilgileriniz 3. kişiler ve kurumlar ile paylaşmaz.</p><p>Size ait hiçbir ödeme veya kart bilgisi sistemimizde saklanmaz. Bunun için yüksek güvenlik altyapısına sahip ödeme sistemlerinden faydalanılır.</p><p>Sitemizde bulunan SSL sertifikası ile sitemizedeki ziyaretinizin 3. şahıslar tarafından izlenmesi engellenmiş olur.</p>
+      content_2_html: <h3>Security</h3><p>Opotto'da yapacağınız katkılarda ödeme işlemi sadece siz, ödeme altyapısını sağlayıcı firma ve kumbara alıcısı arasında gerçekleşir. Bu şekilde aracılar döngüden çıkarılarak sizin ve kumbara alıcısının güvenliği sağlanmış olur.</p><p>Ödeme bilgileriniz ileri kalite ve güvenlik standartlarına sahip kurumlar aracılığyla saklanır. Bu şeilde ödeme bilgilerinizin güvenliği garanti altına alınmış olur.</p>
     rules:
       title: Rules
       description: Some countries are not allowed to join
