@@ -8,7 +8,7 @@ RSpec.describe 'User', type: :feature, js: true do
     visit new_user_session_path
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
-    click_on 'Sign in'
+    click_on t('site.sign_in')
     visit '/sidekiq'
     expect(page).not_to have_content('Dashboard')
   end

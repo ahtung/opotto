@@ -53,6 +53,7 @@ tr:
       mypots: Kumbaralarım
       newpot: Yeni Kumbara
     sign_in_with_google: Google'la giris
+    sign_in: Giriş
   user:
     login: Giriş yap
     logout: "Çıkış yap"
