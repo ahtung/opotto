@@ -24,13 +24,13 @@ tr:
       title: Kurallar
       description: Malesef bazi ulkelerin katilimina izin veremiyoruz
       content_1_html: |
-        <h3>Üyelik</h3><p>You can easily sign up with your Google account. Just hit the login link and you can create your own pot right away.</p>
+        <h3>Üyelik</h3><p>Opotto'ya üyelik çok kolay. Sadece menü de ve anasayfa da bulunan Giriş bağlantısına tıklayın ve Google hesabınızla giriş yapın. Ardından anında hemen yeni bir kumbara yaratabilir veya bir kumbaraya katkıda bulunabilirsiniz.</p>
       content_2_html: |
-        <h3>Ödeme</h3><p>Just set the amount you would like to contribute. No transaction will be made until the pot ends.</p>
+        <h3>Ödeme</h3><p>Bir kumbaraya katkıda bulunmak için kumbara sayfasını ziyaret edin ve katkı yap bağlantısına tıklayın. Yapmak istediğiniz katkı miktarını girin. Kumbara kapanana dek sizden hiçbir ücret alınmayacaktır. Kumbara sonlanma tarihinde girmiş olduğunuz miktar kumbara alıcısına iletilecektir.</p>
       content_3_html: |
-        <h3>Kısıtlamalar</h3><p>No more than $2,000 can be collected for a pot</p><p>You can only have %{pot_per_user} open pots at a time.</p><p>You can only contribute %{limit_per_pot} times to a pot</p><p>A pot's end date must be earlier than 90 days.</p><p>We are sorry but due to regulations in Japan, Taiwan, Singapore, Malaysia and India, we cannot accept any payment from these countries.</p>
+        <h3>Kısıtlamalar</h3><p>Bir kumbara için $2,000'dan fazla para toplanamaz.</p><p>Aynı anda yalnızca %{pot_per_user} açık kumbaranız olabilir.</p><p>Bir kumbaraya en fazla %{limit_per_pot} kez katkıda bulunabilirsiniz.</p><p>Bir kumbaranın sonlanma tarihi en geç 90 gün olabilir.</p><p>Üzgünüz fakat Japonya, Tayvan, Singapur, Malezya ve Hindistan daki yönetmeliklerden ötürü bu ülkelere ve bu ülkelerden kumbaralara katkı yapılamamaktadır.</p>
       content_4_html: |
-        <h3>İptal, iade</h3><p>Don't worry, you can easily cancel any of your contributions until the pots's end date. Just visit my contributions page, find the one you looking for and click on cancel link.</p>
+        <h3>İptal, iade</h3><p>Merak etmeyin. Bir kumbaraya yapış olduğunuz katkıyı, kumbara kapanma tarihine dek katkılarım sayfasından silebilirsibiz.</p>
     unsupported:
       title: unsupported
       content: You're country is unsupported
