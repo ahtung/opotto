@@ -18,8 +18,8 @@ en:
     security:
       title: Privacy & Security
       description: secure ssl oauth2
-      content_1_html: <h3>Privacy</h3><p>Opotto'da yapacağınız katkılar ancak siz isterseniz duyrulur. Dilerseniz kumbaralara anonim katkıda bulunabilirsiniz.</p><p>Opotto, kişisel bilgileriniz 3. kişiler ve kurumlar ile paylaşmaz.</p><p>Size ait hiçbir ödeme veya kart bilgisi sistemimizde saklanmaz. Bunun için yüksek güvenlik altyapısına sahip ödeme sistemlerinden faydalanılır.</p><p>Sitemizde bulunan SSL sertifikası ile sitemizedeki ziyaretinizin 3. şahıslar tarafından izlenmesi engellenmiş olur.</p>
-      content_2_html: <h3>Security</h3><p>Opotto'da yapacağınız katkılarda ödeme işlemi sadece siz, ödeme altyapısını sağlayıcı firma ve kumbara alıcısı arasında gerçekleşir. Bu şekilde aracılar döngüden çıkarılarak sizin ve kumbara alıcısının güvenliği sağlanmış olur.</p><p>Ödeme bilgileriniz ileri kalite ve güvenlik standartlarına sahip kurumlar aracılığyla saklanır. Bu şeilde ödeme bilgilerinizin güvenliği garanti altına alınmış olur.</p>
+      content_1_html: <h3>Privacy</h3><p>Your contributions will not be public unless you want to. You can contribute anonymously if you would like</p><p>Opotto will not share any of your private information to any 3rd parties</p><p>Opotto will not store any payment information. We are high quality standart payment gateways for that.</p><p>With our SSL certificate, no 3rd parties can watch your visit on our site.</p>
+      content_2_html: <h3>Security</h3><p>All the transactions will only process between you, payment gateway and the pot receiver. This way, receiver's and your security is covered bu puting any agent out of the loop.</p><p>Your payment information will be stored by high quality standart service providers. </p>
     rules:
       title: Rules
       description: Some countries are not allowed to join
