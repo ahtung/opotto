@@ -27,7 +27,7 @@ en:
       content_2_html: |
         <h3>Payments</h3><p>Just set the amount you would like to contribute. No transaction will be made until the pot ends.</p>
       content_3_html: |
-        <h3>Limitations</h3><p>No more than $2,000 can be collected for a pot</p><p>No more than $2,000 can be collected for a pot</p><p>You can only have %{pot_per_user} open pots at a time.</p><p>You can only contribute %{limit_per_pot} times to a pot</p><p>A pot's end date must be earlier than 90 days.</p><p>We are sorry but due to regulations in Japan, Taiwan, Singapore, Malaysia and India, we cannot accept any payment from these countries.</p>
+        <h3>Limitations</h3><p>No more than $2,000 can be collected for a pot</p><p>You can only have %{pot_per_user} open pots at a time.</p><p>You can only contribute %{limit_per_pot} times to a pot</p><p>A pot's end date must be earlier than 90 days.</p><p>We are sorry but due to regulations in Japan, Taiwan, Singapore, Malaysia and India, we cannot accept any payment from these countries.</p>
       content_4_html: |
         <h3>Cancellation & refunds</h3><p>Don't worry, you can easily cancel any of your contributions until the pots's end date. Just visit my contributions page, find the one you looking for and click on cancel link.</p>
     unsupported:
