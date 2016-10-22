@@ -14,6 +14,7 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman', '~> 0.82.0'
 gem 'slim-rails'
+gem 'devise', '~> 4.2.0'
 gem 'puma', '~> 3.6.0'
 gem 'devise', '~> 4.2.0'
 gem 'money-rails', '~> 1.6.0'
