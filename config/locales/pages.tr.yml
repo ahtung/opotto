@@ -1,29 +1,42 @@
 tr:
   pages:
     home:
-      introduction: Use jars to collect money individually or with your friends. You can save it for a dream or give it away as a gift!
+      introduction: Para biriktirmek için kumbaranızı oluşturun. Hayallerinizi gerçekleştirmek için kullanabilir veya hediye edebilirsiniz, yalnız veya arkadaşlarınızla!
     about:
-      title: Hakkimizda
+      title: Hakkında
+      subtitle: Opotto
       description: opotto makes crowd-gifting fun
       content_1_html: |
-        <p>Opotto is a web services that helps communities support each other by transferring a crowdfunded amount of money on a given date to a recipients PayPal account. It's meant to be used as a form of gifting a present.</p>
+        <p>Opotto, sizin ve arkadaş grubunuzun belirli miktarda topluca biriktirilen para ile birinizi destekleyebileceğiniz bir web servisidir.</p>
+        <p>Opotto isminde, Japonca'da kumbara anlamına gelen İngilizce "Pot" kelimesinden esinlenilmiştir.</p>
         <p>The name Opotto is inspired by the idea of a money collecting jar / pot (Actually Opotto literally means 'Jar' in Japanese) where an initiator assigns a jar for a certain cause and collects money from other people so that the jar can be given to the recipient on a certain occasion.</p>
       content_2_html: |
-        <p>Furthermore, Opotto could be used for saving money (by having yourself as the recipient), getting someone a birthday or a wedding gift, donating to charity or supporting a relative through though times.</p>
+        <p>Tüm bunların yanısıra Opotto'yu, (kendinizi alıcı olarak belirleyerek) para biriktirmek, arkadaşlarınıza doğum veya düğün günü hediyesi göndermek, yakınlarınız veya desteklediğiniz kurumlara bağış toplamak için kullanabilirsiniz.</p>
       content_3_html: |
-        <p>At Opotto, we want to help our customers understand that with Opotto, they are safe. Opotto strives or security and simplicity.</p>
+        <p>Opotto ile siz kullanıcılarımızın güvende olduğunuzu bilmenizi isteriz. Opotto her zaman en güvenli ve basiti hedeflemektedir.</p>
     security:
-      title: Guvenlik
+      title: Gizlilik ve Guvenlik
+      subtitle: önemlidir
       description: secure ssl oauth2
-      content: opotto ne kadar guvenli?
+      content_1_html: <h3>Gizlilik</h3><p>Opotto'da yapacağınız katkılar ancak siz isterseniz duyrulur. Dilerseniz kumbaralara anonim katkıda bulunabilirsiniz.</p><p>Opotto, kişisel bilgileriniz 3. kişiler ve kurumlar ile paylaşmaz.</p><p>Size ait hiçbir ödeme veya kart bilgisi sistemimizde saklanmaz. Bunun için yüksek güvenlik altyapısına sahip ödeme sistemlerinden faydalanılır.</p><p>Sitemizde bulunan SSL sertifikası ile sitemizedeki ziyaretinizin 3. şahıslar tarafından izlenmesi engellenmiş olur.</p>
+      content_2_html: <h3>Güvenlik</h3><p>Opotto'da yapacağınız katkılarda ödeme işlemi sadece siz, ödeme altyapısını sağlayıcı firma ve kumbara alıcısı arasında gerçekleşir. Bu şekilde aracılar döngüden çıkarılarak sizin ve kumbara alıcısının güvenliği sağlanmış olur.</p><p>Ödeme bilgileriniz ileri kalite ve güvenlik standartlarına sahip kurumlar aracılığyla saklanır. Bu şeilde ödeme bilgilerinizin güvenliği garanti altına alınmış olur.</p>
     contact:
       decription: the hague istanbul contact
-      title: Iletisim
+      subtitle: ne zaman isterseniz
+      title: Opottoyla iletişime geç
       content: opotto nerede?
     rules:
       title: Kurallar
-      content: opotto'nun kurallari nelerdir?
+      subtitle: 'kırmak için vardır'
       description: Malesef bazi ulkelerin katilimina izin veremiyoruz
+      content_1_html: |
+        <h3>Üyelik</h3><p>Opotto'ya üyelik çok kolay. Sadece menü de ve anasayfa da bulunan Giriş bağlantısına tıklayın ve Google hesabınızla giriş yapın. Ardından anında hemen yeni bir kumbara yaratabilir veya bir kumbaraya katkıda bulunabilirsiniz.</p>
+      content_2_html: |
+        <h3>Ödeme</h3><p>Bir kumbaraya katkıda bulunmak için kumbara sayfasını ziyaret edin ve katkı yap bağlantısına tıklayın. Yapmak istediğiniz katkı miktarını girin. Kumbara kapanana dek sizden hiçbir ücret alınmayacaktır. Kumbara sonlanma tarihinde girmiş olduğunuz miktar kumbara alıcısına iletilecektir.</p>
+      content_3_html: |
+        <h3>Kısıtlamalar</h3><p>Bir kumbara için $2,000'dan fazla para toplanamaz.</p><p>Aynı anda yalnızca %{pot_per_user} açık kumbaranız olabilir.</p><p>Bir kumbaraya en fazla %{limit_per_pot} kez katkıda bulunabilirsiniz.</p><p>Bir kumbaranın sonlanma tarihi en geç 90 gün olabilir.</p><p>Üzgünüz fakat Japonya, Tayvan, Singapur, Malezya ve Hindistan ülkelerindeki yönetmeliklerden ötürü bu noktalara ve bu noktalardan kumbaralara katkı yapılamamaktadır.</p>
+      content_4_html: |
+        <h3>İptal, iade</h3><p>Merak etmeyin. Bir kumbaraya yapış olduğunuz katkıyı, kumbara kapanma tarihine dek katkılarım sayfasından silebilirsibiz.</p>
     unsupported:
       title: unsupported
       content: You're country is unsupported

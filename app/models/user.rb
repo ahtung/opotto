@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+  default_scope { order(:first_name) }
   scope :admin, -> { where(admin: true) }
   scope :unsynced_for_a_while, -> { where('last_contact_sync_at < ? OR last_contact_sync_at IS NULL', 1.week.ago.in_time_zone) }
 
@@ -20,7 +21,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
 
   def name
-    [first_name, last_name].join(' ')
+    return [first_name, last_name].join(' ') if first_name && last_name
+    email
   end
 
   def name?
@@ -87,7 +89,7 @@ class User < ActiveRecord::Base
 
   def get_contact_details(google_contacts_user)
     contact_info = google_contacts_user.contacts.map do |contact|
-      { email: contact.primary_email, name: contact.full_name }
+      { email: contact.primary_email, first_name: contact.given_name, last_name: contact.family_name }
     end
     contact_info.reject { |contact| contact[:email].nil? }
   end

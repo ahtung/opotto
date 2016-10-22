@@ -15,8 +15,8 @@
     .header Pages
     - %w(about contact security rules).each do |page|
       .menu
-        = nav_link_to page.capitalize, page_path(page), class: 'item'
+        = nav_link_to t("pages.#{page}.title").capitalize, page_path(page), class: 'item'
   - if user_signed_in?
     .item= nav_link_to t('user.logout'), destroy_user_session_path, method: :delete, class: 'ui button red'
   - else
-    .item= nav_link_to t('user.login'), user_google_oauth2_omniauth_authorize_path(:google_oauth2), class: 'ui button red'
+    .item= nav_link_to t('user.login'), user_google_oauth2_omniauth_authorize_path, class: 'ui button red'

@@ -1,12 +1,12 @@
+- content_for :title, "Opotto"
 - content_for :main_class do
   | imaged
 
-- content_for :nav_title do
-  = 'Opotto'
+- content_for :nav_title, 'Opotto'
   
-.row.middle.aligned.main.imaged
-  .ui.one.column.center.aligned.grid
-    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background
+.row.main.imaged
+  .ui.one.column.grid.relative
+    .four.wide.computer.eight.wide.tablet.twelve.wide.mobile.column.white.background.vertical-centered style='text-align:center;'
       .ui.image= image_tag 'opotto.png', size: '60x120'
       h1.upcase= t('site.hello')
       h2= t('site.motto')
@@ -14,4 +14,4 @@
       = render 'icons'
       br
       = t('pages.home.introduction')
-      = link_to t('site.sign_in_with_google'), user_google_oauth2_omniauth_authorize_path(:google_oauth2), class: 'ui red button large fluid'
+      = link_to t('site.sign_in_with_google'), user_google_oauth2_omniauth_authorize_path, class: 'ui red button large fluid'

@@ -64,7 +64,7 @@ RSpec.describe Contribution, type: :model do
   describe '#' do
     describe 'payment_time' do
       it 'should return time dif to pot ent_at' do
-        contribution = FactoryGirl.create(:contribution, :anonymous)
+        contribution = create(:contribution, :anonymous)
         Timecop.freeze(Time.zone.now) do
           expect(contribution.payment_time).to eq(contribution.pot.end_at - Time.zone.now)
         end
@@ -73,18 +73,20 @@ RSpec.describe Contribution, type: :model do
 
     describe 'owner_name' do
       it 'should return N/A if contribution is anonymous' do
-        contribution = FactoryGirl.create(:contribution, :anonymous)
+        contribution = create(:contribution, :anonymous)
         expect(contribution.owner_name).to eq('N/A')
       end
 
       it 'should return user email if it didn\'t set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_noname, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.name)
+        user = create(:user, first_name: nil, last_name: nil)
+        contribution = create(:contribution, anonymous: false, user: user)
+        expect(contribution.owner_name).to eq(contribution.user.email)
       end
 
-      xit 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.email)
+      it 'should return user full_name if set' do
+        user = create(:user, first_name: 'John', last_name: 'Doe')
+        contribution = create(:contribution, anonymous: false, user: user)
+        expect(contribution.owner_name).to eq('John Doe')
       end
     end
 

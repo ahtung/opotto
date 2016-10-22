@@ -1,7 +1,11 @@
-# Coverage
-require 'coveralls'
-Coveralls.wear!
 ENV['RAILS_ENV'] ||= 'test'
+require 'simplecov'
+require 'coveralls'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter])
+SimpleCov.start 'rails' do
+  add_group 'Policies', 'app/policies'
+  add_group 'Decorators', 'app/decorators'
+end
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'

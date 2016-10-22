@@ -34,7 +34,7 @@ RSpec.describe PotsController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) { attributes_for(:pot, description: 'New') }
 
-      xit 'updates the requested pot' do
+      it 'updates the requested pot' do
         pot = create(:pot, valid_attributes)
         process :update, method: :put, params: { id: pot.id, pot: new_attributes }
         pot.reload
@@ -47,7 +47,7 @@ RSpec.describe PotsController, type: :controller do
         expect(assigns(:pot)).to eq(pot)
       end
 
-      xit 'redirects to the pot' do
+      it 'redirects to the pot' do
         pot = create(:pot, valid_attributes)
         process :update, method: :put, params: { id: pot.to_param, pot: valid_attributes }
         expect(response).to redirect_to(pot_url(Pot.last))

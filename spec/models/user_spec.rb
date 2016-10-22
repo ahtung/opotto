@@ -61,18 +61,6 @@ describe User do
       end
     end
 
-    describe 'handle' do
-      it 'returns name if user has name' do
-        user = create(:user, first_name: 'DUN', last_name: 'KIR')
-        expect(user.decorate.handle).to eq('<p><span class="green text">DUN KIR</span></p>')
-      end
-
-      xit 'returns email if user has no name' do
-        user = create(:user)
-        expect(user.decorate.handle).to eq(user.email)
-      end
-    end
-
     describe 'uncontributed_pots' do
       it 'should return user.pots - user.contributed_pots' do
         user = create(:user, :with_pots)

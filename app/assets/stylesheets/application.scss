@@ -63,3 +63,47 @@ body {
 .right.menu {
   min-width: 63.47px;
 }
+
+.relative {
+  position: relative;
+}
+
+.vertical-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
+}
+
+.module {
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  position: relative;
+  float: left;
+}
+
+.mid h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+}
+.mid h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+}

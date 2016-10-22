@@ -61,11 +61,9 @@ class Contribution < ActiveRecord::Base
 
   # Returns the proper user name
   def owner_name
-    if anonymous? || user.nil?
-      'N/A'
-    else
-      user.name
-    end
+    return 'N/A' if anonymous? || user.nil?
+    return user.name if user.name?
+    user.email
   end
 
   private
