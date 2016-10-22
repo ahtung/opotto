@@ -48,7 +48,7 @@ gem 'rollbar', '~> 2.12.0'
 gem 'bullet'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'draper', '~> 3.0.0.pre1'
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'activemodel-serializers-xml', '~> 1.0.1'
 
 group :production do
   gem 'rails_12factor'
