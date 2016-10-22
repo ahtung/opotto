@@ -43,7 +43,8 @@ tr:
   pundit:
     user_not_authorized: Yassak gardesim, hadi..
   site:
-    copyright: "© %{year} Ahtung Teknoloji Ltd. Sti. Tum haklari saklidir."
+    ahtung_href: Ahtung Teknoloji Ltd. Sti.
+    copyright: "© %{year} %{link} Tum haklari saklidir."
     hello: Merhaba
     introduction: Opotto arkadaşlarınıza hediye göndermek için keyifli bir araçtır.
     motto: Saving . Collecting . Sharing
