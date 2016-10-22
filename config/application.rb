@@ -10,13 +10,12 @@ Bundler.require(*Rails.groups)
 module Opotto
   # Application
   class Application < Rails::Application
-    config.i18n.available_locales = [:tr, :en]
     config.generators.helper = false
     config.generators.stylesheets = false
     config.generators.javascripts = false
     config.i18n.available_locales = [:tr, :nl, :en]
+    config.i18n.default_locale = :tr
     config.middleware.use Rack::Attack
     config.nav_lynx.selected_class = 'active'
-    # config.i18n.default_locale = :tr
   end
 end

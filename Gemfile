@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '5.0.0'
+gem 'rails', '5.0.0.1'
 gem 'iyzipay', '~> 1.0.34', require: false
 gem 'rake', '11.2.2'
 gem 'sass-rails', '~> 5.0.1'
@@ -15,7 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman', '~> 0.82.0'
 gem 'slim-rails'
 gem 'devise', github: 'plataformatec/devise'
-gem 'puma', '~> 3.5.2'
+gem 'puma', '~> 3.6.0'
 gem 'money-rails', '~> 1.6.0'
 gem 'google_contacts_api', '~> 0.7.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
@@ -74,7 +74,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry'
   gem 'pry-remote'
-  gem 'danger', '~> 2.0.1'
 end
 
 group :test do
