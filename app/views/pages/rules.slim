@@ -10,21 +10,15 @@
   .ui.stackable.very.relaxed.grid.container
     .row
       .twelve.wide.column
-        h3 Membership
-        p You can easily sign up with your Google account. Just hit the login link and you can create your own pot right away.
+        = t('pages.rules.content_1_html')
     .row
       .twelve.wide.column
-        h3 Payments
-        p Just set the amount you would like to contribute. No transaction will be made until the pot ends.
+        = t('pages.rules.content_2_html')
     .row
       .twelve.wide.column
-        h3 Limitations
-        p No more than $2,000 can be collected for a pot
-        p = "You can only have #{ENV['POT_PER_USER']} open pots at a time."
-        p = "You can only contribute #{ENV['CONTRIBUTION_LIMIT_PER_POT']} times to a pot"
-        p A pot's end date must be earlier than 90 days.
-        p We are sorry but due to regulations in Japan, Taiwan, Singapore, Malaysia and India, we cannot accept any payment from these countries.
+        = t('pages.rules.content_3_html', pot_per_user: ENV['POT_PER_USER'], limit_per_pot: ENV['CONTRIBUTION_LIMIT_PER_POT'])
     .row
       .twelve.wide.column
-        h3 Cancellation & refunds
-        p Don't worry, you can easily cancel any of your contributions until the pots's end date. Just visit my contributions page, find the one you looking for and click on cancel link.
+        = t('pages.rules.content_4_html')
+        h3
+        p
