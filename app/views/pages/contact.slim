@@ -8,19 +8,23 @@
       .twelve.wide.column
         h1.ui.header = t('pages.contact.title')
   .ui.centered.grid.container
-    .ten.wide.mobile.four.wide.tablet.four.wide.computer.column
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
       = mail_to "info@ahtung.co" do
-        i.ui.large.icon.mail
+        i.ui.large.icon.mail.circular
+        br
         = 'info@ahtung.co'
-    .ten.wide.mobile.four.wide.tablet.four.wide.computer.column
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
       = link_to "tel://+90-537-405-00-51" do
-        i.ui.large.icon.phone
+        i.ui.large.icon.phone.circular
+        br
         = '+90 537 405 00 51'
-    .ten.wide.mobile.four.wide.tablet.four.wide.computer.column
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
       = link_to "https://www.facebook.com/pages/Ahtung/1640658482879986", class: 'facebook_link', target: '_blank' do
-        i.ui.large.icon.facebook
+        i.ui.large.icon.facebook.circular
+        br
         = 'Facebook'
-    .ten.wide.mobile.four.wide.tablet.four.wide.computer.column
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
       = link_to "https://www.facebook.com/pages/Ahtung/1640658482879986", class: 'facebook_link', target: '_blank' do
-        i.ui.large.icon.twitter
+        i.ui.large.icon.twitter.circular
+        br
         = 'Twitter'
