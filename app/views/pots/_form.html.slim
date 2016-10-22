@@ -12,7 +12,7 @@
     .field
       = f.text_field :name, placeholder: 'Name your pot'
     .field
-      = f.select :receiver_id, current_user.friends.collect { |x| [x.email, x.id] }, include_blank: true
+      = f.select :receiver_id, current_user.friends.collect { |x| [x.name, x.id] }, include_blank: true
     .field
       = f.text_area :description, placeholder: t('helpers.label.pot.optional')
   .ui.attached.segment
