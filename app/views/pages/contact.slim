@@ -1,7 +1,18 @@
-.ui.container.main
-  = content_for :title, "opotto - #{ t('pages.contact.title') }"
-  h2= t('pages.contact.title')
-  = t('pages.contact.content')
-  p= mail_to "info@ahtung.co", "email"
-  p= phone_number_link('90 312 284 31 48')
-  p= facebook_link('pages/Ahtung/1640658482879986')
+= content_for :title, "opotto - #{ t('pages.contact.title') }"
+
+.ui.vertical.stripe.intro.segment.main
+  .ui.stackable.very.relaxed.center.aligned.grid.container
+    .row
+      .twelve.wide.column
+        = image_tag 'devices.png', class: "ui fluid image"
+        h1.ui.header= t('pages.about.title')
+        p = t('pages.contact.title')
+  .ui.stackable.very.relaxed.grid.container
+    .row
+      = mail_to "info@ahtung.co", "email"
+    .ui.divider
+    .row
+      = phone_number_link('90 312 284 31 48')
+    .ui.divider
+    .row
+      = facebook_link('pages/Ahtung/1640658482879986')
