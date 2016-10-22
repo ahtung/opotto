@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
-  describe '#facebook_link' do
-    it 'should return facebook page url for a given path' do
-      page_path = 'pages/Ahtung/1640658482879986'
-      expect(helper.facebook_link(page_path))
-        .to eq('<a class="facebook_link" target="_blank" href="https://www.facebook.com/pages/Ahtung/1640658482879986"></a>')
-    end
-  end
-
   describe '#share_on' do
     it 'should return facebook sharer link if the service is set to facebook' do
       expect(helper.share_on('facebook', 'title', 'http://www.facebook.com'))
