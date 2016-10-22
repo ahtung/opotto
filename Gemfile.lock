@@ -55,7 +55,7 @@ GEM
     ast (2.3.0)
     bcrypt (3.1.11)
     brakeman (3.4.0)
-    browser (2.1.0)
+    browser (2.2.0)
     browser-timezone-rails (1.0.1)
       js_cookie_rails
       jstz-rails3-plus
@@ -154,7 +154,7 @@ GEM
     foreman (0.82.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
-    gaffe (1.1.0)
+    gaffe (1.2.0)
       rails (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -206,8 +206,10 @@ GEM
     meta-tags (2.1.0)
       actionpack (>= 3.0.0)
     method_source (0.8.2)
-    mime-types (2.99.3)
-    mimemagic (0.3.0)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     monetize (1.4.0)
@@ -248,12 +250,12 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (4.3.7)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
       mime-types
-      mimemagic (= 0.3.0)
+      mimemagic (~> 0.3.0)
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.18.4)
@@ -273,7 +275,7 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
-    rack-attack (4.4.1)
+    rack-attack (5.0.1)
       rack
     rack-google-analytics (1.2.0)
       actionpack
@@ -492,7 +494,7 @@ PLATFORMS
 DEPENDENCIES
   activemodel-serializers-xml (~> 1.0.1)
   brakeman
-  browser (~> 2.1.0)
+  browser (~> 2.2.0)
   browser-timezone-rails (~> 1.0)
   bullet
   bundler-audit
@@ -509,7 +511,7 @@ DEPENDENCIES
   faker
   fog-aws (~> 0.10.0)
   foreman (~> 0.82.0)
-  gaffe (~> 1.1.0)
+  gaffe (~> 1.2.0)
   google_contacts_api (~> 0.7.0)
   high_voltage (~> 3.0.0)
   http_accept_language (~> 2.0.5)
@@ -523,14 +525,14 @@ DEPENDENCIES
   nav_lynx
   net-ssh (~> 3.2.0)
   omniauth-google-oauth2 (~> 0.4.1)
-  paperclip (~> 4.3.6)
+  paperclip (~> 5.1.0)
   pg (~> 0.18.4)
   poltergeist
   pry
   pry-remote
   puma (~> 3.6.0)
   pundit (~> 1.1.0)
-  rack-attack (~> 4.4.1)
+  rack-attack (~> 5.0.1)
   rack-google-analytics (~> 1.2.0)
   rails (= 5.0.0.1)
   rails-controller-testing
