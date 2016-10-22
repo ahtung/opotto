@@ -12,7 +12,7 @@
           .item
             p
               = "#{t('welcome')} "
-              span.blue.text= current_user.first_name.nil? ? current_user.email : current_user.first_name.upcase
+              span.blue.text= current_user.first_name.nil? ? current_user.name : current_user.first_name.upcase
           a class="browse item"
             i class="dropdown icon"
           div class="ui fluid popup bottom left transition hidden"
