@@ -16,14 +16,6 @@ $ ->
   $('.clickable').on 'click', () ->
     window.location = $(@).data('link')
 
-  $( "#pot_receiver_id" ).select2({
-    placeholder: 'Email address of the receiver'
-  })
-
-  $('#pot_guest_ids').select2({
-    placeholder: 'Email addresses of the guests'
-  })
-
   $('.ui.calendar').calendar()
   $('.ui.dropdown').dropdown()
 
