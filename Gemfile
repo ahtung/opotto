@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.4'
+ruby '2.3.0'
 
 gem 'rails', '5.0.0'
 gem 'iyzipay', '~> 1.0.34', require: false
@@ -62,6 +62,7 @@ group :development do
   gem 'yard', require: false
   gem 'yard-rspec', require: false
   gem 'i18n-tasks', '~> 0.9.4'
+  gem 'listen'
 end
 
 group :development, :test do
