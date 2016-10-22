@@ -20,7 +20,7 @@ html lang='en'
         .mobile.only.row
           = render partial: 'application/navigation/mobile'
       - if content_for?(:masthead)
-        .ui.vertical.masthead.center.aligned.segment.inverted.light-grey.background
+        .ui.vertical.masthead.center.aligned.inverted.light-grey.background
           = yield(:masthead)
       = yield
       = render 'footer'

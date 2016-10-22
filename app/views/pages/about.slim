@@ -1,10 +1,11 @@
-= content_for :title, "Opotto - #{ t('pages.about.title') }"
+- content_for :title, "Opotto - #{ t('pages.about.title') }"
+- content_for :masthead do
+  = image_tag 'devices.png', class: "ui fluid image"
 
 .ui.vertical.stripe.intro.segment.main
   .ui.stackable.very.relaxed.center.aligned.grid.container
     .row
       .twelve.wide.column
-        = image_tag 'devices.png', class: "ui fluid image"
         h1.ui.header= t('pages.about.title')
   .ui.stackable.very.relaxed.grid.container
     .row
