@@ -8,8 +8,14 @@
         h1.ui.header= t('pages.contact.title')
   .ui.stackable.very.relaxed.grid.container
     .row
-      = mail_to "info@ahtung.co", "email"
+      .twelve.wide.column
+        = mail_to "info@ahtung.co" do
+          i.ui.large.icon.mail
+          = 'info@ahtung.co'
     .row
-      = phone_number_link('90 312 284 31 48')
+      .twelve.wide.column
+        = link_to "tel://+90-537-405-00-51" do
+          i.ui.large.icon.phone
+          = '+90 537 405 00 51'
     .row
       = facebook_link('pages/Ahtung/1640658482879986')
