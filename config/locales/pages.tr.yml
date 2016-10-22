@@ -28,7 +28,7 @@ tr:
       content_2_html: |
         <h3>Ödeme</h3><p>Bir kumbaraya katkıda bulunmak için kumbara sayfasını ziyaret edin ve katkı yap bağlantısına tıklayın. Yapmak istediğiniz katkı miktarını girin. Kumbara kapanana dek sizden hiçbir ücret alınmayacaktır. Kumbara sonlanma tarihinde girmiş olduğunuz miktar kumbara alıcısına iletilecektir.</p>
       content_3_html: |
-        <h3>Kısıtlamalar</h3><p>Bir kumbara için $2,000'dan fazla para toplanamaz.</p><p>Aynı anda yalnızca %{pot_per_user} açık kumbaranız olabilir.</p><p>Bir kumbaraya en fazla %{limit_per_pot} kez katkıda bulunabilirsiniz.</p><p>Bir kumbaranın sonlanma tarihi en geç 90 gün olabilir.</p><p>Üzgünüz fakat Japonya, Tayvan, Singapur, Malezya ve Hindistan daki yönetmeliklerden ötürü bu ülkelere ve bu ülkelerden kumbaralara katkı yapılamamaktadır.</p>
+        <h3>Kısıtlamalar</h3><p>Bir kumbara için $2,000'dan fazla para toplanamaz.</p><p>Aynı anda yalnızca %{pot_per_user} açık kumbaranız olabilir.</p><p>Bir kumbaraya en fazla %{limit_per_pot} kez katkıda bulunabilirsiniz.</p><p>Bir kumbaranın sonlanma tarihi en geç 90 gün olabilir.</p><p>Üzgünüz fakat Japonya, Tayvan, Singapur, Malezya ve Hindistan ülkelerindeki yönetmeliklerden ötürü bu noktalara ve bu noktalardan kumbaralara katkı yapılamamaktadır.</p>
       content_4_html: |
         <h3>İptal, iade</h3><p>Merak etmeyin. Bir kumbaraya yapış olduğunuz katkıyı, kumbara kapanma tarihine dek katkılarım sayfasından silebilirsibiz.</p>
     unsupported:
