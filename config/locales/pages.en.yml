@@ -1,9 +1,10 @@
 en:
   pages:
     home:
-      introduction: Use jars to collect money individually or with your friends. You can save it for a dream or give it away as a gift!
+      introduction: Use pots to collect money individually or with your friends. You can save it for a dream or give it away as a gift!
     about:
       title: About
+      subtitle: Opotto
       description: opotto makes crowd-gifting fun
       content_1_html: |
         <p>Opotto is a web services that helps communities support each other by transferring a crowdfunded amount of money on a given date to a recipients PayPal account. It's meant to be used as a form of gifting a present.</p>
@@ -11,19 +12,31 @@ en:
       content_2_html: |
         <p>Furthermore, Opotto could be used for saving money (by having yourself as the recipient), getting someone a birthday or a wedding gift, donating to charity or supporting a relative through though times.</p>
       content_3_html: |
-        <p>At Opotto, we want to help our customers understand that with Opotto, they are safe. Opotto strives or security and simplicity.</p>
+        <p>At Opotto, we want to help our customers understand that with Opotto, they are safe. Opotto strives for security and simplicity.</p>
     contact:
       title: Contact
+      subtitle: whenever you feel like
       description: the hague istanbul contact
-      content: where is opotto?
+      content: Where is opotto
     security:
-      title: Secuirty
+      title: Security
+      subtitle: is of great matter
       content: how secure is opotto?
       description: secure ssl oauth2
+      content_1_html: <h3>Privacy</h3><p>Your contributions will not be public unless you want to. You can contribute anonymously if you would like</p><p>Opotto will not share any of your private information to any 3rd parties</p><p>Opotto will not store any payment information. We are high quality standart payment gateways for that.</p><p>With our SSL certificate, no 3rd parties can watch your visit on our site.</p>
+      content_2_html: <h3>Security</h3><p>All the transactions will only process between you, payment gateway and the pot receiver. This way, receiver's and your security is covered bu puting any agent out of the loop.</p><p>Your payment information will be stored by high quality standart service providers. </p>
     rules:
       title: Rules
-      content: what are the rules for opotto?
+      subtitle: are there to break
       description: Some countries are not allowed to join
+      content_1_html: |
+        <h3>Membership</h3><p>You can easily sign up with your Google account. Just hit the login link and you can create your own pot right away.</p>
+      content_2_html: |
+        <h3>Payments</h3><p>Just set the amount you would like to contribute. No transaction will be made until the pot ends.</p>
+      content_3_html: |
+        <h3>Limitations</h3><p>No more than $2,000 can be collected for a pot</p><p>You can only have %{pot_per_user} open pots at a time.</p><p>You can only contribute %{limit_per_pot} times to a pot</p><p>A pot's end date must be earlier than 90 days.</p><p>We are sorry but due to regulations in Japan, Taiwan, Singapore, Malaysia and India, we cannot accept any payment from these countries.</p>
+      content_4_html: |
+        <h3>Cancellation & refunds</h3><p>Don't worry, you can easily cancel any of your contributions until the pots's end date. Just visit my contributions page, find the one you looking for and click on cancel link.</p>
     unsupported:
       title: unsupported
       content: You're country is unsupported

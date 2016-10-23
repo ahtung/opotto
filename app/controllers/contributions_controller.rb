@@ -19,7 +19,7 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new(contribution_params)
     @contribution.user = current_user
     if @contribution.save
-      redirect_to(@contribution.authorization_url)
+      redirect_to('http://www.google.com')
     else
       render :new
     end

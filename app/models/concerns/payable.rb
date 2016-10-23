@@ -7,9 +7,13 @@ module Payable
     after_create :pay
   end
 
-  # start the paypal payment
+  # completes payment
+  def complete_payment
+  end
+
+  # start the payment
   def pay
-    response = setup_preapproval
+    response = nil
     return unless response
     update_payment_details(response)
   end
@@ -19,28 +23,12 @@ module Payable
     pot.end_at - Time.zone.now
   end
 
-  # Complete preapproved payments to receivers
-  def complete_payment
-    payment = api.execute :Pay, payment_options
-    Rails.logger.info "Payment log |  Payment action for #{payment.inspect}"
-    update_column(:payment_key, payment.pay_key)
-    payment_info(payment.pay_key)
-  end
-
   private
-
-  # Setup the Payment and return pay object
-  def setup_preapproval
-    api.execute :Preapproval, preapproval_payment_options
-  end
 
   # describe
   def update_payment_details(payment)
-    if payment.success?
-      self.authorization_url = api.preapproval_url(payment)
-      update_column(:preapproval_key, payment.preapproval_key)
-    end
-    Rails.logger.info("Payment log | Payment updated details with the payment key: #{payment.preapproval_key} in #{payment_time / 60} minutes")
+    self.authorization_url = api.preapproval_url(payment) if payment.success?
+    Rails.logger.info("Payment log | Payment updated details in #{payment_time / 60} minutes")
   end
 
   # Retrieve Data about the Payment
@@ -50,18 +38,6 @@ module Payable
     parse_payment_info(response)
   end
 
-  # Pare payment info
-  def parse_payment_info(response)
-    if response.success? && response.status == 'COMPLETED'
-      self.user = Contribution.find_by(payment_key: response.pay_key).user
-      success! if scheduled?
-      Rails.logger.info "Payment log |  Payment completed for #{payment_options}"
-    else
-      error! if scheduled?
-      Rails.logger.error "Payment log |  Payment failed for #{payment_options}"
-    end
-  end
-
   # Validates payment is inside bounds
   def amount_inside_the_pot_bounds
     return if pot.nil?
@@ -69,49 +45,5 @@ module Payable
     return true if amount <= pot.upper_bound
     errors.add(:amount, :amount_out_of_bounds)
     false
-  end
-
-  # Set payment options when payment triggered
-  def payment_options
-    {
-      preapproval_key: preapproval_key,
-      action_type:    'PAY',
-      currency_code:  amount.currency.iso_code,
-      receivers: payment_receivers,
-      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id),
-      fees_payer: ENV['PAYPAL_FEESPAYER']
-    }
-  end
-
-  # Set options for setting up preapproval payment
-  def preapproval_payment_options
-    {
-      ending_date: pot.end_at.utc,
-      starting_date: Time.now.utc,
-      senderEmail: user.email,
-      currency_code: amount.currency.iso_code,
-      return_url: Rails.application.routes.url_helpers.payments_success_url(contribution: id),
-      cancel_url: Rails.application.routes.url_helpers.payments_failure_url(contribution: id)
-    }
-  end
-
-  # list of receivers for initial paypal payment
-  def payment_receivers
-    [
-      { email: ENV['PAYPAL_EMAIL'], amount: (amount.to_f * ENV['WIN'].to_f) },
-      { email: pot.receiver.email, amount: amount.to_f, primary: true }
-    ]
-  end
-
-  # paypal api
-  def api
-    @api ||= AdaptivePayments::Client.new(
-      sandbox: ENV['PAYPAL_SANDBOX'].nil?,
-      app_id: ENV['PAYPAL_APP_ID'],
-      user_id: ENV['PAYPAL_USER'],
-      password: ENV['PAYPAL_PASSWORD'],
-      signature: ENV['PAYPAL_SIGNATURE']
-    )
   end
 end

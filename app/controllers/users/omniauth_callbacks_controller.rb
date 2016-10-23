@@ -12,19 +12,8 @@ module Users
 
     private
 
-    # TODO: Improve below
     def update_user
-      if request.env['omniauth.auth'].credentials
-        @user.update_attribute(
-          :refresh_token,
-          request.env['omniauth.auth'].credentials.refresh_token
-        )
-      else
-        @user.update_attribute(
-          :refresh_token,
-          request.env['omniauth.auth'].info.credentials.refresh_token
-        )
-      end
+      @user.update_attribute(:refresh_token, token_from_env)
     end
 
     def set_notice_and_redirect
@@ -34,6 +23,15 @@ module Users
       else
         session['devise.google_data'] = request.env['omniauth.auth']
         redirect_to new_user_registration_url
+      end
+    end
+
+    def token_from_env
+      oauth = request.env['omniauth.auth']
+      if oauth.credentials
+        oauth.credentials.refresh_token
+      else
+        oauth.info.credentials.refresh_token
       end
     end
   end

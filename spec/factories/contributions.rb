@@ -7,7 +7,6 @@ FactoryGirl.define do
     association :user, strategy: :build
     anonymous { [true, false].sample }
     state 'initiated'
-    preapproval_key 'GOOD_KEY'
 
     trait :scheduled do
       state 'scheduled'
@@ -22,7 +21,7 @@ FactoryGirl.define do
     end
 
     trait :with_user_noname do
-      user { create(:user) }
+      user { create(:user, first_name: nil, last_name: nil) }
     end
   end
 end

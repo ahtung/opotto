@@ -31,22 +31,6 @@ RSpec.describe Contribution, type: :model do
     end
   end
 
-  describe "should validate that the user's PayPal account's country allows opotto" do
-    it 'and allow if from NL' do
-      user = create(:user, paypal_country: 'NL')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).to be_valid
-    end
-
-    it 'and deny if from JP' do
-      user = create(:user, paypal_country: 'JP')
-      pot = create(:pot, guests: [user])
-      contribution = build(:contribution, user: user, amount: 200, pot: pot)
-      expect(contribution).not_to be_valid
-    end
-  end
-
   # States
   it { should have_states :initiated, :failed, :completed, :scheduled, :schedule_failed }
   ## Initiated
@@ -63,6 +47,12 @@ RSpec.describe Contribution, type: :model do
   ## Schedule Failed
   it { should handle_events :retry, when: :schedule_failed }
   it { should reject_events :success, :error, when: :schedule_failed }
+  ## Completed
+  it { should reject_events :success, :error, :retry, when: :completed }
+
+  ## Schedule Failed
+  it { should handle_events :retry, when: :schedule_failed }
+  it { should reject_events :success, :error, when: :schedule_failed }
 
   # Concerns
   it_behaves_like 'payable'
@@ -74,7 +64,7 @@ RSpec.describe Contribution, type: :model do
   describe '#' do
     describe 'payment_time' do
       it 'should return time dif to pot ent_at' do
-        contribution = FactoryGirl.create(:contribution, :anonymous)
+        contribution = create(:contribution, :anonymous)
         Timecop.freeze(Time.zone.now) do
           expect(contribution.payment_time).to eq(contribution.pot.end_at - Time.zone.now)
         end
@@ -83,18 +73,20 @@ RSpec.describe Contribution, type: :model do
 
     describe 'owner_name' do
       it 'should return N/A if contribution is anonymous' do
-        contribution = FactoryGirl.create(:contribution, :anonymous)
+        contribution = create(:contribution, :anonymous)
         expect(contribution.owner_name).to eq('N/A')
       end
 
       it 'should return user email if it didn\'t set' do
-        contribution = FactoryGirl.create(:contribution, :with_user_noname, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.name)
+        user = create(:user, first_name: nil, last_name: nil)
+        contribution = create(:contribution, anonymous: false, user: user)
+        expect(contribution.owner_name).to eq(contribution.user.email)
       end
 
       it 'should return user full_name if set' do
-        contribution = FactoryGirl.create(:contribution, anonymous: false)
-        expect(contribution.owner_name).to eq(contribution.user.name)
+        user = create(:user, first_name: 'John', last_name: 'Doe')
+        contribution = create(:contribution, anonymous: false, user: user)
+        expect(contribution.owner_name).to eq('John Doe')
       end
     end
 

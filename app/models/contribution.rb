@@ -15,7 +15,6 @@ class Contribution < ActiveRecord::Base
   validates :user, presence: true
   validate :minimum_amount
   validate :users_contribution_limit, if: -> { user }
-  validate :users_paypal_country, if: -> { user }
 
   # Attributes
   attr_accessor :authorization_url
@@ -26,12 +25,6 @@ class Contribution < ActiveRecord::Base
 
   # Money
   monetize :amount_cents
-
-  # Validates user's paypal country
-  def users_paypal_country
-    return unless DISALLOWED_COUNTRIES.include?(user.paypal_country)
-    errors.add(:base, 'Fundraising is prohibited in your country')
-  end
 
   # Validates user's previous contribution total
   def users_contribution_limit
@@ -68,11 +61,9 @@ class Contribution < ActiveRecord::Base
 
   # Returns the proper user name
   def owner_name
-    if anonymous? || user.nil?
-      'N/A'
-    else
-      user.name
-    end
+    return 'N/A' if anonymous? || user.nil?
+    return user.name if user.name?
+    user.email
   end
 
   private

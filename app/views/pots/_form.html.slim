@@ -12,14 +12,14 @@
     .field
       = f.text_field :name, placeholder: 'Name your pot'
     .field
-      = f.select :receiver_id, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, include_blank: true
+      = f.select :receiver_id, current_user.friends.collect { |x| [x.name, x.id] }, include_blank: true
     .field
       = f.text_area :description, placeholder: t('helpers.label.pot.optional')
   .ui.attached.segment
     .field
       .ui.medium.header.grey.text.upcase
         = f.label :guest_ids, 'Who Do You Invite to contribute to this pot?', class: 'grey text'
-      = f.select :guest_ids, current_user.friends.with_paypal_account.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default light-grey background', style: "width: 100%"
+      = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default light-grey background', style: "width: 100%"
     .field
       = f.label :end_at, 'END DATE', class: 'grey text'
       .ui.calendar
@@ -53,6 +53,4 @@ javascript:
 
 - pot.errors.each do |key, value|
   javascript:
-    console.log("#pot_#{ key }")
-    console.log("#pot_#{ value}")
     $("#pot_#{ key }").after('<div class="ui pointing red basic label">#{ value }</div>');

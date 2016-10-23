@@ -1,6 +1,6 @@
 # ApplicationController
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :exception
   include Pundit
 
   include HttpAcceptLanguage::AutoLocale
@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   around_action :set_time_zone
 
   private
+
+  # Redirect visitor to root_path in not authorized
+  def user_not_authorized
+    flash[:alert] = I18n.t('pundit.user_not_authorized')
+    redirect_to(request.referer || root_path)
+  end
 
   # Set the application time zone based on the browser cookie
   def set_time_zone

@@ -4,7 +4,7 @@ html lang='en'
     meta charset='utf-8'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
 
-    title == content_for?(:title) ? yield(:title) : 'opotto'
+    title == content_for?(:title) ? yield(:title) : 'Opotto'
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
     = stylesheet_link_tag 'application'
@@ -20,7 +20,7 @@ html lang='en'
         .mobile.only.row
           = render partial: 'application/navigation/mobile'
       - if content_for?(:masthead)
-        .ui.vertical.masthead.center.aligned.segment.inverted.light-grey.background
+        .ui.vertical.masthead.center.aligned.inverted.light-grey.background
           = yield(:masthead)
       = yield
       = render 'footer'

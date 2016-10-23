@@ -1,4 +1,22 @@
-.ui.container.main
-  = content_for :title, "opotto - #{ t('pages.security.title') }"
-  h2= t('pages.security.title')
-  = t('pages.security.content')
+- content_for :title, "Opotto - #{ t('pages.security.title') }"
+- content_for :masthead do
+  .module.mid
+    .ui.text.center.aligned.container
+      h1.ui.inverted.header = t('pages.security.title')
+      h2.ui.inverted.header = t('pages.security.subtitle')
+
+
+.ui.vertical.stripe.intro.segment.main
+  .ui.stackable.very.relaxed.grid.container
+    .row
+      .twelve.wide.column
+        = t('pages.security.content_1_html')
+    .row
+      .twelve.wide.column
+        = t('pages.security.content_2_html')
+      
+css:
+  .module {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("#{image_path('lock.jpg')}");
+    background-size: cover;
+  }

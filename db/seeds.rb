@@ -5,10 +5,10 @@ if Rails.env.development?
   Invitation.delete_all
   Contribution.delete_all
 
-  onur = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'onurkucukkece@ahtung.co', first_name: 'Onur', last_name: 'Kucukkece', password: '123QwETR', paypal_member: true)
-  dunya = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'dunyakirkali@ahtung.co', first_name: 'Dunya', last_name: 'Kirkali', password: '123QwETR', paypal_member: true)
-  ilana = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'contact@madco.nl', first_name: 'Ilana', last_name: 'Marcovic', password: '123QwETR', paypal_member: true)
-  us = FactoryGirl.create(:user, :with_paypal, password: '123QwETR')
+  onur = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'onurkucukkece@ahtung.co', first_name: 'Onur', last_name: 'Kucukkece', password: '123QwETR')
+  dunya = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'dunyakirkali@ahtung.co', first_name: 'Dunya', last_name: 'Kirkali', password: '123QwETR')
+  ilana = FactoryGirl.create(:user, :admin, :with_pots, :with_contributions, email: 'contact@madco.nl', first_name: 'Ilana', last_name: 'Marcovic', password: '123QwETR')
+  us = FactoryGirl.create(:user, password: '123QwETR')
 
   onur.friends << [dunya, us, ilana]
   dunya.friends << [onur, us, ilana]
@@ -23,7 +23,6 @@ elsif Rails.env.production?
   onur = User.where(email: 'onurkucukkece@ahtung.co').first_or_create
   dunya = User.where(email: 'dunyakirkali@ahtung.co').first_or_create
   ilana = User.where(email: 'contact@madco.nl').first_or_create
-  paypal = User.where(email: 'paypal@opotto.com').first_or_create
   receiver = User.where(email: 'opotto-p-receiver@gmail.com').first_or_create
-  FactoryGirl.create(:pot, name: 'PayPal test Pot',  owner: dunya, guests: [dunya, onur, paypal, ilana], visible: true, receiver: receiver)
+  FactoryGirl.create(:pot, name: 'Test Pot',  owner: dunya, guests: [dunya, onur, ilana], visible: true, receiver: receiver)
 end

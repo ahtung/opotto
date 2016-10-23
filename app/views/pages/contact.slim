@@ -1,7 +1,31 @@
-.ui.container.main
-  = content_for :title, "opotto - #{ t('pages.contact.title') }"
-  h2= t('pages.contact.title')
-  = t('pages.contact.content')
-  p= mail_to "info@ahtung.co", "email"
-  p= phone_number_link('90 312 284 31 48')
-  p= facebook_link('pages/Ahtung/1640658482879986')
+- content_for :title, "Opotto - #{ t('pages.contact.title') }"
+- content_for :masthead do
+  .module.mid
+    .ui.text.center.aligned.container
+      h1.ui.inverted.header = t('pages.contact.title')
+      h2.ui.inverted.header = t('pages.contact.subtitle')
+
+.ui.vertical.stripe.intro.segment.main
+  .ui.centered.grid.container
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
+      h2.ui.center.aligned.blue.icon.header
+        i.circular.mail.icon
+        = mail_to 'info@ahtung.co', 'info@ahtung.co'
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
+      h2.ui.center.aligned.blue.icon.header
+        i.circular.phone.icon
+        = link_to '+90 537 405 00 51', 'tel://+90-537-405-00-51'
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
+      h2.ui.center.aligned.icon.header
+        i.circular.facebook.blue.icon
+        = link_to 'Facebook', 'https://www.facebook.com/pages/Ahtung/1640658482879986', target: '_blank'
+    .ten.wide.mobile.eight.wide.tablet.four.wide.computer.column.center.aligned
+      h2.ui.center.aligned.icon.header
+        i.circular.twitter.blue.icon
+        = link_to 'Twitter', 'https://www.facebook.com/pages/Ahtung/1640658482879986', target: '_blank'
+
+css:
+  .module {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("#{image_path('contact.jpeg')}");
+    background-size: cover;
+  }

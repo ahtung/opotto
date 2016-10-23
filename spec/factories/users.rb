@@ -6,8 +6,8 @@ FactoryGirl.define do
     password { Faker::Number.number(8) }
     admin 'false'
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/avatar.jpg'), 'image/jpg') }
-    first_name { Faker::Name.first_name }
-    last_name { Faker::Name.last_name }
+    first_name { Faker::Lorem.word }
+    last_name { Faker::Lorem.word }
 
     trait :with_pot do
       after :create do |instance|
@@ -39,11 +39,6 @@ FactoryGirl.define do
       after :create do |instance|
         instance.contributions = create_list(:contribution, 2, :completed, amount: Faker::Commerce.price, user: instance)
       end
-    end
-
-    trait :with_paypal do
-      email 'us-personal@gmail.com'
-      paypal_member true
     end
 
     trait :admin do

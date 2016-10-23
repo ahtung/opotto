@@ -18,10 +18,9 @@ class PotPolicy
 
   # contribute?
   def contribute?
+    condition = pot.owner == user || pot.guests.include?(user) || pot.visible?
     return false if user.nil?
-    return pot.open? if pot.owner == user
-    return pot.open? if pot.guests.include?(user)
-    return pot.open? if pot.visible?
+    return pot.open? if condition
     false
   end
 
@@ -39,8 +38,11 @@ class PotPolicy
     pot.owner == user
   end
 
+  # destroy?
   def destroy?
     return false if user.nil?
-    pot.owner == user
+    return false if pot.new_record?
+    return true if pot.owner == user
+    false
   end
 end
