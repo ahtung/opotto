@@ -89,7 +89,12 @@ class User < ActiveRecord::Base
 
   def get_contact_details(google_contacts_user)
     contact_info = google_contacts_user.contacts.map do |contact|
-      { email: contact.primary_email, first_name: contact.given_name, last_name: contact.family_name }
+      {
+        email: contact.primary_email,
+        first_name: contact.given_name,
+        last_name: contact.family_name,
+        admin: false
+      }
     end
     contact_info.reject { |contact| contact[:email].nil? }
   end
