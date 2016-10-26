@@ -28,4 +28,8 @@ module ApplicationHelper
       empty_heart: 'violet'
     }
   end
+
+  def country_name(locale)
+    "#{I18n.backend.translate(locale, "i18n.language.name")} "
+  end
 end
