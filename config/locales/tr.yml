@@ -7,6 +7,9 @@ tr:
     collected: Toplanan
     contributions: Katkılarım
     total: Toplanan miktar
+  i18n:
+    language:
+      name: Türkçe
   devise:
     omniauth_callbacks:
       success: Basari

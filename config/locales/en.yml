@@ -7,6 +7,9 @@ en:
     collected: Collected
     contributions: My Contributions
     total: Total money collected
+  i18n:
+    language:
+      name: English
   devise:
     omniauth_callbacks:
       success: Successfully authenticated from Google account.
