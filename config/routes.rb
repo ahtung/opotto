@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'payments/success'
   get 'payments/failure'
+  get 'languages/tr'
+  get 'languages/en'
 
   constraints(format: 'xml') do
     get '/sitemap', to: redirect('https://s3.eu-central-1.amazonaws.com/opotto/sitemaps/sitemap.xml.gz')
