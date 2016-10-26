@@ -13,7 +13,7 @@ RSpec.describe 'User', type: :feature, js: true do
 
   xit 'should be able to create a pot' do
     visit root_path
-    click_on 'Get going'
+    click_on t('pot.save')
     fill_in 'pot_name', with: pot.name
 
     first('.receiver-select .select-dropdown').click
