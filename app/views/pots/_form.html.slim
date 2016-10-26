@@ -19,7 +19,7 @@
     .field
       .ui.medium.header.grey.text.upcase
         = f.label :guest_ids, 'Who Do You Invite to contribute to this pot?', class: 'grey text'
-      = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'browser-default light-grey background', style: "width: 100%"
+      = f.select :guest_ids, current_user.friends.collect { |x| [x.email, x.id] }, { }, multiple: true, class: 'ui fluid search dropdown browser-default light-grey background', style: "width: 100%"
     .field
       = f.label :end_at, 'END DATE', class: 'grey text'
       .ui.calendar
