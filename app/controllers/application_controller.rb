@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Set language
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale

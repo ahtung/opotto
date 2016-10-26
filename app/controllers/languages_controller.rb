@@ -1,9 +1,11 @@
 class LanguagesController < ApplicationController
+  # English
   def en
     I18n.locale = :en
     set_session_and_redirect
   end
 
+  # Turkish
   def tr
     I18n.locale = :tr
     set_session_and_redirect
