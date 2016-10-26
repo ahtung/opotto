@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
+  describe 'country_name' do
+    it 'should return native language name from translations' do
+      expect(helper.country_name('tr')).to eq('Türkçe ')
+    end
+  end
+
   describe '#share_on' do
     it 'should return facebook sharer link if the service is set to facebook' do
       expect(helper.share_on('facebook', 'title', 'http://www.facebook.com'))
