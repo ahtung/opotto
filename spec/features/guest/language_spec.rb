@@ -5,6 +5,7 @@ RSpec.describe 'Guest', type: :feature, js: true do
     visit page_path('about')
     within '.footer' do
       find('.floating').click
+      sleep 0.5
       click_on 'Türkçe'
     end
     expect(page).to have_content 'Hakkında'
