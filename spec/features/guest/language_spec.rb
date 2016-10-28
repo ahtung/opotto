@@ -14,7 +14,7 @@ RSpec.describe 'Guest', type: :feature, js: true do
     visit page_path('security')
     within '.footer' do
       find('.floating').click
-      click_on 'English'
+      click_on 'Global'
     end
     expect(page).to have_content 'Privacy'
   end
