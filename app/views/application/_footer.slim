@@ -2,14 +2,11 @@
   .ui.center.aligned.container.medium-grey.text
     p == t('site.copyright', year: Time.zone.now.year, link: link_to(t('site.ahtung_href'), 'https://www.ahtung.co', target: :blank) )
     .ui.floating.icon.dropdown
-      = country_name(I18n.locale)
-      i class="flag #{I18n.locale == :en ? 'gb' : I18n.locale}"
+      = country_name(I18n.locale.to_s)
       .menu
         .item
           = link_to languages_tr_path
             = country_name('tr')
-            i.flag.tr
         .item
           = link_to languages_en_path
             = country_name('en')
-            i.flag.gb
