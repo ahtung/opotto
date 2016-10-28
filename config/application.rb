@@ -14,7 +14,7 @@ module Opotto
     config.generators.stylesheets = false
     config.generators.javascripts = false
     config.i18n.available_locales = [:tr, :nl, :en]
-    config.i18n.default_locale = :tr
+    config.i18n.default_locale = :tr unless Rails.env.test?
     config.middleware.use Rack::Attack
     config.nav_lynx.selected_class = 'active'
   end

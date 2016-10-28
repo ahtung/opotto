@@ -28,4 +28,12 @@ module ApplicationHelper
       empty_heart: 'violet'
     }
   end
+
+  def country_name(locale)
+    "#{locale.eql?('en') ? 'Global ' : I18n.backend.translate(locale, "i18n.language.name")} "
+  end
+
+  def country_icon(locale)
+    content_tag(:i, '', class: "#{locale.eql?('en') ? 'icon world' : 'flag '+locale}")
+  end
 end

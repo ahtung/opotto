@@ -6,9 +6,16 @@ class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
 
   before_action :authorize_country
+  before_action :set_locale
   around_action :set_time_zone
 
   private
+
+  # Set language
+  def set_locale
+    I18n.locale = session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
+  end
 
   # Redirect visitor to root_path in not authorized
   def user_not_authorized

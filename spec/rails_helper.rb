@@ -84,12 +84,16 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  config.before(:each) do
+    I18n.locale = :en
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
 
   config.after(:each) do
-    I18n.locale = :en
+    Capybara.reset_sessions!
   end
 
   config.before(:suite) do
