@@ -30,9 +30,10 @@ module ApplicationHelper
   end
 
   def country_name(locale)
-    html = "".html_safe
-    html << "#{locale.eql?('en') ? 'Global ' : I18n.backend.translate(locale, "i18n.language.name")} ".html_safe
-    html << content_tag(:i, '', class: "#{locale.eql?('en') ? 'icon world' : 'flag '+locale}")
-    html
+    "#{locale.eql?('en') ? 'Global ' : I18n.backend.translate(locale, "i18n.language.name")} "
+  end
+
+  def country_icon(locale)
+    content_tag(:i, '', class: "#{locale.eql?('en') ? 'icon world' : 'flag '+locale}")
   end
 end

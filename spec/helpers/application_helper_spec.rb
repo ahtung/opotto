@@ -1,21 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
-  describe 'country_name' do
-    it 'should return world icon if locale is en' do
-      expect(helper.country_name('en')).to have_selector('.icon.world', count: 1)
-    end
-
+  describe '#country_name' do
     it 'should return global if locale is en' do
       expect(helper.country_name('en')).to have_content('Global')
     end
 
-    it 'should return flag and native language name from translations if locale is no en' do
-      expect(helper.country_name('tr')).to have_selector('.flag.tr', count: 1)
-    end
-
     it 'should return native language name if locale is no en' do
       expect(helper.country_name('tr')).to have_content('Türkçe')
+    end
+  end
+
+  describe '#country_icon' do
+    it 'should return flag and native language name from translations if locale is no en' do
+      expect(helper.country_icon('tr')).to have_selector('.flag.tr', count: 1)
+    end
+
+    it 'should return world icon if locale is en' do
+      expect(helper.country_icon('en')).to have_selector('.icon.world', count: 1)
     end
   end
 
