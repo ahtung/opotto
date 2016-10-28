@@ -12,9 +12,11 @@ RSpec.describe 'Guest', type: :feature, js: true do
   end
 
   it 'should be able to change language to English' do
+    I18n.locale = :tr
     visit page_path('security')
     within '.footer' do
       find('.floating').click
+      sleep 0.5
       click_on 'Global'
     end
     expect(page).to have_content 'Privacy'
