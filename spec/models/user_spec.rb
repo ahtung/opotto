@@ -22,6 +22,18 @@ describe User do
       end
     end
 
+    describe 'name' do
+      it 'should return user name if user has both name and surname' do
+        user = create(:user)
+        expect(user.name).to eq([user.first_name, user.last_name].join(' '))
+      end
+
+      it 'should return false if user has no name or surname' do
+        user = create(:user, first_name: nil)
+        expect(user.name).to eq(user.email)
+      end
+    end
+
     describe 'name?' do
       it 'should return true if user has both name and surname' do
         user = create(:user)
